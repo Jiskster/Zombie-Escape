@@ -383,7 +383,7 @@ ZE.Start_alpha_attack = function()
 	if gametype == GT_ZESCAPE
 		ZE.alpha_attack = 1
 		S_ChangeMusic("ZMATK", false)
-		P_StartQuake(20*FRACUNIT, 10*TICRATE)
+		P_StartQuake(10*FRACUNIT, 6*TICRATE)
 	end
 end
 

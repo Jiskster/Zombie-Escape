@@ -46,7 +46,7 @@ end
 ZE.AmyRegen = function(player)
     if not (gametype == GT_ZESCAPE) return end
 	if (player.mo and player.mo.valid)
-	  if not (player.mo.skin == "amy" or player.mo.skin == "noise") return end
+	  if not (player.mo.skin == "amy") return end
 	    player.regen = $ or 0
 	    if (player.mo.health < 200) then
 		  player.regen = $1 - 1
