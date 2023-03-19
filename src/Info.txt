@@ -1,0 +1,9 @@
+Exclusive maps for the "MultiWorld" server from the author "TuXe"
+
+MapList:
+	MAPR0 - SCP 87-B V1
+	MAPR1 - Roblox Obby
+	MAPR2 - Empty Lab
+	MAPR3 - Ice Mountain
+	
+The list of maps will grow, it takes time.

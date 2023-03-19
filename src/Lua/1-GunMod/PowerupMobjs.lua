@@ -1,0 +1,30 @@
+freeslot(
+"MT_RS_POWERUP",
+"S_RS_POWERUP",
+"SPR_PROT",
+"MT_RS_PROTECTION",
+"S_RS_PROTECTION",
+"SPR_RSPU"
+)
+
+mobjinfo[MT_RS_POWERUP] = {
+	spawnstate = S_RS_POWERUP,
+	radius = 38*FRACUNIT,
+	height = 76*FRACUNIT,
+	flags = MF_SPECIAL|MF_NOGRAVITY|MF_NOCLIPHEIGHT
+}
+states[S_RS_POWERUP] = {
+	sprite = SPR_RSPU,
+	frame = A|FF_PAPERSPRITE,
+	tics = -1
+}
+
+mobjinfo[MT_RS_PROTECTION] = {
+	spawnstate = S_RS_PROTECTION,
+	flags = MF_NOBLOCKMAP|MF_NOCLIP|MF_NOCLIPHEIGHT|MF_NOGRAVITY|MF_SCENERY
+}
+states[S_RS_PROTECTION] = {
+	sprite = SPR_PROT,
+	frame = A|FF_PAPERSPRITE|FF_TRANS60,
+	tics = -1
+}
