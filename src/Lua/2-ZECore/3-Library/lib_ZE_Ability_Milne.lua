@@ -53,7 +53,7 @@ ZE.MilneAbilitySpecial = function(player)
 	//The Thok part (only executes if you're holding far enough in a direction)
 	if not (P_GetPlayerControlDirection(player) == 0
 	or (abs(player.cmd.forwardmove) < 35 and abs(player.cmd.sidemove) < 35))
-		local actionspd = 15*FRACUNIT
+		local actionspd = 10*FRACUNIT
 		if player.mo.eflags&MFE_UNDERWATER
 			actionspd = $*2/3
 		end
