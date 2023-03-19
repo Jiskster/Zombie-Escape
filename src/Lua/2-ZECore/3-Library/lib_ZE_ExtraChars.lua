@@ -195,7 +195,7 @@ ZE.ExtraCharsStartHealth = function(player)
 	if not (leveltime > CV.waittime)
 	if (player.mo and player.mo.valid)
 	  if (player.mo.skin == "milne")
-		player.mo.health = 150
+		player.mo.health = 75
 	elseif (player.mo.skin == "bob")
 		player.mo.health = 115
 	elseif (player.mo.skin == "revenger")
@@ -207,21 +207,21 @@ ZE.ExtraCharsStartHealth = function(player)
 	elseif (player.mo.skin == "serpentine")
 	    player.mo.health = 120
 	elseif (player.mo.skin == "steve")
-		player.mo.health = 156
+		player.mo.health = 200
 	elseif (player.mo.skin == "oof")
 		player.mo.health = 120
 	elseif (player.mo.skin == "peppino")
-		player.mo.health = 150
+		player.mo.health = 110
 	elseif (player.mo.skin == "noise")
-		player.mo.health = 200
+		player.mo.health = 135
 	elseif (player.mo.skin == "snick")
-		player.mo.health = 150
+		player.mo.health = 110
 	elseif (player.mo.skin == "fakepep")
 		player.mo.health = 150
 	elseif (player.mo.skin == "motobugze")
 		player.mo.health = 1
 	elseif (player.mo.skin == "chaoze")
-		player.mo.health = 125
+		player.mo.health = 50
 	      end
        end
 	end
@@ -230,32 +230,32 @@ end
 ZE.ExtraCharsHealthLimit = function(player)
     if not (gametype == GT_ZESCAPE) return end
 	if (player.mo and player.mo.valid)
-	  if (player.mo.skin == "milne" and player.mo.health > 175) and not (player.maxhp == 1) then
-		player.mo.health = 175
+	  if (player.mo.skin == "milne" and player.mo.health > 100) and not (player.maxhp == 1) then
+		player.mo.health = 100
 	elseif (player.mo.skin == "bob" and player.mo.health > 115) and not (player.maxhp == 1) then
 		player.mo.health = 115
-	elseif (player.mo.skin == "revenger" and player.mo.health > 100) and not (player.maxhp == 1) then
+	elseif (player.mo.skin == "revenger" and player.mo.health > 130) and not (player.maxhp == 1) then
 		player.mo.health = 130
-	elseif (player.mo.skin == "scarf" and player.mo.health > 150) and not (player.maxhp == 1) then
-		player.mo.health = 150
+	elseif (player.mo.skin == "scarf" and player.mo.health > 125) and not (player.maxhp == 1) then
+		player.mo.health = 125
 	elseif (player.mo.skin == "w" and player.mo.health > 120) and not (player.maxhp == 1) then
 		player.mo.health = 120
-	elseif (player.mo.skin == "serpentine" and player.mo.health > 135) and not (player.maxhp == 1) then
-		player.mo.health = 135
-	elseif (player.mo.skin == "steve" and player.mo.health > 156) and not (player.maxhp == 1) then
-	    player.mo.health = 156
+	elseif (player.mo.skin == "serpentine" and player.mo.health > 120) and not (player.maxhp == 1) then
+		player.mo.health = 120
+	elseif (player.mo.skin == "steve" and player.mo.health > 300) and not (player.maxhp == 1) then
+	    player.mo.health = 300 --Gameplay experiment.
 	elseif (player.mo.skin == "oof" and player.mo.health > 120) and not (player.maxhp == 1) then
 	    player.mo.health = 120
-	elseif (player.mo.skin == "peppino" and player.mo.health > 300) and not (player.maxhp == 1) then
-	    player.mo.health = 300
-	elseif (player.mo.skin == "noise" and player.mo.health > 300) and not (player.maxhp == 1) then
-	    player.mo.health = 300
-	elseif (player.mo.skin == "snick" and player.mo.health > 250) and not (player.maxhp == 1) then
-	    player.mo.health = 250
-	elseif (player.mo.skin == "fakepep" and player.mo.health > 275) and not (player.maxhp == 1) then
-	    player.mo.health = 275
-	elseif (player.mo.skin == "chaoze" and player.mo.health > 175) and not (player.maxhp == 1) then
+	elseif (player.mo.skin == "peppino" and player.mo.health > 145) and not (player.maxhp == 1) then
+	    player.mo.health = 145
+	elseif (player.mo.skin == "noise" and player.mo.health > 135) and not (player.maxhp == 1) then
+	    player.mo.health = 135
+	elseif (player.mo.skin == "snick" and player.mo.health > 110) and not (player.maxhp == 1) then
+	    player.mo.health = 110
+	elseif (player.mo.skin == "fakepep" and player.mo.health > 175) and not (player.maxhp == 1) then
 	    player.mo.health = 175
+	elseif (player.mo.skin == "chaoze" and player.mo.health > 130) and not (player.maxhp == 1) then
+	    player.mo.health = 130
     elseif (survskins and player.maxhp == 1 and player.mo.health > 700) and not (player.ctfteam == 1) then
 	    player.mo.health = 700
 		end
