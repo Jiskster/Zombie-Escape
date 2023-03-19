@@ -17,6 +17,11 @@ ZE.BuildPropShieldBox = function(player)
 		player.propspawn = $-1
 	end
 end
+ZE.ResetPropSpawn = function(player)
+	if player.mo and player.mo.valid then
+		player.propspawn = 2
+	end
+end
 
 ZE.SpawnProps = function(player)
      if player.mo and player.mo.valid

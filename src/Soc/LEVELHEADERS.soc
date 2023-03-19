@@ -165,6 +165,7 @@ NextLevel = R2
 NoZone = True
 SelectHeading = Zombie Escape
 Lua.SurviveTime = 10
+Lua.BounceOff = true
 
 Level R2
 Levelname = Empty Lab
@@ -215,7 +216,7 @@ weather = 2
 NoZone = True
 SelectHeading = Zombie Escape
 Lua.SwarmMap = true
-Lua.SurviveTime = 5
+Lua.SurviveTime = 4
 
 Level 71
 Levelname = Forest XMAS
@@ -230,7 +231,7 @@ weather = 2
 NoZone = True
 SelectHeading = Zombie Escape
 Lua.SwarmMap = true
-Lua.SurviveTime = 5
+Lua.SurviveTime = 4
 
 Level 72
 Levelname = Highrise 2021
@@ -244,7 +245,7 @@ weather = 2
 NoZone = True
 SelectHeading = Zombie Escape
 Lua.SwarmMap = true
-Lua.SurviveTime = 5
+Lua.SurviveTime = 4
 
 Level 18
 Levelname = Train Station 17
@@ -256,6 +257,7 @@ Weather = 0
 SkyNum = 5
 Lua.SwarmMap = true
 Lua.SurviveTime = 5
+Lua.BounceOff = true
 
 Level S0
 Levelname = Nomad Frosts Beta
