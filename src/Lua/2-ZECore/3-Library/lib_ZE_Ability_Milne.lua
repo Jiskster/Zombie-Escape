@@ -1,15 +1,14 @@
 local ZE = RV_ZESCAPE
 
 ZE.MilnePlayerThink = function(player)
-  if player.mo and player.mo.valid
-    and player.mo.skin == "milne"
-	player.milnespringtime = 0
-	player.milnedeadtimer = 0
-	player.milneairtime = 0
-	player.milnehugpain = 0
-	player.milne1tapready = false
-	player.crystallance = 0
-	player.weapondelay = 1
+	if player.mo and player.mo.valid and player.mo.skin == "milne"
+		player.milnespringtime = 0
+		player.milnedeadtimer = 0
+		player.milneairtime = 0
+		player.milnehugpain = 0
+		player.milne1tapready = false
+		player.crystallance = 0
+		player.weapondelay = 1
 	end
 end
 
@@ -23,7 +22,8 @@ ZE.MilneAbilitySpecial = function(player)
 	or not (player.pflags&PF_JUMPED) return true end
 	
 	//The downwards jump
-	if player.pflags&PF_THOKKED
+	if player.pflags&PF_THOKKED then 
+		player.milnelastthok = 0 
 		if player.powers[pw_super]
 			player.pflags = $&~PF_THOKKED
 		else
@@ -33,7 +33,7 @@ ZE.MilneAbilitySpecial = function(player)
 		if player.mo.eflags&MFE_UNDERWATER
 			P_SetObjectMomZ(player.mo, -12*FRACUNIT, true)
 		else
-			P_SetObjectMomZ(player.mo, -15*FRACUNIT, true)
+			P_SetObjectMomZ(player.mo, -3*FRACUNIT, true)
 		end
 		
 		if mariomode
@@ -53,7 +53,7 @@ ZE.MilneAbilitySpecial = function(player)
 	//The Thok part (only executes if you're holding far enough in a direction)
 	if not (P_GetPlayerControlDirection(player) == 0
 	or (abs(player.cmd.forwardmove) < 35 and abs(player.cmd.sidemove) < 35))
-		local actionspd = 10*FRACUNIT
+		local actionspd = max(player.actionspd, player.normalspeed)*2/3
 		if player.mo.eflags&MFE_UNDERWATER
 			actionspd = $*2/3
 		end
@@ -65,6 +65,7 @@ ZE.MilneAbilitySpecial = function(player)
 		end
 		player.drawangle = player.mo.angle
 	end
+	
 	
 	//Other stuff
 	player.mo.state = S_PLAY_SPINDASH
