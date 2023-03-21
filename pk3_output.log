@@ -1,0 +1,92 @@
+Current directory: "C:\Users\Jisk\Documents\GitHub\Zombie-Escape\"
+pk3 location: "C:\Users\Jisk\Documents\GitHub\Zombie-Escape\ZGL_MZombieEscape-v2.0.1.pk3"
+/src directory: "C:\Users\Jisk\Documents\GitHub\Zombie-Escape\src\"
+/tools directory: "C:\Users\Jisk\Documents\GitHub\Zombie-Escape\tools\"
+Removing .lmp extension from files in "C:\Users\Jisk\Documents\GitHub\Zombie-Escape\src"...
+
+Testing for 7zip...
+Working directory: "C:\Users\Jisk\Documents\GitHub\Zombie-Escape\tools"
+
+7-Zip (a) 19.00 (x86) : Copyright (c) 1999-2018 Igor Pavlov : 2019-02-21
+
+Packing "C:\Users\Jisk\Documents\GitHub\Zombie-Escape\src\" into "C:\Users\Jisk\Documents\GitHub\Zombie-Escape\ZGL_MZombieEscape-v2.0.1.pk3" ...
+
+7-Zip (a) 19.00 (x86) : Copyright (c) 1999-2018 Igor Pavlov : 2019-02-21
+
+Scanning the drive:
+107 folders, 1561 files, 63901191 bytes (61 MiB)
+
+Creating archive: C:\Users\Jisk\Documents\GitHub\Zombie-Escape\ZGL_MZombieEscape-v2.0.1.pk3
+
+Add new data to archive: 107 folders, 1561 files, 63901191 bytes (61 MiB)
+
+
+Files read from disk: 1561
+Archive size: 37276764 bytes (36 MiB)
+Everything is Ok
+Reordering TEXTURES files...
+Working directory: "C:\Users\Jisk\Documents\GitHub\Zombie-Escape\tools"
+
+7-Zip (a) 19.00 (x86) : Copyright (c) 1999-2018 Igor Pavlov : 2019-02-21
+
+Scanning the drive for archives:
+1 file, 37276764 bytes (36 MiB)
+
+Extracting archive: C:\Users\Jisk\Documents\GitHub\Zombie-Escape\ZGL_MZombieEscape-v2.0.1.pk3
+--
+Path = C:\Users\Jisk\Documents\GitHub\Zombie-Escape\ZGL_MZombieEscape-v2.0.1.pk3
+Type = zip
+Physical Size = 37276764
+
+
+No files to process
+Everything is Ok
+
+Files: 0
+Size:       0
+Compressed: 37276764
+
+7-Zip (a) 19.00 (x86) : Copyright (c) 1999-2018 Igor Pavlov : 2019-02-21
+
+Open archive: C:\Users\Jisk\Documents\GitHub\Zombie-Escape\ZGL_MZombieEscape-v2.0.1.pk3
+--
+Path = C:\Users\Jisk\Documents\GitHub\Zombie-Escape\ZGL_MZombieEscape-v2.0.1.pk3
+Type = zip
+Physical Size = 37276764
+
+Updating archive: C:\Users\Jisk\Documents\GitHub\Zombie-Escape\ZGL_MZombieEscape-v2.0.1.pk3
+
+Keep old data in archive: 107 folders, 1561 files, 63901191 bytes (61 MiB)
+Add new data to archive: 0 files, 0 bytes
+
+
+Files read from disk: 0
+Archive size: 37276764 bytes (36 MiB)
+Everything is Ok
+
+7-Zip (a) 19.00 (x86) : Copyright (c) 1999-2018 Igor Pavlov : 2019-02-21
+
+Open archive: C:\Users\Jisk\Documents\GitHub\Zombie-Escape\ZGL_MZombieEscape-v2.0.1.pk3
+--
+Path = C:\Users\Jisk\Documents\GitHub\Zombie-Escape\ZGL_MZombieEscape-v2.0.1.pk3
+Type = zip
+Physical Size = 37276764
+
+Scanning the drive:
+0 files, 0 bytes
+
+Updating archive: C:\Users\Jisk\Documents\GitHub\Zombie-Escape\ZGL_MZombieEscape-v2.0.1.pk3
+
+Keep old data in archive: 107 folders, 1561 files, 63901191 bytes (61 MiB)
+Add new data to archive: 0 files, 0 bytes
+
+
+Files read from disk: 0
+Archive size: 37276764 bytes (36 MiB)
+Everything is Ok
+Working directory: "C:\Users\Jisk\Documents\GitHub\Zombie-Escape\src"
+Working directory: "C:\Users\Jisk\Documents\GitHub\Zombie-Escape\tools"
+
+7-Zip (a) 19.00 (x86) : Copyright (c) 1999-2018 Igor Pavlov : 2019-02-21
+
+Done!
