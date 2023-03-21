@@ -362,22 +362,22 @@ ZE.CountDown = function()
 end
 
 ZE.BecomeAlphaZm = function()
-  if not (gametype == GT_ZESCAPE) then return end
+	if not (gametype == GT_ZESCAPE) then return end
 		for player in players.iterate
-		   if (player.ctfteam == 1) and (leveltime-CV.waittime <= 10*TICRATE) and (player.playerstate == PST_DEAD) then
-		   player.alphazm = $ or 0
-		   player.alphazm = 1
-		end
+			if (player.ctfteam == 1) and (leveltime-CV.waittime <= 10*TICRATE) and (player.playerstate == PST_DEAD) then
+				player.alphazm = $ or 0
+				player.alphazm = 1
+			end
 			if (player.ctfteam == 1) and (player.playerstate == PST_DEAD) and (leveltime-CV.waittime >= 10*TICRATE) then
-			   player.alphazm = 0
-		end
+				player.alphazm = 0
+			end
 			if (player.ctfteam == 2) or (player.spectator == 1) then
-			   player.alphazm = 0
-		end
-			if ZE.alpha_attack == 1 and player.mo.valid and player.mo.skin == "dzombie" then
-			   player.alphazm = 1
-		end
-    end
+				player.alphazm = 0
+			end
+			if ZE.alpha_attack == 1 and player.mo and player.mo.valid and player.mo.skin == "dzombie" then
+				player.alphazm = 1
+			end
+	end
 end
 ZE.Start_alpha_attack = function()
 	if gametype == GT_ZESCAPE
@@ -389,7 +389,7 @@ end
 
 ZE.Inc_Show_alpha_attack = function() --increments ZE.alpha_attack_show if its not done showing
 	if ZE.alpha_attack_doneshow == false then
-		if ZE.alpha_attack == 1 and ZE.alpha_attack_doneshow == false then
+		if ZE.alpha_attack == 1 then
 			ZE.alpha_attack_show = $ + 1
 		end
 		if ZE.alpha_attack_show > 15*TICRATE then
