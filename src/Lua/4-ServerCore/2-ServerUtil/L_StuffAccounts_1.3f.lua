@@ -260,6 +260,7 @@ COM_AddCommand("loadnamestuff", function(player, node, password)
 			
 			if playerstuff.stuffname -- This load stuff for the player.
 				--Load revenger.
+				if gametype ~= GT_ZESCAPE then return end
 				local revengerstuff = io.openlocal(folderstuff..playerstuff.stuffname.."/revenger.dat", "r")
 				if revengerstuff
 					ps_revenger = revengerstuff:read("*a") or $ --loading4
@@ -331,9 +332,11 @@ COM_AddCommand("savenamestuff", function(player, node, password)
 			end
 			-- This save stuff of the player.
 			if playerstuff.stuffname
-				local revengerstuff = io.openlocal(folderstuff..playerstuff.stuffname.."/revenger.dat", "w")
-				revengerstuff:write(playerstuff.rvgrpass)
-				revengerstuff:close()
+				if gametype == GT_ZESCAPE
+					local revengerstuff = io.openlocal(folderstuff..playerstuff.stuffname.."/revenger.dat", "w")
+					revengerstuff:write(playerstuff.rvgrpass)
+					revengerstuff:close()
+				end
 				-- Save admin
 				if cv_setadmin.value == 1
 					if IsPlayerAdmin(playerstuff)
@@ -346,7 +349,6 @@ COM_AddCommand("savenamestuff", function(player, node, password)
 						adminstuff:close()
 					end
 				end
-				
 			end
 		end
 	end
