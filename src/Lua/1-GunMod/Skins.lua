@@ -66,31 +66,31 @@ s["bob"] = {
 }
 
 s["revenger"] = {
-	ammo = 45,
+	ammo = 65,
 	weapons = {RSWPN_SCATTER, RSWPN_MACHINEGUN}
 }
 
 s["chaoze"] = {
-	ammo = 100,
+	ammo = 65,
 	weapons = {RSWPN_NORMAL, RSWPN_FLAME}
 }
 
 s["peppino"] = {
-	ammo = 125,
+	ammo = 110,
 	weapons = {RSWPN_SCATTER, RSWPN_RAIL}
 }
 
 s["noise"] = {
-	ammo = 150,
+	ammo = 70,
 	weapons = {RSWPN_MACHINEGUN, RSWPN_AUTOSCATTER}
 }
 
 s["snick"] = {
-	ammo = 135,
+	ammo = 75,
 	weapons = {RSWPN_SCATTER, RSWPN_ACCEL}
 }
 
 s["fakepep"] = {
-	ammo = 110,
+	ammo = 60,
 	weapons = {RSWPN_ACCEL, RSWPN_INFINITY}
 }
