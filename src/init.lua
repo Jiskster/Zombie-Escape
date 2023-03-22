@@ -59,7 +59,6 @@ for _, filename in ipairs{
 	"2-ZECore/3-Library/lib_ZE_Ability_Milne.lua",
 	"2-ZECore/3-Library/lib_ZE_ExtraChars_exec.lua",
 	"2-ZECore/3-Library/lib_ZE_rhealth_Extra.lua",
-	"2-ZECore/3-Library/lib_ZE_Extra_mobj_exec.lua",
 	"2-ZECore/3-Library/lib_ZE_Revenger.lua",
 	"2-ZECore/3-Library/lib_ZE_swarmhud.lua",
 	"2-ZECore/3-Library/lib_ZE_antibounce.lua",
