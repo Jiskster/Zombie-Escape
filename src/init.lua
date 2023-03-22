@@ -70,6 +70,7 @@ for _, filename in ipairs{
 	"4-ServerCore/2-ServerUtil/admintools.lua",
 	"4-ServerCore/2-ServerUtil/SaveMap.lua",
 	"4-ServerCore/2-ServerUtil/LUA_MOTD",
+	"4-ServerCore/2-ServerUtil/L_StuffAccounts_1.3f.lua",
 	
 	--lua restricted maps
 	"3-LuaMap/LUA_SCPM",
