@@ -21,7 +21,7 @@ exit /b
 
 if %verbose% == 1 (
 echo Current directory: "%root%"
-echo pk3 location: "%root%%pk3%"
+echo pk3 location: "%root%\bin\%pk3%"
 echo /src directory: "%root%src\"
 echo /tools directory: "%root%tools\"
 )
@@ -43,24 +43,24 @@ if %e% == 1 goto eof
 
 ::--------------------------------------------------------------------------
 
-echo Packing "%root%src\" into "%root%%pk3%" ...
-7za.exe u -tzip "%root%%pk3%" -r "%root%src\*" -mx5 -up0q0r2x1y2z1
+echo Packing "%root%src\" into "%root%\bin\%pk3%" ...
+7za.exe u -tzip "%root%\bin\%pk3%" -r "%root%src\*" -mx5 -up0q0r2x1y2z1
 
 
 echo Reordering TEXTURES files...
 if %verbose% == 1 echo Working directory: "%cd%"
 if exist textures.txt del textures.txt
-7za x "%root%%pk3%" TEXTURES.* -y
-7za d "%root%%pk3%" TEXTURES.*
+7za x "%root%\bin\%pk3%" TEXTURES.* -y
+7za d "%root%\bin\%pk3%" TEXTURES.*
 forfiles /M TEXTURES.* /C "cmd /c rename @file abc@file"
-7za a "%root%%pk3%" abcTEXTURES.*
+7za a "%root%\bin\%pk3%" abcTEXTURES.*
 del /f abcTEXTURES.*
 pushd "%root%src\"
 if %verbose% == 1 echo Working directory: "%cd%"
 for /f %%i in ('FORFILES /M TEXTURES.* /C "cmd /c echo @file"') do @echo abc%%~i >> "%root%tools\textures.txt" && @echo %%~i >> "%root%tools\textures.txt"
 pushd "%root%tools\"
 if %verbose% == 1 echo Working directory: "%cd%"
-7za rn "%root%%pk3%" @textures.txt
+7za rn "%root%\bin\%pk3%" @textures.txt
 del textures.txt
 
 echo Done!
