@@ -50,7 +50,7 @@ end
 
 ZE.UnlockRevenger = function(player)
 	chatprint(player.name + " Unlocked Revenger! " + "("+player.wins+"wins"+")")
-	player.rvgrpass == 1
+	player.rvgrpass = 1
 end
 
 addHook("MapChange", do
