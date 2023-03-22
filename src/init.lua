@@ -1,16 +1,18 @@
 for _, filename in ipairs{
--- GunMod (RS NEO Setup)
+-- Funny init
 
-	
+	--first thing to load
 	"2-ZECore/1-Init/int_freeslot.lua",
 	"2-ZECore/1-Init/int_global.lua",
 	"2-ZECore/1-Init/int_ZE_RSNEO.lua",
 
+
+	--cmds and etc
 	"2-ZECore/2-Console/con_timer.lua",
 	"2-ZECore/2-Console/con_rhealth.lua",
 	"2-ZECore/2-Console/con_cmds.lua",
 	
-		
+	--main ze code	
 	"2-ZECore/3-Library/lib_ZE_main.lua",
 	"2-ZECore/3-Library/lib_ZE_rhealth.lua",
 	"2-ZECore/3-Library/lib_ZE_rhealth_dmg.lua",
@@ -34,6 +36,7 @@ for _, filename in ipairs{
 	"2-ZECore/4-Execute/Exec_ZE_Main.lua",
 	"2-ZECore/4-Execute/Exec_ZE_HUD.lua",
 
+	--mapvote stuff
 	"4-ServerCore/1-MapVote/1_Rawset.lua",
 	"4-ServerCore/1-MapVote/2_Console.lua",
 	"4-ServerCore/1-MapVote/3_DebugFunctions.lua",
@@ -42,6 +45,7 @@ for _, filename in ipairs{
 	"4-ServerCore/1-MapVote/6_Main.lua",
 	"4-ServerCore/1-MapVote/7_GametypeRegistry.lua",
 
+	--Ringslinger neo base
     "1-GunMod/Rawset.lua",
 	"1-GunMod/Console.lua",
 	"1-GunMod/Sounds.lua",
@@ -60,15 +64,14 @@ for _, filename in ipairs{
 	"1-GunMod/NewRingExplode.lua",
 	"1-GunMod/RocketForce.lua",
 	
+	--ze server base
 	"4-ServerCore/2-ServerUtil/discord.lua",
 	"4-ServerCore/2-ServerUtil/VL_IntermissionLock-v1.lua",
 	"4-ServerCore/2-ServerUtil/admintools.lua",
 	"4-ServerCore/2-ServerUtil/SaveMap.lua",
 	"4-ServerCore/2-ServerUtil/LUA_MOTD",
 	
--- Zombie Escape Core Scripts 
-
-	
+	--lua restricted maps
 	"3-LuaMap/LUA_SCPM",
 	"3-LuaMap/LUA_MP41",
 	"3-LuaMap/LUA_MP42",

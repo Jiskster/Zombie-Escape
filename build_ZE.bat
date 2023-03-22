@@ -14,10 +14,10 @@ SET "root=%~dp0"
 
 set "pk3=%name%-v%version%.pk3"
 
-call :sub >pk3_output.log
-exit /b
+:: call :sub >pk3_output.log
+:: exit /b
 
-:sub
+: :sub
 
 if %verbose% == 1 (
 echo Current directory: "%root%"
