@@ -4,7 +4,7 @@
 set "name=ZGL_MZombieEscape"
 set "version=2.0.1"
 
-set /A "delump=1"
+set /A "delump=0"
 
 set /A "verbose=1"
 ::--------------------------------------------------------------------------
