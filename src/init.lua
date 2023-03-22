@@ -71,15 +71,6 @@ for _, filename in ipairs{
 	"4-ServerCore/2-ServerUtil/SaveMap.lua",
 	"4-ServerCore/2-ServerUtil/LUA_MOTD",
 	"4-ServerCore/2-ServerUtil/L_StuffAccounts_1.3f.lua",
-	
-	--lua restricted maps
-	"3-LuaMap/LUA_SCPM",
-	"3-LuaMap/LUA_MP41",
-	"3-LuaMap/LUA_MP42",
-	"3-LuaMap/LUA_VMAP",
-	"3-LuaMap/LUA_MP45",
-	"3-LuaMap/LUA_MP47",
-	"3-LuaMap/LUA_MP48",
 } do
     dofile(filename)
 end
