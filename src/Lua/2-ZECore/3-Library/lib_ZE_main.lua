@@ -50,7 +50,7 @@ end
 ZE.PostWin = function(player)
 	player.wins = $ + 1
 	print(player.name,player.wins)
-	if player.wins = 2 then
+	if player.wins == 2 then
 		ZE.UnlockRevenger(player)
 	end
 end
