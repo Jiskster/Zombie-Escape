@@ -49,6 +49,9 @@ end
 
 ZE.PostWin = function(player)
 	player.wins = $ + 1
+	if CV.debug2.value == 1 then
+		print(player.name, player.wins)
+	end
 	if player.wins == 15 then
 		ZE.UnlockRevenger(player)
 	end

@@ -1,6 +1,7 @@
 freeslot("sfx_stop1", "sfx_stop2")
 
 local ZE = RV_ZESCAPE
+local CV = RV_ZESCAPE.Console
 
 ZE.RevengerAbility = function(player)
    if player.mo and player.mo.valid

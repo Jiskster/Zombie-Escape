@@ -11,7 +11,6 @@ addHook("ThinkFrame", function()
 		ZE.InfectPlayer(player)
 		ZE.AntiBounce(player) --level header
 		ZE.HandleWins(player)
-		player.rvgrpass = $ or 0
 	end
 	ZE.CharacterColors()
 	ZE.WinScript()
@@ -29,6 +28,7 @@ end)
 
 addHook("PlayerSpawn", function(player)
 	if (gametype == GT_ZESCAPE)
+		player.rvgrpass = $ or 0
 		if player and player.valid and not player.spectator
 		and player.mo and player.mo.valid
 			ZE.DeathPointTp(player)

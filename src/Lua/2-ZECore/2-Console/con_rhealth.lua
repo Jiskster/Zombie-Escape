@@ -21,6 +21,13 @@ CV.debug = CV_RegisterVar{
 	PossibleValue = CV_OnOff
 }
 
+CV.debug2 = CV_RegisterVar{
+	name = "rh_debug2",
+	defaultvalue = "Off",
+	flags = CV_NETVAR,
+	PossibleValue = CV_OnOff
+}
+
 CV.ringlimit = CV_RegisterVar{
 	name = "rh_ringlimit",
 	defaultvalue = "9999",
