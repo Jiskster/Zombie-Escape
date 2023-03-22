@@ -43,12 +43,23 @@ ZE.CountUp = function()
 	CV.countup = $ + (1/2)
   end
 end
+ZE.HandleWins = function(player)
+	player.wins = $ or 0
+end
 
+ZE.PostWin = function(player)
+	player.wins = $ + 1
+	print(player.name,player.wins)
+	if player.wins = 2 then
+		ZE.UnlockRevenger(player)
+	end
+end
 ZE.Win = function(team)
 	ZE.teamWin = team
 	for player in players.iterate do
 		if team == player.ctfteam
 			S_ChangeMusic("ZMWIN",false,player)
+			ZE.PostWin(player)
 		else
 			S_ChangeMusic("ZMLOSE",false,player)
 		end

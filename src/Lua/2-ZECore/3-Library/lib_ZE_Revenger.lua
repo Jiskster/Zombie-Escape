@@ -19,7 +19,7 @@ ZE.RevengerAbility = function(player)
 				P_SpawnSpinMobj(player,MT_THOK)
 			end
 			if (player.rvgrtimer ~= 0)
-				player.normalspeed = 30*FRACUNIT
+				player.normalspeed = 35*FRACUNIT
 				player.mo.flags2 = $|MF2_DONTDRAW
 			else
 				return
@@ -40,13 +40,17 @@ end
 ZE.Revenger = function(player)
 	for player in players.iterate
 		if player.mo and player.mo.valid
-			if not IsPlayerAdmin(player) 
-			and not (player.rvgrpass == 1)
+			if not (player.rvgrpass == 1)
 			and (player.mo.skin == "revenger")
 				R_SetPlayerSkin(player,ZE.survskinsplay[P_RandomRange(1,#ZE.survskinsplay)])
 	       end
 	    end
 	end
+end
+
+ZE.UnlockRevenger = function(player)
+	chatprint(player.name + " Unlocked Revenger! " + "("+player.wins+"wins"+")")
+	player.rvgrpass == 1
 end
 
 addHook("MapChange", do
