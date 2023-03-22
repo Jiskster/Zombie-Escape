@@ -62,6 +62,7 @@ ZE.Win = function(team)
 			ZE.PostWin(player)
 		else
 			S_ChangeMusic("ZMLOSE",false,player)
+			ZE.PostWin(player)
 		end
 	end
 	CV.winWait = 30*TICRATE
