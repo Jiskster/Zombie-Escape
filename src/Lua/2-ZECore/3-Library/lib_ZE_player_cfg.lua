@@ -4,7 +4,7 @@ local CV = ZE.Console
 ZE.CharacterConfig = function(player)
 	if (player.mo and player.mo.valid)
 			if (player.mo.skin == "sonic")
-                player.normalspeed = 20*FRACUNIT
+                player.normalspeed = 25*FRACUNIT
 				player.runspeed = 100*FRACUNIT
 				player.jumpfactor = 17*FRACUNIT/19
                 player.charability = CA_JUMPTHOK
