@@ -17,7 +17,6 @@ ZE.MapLoad = function(mapnum)
 			ZE.alpha_attack = 0
 			ZE.alpha_attack_show = 0
 			ZE.alpha_attack_doneshow = false
-
     end
 
 end
