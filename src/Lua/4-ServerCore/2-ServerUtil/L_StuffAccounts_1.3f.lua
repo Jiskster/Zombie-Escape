@@ -295,7 +295,7 @@ COM_AddCommand("savenamestuff", function(player, node, password)
 			-- Do a log when the player saves things.
 			if cv_dologstuff.value == 1
 				local log_stuff = io.openlocal(folderstuff.."/log_stuff.txt", "a+")
-				log_stuff:write("Player name: "..playerstuff.rvgrpass"\n") --loading5
+				log_stuff:write("Player name: "..playerstuff.rvgrpass.."\n") --loading5
 				log_stuff:close()
 			end
 			if password

@@ -11,6 +11,7 @@ addHook("ThinkFrame", function()
 		ZE.InfectPlayer(player)
 		ZE.AntiBounce(player) --level header
 		ZE.HandleWins(player)
+		player.rvgrpass = $ or 0
 	end
 	ZE.CharacterColors()
 	ZE.WinScript()
