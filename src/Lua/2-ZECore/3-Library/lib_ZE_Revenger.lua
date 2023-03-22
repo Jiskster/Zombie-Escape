@@ -49,7 +49,7 @@ ZE.Revenger = function(player)
 end
 
 ZE.UnlockRevenger = function(player)
-	chatprint(player.name + " Unlocked Revenger! " + "("+player.wins+"wins"+")")
+	chatprint(player.name + "\x8F\ Unlocked Revenger! " + "("+player.wins+" Wins met!"+")")
 	player.rvgrpass = 1
 end
 
