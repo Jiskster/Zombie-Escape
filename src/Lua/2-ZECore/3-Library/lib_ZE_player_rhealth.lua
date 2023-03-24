@@ -58,6 +58,24 @@ ZE.AmyRegen = function(player)
 		    return end
 	end
 end
+ZE.ZombieRegen = function(player)
+    if not (gametype == GT_ZESCAPE) return end
+	if (player.mo and player.mo.valid)
+	  if not (player.mo.skin == "dzombie") return end
+	    player.regen = $ or 0
+	    if ( (player.mo.health < 900) and (not player.alphazm) )
+		or ( (player.mo.health < 2000) and (player.alphazm == 1) ) then
+		  player.regen = $1 - 1
+		end
+		if (player.regen <= 0*TICRATE) then
+		   if not (player.mo.health + 100 > 1000) -- kinda the limit for zombies is 1000 for healing
+			  player.mo.health = $ + 100
+		   end
+		   player.regen = 8*TICRATE
+		else
+		    return end
+	end
+end
 
 ZE.ZombieHealth = function(player)
 if gametype == GT_ZESCAPE
@@ -65,10 +83,10 @@ if gametype == GT_ZESCAPE
   if player.ctfteam == 2 return end
    if (player.ctfteam == 1) and not (player.spectator) and not (player.alphazm == 1)
      and player.powers[pw_flashing] > 0
-		player.mo.health = 5000
+		player.mo.health = 900 --normal zombie health
 		end
 		 if (player.alphazm == 1) and player.powers[pw_flashing] > 0 then
-		   player.mo.health = 9999
+		   player.mo.health = 2000 -- alpha zombie health
 		   end
 	   end
 	end

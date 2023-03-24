@@ -65,7 +65,7 @@ s["bob"] = {
 	weapons = {RSWPN_FLASH, RSWPN_NORMAL}
 }
 
-RingSlinger.Skins["revenger"] = {
+s["revenger"] = {
 	ammo = 65,
 	weapons = {RSWPN_PISTOL, RSWPN_AUTOSCATTER}
 }

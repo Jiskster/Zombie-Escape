@@ -3,7 +3,7 @@ local ZE = RV_ZESCAPE
 ZE.G_RailRingDamage = function(mobj, hurthealth)
 	if mobj.type == MT_REDRING
 		if mobj.flags2 & MF2_RAILRING
-			return 100
+			return 300
 		else
 			return 0
 		end

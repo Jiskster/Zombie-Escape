@@ -163,10 +163,12 @@ RingSlinger.AddWeapon({
 		return true
 	end
 })
-		RingSlinger.Skins["dzombie"] = {
-			ammo = 1,
-			weapons = {RSWPN_CLAWS, RSWPN_ZMELEE}
-		}
+
+RingSlinger.Skins["dzombie"] = {
+	ammo = 1,
+	weapons = {RSWPN_CLAWS, RSWPN_ZMELEE}
+}
+
 RingSlinger.AddWeapon({
 	name = "Pistol",
 	hudsprite = "PGUNIND",
@@ -225,6 +227,11 @@ RingSlinger.AddWeapon({
 		return true
 	end
 })
+
+RingSlinger.Skins["revenger"] = {
+	ammo = 65,
+	weapons = {RSWPN_PISTOL, RSWPN_AUTOSCATTER}
+}
 
 RingSlinger.AddWeapon({
 	name = "Fist",
