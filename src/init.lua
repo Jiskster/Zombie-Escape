@@ -44,9 +44,6 @@ for _, filename in ipairs{
 	"3-ServerCore/1-MapVote/5_HUD.lua",
 	"3-ServerCore/1-MapVote/6_Main.lua",
 	"3-ServerCore/1-MapVote/7_GametypeRegistry.lua",
-	
-	"4-ZEMov/Mov_Extra_mobj_exec.lua",
-	"4-ZEMov/Mov_ZE_mobj.lua",
 
 	--Ringslinger neo base
     "1-GunMod/Rawset.lua",
@@ -66,6 +63,9 @@ for _, filename in ipairs{
 	"1-GunMod/HurtMsgHooks.lua",
 	"1-GunMod/NewRingExplode.lua",
 	"1-GunMod/RocketForce.lua",
+	
+	"4-ZEMov/Mov_Extra_mobj_exec.lua",
+	"4-ZEMov/Mov_ZE_mobj.lua",
 	
 	--ze server base
 	"3-ServerCore/2-ServerUtil/discord.lua",
