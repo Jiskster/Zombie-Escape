@@ -42,7 +42,7 @@ ZE.Revenger = function(player)
 	for player in players.iterate
 		if player.mo and player.mo.valid
 			if not (player.rvgrpass == 1)
-			and (player.mo.skin == "revenger")
+			and (player.mo.skin == "revenger") or
 			CV.allowunlockables == 1 then
 			
 				R_SetPlayerSkin(player,ZE.survskinsplay[P_RandomRange(1,#ZE.survskinsplay)])
