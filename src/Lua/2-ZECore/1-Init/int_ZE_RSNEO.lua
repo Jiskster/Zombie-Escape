@@ -172,8 +172,8 @@ RingSlinger.AddWeapon({
 	hudsprite = "PGUNIND",
 	viewsprite = "PGUNA0",
 	hold = true,
-	delay = 10,
-	cost = 4,
+	delay = 3,
+	cost = 7,
 	auto = false,
 	shake = 0,
 	scale = FRACUNIT*6/12,
@@ -225,10 +225,7 @@ RingSlinger.AddWeapon({
 		return true
 	end
 })
-		RingSlinger.Skins["revenger"] = {
-			ammo = 45,
-			weapons = {RSWPN_PISTOL, RSWPN_AUTOSCATTER}
-		}
+
 RingSlinger.AddWeapon({
 	name = "Fist",
 	viewsprite = "FSTSA0",

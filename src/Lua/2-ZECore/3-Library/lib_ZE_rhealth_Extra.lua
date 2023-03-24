@@ -2,7 +2,7 @@ local ZE = RV_ZESCAPE
 
 ZE.G_SwordDamage = function(mobj, hurthealth)
 	if mobj.type == MT_SWORDDAMAGE
-		return 1
+		return 100
 	else
 		return 0
 	end
@@ -42,7 +42,7 @@ end
 
 ZE.G_HS_PistolDamage = function(mobj, hurthealth)
 	if mobj.type == MT_RS_HS_SHOT
-		return 50
+		return 10
 	else
 		return 0
 	end
@@ -82,7 +82,7 @@ end
 
 ZE.G_SteveCrossbow = function(mobj, hurthealth)
     if mobj.type == MT_CROSSBOW
-        return 80
+        return 140
     else
         return 0
     end

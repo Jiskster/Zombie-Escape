@@ -11,11 +11,11 @@ s["sonic"] = {
 }
 s["tails"] = {
 	ammo = 75,
-	weapons = {RSWPN_FLAME, RSWPN_STONE}
+	weapons = {RSWPN_FLAME, RSWPN_SCATTER}
 }
 s["knuckles"] = {
 	ammo = 150,
-	weapons = {RSWPN_MACHINEGUN, RSWPN_SCATTER}
+	weapons = {RSWPN_MACHINEGUN, RSWPN_STONE}
 }
 s["amy"] = {
 	ammo = 65,
@@ -65,9 +65,9 @@ s["bob"] = {
 	weapons = {RSWPN_FLASH, RSWPN_NORMAL}
 }
 
-s["revenger"] = {
+RingSlinger.Skins["revenger"] = {
 	ammo = 65,
-	weapons = {RSWPN_SCATTER, RSWPN_MACHINEGUN}
+	weapons = {RSWPN_PISTOL, RSWPN_AUTOSCATTER}
 }
 
 s["chaoze"] = {
