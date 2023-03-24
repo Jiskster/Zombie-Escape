@@ -41,3 +41,10 @@ CV.friendlypushing = CV_RegisterVar{
 	flags = CV_NETVAR,
 	PossibleValue = CV_OnOff
 }
+
+CV.allowunlockables = CV_RegisterVar{
+	name = "rh_allowunlockables",
+	defaultvalue = "Off",
+	flags = CV_NETVAR,
+	PossibleValue = CV_OnOff
+}
