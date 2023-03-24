@@ -37,13 +37,16 @@ for _, filename in ipairs{
 	"2-ZECore/4-Execute/Exec_ZE_HUD.lua",
 
 	--mapvote stuff
-	"4-ServerCore/1-MapVote/1_Rawset.lua",
-	"4-ServerCore/1-MapVote/2_Console.lua",
-	"4-ServerCore/1-MapVote/3_DebugFunctions.lua",
-	"4-ServerCore/1-MapVote/4_Functions.lua",
-	"4-ServerCore/1-MapVote/5_HUD.lua",
-	"4-ServerCore/1-MapVote/6_Main.lua",
-	"4-ServerCore/1-MapVote/7_GametypeRegistry.lua",
+	"3-ServerCore/1-MapVote/1_Rawset.lua",
+	"3-ServerCore/1-MapVote/2_Console.lua",
+	"3-ServerCore/1-MapVote/3_DebugFunctions.lua",
+	"3-ServerCore/1-MapVote/4_Functions.lua",
+	"3-ServerCore/1-MapVote/5_HUD.lua",
+	"3-ServerCore/1-MapVote/6_Main.lua",
+	"3-ServerCore/1-MapVote/7_GametypeRegistry.lua",
+	
+	"4-ZEMov/Mov_Extra_mobj_exec.lua",
+	"4-ZEMov/Mov_ZE_mobj.lua",
 
 	--Ringslinger neo base
     "1-GunMod/Rawset.lua",
@@ -65,12 +68,12 @@ for _, filename in ipairs{
 	"1-GunMod/RocketForce.lua",
 	
 	--ze server base
-	"4-ServerCore/2-ServerUtil/discord.lua",
-	"4-ServerCore/2-ServerUtil/VL_IntermissionLock-v1.lua",
-	"4-ServerCore/2-ServerUtil/admintools.lua",
-	"4-ServerCore/2-ServerUtil/SaveMap.lua",
-	"4-ServerCore/2-ServerUtil/LUA_MOTD",
-	"4-ServerCore/2-ServerUtil/L_StuffAccounts_1.3f.lua",
+	"3-ServerCore/2-ServerUtil/discord.lua",
+	"3-ServerCore/2-ServerUtil/VL_IntermissionLock-v1.lua",
+	"3-ServerCore/2-ServerUtil/admintools.lua",
+	"3-ServerCore/2-ServerUtil/SaveMap.lua",
+	"3-ServerCore/2-ServerUtil/LUA_MOTD",
+	"3-ServerCore/2-ServerUtil/L_StuffAccounts_1.3f.lua",
 } do
     dofile(filename)
 end
