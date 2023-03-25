@@ -28,7 +28,6 @@ end)
 
 addHook("PlayerSpawn", function(player)
 	if (gametype == GT_ZESCAPE)
-		player.rvgrpass = $ or 0
 		if player and player.valid and not player.spectator
 		and player.mo and player.mo.valid
 			ZE.DeathPointTp(player)

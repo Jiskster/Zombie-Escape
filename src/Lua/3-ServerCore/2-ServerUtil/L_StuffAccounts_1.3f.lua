@@ -108,11 +108,11 @@ end
 
 local OtherStuff = {}
 local function SaveOtherStuff(stuff, player) --loading1
-	stuff.rvgrpass = player.rvgrpass
+	stuff.rvgrpass = player.rvgrpass or 0
 end
 
 local function LoadOtherStuff(stuff, player) --loading2
-	player.rvgrpass = stuff.rvgrpass	
+	player.rvgrpass = stuff.rvgrpass or 0
 end
 
 rawset(_G, "cv_autoreg", CV_RegisterVar({
@@ -138,7 +138,7 @@ rawset(_G, "cv_dologaccount", CV_RegisterVar({
 
 rawset(_G, "cv_setadmin", CV_RegisterVar({
 	name = "do_setadmin",
-	defaultvalue = "Off",
+	defaultvalue = "On",
 	flags = CV_NETVAR,
 	PossibleValue = CV_OnOff
 }))
