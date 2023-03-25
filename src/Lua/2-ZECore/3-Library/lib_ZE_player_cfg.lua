@@ -65,7 +65,7 @@ ZE.CharacterStamina = function(player)
 	   if (player.mo.skin == "sonic") and not (player.stamina <= 0) and (player.cmd.buttons & BT_CUSTOM1) and (cmd.forwardmove > 0 or cmd.forwardmove < 0 or cmd.sidemove < 0 or cmd.sidemove > 0)
 	       player.normalspeed = 31*FRACUNIT
 		   player.runspeed = 16*FRACUNIT
-		   player.stamina = $ -20
+		   player.stamina = $ -15
 	   elseif (player.mo.skin == "tails") and not (player.stamina <= 0) and (player.cmd.buttons & BT_CUSTOM1) and (cmd.forwardmove > 0 or cmd.forwardmove < 0 or cmd.sidemove < 0 or cmd.sidemove > 0)
 	       player.normalspeed = 23*FRACUNIT
 		   player.runspeed = 16*FRACUNIT
