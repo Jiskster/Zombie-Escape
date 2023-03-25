@@ -23,6 +23,10 @@
 
 -- Change this value so that players don't lose their passwords.
 -- NOTE: Do not use symbols such as / \ | < > * : ? ^ " .
+
+local ZE = RV_ZESCAPE
+local CV = RV_ZESCAPE.Console
+
 local stuff_servername = "MinisZombieEscape"
 -- Folder where accounts will be saved.
 local folderstuff = "StuffAccounts/Accounts/"
@@ -109,10 +113,12 @@ end
 local OtherStuff = {}
 local function SaveOtherStuff(stuff, player) --loading1
 	stuff.rvgrpass = player.rvgrpass or 0
+	stuff.gamesPlayed = player.gamesPlayed or 0
 end
 
 local function LoadOtherStuff(stuff, player) --loading2
 	player.rvgrpass = stuff.rvgrpass or 0
+	player.gamesPlayed = stuff.gamesPlayed or 0
 end
 
 rawset(_G, "cv_autoreg", CV_RegisterVar({
@@ -177,7 +183,7 @@ COM_AddCommand("setusername", function(player, pname, username, usererror, passw
 	end
 end, 1)
 
-COM_AddCommand("setstuff", function(player, pname, arg1)
+COM_AddCommand("setstuff", function(player, pname, arg1, arg2)
 	if player != server
 		if server.isdedicated != true
 			CONS_Printf(player, "Remote admin can't use this command.")
@@ -191,6 +197,9 @@ COM_AddCommand("setstuff", function(player, pname, arg1)
 	if player2 then
 		if arg1 then
 			player2.rvgrpass = arg1 --loading3
+		end
+		if arg2 then
+			player2.gamesPlayed = arg2 --loading3
 		end
 	end
 end, 1)
@@ -235,6 +244,7 @@ COM_AddCommand("loadnamestuff", function(player, node, password)
 			-- locals variable.
 			local ps_password = "none"
 			local ps_revenger = playerstuff.revenger
+			local ps_gamesPlayed = playerstuff.gamesPlayed
 			local ps_admin = "false"
 			local check_user = IsUsernameLogged(playerstuff.username)
 			
@@ -266,6 +276,11 @@ COM_AddCommand("loadnamestuff", function(player, node, password)
 					ps_revenger = revengerstuff:read("*a") or $ --loading4
 					revengerstuff:close()
 				end
+				local gamesPlayed = io.openlocal(folderstuff..playerstuff.stuffname.."/gamesPlayed.dat", "r")
+				if gamesPlayed
+					ps_gamesPlayed = gamesPlayed:read("*a") or $ --loading4
+					gamesPlayed:close()
+				end
 				if cv_setadmin.value == 1
 					-- Promote the player, if the player was admin on the server.
 					local adminstuff = io.openlocal(folderstuff..playerstuff.stuffname.."/admin.dat", "r")
@@ -278,7 +293,7 @@ COM_AddCommand("loadnamestuff", function(player, node, password)
 					end
 				end
 				-- Set stuff
-				COM_BufInsertText(server, "setstuff "..node.." "..ps_revenger)
+				COM_BufInsertText(server, "setstuff "..node.." "..ps_revenger.." "..ps_gamesPlayed)
 			end
 		end
 	end
@@ -296,6 +311,9 @@ COM_AddCommand("savenamestuff", function(player, node, password)
 			if cv_dologstuff.value == 1
 				local log_stuff = io.openlocal(folderstuff.."/log_stuff.txt", "a+")
 				log_stuff:write("Player name: "..playerstuff.rvgrpass.."\n") --loading5
+				log_stuff:close()
+				local log_stuff = io.openlocal(folderstuff.."/log_stuff.txt", "a+")
+				log_stuff:write("Player name: "..playerstuff.gamesPlayed.."\n") --loading5
 				log_stuff:close()
 			end
 			if password
@@ -336,6 +354,10 @@ COM_AddCommand("savenamestuff", function(player, node, password)
 					local revengerstuff = io.openlocal(folderstuff..playerstuff.stuffname.."/revenger.dat", "w")
 					revengerstuff:write(playerstuff.rvgrpass)
 					revengerstuff:close()
+					
+					local gamesplayedstuff = io.openlocal(folderstuff..playerstuff.stuffname.."/gamesPlayed.dat", "w")
+					gamesplayedstuff:write(playerstuff.gamesPlayed)
+					gamesplayedstuff:close()
 				end
 				-- Save admin
 				if cv_setadmin.value == 1
@@ -584,7 +606,7 @@ addHook("ThinkFrame", do
 					player.cansavestuff = true
 					COM_BufInsertText(player, "savestuff")
 					player.hud_countsave = 2*TICRATE
-					player.stuffsave = 30*TICRATE
+					player.stuffsave = 5*TICRATE
 				else
 					player.stuffsave = $ - 1
 				end
@@ -637,8 +659,10 @@ local function AccountStuff_Game(v) local player = displayplayer
 		end
 	end
 	if player.hud_countsave != nil and player.hud_countsave > 0
-		v.drawScaled(307*FRACUNIT, 150*FRACUNIT, 45056, v.cachePatch("M_FSAVE"), V_SNAPTORIGHT|V_SNAPTOBOTTOM|V_ALLOWLOWERCASE|V_30TRANS)
-		v.drawScaled(307*FRACUNIT, 150*FRACUNIT, 45056, v.cachePatch("M_FLOAD"), hus_transicon)
+		if CV.showsavehud.value == 1
+			v.drawScaled(307*FRACUNIT, 150*FRACUNIT, 45056, v.cachePatch("M_FSAVE"), V_SNAPTORIGHT|V_SNAPTOBOTTOM|V_ALLOWLOWERCASE|V_30TRANS)
+			v.drawScaled(307*FRACUNIT, 150*FRACUNIT, 45056, v.cachePatch("M_FLOAD"), hus_transicon)
+		end
 		//v.drawString(0, 194, (tostring("\x83".."Saving your stuff...")), V_30TRANS|V_ALLOWLOWERCASE|V_SNAPTOLEFT|V_SNAPTOBOTTOM, "small")
 	end
 end

@@ -21,8 +21,8 @@ CV.debug = CV_RegisterVar{
 	PossibleValue = CV_OnOff
 }
 
-CV.debug2 = CV_RegisterVar{
-	name = "rh_debug2",
+CV.showsavehud = CV_RegisterVar{
+	name = "rh_showsavehud",
 	defaultvalue = "Off",
 	flags = CV_NETVAR,
 	PossibleValue = CV_OnOff

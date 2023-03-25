@@ -44,6 +44,7 @@ ZE.Revenger = function(player)
 			if not (player.rvgrpass == 1)
 			and (player.mo.skin == "revenger") then
 				R_SetPlayerSkin(player,ZE.survskinsplay[P_RandomRange(1,#ZE.survskinsplay)])
+				chatprintf(player,"\x8F\You need atleast 15 wins to use this character!",true)
 	       end
 	    end
 	end
@@ -51,7 +52,8 @@ end
 
 ZE.UnlockRevenger = function(player)
 	if player.rvgrpass ~= 1 then
-		chatprint(player.name + "\x8F\ Unlocked Revenger! " + "("+player.wins+" Wins met!"+")")
+		chatprint(player.name + "\x87\ Unlocked \x8F\Revenger!\x87\ " + "("+player.gamesPlayed+" Wins met!"+")")
+		S_StartSound(player.mo, "sfx_ideya")
 		player.rvgrpass = 1
 	end
 end

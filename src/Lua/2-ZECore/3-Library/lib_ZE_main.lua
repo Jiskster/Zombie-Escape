@@ -43,16 +43,16 @@ ZE.CountUp = function()
 	CV.countup = $ + (1/2)
   end
 end
-ZE.HandleWins = function(player)
-	player.wins = $ or 0
+ZE.HandleVars = function(player)
+	if not player.stuffname then
+		player.gamesPlayed = $ or 0
+		player.wins = $ or 0
+	end
 end
 
 ZE.PostWin = function(player)
-	player.wins = $ + 1
-	if CV.debug2.value == 1 then
-		print(player.name, player.wins)
-	end
-	if player.wins == 15 then
+	player.gamesPlayed = $ + 1
+	if player.gamesPlayed == 15 then
 		ZE.UnlockRevenger(player)
 	end
 end
@@ -62,9 +62,11 @@ ZE.Win = function(team)
 		if team == player.ctfteam
 			S_ChangeMusic("ZMWIN",false,player)
 			ZE.PostWin(player)
+			COM_BufInsertText(player, "savestuff")
 		else
 			S_ChangeMusic("ZMLOSE",false,player)
 			ZE.PostWin(player)
+			COM_BufInsertText(player, "savestuff")
 		end
 	end
 	CV.winWait = 30*TICRATE
