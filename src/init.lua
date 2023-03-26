@@ -35,6 +35,7 @@ for _, filename in ipairs{
 	"2-ZECore/4-Execute/Exec_ZE_Player.lua",
 	"2-ZECore/4-Execute/Exec_ZE_Main.lua",
 	"2-ZECore/4-Execute/Exec_ZE_HUD.lua",
+	"2-ZECore/4-Execute/Exec_ZE_ExtraChars.lua",
 
 	--mapvote stuff
 	"3-ServerCore/1-MapVote/1_Rawset.lua",

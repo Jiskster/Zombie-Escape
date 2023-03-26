@@ -112,13 +112,13 @@ end
 
 local OtherStuff = {}
 local function SaveOtherStuff(stuff, player) --loading1
-	stuff.rvgrpass = player.rvgrpass or 0
-	stuff.gamesPlayed = player.gamesPlayed or 0
+	stuff.rvgrpass = player.rvgrpass 
+	stuff.gamesPlayed = player.gamesPlayed 
 end
 
 local function LoadOtherStuff(stuff, player) --loading2
-	player.rvgrpass = stuff.rvgrpass or 0
-	player.gamesPlayed = stuff.gamesPlayed or 0
+	player.rvgrpass = stuff.rvgrpass 
+	player.gamesPlayed = stuff.gamesPlayed 
 end
 
 rawset(_G, "cv_autoreg", CV_RegisterVar({

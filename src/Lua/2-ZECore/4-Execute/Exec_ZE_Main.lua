@@ -10,7 +10,6 @@ addHook("ThinkFrame", function()
 		ZE.SetRings(player)
 		ZE.InfectPlayer(player)
 		ZE.AntiBounce(player) --level header
-		ZE.HandleVars(player)
 	end
 	ZE.CharacterColors()
 	ZE.WinScript()

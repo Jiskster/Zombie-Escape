@@ -43,12 +43,6 @@ ZE.CountUp = function()
 	CV.countup = $ + (1/2)
   end
 end
-ZE.HandleVars = function(player)
-	if not player.stuffname then
-		player.gamesPlayed = $ or 0
-		player.wins = $ or 0
-	end
-end
 
 ZE.PostWin = function(player)
 	player.gamesPlayed = $ + 1
