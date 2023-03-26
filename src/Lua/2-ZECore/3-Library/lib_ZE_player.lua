@@ -171,3 +171,149 @@ ZE.AlphaZmAura = function()
         end
     end
 end
+
+ZE.CharacterColors = function()
+   for player in players.iterate
+	if (player.mo and player.mo.valid)
+			if (player.mo.skin == "sonic")
+			   player.mo.color = SKINCOLOR_BLUE
+			elseif (player.mo.skin == "tails")
+			   player.mo.color = SKINCOLOR_ORANGE
+			elseif (player.mo.skin == "knuckles")
+			   player.mo.color = SKINCOLOR_RED
+			elseif (player.mo.skin == "amy")
+			   player.mo.color = SKINCOLOR_ROSY
+			elseif (player.mo.skin == "metalsonic")
+			   player.mo.color = SKINCOLOR_COBALT
+			elseif (player.mo.skin == "fang")
+			   player.mo.color = SKINCOLOR_LAVENDER
+			elseif (player.mo.skin == "bob")
+			   player.mo.color = SKINCOLOR_YELLOW
+			elseif (player.mo.skin == "revenger")
+			   player.mo.color = SKINCOLOR_BLACK
+			elseif (player.mo.skin == "scarf")
+			   player.mo.color = SKINCOLOR_CARBON
+			elseif (player.mo.skin == "dzombie")
+			   player.mo.color = SKINCOLOR_MOSS
+		   end
+		end
+	end
+end
+
+mobjinfo[MT_CORK].speed = 152*FRACUNIT //Balance tweak to preserve some of the challenge
+
+ZE.CorkStuff = function(mo)
+	return true //Overwrite default behavior so that corks won't damage invulnerable players
+end
+
+//Add ghost trail to the cork to improve its visibility
+ZE.CorkTrail = function(mo)
+	if mo.flags&MF_MISSILE and mo.target and mo.target.player then
+		local ghost = P_SpawnGhostMobj(mo)
+		ghost.destscale = ghost.scale*4
+		if not(gametyperules&GTR_FRIENDLY) //Add color trail to competitive gametypes
+			ghost.colorized = true
+			ghost.color = mo.target.player.skincolor
+		end
+	end
+end
+
+ZE.StartHealth = function(player)
+    if not (gametype == GT_ZESCAPE) return end
+	if not (leveltime > CV.waittime)
+	if (player.mo and player.mo.valid)
+	  if (player.mo.skin == "sonic")
+		player.mo.health = 125
+	elseif (player.mo.skin == "tails")
+		player.mo.health = 95
+	elseif (player.mo.skin == "knuckles")
+		player.mo.health = 175
+	elseif (player.mo.skin == "amy")
+		player.mo.health = 100
+	elseif (player.mo.skin == "fang")
+		player.mo.health = 150
+	elseif (player.mo.skin == "metalsonic")
+		player.mo.health = 150
+	      end
+       end
+	end
+end
+
+ZE.HealthLimit = function(player)
+    if not (gametype == GT_ZESCAPE) return end
+	if (player.mo and player.mo.valid)
+	  if (player.mo.skin == "sonic" and player.mo.health > 125) and not (player.maxhp == 1) then
+		player.mo.health = 125
+	elseif (player.mo.skin == "tails" and player.mo.health > 95) and not (player.maxhp == 1) then
+		player.mo.health = 95
+	elseif (player.mo.skin == "knuckles" and player.mo.health > 175) and not (player.maxhp == 1) then
+		player.mo.health = 175
+	elseif (player.mo.skin == "amy" and player.mo.health > 200) and not (player.maxhp == 1) then
+		player.mo.health = 200
+	elseif (player.mo.skin == "fang" and player.mo.health > 150) and not (player.maxhp == 1) then
+		player.mo.health = 150
+	elseif (player.mo.skin == "metalsonic" and player.mo.health > 150) and not (player.maxhp == 1) then
+		player.mo.health = 150
+    elseif (survskins and player.maxhp == 1 and player.mo.health > 400) and not (player.ctfteam == 1) then
+	    player.mo.health = 400
+		end
+	end
+end
+
+ZE.AmyRegen = function(player)
+    if not (gametype == GT_ZESCAPE) return end
+	if (player.mo and player.mo.valid)
+	  if not (player.mo.skin == "amy") return end
+	    player.regen = $ or 0
+	    if (player.mo.health < 200) then
+		  player.regen = $1 - 1
+		end
+		if (player.regen <= 0*TICRATE) then
+		   player.mo.health = $ + 2
+		   player.regen = 1*TICRATE
+		else
+		    return end
+	end
+end
+ZE.ZombieRegen = function(player)
+    if not (gametype == GT_ZESCAPE) return end
+	if (player.mo and player.mo.valid)
+	  if not (player.mo.skin == "dzombie") return end
+	    player.regen = $ or 0
+	    if ( (player.mo.health < 900) and (not player.alphazm) )
+		or ( (player.mo.health < 2000) and (player.alphazm == 1) ) then
+		  player.regen = $1 - 1
+		end
+		if (player.regen <= 0*TICRATE) then
+		   if not (player.mo.health + 100 > 1000) -- kinda the limit for zombies is 1000 for healing
+			  player.mo.health = $ + 100
+		   end
+		   player.regen = 8*TICRATE
+		else
+		    return end
+	end
+end
+
+ZE.ZombieHealth = function(player)
+if gametype == GT_ZESCAPE
+ if player.mo and player.mo.valid
+  if player.ctfteam == 2 return end
+   if (player.ctfteam == 1) and not (player.spectator) and not (player.alphazm == 1)
+     and player.powers[pw_flashing] > 0
+		player.mo.health = 900 --normal zombie health
+		end
+		 if (player.alphazm == 1) and player.powers[pw_flashing] > 0 then
+		   player.mo.health = 2000 -- alpha zombie health
+		   end
+	   end
+	end
+end
+
+ZE.HealthOrb = function(obj, play)
+   local player = play.player
+		if (player.mo)
+		and (player.ctfteam == 2)
+		     player.maxhp = 1
+		     player.mo.health = $ +200
+	end
+end

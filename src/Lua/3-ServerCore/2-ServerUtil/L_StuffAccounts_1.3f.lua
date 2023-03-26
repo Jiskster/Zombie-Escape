@@ -109,7 +109,8 @@ local function ExitIfNoPlayerOnTheSP()
 		end
 	end
 end
-
+--player.rvgrpass
+--player.gamesPlayed
 local OtherStuff = {}
 local function SaveOtherStuff(stuff, player) --loading1
 	stuff.rvgrpass = player.rvgrpass 

@@ -34,6 +34,8 @@ addHook("PlayerSpawn", function(player)
 		end
 		if player and player.valid
 		ZE.SpawnPlayer(player)
+		--player.rvgrpass
+		--player.gamesPlayed
 		end
 	end
 end)
