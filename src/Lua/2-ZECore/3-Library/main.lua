@@ -28,7 +28,7 @@ if mapheaderinfo[mapnum].swarmmap then
 	CV.countup = 0
 	--print(convsurvtime)
 else
-	local convsurvtime = 5*60
+	local convsurvtime = 10*60
 	CV.survtime = convsurvtime*TICRATE
 	COM_BufInsertText(server, "ze_survtime "+ convsurvtime)
 	CV.countup = 0
