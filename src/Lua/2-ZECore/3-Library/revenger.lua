@@ -53,7 +53,7 @@ end
 ZE.UnlockRevenger = function(player)
 	if player.rvgrpass ~= 1 then
 		chatprint(string.format("\x87\%s Unlocked \x8F\Revenger! \x87\%s games met!",player.name,player.gamesPlayed))
-		S_StartSound(player.mo, "sfx_ideya")
+		S_StartSound(player.mo, sfx_ideya)
 		player.rvgrpass = 1
 	end
 end
