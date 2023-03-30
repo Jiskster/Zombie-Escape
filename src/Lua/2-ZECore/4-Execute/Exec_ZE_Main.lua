@@ -11,7 +11,6 @@ addHook("ThinkFrame", function()
 		ZE.InfectPlayer(player)
 		ZE.AntiBounce(player) --level header
 	end
-	ZE.CharacterColors()
 	ZE.WinScript()
 	ZE.PlayerCount()
 	ZE.RandomInfect()
@@ -43,7 +42,9 @@ addHook("PlayerSpawn", function(player)
 end)
 
 addHook("PostThinkFrame", function()
-    ZE.AlphaZmAura()
+	if netgame and multiplayer then
+		ZE.AlphaZmAura()
+	end
 end)
 
 addHook("MobjSpawn",function(mo) return ZE.CorkStuff(mo) end,MT_CORK)

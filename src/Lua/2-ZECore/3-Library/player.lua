@@ -1,59 +1,172 @@
 local ZE = RV_ZESCAPE
 local CV = ZE.Console
 
+ZE.CharacterStats = {
+	["defaultconfig"] = {
+		normalspeed = 18 * FRACUNIT,
+		runspeed = 100 * FRACUNIT,
+		jumpfactor = 17 * FRACUNIT / 19,
+		charability = CA_NONE,
+		charability2 = CA2_NONE,
+    },
+	["sonic"] = {
+		normalspeed = 22 * FRACUNIT,
+		runspeed = 100 * FRACUNIT,
+		jumpfactor = 17 * FRACUNIT / 19,
+		charability = CA_JUMPTHOK,
+		charability2 = CA2_NONE,
+		actionspd = 18 * FRACUNIT,
+	},
+	["tails"] = {
+		normalspeed = 18 * FRACUNIT,
+		runspeed = 100 * FRACUNIT,
+		jumpfactor = 17 * FRACUNIT / 19,
+		charability = CA_NONE,
+		charability2 = CA2_NONE,
+    },
+    ["knuckles"] = {
+        normalspeed = 18 * FRACUNIT,
+        runspeed = 100 * FRACUNIT,
+        jumpfactor = 17 * FRACUNIT / 19,
+        charability = CA_NONE,
+        charability2 = CA2_NONE,
+    },
+    ["amy"] = {
+        normalspeed = 18 * FRACUNIT,
+        runspeed = 100 * FRACUNIT,
+        jumpfactor = 17 * FRACUNIT / 19,
+        charability = CA_NONE,
+        charability2 = CA2_MELEE,
+    },
+    ["metalsonic"] = {
+        normalspeed = 18 * FRACUNIT,
+        runspeed = 100 * FRACUNIT,
+        jumpfactor = 17 * FRACUNIT / 19,
+        charability = CA_NONE,
+        charability2 = CA2_NONE,
+    },
+	["dzombie"] = {
+	    normalspeed = 25*FRACUNIT,
+		runspeed = 100*FRACUNIT,
+		jumpfactor = 1*FRACUNIT,
+		charability = CA_NONE,
+		charability2 = CA2_NONE,
+	},
+	["milne"] = {
+		normalspeed = 18 * FRACUNIT,
+		runspeed = 100 * FRACUNIT,
+		jumpfactor = 12 * FRACUNIT/10,
+		charability = CA_NONE,
+		charability2 = CA2_NONE,
+		charflags = SF_NOJUMPSPIN|SF_NOSKID,
+	},
+	["scarf"] = {
+		normalspeed = 18 * FRACUNIT,
+		runspeed = 100 * FRACUNIT,
+		jumpfactor = 17 * FRACUNIT / 19,
+		charability = CA_NONE,
+		charability2 = CA2_NONE,
+	},
+	["bob"] = {
+		normalspeed = 18 * FRACUNIT,
+		runspeed = 100 * FRACUNIT,
+		jumpfactor = 17 * FRACUNIT / 19,
+		charability = CA_NONE,
+		charability2 = CA2_GUNSLINGER,
+	},
+	["revenger"] = {
+		normalspeed = 18*FRACUNIT,
+		runspeed = 14 * FRACUNIT,
+		jumpfactor = 17 * FRACUNIT / 19,
+		charability = CA_NONE,
+		charability2 = CA2_NONE,
+	},
+	["w"] = {
+		normalspeed = 18 * FRACUNIT,
+		runspeed = 18 * FRACUNIT,
+		jumpfactor = 17 * FRACUNIT / 19,
+		charability = CA_AIRDRILL,
+		charability2 = CA2_NONE,
+	},
+	["serpentine"] = {
+		normalspeed = 18 * FRACUNIT,
+		runspeed = 100 * FRACUNIT,
+		jumpfactor = 17 * FRACUNIT/19,
+		charability = CA_NONE,
+		charability2 = CA2_NONE,
+	},
+	["steve"] = {
+		normalspeed = 18 * FRACUNIT,
+		runspeed = 100 * FRACUNIT,
+		jumpfactor = 17 * FRACUNIT / 19,
+		charability = CA_NONE,
+		charability2 = CA2_NONE,
+	},
+	["oof"] = {
+		normalspeed = 18 * FRACUNIT,
+		runspeed = 100 * FRACUNIT,
+		jumpfactor = 17 * FRACUNIT/19,
+		charability = CA_NONE,
+		charability2 = CA2_NONE,
+	},
+	["peppino"] = {
+		normalspeed = 18 * FRACUNIT,
+		runspeed = 100 * FRACUNIT,
+		charability = CA_SWIM,
+		charability2 = CA2_GUNSLINGER,
+	},
+	["noise"] = {
+		normalspeed = 18 * FRACUNIT,
+		runspeed = 100 * FRACUNIT,
+		charability = CA_BOUNCE,
+		charability2 = CA2_NONE,
+	},
+	["snick"] = {
+		normalspeed = 18 * FRACUNIT,
+		runspeed = 100 * FRACUNIT,
+		charability = CA_JUMPTHOK,
+		charability2 = CA2_NONE,
+		actionspd = 5 * FRACUNIT,
+	},
+	["fakepep"] = {
+		normalspeed = 18 * FRACUNIT,
+		runspeed = 100 * FRACUNIT,
+		charability = CA_DOUBLEJUMP,
+		charability2 = CA2_NONE,
+	},
+	["motobugze"] = {
+		normalspeed = 18 * FRACUNIT,
+		runspeed = 100 * FRACUNIT,
+		charability = CA_DOUBLEJUMP,
+		charability2 = CA2_NONE,
+	},
+	["chaoze"] = {
+		normalspeed = 18 * FRACUNIT,
+		runspeed = 100 * FRACUNIT,
+		charability = CA_DOUBLEJUMP,
+		charability2 = CA2_NONE,
+	},
+}
+
 ZE.CharacterConfig = function(player)
 	if (player.mo and player.mo.valid)
-			if (player.mo.skin == "sonic")
-                player.normalspeed = 22*FRACUNIT
-				player.runspeed = 100*FRACUNIT
-				player.jumpfactor = 17*FRACUNIT/19
-                player.charability = CA_JUMPTHOK
-				player.charability2 = CA2_NONE
-				player.actionspd = 4*FRACUNIT
-			elseif (player.mo.skin == "tails")
-                player.normalspeed = 18*FRACUNIT
-				player.runspeed = 100*FRACUNIT
-				player.jumpfactor = 17*FRACUNIT/19
-                player.charability = CA_NONE
-				player.charability2 = CA2_NONE
-			elseif (player.mo.skin == "knuckles")
-                player.normalspeed = 18*FRACUNIT
-				player.runspeed = 100*FRACUNIT
-				player.jumpfactor = 17*FRACUNIT/19
-                player.charability = CA_NONE
-				player.charability2 = CA2_NONE
-			elseif (player.mo.skin == "amy")
-                player.normalspeed = 18*FRACUNIT
-				player.runspeed = 100*FRACUNIT
-				player.jumpfactor = 17*FRACUNIT/19
-                player.charability = CA_NONE
-				player.charability2 = CA2_MELEE
-			elseif (player.mo.skin == "metalsonic")
-                player.normalspeed = 18*FRACUNIT
-				player.runspeed = 100*FRACUNIT
-				player.jumpfactor = 17*FRACUNIT/19
-                player.charability = CA_NONE
-				player.charability2 = CA2_NONE
-			elseif (player.mo.skin == "fang")
-                player.normalspeed = 18*FRACUNIT
-				player.runspeed = 100*FRACUNIT
-				player.jumpfactor = 17*FRACUNIT/19
-                player.charability = CA_NONE
-				player.charability2 = CA2_GUNSLINGER
-			elseif (player.mo.skin == "dzombie")
-                player.normalspeed = 25*FRACUNIT
-				player.runspeed = 100*FRACUNIT
-				player.jumpfactor = 1*FRACUNIT
-                player.charability = CA_NONE
-				player.charability2 = CA2_NONE
-	        end
-			 if (player.ctfteam == 1)
-				 player.charflags = SF_NOJUMPSPIN|SF_NOJUMPDAMAGE|SF_NOSKID
-				 player.powers[pw_underwater] = 30*TICRATE
-		  end
-			 if (player.ctfteam == 2)
-				player.charflags = SF_NOJUMPSPIN|SF_NOSKID
-	   end
+		local skinname = skins[player.mo.skin].name
+		local default = "defaultconfig"
+		player.normalspeed = ZE.CharacterStats[skinname].normalspeed or ZE.CharacterStats[default].normalspeed 
+		player.runspeed = ZE.CharacterStats[skinname].runspeed or ZE.CharacterStats[default].runspeed
+		player.jumpfactor = ZE.CharacterStats[skinname].jumpfactor or ZE.CharacterStats[default].jumpfactor
+		player.charability = ZE.CharacterStats[skinname].charability or ZE.CharacterStats[default].charability
+		player.charability2 = ZE.CharacterStats[skinname].charability2 or ZE.CharacterStats[default].charability2
+		if ZE.CharacterStats[skinname].actionspd then
+			player.actionspd = ZE.CharacterStats[skinname].actionspd
+		end
+		if (player.ctfteam == 1)
+			player.charflags = SF_NOJUMPSPIN|SF_NOJUMPDAMAGE|SF_NOSKID
+			player.powers[pw_underwater] = 30*TICRATE
+		end
+		if (player.ctfteam == 2)
+			player.charflags = SF_NOJUMPSPIN|SF_NOSKID
+		end
 	end
 end
 
@@ -100,17 +213,17 @@ ZE.CharacterStamina = function(player)
 end
 
 ZE.AlphaZmCfg = function(player)
-  if not (gametype == GT_ZESCAPE) then return end
+	if not (gametype == GT_ZESCAPE) then return end
 	if (player.mo and player.mo.valid)
-			if (player.alphazm == 1) and not (player.ctfteam == 2)
-			   player.mo.scale = 13*FRACUNIT/10
-			elseif (player.ctfteam == 2) or (player.spectator == 1) then
-			     return
+		if (player.alphazm == 1) and not (player.ctfteam == 2)
+			player.mo.scale = 13*FRACUNIT/10
+		elseif (player.ctfteam == 2) or (player.spectator == 1) then
+			return
 		end
-		  if (player.alphazm == 1) and not (player.boost == 1) and not (player.ctfteam == 2) and not (leveltime < CV.waittime) then
-		      player.normalspeed = 23*FRACUNIT
-			  player.jumpfactor = 17*FRACUNIT/22
-	   end
+		if (player.alphazm == 1) and not (player.boost == 1) and not (player.ctfteam == 2) and not (leveltime < CV.waittime) then
+			player.normalspeed = 23*FRACUNIT
+			player.jumpfactor = 17*FRACUNIT/22
+		end
 	end
 end
 
@@ -173,29 +286,9 @@ ZE.AlphaZmAura = function()
 end
 
 ZE.CharacterColors = function()
-   for player in players.iterate
-	if (player.mo and player.mo.valid)
-			if (player.mo.skin == "sonic")
-			   player.mo.color = SKINCOLOR_BLUE
-			elseif (player.mo.skin == "tails")
-			   player.mo.color = SKINCOLOR_ORANGE
-			elseif (player.mo.skin == "knuckles")
-			   player.mo.color = SKINCOLOR_RED
-			elseif (player.mo.skin == "amy")
-			   player.mo.color = SKINCOLOR_ROSY
-			elseif (player.mo.skin == "metalsonic")
-			   player.mo.color = SKINCOLOR_COBALT
-			elseif (player.mo.skin == "fang")
-			   player.mo.color = SKINCOLOR_LAVENDER
-			elseif (player.mo.skin == "bob")
-			   player.mo.color = SKINCOLOR_YELLOW
-			elseif (player.mo.skin == "revenger")
-			   player.mo.color = SKINCOLOR_BLACK
-			elseif (player.mo.skin == "scarf")
-			   player.mo.color = SKINCOLOR_CARBON
-			elseif (player.mo.skin == "dzombie")
-			   player.mo.color = SKINCOLOR_MOSS
-		   end
+	for player in players.iterate
+		if (player.mo and player.mo.valid)
+			player.mo.color = skins[player.mo.skin].prefcolor
 		end
 	end
 end
@@ -288,7 +381,7 @@ ZE.ZombieRegen = function(player)
 		   if not (player.mo.health + 100 > 1000) -- kinda the limit for zombies is 1000 for healing
 			  player.mo.health = $ + 100
 		   end
-		   player.regen = 8*TICRATE
+		   player.regen = 12*TICRATE
 		else
 		    return end
 	end
@@ -310,10 +403,10 @@ if gametype == GT_ZESCAPE
 end
 
 ZE.HealthOrb = function(obj, play)
-   local player = play.player
-		if (player.mo)
-		and (player.ctfteam == 2)
-		     player.maxhp = 1
-		     player.mo.health = $ +200
+	local player = play.player
+	if (player.mo) and (player.ctfteam == 2)
+		player.maxhp = 1
+		player.mo.health = $ +200
 	end
 end
+

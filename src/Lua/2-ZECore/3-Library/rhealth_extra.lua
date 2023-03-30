@@ -2,7 +2,7 @@ local ZE = RV_ZESCAPE
 
 ZE.G_SwordDamage = function(mobj, hurthealth)
 	if mobj.type == MT_SWORDDAMAGE
-		return 100
+		return 15
 	else
 		return 0
 	end

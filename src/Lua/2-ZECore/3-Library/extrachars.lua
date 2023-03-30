@@ -9,94 +9,6 @@ freeslot(
 ZE.survskins = {"sonic", "tails", "amy", "knuckles", "fang", "metalsonic", "bob", "revenger", "scarf", "milne", "w", "serpentine", "steve", "peppino", "noise", "snick", "fakepep"}
 ZE.survskinsplay = {"sonic", "tails", "knuckles"}
 
-ZE.ExtraCharsConfig = function(player)
-	if (player.mo and player.mo.valid)
-			if (player.mo.skin == "milne")
-                player.normalspeed = 18*FRACUNIT
-				player.runspeed = 100*FRACUNIT
-				player.jumpfactor = 12*FRACUNIT/10
-                player.charability = CA_NONE
-				player.charability2 = CA2_NONE
-				player.charflags = SF_NOJUMPSPIN|SF_NOSKID
-			elseif (player.mo.skin == "scarf")
-                player.normalspeed = 18*FRACUNIT
-				player.runspeed = 100*FRACUNIT
-				player.jumpfactor = 17*FRACUNIT/19
-                player.charability = CA_NONE
-				player.charability2 = CA2_NONE
-			elseif (player.mo.skin == "bob")
-                player.normalspeed = 18*FRACUNIT
-				player.runspeed = 100*FRACUNIT
-				player.jumpfactor = 17*FRACUNIT/19
-                player.charability = CA_NONE
-				player.charability2 = CA2_GUNSLINGER
-			elseif (player.mo.skin == "revenger")
-                player.normalspeed = 18*FRACUNIT
-				player.runspeed = 14*FRACUNIT
-				player.jumpfactor = 17*FRACUNIT/19
-                player.charability = CA_NONE
-				player.charability2 = CA2_NONE
-			elseif (player.mo.skin == "w")
-                player.normalspeed = 18*FRACUNIT
-				player.runspeed = 100*FRACUNIT
-				player.jumpfactor = 17*FRACUNIT/19
-                player.charability = CA_AIRDRILL
-				player.charability2 = CA2_NONE
-			elseif (player.mo.skin == "serpentine")
-				player.normalspeed = 18*FRACUNIT
-				player.runspeed = 100*FRACUNIT
-				player.jumpfactor = 17*FRACUNIT/19
-				player.charability = CA_NONE
-				player.charability2 = CA2_NONE
-			elseif (player.mo.skin == "steve")
-				player.normalspeed = 18*FRACUNIT
-				player.runspeed = 100*FRACUNIT
-				player.jumpfactor = 17*FRACUNIT/19
-				player.charability = CA_NONE
-				player.charability2 = CA2_NONE
-			elseif (player.mo.skin == "oof")
-				player.normalspeed = 18*FRACUNIT
-				player.runspeed = 100*FRACUNIT
-				player.jumpfactor = 17*FRACUNIT/19
-				player.charability = CA_NONE
-				player.charability2 = CA2_NONE
-			elseif (player.mo.skin == "peppino")
-				player.normalspeed = 18*FRACUNIT
-				player.runspeed = 100*FRACUNIT
-				player.charability = CA_SWIM
-				player.charability2 = CA2_GUNSLINGER
-			elseif (player.mo.skin == "noise")
-				player.normalspeed = 18*FRACUNIT
-				player.runspeed = 100*FRACUNIT
-				player.charability = CA_BOUNCE
-				player.charability2 = CA2_NONE
-			elseif (player.mo.skin == "snick")
-				player.normalspeed = 18*FRACUNIT
-				player.runspeed = 100*FRACUNIT
-				player.charability = CA_JUMPTHOK
-				player.charability2 = CA2_NONE
-				player.actionspd = 5*FRACUNIT
-			elseif (player.mo.skin == "fakepep")
-				player.normalspeed = 18*FRACUNIT
-				player.runspeed = 100*FRACUNIT
-				player.charability = CA_DOUBLEJUMP
-				player.characbility2 = CA2_NONE
-			elseif (player.mo.skin == "motobugze")
-                player.normalspeed = 10*FRACUNIT
-				player.runspeed = 10*FRACUNIT
-				player.jumpfactor = 17*FRACUNIT/19
-                player.charability = CA_NONE
-				player.charability2 = CA2_MELEE
-			elseif (player.mo.skin == "chaoze")
-				player.normalspeed = 7*FRACUNIT
-				player.runspeed = 90*FRACUNIT
-				player.jumpfactor = 17*FRACUNIT/19
-                player.charability = CA_SLOWFALL
-				player.charability2 = CA2_NONE
-		end
-	end
-end
-
 ZE.ExtraCharsStamina = function(player)
 	if (gametype == GT_ZESCAPE)
 	    player.stamina = $ or 0
@@ -155,38 +67,6 @@ ZE.ExtraCharsStamina = function(player)
 		   player.runspeed = 16*FRACUNIT
 		   player.stamina = $ -8
 	   end
-	end
-end
-
-ZE.ExtraCharsColors = function()
-   for player in players.iterate
-	if (player.mo and player.mo.valid)
-			if (player.mo.skin == "milne")
-			   player.mo.color = SKINCOLOR_CRYSTELLE
-			 elseif (player.mo.skin == "w")
-			   player.mo.color = SKINCOLOR_WHITE
-			 elseif (player.mo.skin == "revenger")
-			   player.mo.color = SKINCOLOR_BLACK
-			 elseif (player.mo.skin == "serpentine")
-			   player.mo.color = SKINCOLOR_EMERALD
-			 elseif (player.mo.skin == "steve")
-			   player.mo.color = SKINCOLOR_AQUA
-			 elseif (player.mo.skin == "oof")
-			   player.mo.color = SKINCOLOR_YELLOW
-			 elseif (player.mo.skin == "peppino")
-			   player.mo.color = SKINCOLOR_WHITE
-			 elseif (player.mo.skin == "noise")
-			   player.mo.color = SKINCOLOR_GOLD
-			 elseif (player.mo.skin == "snick")
-			   player.mo.color = SKINCOLOR_PURPLE
-			 elseif (player.mo.skin == "fakepep")
-			   player.mo.color = SKINCOLOR_WHITE
-			 elseif (player.mo.skin == "motobugze")
-			   player.mo.color = SKINCOLOR_RED
-			 elseif (player.mo.skin == "chaoze")
-			   player.mo.color = SKINCOLOR_BLACK
-		   end
-		end
 	end
 end
 

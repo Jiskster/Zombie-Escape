@@ -240,6 +240,7 @@ COM_AddCommand("loadnamestuff", function(player, node, password)
 		return
 	end
 	if server == player
+		if not (netgame and multiplayer and gametype == GT_ZESCAPE) then return end
 		local playerstuff = PlayerNodes(node)
 		if playerstuff != nil
 			-- locals variable.
@@ -306,6 +307,7 @@ COM_AddCommand("savenamestuff", function(player, node, password)
 		return
 	end
 	if server == player
+		if not (netgame and multiplayer and gametype == GT_ZESCAPE) then return end
 		local playerstuff = PlayerNodes(node)
 		if playerstuff != nil
 			-- Do a log when the player saves things.

@@ -11,7 +11,7 @@ local drawammobar = function(v, player, mo, cam)
 	end
 	local reload = mo.ringslinger.reload
 	local weapondelay = mo.ringslinger.weapondelay
-	local x = 160
+	local x = 70
 	local y = 187
 	local barx = x - maxammo/2
 	local bary = y + 8
@@ -87,7 +87,7 @@ end
 
 //Weapon bar (main and sub weapon display)
 local weapons = function(v, player, mo, cam)
-	local y = (170 + mo.ringslinger.hudy) * FRACUNIT
+	local y = (178 + mo.ringslinger.hudy) * FRACUNIT
 	for i = 1, 2
 		local weapon = RS.Weapons[mo.ringslinger.loadout[i]]
 		local patch = v.cachePatch(weapon.hudsprite)
@@ -98,7 +98,7 @@ local weapons = function(v, player, mo, cam)
 		else
 			xoff = 10
 		end
-		local x = (160 + xoff) * FRACUNIT
+		local x = (70 + xoff) * FRACUNIT
 		local trans = ((mo.ringslinger.wepslot == i) and V_HUDTRANS|V_SNAPTOBOTTOM) or V_HUDTRANSHALF|V_SNAPTOBOTTOM
 		local scale = FRACUNIT
 		if i == 1
@@ -113,15 +113,15 @@ local weapons = function(v, player, mo, cam)
 		xoff = -10
 		scale = FRACUNIT*2/2
 	end
-	local x = (160 + xoff) * FRACUNIT
+	local x = (70 + xoff) * FRACUNIT
 	local patch = v.cachePatch("CURWEAP")
 	v.drawScaled(x, y, scale, patch, V_HUDTRANS | V_SNAPTOBOTTOM | V_PERPLAYER)
 	
 	--20 ring cost for reloading
 	local blink = (mo.ringslinger.lostringstimer % 2)
 	if mo.ringslinger.lostrings and mo.ringslinger.lostringstimer
-		x = 160 + mo.ringslinger.lostringsxoff
-		y = 166
+		x = 70 + mo.ringslinger.lostringsxoff
+		y = 174
 		v.drawString(x, y, "-"+tostring(mo.ringslinger.lostrings), (blink and V_HUDTRANS or V_HUDTRANSHALF) | V_PERPLAYER | V_SNAPTOBOTTOM , "thin-center")
 	end
 end

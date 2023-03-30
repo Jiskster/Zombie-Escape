@@ -135,7 +135,7 @@ end
 
 ZE.G_BurstRSDamage = function(mobj, hurthealth)
 	if mobj.type == MT_RS_THROWNBURST
-		return 25
+		return 75
 	else
 		return 0
 	end
@@ -143,7 +143,7 @@ end
 
 ZE.G_NormalRingRS = function(mobj, hurthealth)
 	if mobj.type == MT_RS_SHOT
-		return 25
+		return 75
 	else
 		return 0
 	end

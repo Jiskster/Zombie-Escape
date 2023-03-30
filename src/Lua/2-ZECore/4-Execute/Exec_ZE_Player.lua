@@ -6,6 +6,7 @@ addHook("PlayerThink", function(player)
 		and player.mo and player.mo.valid
 		and (player.playerstate != PST_DEAD)
 		and (player.mo.state != S_PLAY_DEAD)
+			ZE.CharacterColors(player)
 		    ZE.StartHealth(player)
 			ZE.HealthLimit(player)
 			ZE.ZombieHealth(player)

@@ -43,3 +43,4 @@ states[S_PROP1_BREAK] = {
 sfxinfo[sfx_zsded] = {
         flags = SF_X8AWAYSOUND|SF_X4AWAYSOUND|SF_X2AWAYSOUND
 }
+

@@ -17,9 +17,13 @@ CV.winWait = 0
 CV.survtime = 0
 CV.countup = 0
 CV.gametime = 14*60*TICRATE
+CV.timeafterwin = 0
+CV.onwinscreen = 0
 
 ZE.ResetTimers = function(mapnum) -- code needed to be changed?
+CV.timeafterwin = 0
 CV.winWait = 9999*TICRATE
+CV.onwinscreen = 0
 COM_BufInsertText(server, "ze_winwait 9999")
 if mapheaderinfo[mapnum].swarmmap then 
 	local convsurvtime = tonumber(mapheaderinfo[mapnum].survivetime)*60
@@ -39,9 +43,9 @@ COM_BufInsertText(server, "rh_enable 1")
 end
 
 ZE.CountUp = function()
-  if leveltime % 35 == 0 then
 	CV.countup = $ + (1/2)
-  end
+	
+
 end
 
 ZE.PostWin = function(player)
@@ -57,10 +61,14 @@ ZE.Win = function(team)
 			S_ChangeMusic("ZMWIN",false,player)
 			ZE.PostWin(player)
 			COM_BufInsertText(player, "savestuff")
+			CV.onwinscreen = 1
+
 		else
 			S_ChangeMusic("ZMLOSE",false,player)
 			ZE.PostWin(player)
 			COM_BufInsertText(player, "savestuff")
+			CV.onwinscreen = 1
+
 		end
 	end
 	CV.winWait = 30*TICRATE
@@ -105,7 +113,7 @@ ZE.survWin = function()
 	        if (gametype == GT_ZESCAPE) and not (ZE.teamWin == 1)
 			S_ChangeMusic("ZMLOSE",false,player)
 			ZE.winTriggerDelay = 1
-			ZE.survKill(player)
+			--ZE.survKill(player)
 			P_StartQuake(24*FRACUNIT, 3*TICRATE)
 			ZE.SurvInv(player)
 			ZE.Win(team)
@@ -122,7 +130,7 @@ ZE.zmWin = function()
 	        if (gametype == GT_ZESCAPE) and not (ZE.teamWin == 1)
 			S_ChangeMusic("ZMWIN",false,player)
 			ZE.winTriggerDelay = 1
-			ZE.survKill2(player)
+			--ZE.survKill2(player)
 			P_StartQuake(24*FRACUNIT, 3*TICRATE)
 			ZE.Win(1)
 			   end
@@ -157,6 +165,10 @@ ZE.WinScript = function()
 		end
 			if CV.winWait > 0
 				CV.winWait = $1-1
+				if CV.onwinscreen == 1 then
+					CV.timeafterwin = $1+1
+				end
+			
 			elseif (ZE.teamWin != 0 and CV.winWait <= 0)
 					G_ExitLevel()
 		end
@@ -364,7 +376,7 @@ ZE.CountDown = function()
 	if gametype == GT_ZESCAPE
 		if CV.waittime-leveltime == 0*TICRATE -- if done
 		   S_StartSound(player, sfx_rstart)
-		   if P_RandomChance(FRACUNIT/5) then
+		   if P_RandomChance(FRACUNIT/7) then
 			  ZE.Start_alpha_attack()
 		   end
         end
