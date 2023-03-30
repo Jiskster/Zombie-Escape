@@ -66,7 +66,7 @@ hud.add(function(v, player)
 			v.drawString(0,100, max(0,player.stamina/TICRATE)+ " Stamina", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_50TRANS|V_BLUEMAP, "thin")		
 		elseif player.stamina <= 0
 		
-			v.drawString(0,50, max(0,player.stamina/TICRATE)+ " Stamina", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_50TRANS|V_REDMAP,  "thin")	
+			v.drawString(0,100, max(0,player.stamina/TICRATE)+ " Stamina", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_50TRANS|V_REDMAP,  "thin")	
 		end
 		
 		
