@@ -2,35 +2,20 @@ local ZE = RV_ZESCAPE
 
 ZE.ProjectileCollide = function(mo, pmo)
    if not GT_ZESCAPE then return end
-     if pmo.skin == "sonic"
-	  or pmo.skin == "tails"
-	   or pmo.skin == "knuckles"
-	    or pmo.skin == "amy"
-		 or pmo.skin == "metalsonic"
-		  or pmo.skin == "fang"
+     if pmo.skin ~= "dzombie" then
 		return false
 	end
 end
 
 ZE.HearthMobjMoveCollide = function(mo, pmo)
    if not GT_ZESCAPE then return end
-     if pmo.skin == "sonic" and pmo.health >= 125
-	  or pmo.skin == "tails" and pmo.health >= 95
-	   or pmo.skin == "knuckles" and pmo.health >= 200
-	    or pmo.skin == "amy" and pmo.health >= 200
-		 or pmo.skin == "metalsonic" and pmo.health >= 150
-		  or pmo.skin == "fang" and pmo.health >= 150
+   	if pmo.skin ~= "dzombie" and pmo.health >= pmo.maxHealth then
 		return false
 	end
 end
 
 ZE.PropMobjCollide = function(mo, pmo)
-     if pmo.skin == "sonic"
-	  or pmo.skin == "tails"
-	   or pmo.skin == "knuckles"
-	    or pmo.skin == "amy"
-		 or pmo.skin == "metalsonic"
-		  or pmo.skin == "fang"
+     if pmo.skin ~= "dzombie"
 		  P_SetObjectMomZ(mo,mo.scale*0)
 		return false
 	  else

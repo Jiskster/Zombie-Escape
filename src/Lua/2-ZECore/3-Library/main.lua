@@ -50,9 +50,7 @@ end
 
 ZE.PostWin = function(player)
 	player.gamesPlayed = $ + 1
-	if player.gamesPlayed == 15 then
-		ZE.UnlockRevenger(player)
-	end
+	ZE.CheckUnlocks(player)
 end
 ZE.Win = function(team)
 	ZE.teamWin = team
@@ -113,7 +111,9 @@ ZE.survWin = function()
 	        if (gametype == GT_ZESCAPE) and not (ZE.teamWin == 1)
 			S_ChangeMusic("ZMLOSE",false,player)
 			ZE.winTriggerDelay = 1
-			--ZE.survKill(player)
+			if CV.deathonwin == 1 then
+				ZE.survKill(player)
+			end
 			P_StartQuake(24*FRACUNIT, 3*TICRATE)
 			ZE.SurvInv(player)
 			ZE.Win(team)
@@ -130,7 +130,9 @@ ZE.zmWin = function()
 	        if (gametype == GT_ZESCAPE) and not (ZE.teamWin == 1)
 			S_ChangeMusic("ZMWIN",false,player)
 			ZE.winTriggerDelay = 1
-			--ZE.survKill2(player)
+			if CV.deathonwin == 1 then
+				ZE.survKill2(player)
+			end
 			P_StartQuake(24*FRACUNIT, 3*TICRATE)
 			ZE.Win(1)
 			   end

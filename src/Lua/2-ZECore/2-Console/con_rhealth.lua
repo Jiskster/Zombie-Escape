@@ -48,3 +48,10 @@ CV.allowunlockables = CV_RegisterVar{
 	flags = CV_NETVAR,
 	PossibleValue = CV_OnOff
 }
+
+CV.deathonwin = CV_RegisterVar{
+	name = "rh_deathonwin",
+	defaultvalue = "Off",
+	flags = CV_NETVAR,
+	PossibleValue = CV_OnOff
+}

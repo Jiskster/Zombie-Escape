@@ -11,23 +11,25 @@ for _, filename in ipairs{
 	"2-ZECore/2-Console/con_timer.lua",
 	"2-ZECore/2-Console/con_rhealth.lua",
 	"2-ZECore/2-Console/con_cmds.lua",
+	"2-ZECore/2-Console/con_local.lua",
 	
 	--main ze code	
 	"2-ZECore/3-Library/main.lua",
 	"2-ZECore/3-Library/rhealth.lua",
 	"2-ZECore/3-Library/rhealth_dmg.lua",
+	"2-ZECore/3-Library/playerstats.lua",
 	"2-ZECore/3-Library/player.lua",
 	"2-ZECore/3-Library/mapload.lua",
 	"2-ZECore/3-Library/netvars.lua",
 	"2-ZECore/3-Library/mobjcollide.lua",
 	"2-ZECore/3-Library/propspawn.lua",
 	"2-ZECore/3-Library/radar.lua",
-	"2-ZECore/3-Library/extrachars.lua",
 	"2-ZECore/3-Library/ability_milne.lua",
 	"2-ZECore/3-Library/rhealth_extra.lua",
 	"2-ZECore/3-Library/revenger.lua",
 	"2-ZECore/3-Library/swarmhud.lua",
 	"2-ZECore/3-Library/antibounce.lua",
+	"2-ZECore/3-Library/unlock.lua",
 
 	"2-ZECore/4-Execute/Exec_ZE_Player.lua",
 	"2-ZECore/4-Execute/Exec_ZE_Main.lua",
@@ -62,7 +64,6 @@ for _, filename in ipairs{
 	"1-GunMod/NewRingExplode.lua",
 	"1-GunMod/RocketForce.lua",
 	
-	"4-ZEMov/Mov_Extra_mobj_exec.lua",
 	"4-ZEMov/Mov_ZE_mobj.lua",
 	
 	--ze server base

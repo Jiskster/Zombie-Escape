@@ -25,6 +25,8 @@ addHook("ThinkFrame", function()
 end)
 
 addHook("PlayerSpawn", function(player)
+	player.rvgrpass = $ or 0
+	player.gamesPlayed = $ or 0
 	if (gametype == GT_ZESCAPE)
 		if player and player.valid and not player.spectator
 		and player.mo and player.mo.valid
@@ -33,8 +35,6 @@ addHook("PlayerSpawn", function(player)
 		end
 		if player and player.valid
 		ZE.SpawnPlayer(player)
-		player.rvgrpass = $ or 0
-		player.gamesPlayed = $ or 0
 		--player.rvgrpass
 		--player.gamesPlayed
 		end

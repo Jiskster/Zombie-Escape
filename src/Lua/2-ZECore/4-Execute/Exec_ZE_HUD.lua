@@ -34,65 +34,102 @@ end)
 
 
 hud.add(function(v, player, camera)
+	local hudtype = CV.hudtype.value 
 	if (gametype ~= GT_ZESCAPE) then return end
 	if player.mo and player.mo.valid
 		if player.mo.health and player.mo.health > 0
-			local mipatch = v.cachePatch("ZEHPBAR")
-			--v.drawString(154,183,"\x85\HEALTH HEALTH", V_PERPLAYER|V_SNAPTOBOTTOM|V_50TRANS, "center")
-			if not (player.mo.skin == "dzombie")
-				v.drawStretched(0*FU,90*FU,(player.mo.health*FU)/2,FU*2, mipatch,V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT)
-				v.drawString(0,90, max(0,player.mo.health) + " Health", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_REDMAP|V_50TRANS, "thin")
-			else 
-				v.drawStretched(0*FU,90*FU,(player.mo.health*FU)/10,FU*2, mipatch,V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT)
-				v.drawString(0,90, max(0,player.mo.health) + " Health", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_REDMAP|V_50TRANS, "thin")
+			if hudtype == 1 
+				v.drawString(0,183,"\x85\+", V_PERPLAYER|V_SNAPTOLEFT|V_SNAPTOBOTTOM)
+				v.drawString(8,183, max(0,player.mo.health), V_PERPLAYER|V_SNAPTOLEFT|V_SNAPTOBOTTOM, "left")
 			end
+			if hudtype == 2
+				local y = 170
+				local ya = y-2 
+				local mipatch2 = v.cachePatch("ZEBGBAR")
+				v.drawStretched(0*FU,ya*FU,(100*FU/50)*TICRATE,FU*6, mipatch2,V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_50TRANS)
+				local mipatch = v.cachePatch("ZEHPBAR")
+				--v.drawStretched(0*FU,90*FU,( ( player.mo.health / player.mo.maxHealth ) * 50)*FU,FU*2, mipatch,V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT)
+				v.drawString(0,y, max(0,player.mo.health)+"/"+max(0,player.mo.maxHealth) + " Health", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_REDMAP, "thin")
+			end
+			
+			
 		end
 	end
 end, "game")
 
 hud.add(function(v, player)
+	local hudtype = CV.hudtype.value 
 	if not (player.ctfteam == 2) return end
 	if (gametype ~= GT_ZESCAPE) return end
 	if (player.mo and player.mo.valid)
-		local mipatch = v.cachePatch("ZESTBAR")
-		if (player.stamina < 25*TICRATE) and not(player.stamina <= 0)
-			--v.drawString(154,190,"\x85\STAMINA STAMINA", V_PERPLAYER|V_SNAPTOBOTTOM|V_50TRANS,"center")
-			v.drawStretched(0*FU,100*FU,player.stamina*FU/45,FU*2, mipatch,V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT)
-			v.drawString(0,100, max(0,player.stamina/TICRATE)+ " Stamina", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_50TRANS|V_BLUEMAP, "thin")
-			
-	    elseif (player.stamina > 25*TICRATE)
-			--v.drawString(154,190,"\x84\STAMINA STAMINA", V_PERPLAYER|V_SNAPTOBOTTOM|V_50TRANS,"center")
-			v.drawStretched(0*FU,100*FU,player.stamina*FU/45,FU*2, mipatch,V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT)
-			v.drawString(0,100, max(0,player.stamina/TICRATE)+ " Stamina", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_50TRANS|V_BLUEMAP, "thin")		
-		elseif player.stamina <= 0
-		
-			v.drawString(0,100, max(0,player.stamina/TICRATE)+ " Stamina", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_50TRANS|V_REDMAP,  "thin")	
+		if hudtype == 1
+			if (player.stamina < 25*TICRATE)
+				v.drawString(33,183,"\x85\S", V_PERPLAYER|V_SNAPTOLEFT|V_SNAPTOBOTTOM)
+				v.drawString(42,183, max(0,player.stamina/TICRATE), V_PERPLAYER|V_SNAPTOLEFT|V_SNAPTOBOTTOM, "left")
+			elseif (player.stamina > 25*TICRATE)
+				v.drawString(33,183,"\x84\S", V_PERPLAYER|V_SNAPTOLEFT|V_SNAPTOBOTTOM)
+				v.drawString(42,183, max(0,player.stamina/TICRATE), V_PERPLAYER|V_SNAPTOLEFT|V_SNAPTOBOTTOM, "left")		
+			end
 		end
-		
+		if hudtype == 2
+			local y = 180
+			local mipatch = v.cachePatch("ZESTBAR")
+			if (player.stamina < 25*TICRATE) and not(player.stamina <= 0)
+				v.drawStretched(0*FU,y*FU,player.stamina*FU/50,FU*2, mipatch,V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT)
+				v.drawString(0,y, max(0,player.stamina/TICRATE)+ " Stamina", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_50TRANS|V_BLUEMAP, "thin")
+				
+			elseif (player.stamina > 25*TICRATE)
+				v.drawStretched(0*FU,y*FU,player.stamina*FU/50,FU*2, mipatch,V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT)
+				v.drawString(0,y, max(0,player.stamina/TICRATE)+ " Stamina", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_50TRANS|V_BLUEMAP, "thin")		
+			elseif player.stamina <= 0
+			
+				v.drawString(0,y, max(0,player.stamina/TICRATE)+ " Stamina", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_50TRANS|V_REDMAP,  "thin")	
+			end
+		end
 		
 	end
 end, "game")
 
 hud.add(function(g,player,cam)
-   local client = 0
+	local client = 0
+	local hudtype = CV.hudtype.value 
 	if not (gametype == GT_ZESCAPE) then return end
 	if player.playerstate == PST_LIVE then
-		client=player
-		
-		local yo=64
-		--[[Status]]
-		local str="SURVIVOR"
-		local c=V_BLUEMAP|V_SNAPTOTOP|V_50TRANS
-		if leveltime < CV.waittime then
-			str="WAITING: "..(CV.waittime-leveltime)/TICRATE
-			c=V_SNAPTOTOP|V_50TRANS
-		elseif player.ctfteam == 1 then
-			str="ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
-		elseif player.ctfteam == 0 then
-		    str="SPECTATOR" c=V_SNAPTOTOP|V_50TRANS
+		if hudtype == 1 
+			client=player
+			
+			local yo=64
+			--[[Status]]
+			local str="SURVIVORS"
+			local c=V_BLUEMAP|V_SNAPTOBOTTOM|V_SNAPTOLEFT
+			if leveltime < CV.waittime then
+				str="WAITING: "..(CV.waittime-leveltime)/TICRATE
+				c=V_SNAPTOBOTTOM|V_SNAPTOLEFT
+			elseif player.ctfteam == 1 then
+				str="ZOMBIES" c=V_REDMAP|V_SNAPTOBOTTOM|V_SNAPTOLEFT
+			elseif player.ctfteam == 0 then
+				str="SPECTATOR" c=V_SNAPTOBOTTOM|V_SNAPTOLEFT
+			end
+			g.drawString(1,127+yo, str, c)		
 		end
-
+		
+		if hudtype == 2
+			client=player
+			
+			local yo=64
+			--[[Status]]
+			local str="SURVIVOR"
+			local c=V_BLUEMAP|V_SNAPTOTOP|V_50TRANS
+			if leveltime < CV.waittime then
+				str="WAITING: "..(CV.waittime-leveltime)/TICRATE
+				c=V_SNAPTOTOP|V_50TRANS
+			elseif player.ctfteam == 1 then
+				str="ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
+			elseif player.ctfteam == 0 then
+				str="SPECTATOR" c=V_SNAPTOTOP|V_50TRANS
+			end
 		g.drawString(160,0, str, c, "center") --127+yo
+		end
 	end
 end, "game")
 
