@@ -1,0 +1,16 @@
+name = revenger
+realname = Revenger
+hudname = _
+prefcolor = Black
+supercolor = Black
+ability = CA_NONE
+ability2 = CA2_NONE
+actionspd = 60
+normalspeed = 36
+runspeed = 16
+thrustfactor = 5
+accelstart = 96
+acceleration = 40
+contspeed = 17
+contangle = 3
+flags = SF_NOJUMPSPIN
