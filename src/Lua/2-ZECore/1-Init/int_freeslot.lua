@@ -1,5 +1,5 @@
 freeslot("TOL_ZESCAPE",
-"sfx_bstup", "sfx_bstdn","sfx_inf1", "sfx_inf2", "sfx_secret", "sfx_expl", "sfx_zatk1", 
+"sfx_bstup", "sfx_bstdn","sfx_inf1", "sfx_inf2", "sfx_secret", "sfx_expl", "sfx_zatk1", "sfx_dmst",
 "sfx_rstart","sfx_zszm1", "sfx_zszm2", "sfx_zszm3","sfx_swstt","sfx_wav1","sfx_wav2","sfx_wav3", "sfx_zsded",
 "sfx_rscp","sfx_noface","sfx_ston","sfx_lkme","sfx_scpd","sfx_bh",
 "sfx_amb1","sfx_amb2","sfx_amb3","sfx_amb4","sfx_amb5","sfx_amb6","sfx_amb7","sfx_amb8","sfx_amb9",

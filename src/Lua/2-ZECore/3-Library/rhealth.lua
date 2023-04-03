@@ -163,7 +163,9 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 							truedmg = $1 * P_RandomRange(2, 4) -- 1.5 to
 						end
 						hurtplayer.health = $1 - truedmg
-						P_AddPlayerScore(shooter.player, truedmg)
+						if not(ZE.teamWin != 0 and player.ctfteam != 0 and CV.savedendtic != 0) then
+							P_AddPlayerScore(shooter.player, truedmg)
+						end
 						hurtplayer.player.health = hurtplayer.health
 						if hurtplayer.player.powers[pw_super] > 0
 						and hurtplayer.health < 1

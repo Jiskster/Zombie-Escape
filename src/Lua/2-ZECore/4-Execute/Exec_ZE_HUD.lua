@@ -32,14 +32,6 @@ hud.add(function(v, player)
 			   v.drawString(242,176,"\x85\RAGE\x80 COOLDOWN: "+tostring(player.boostcount/TICRATE),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 			end
 		end
-		
-		if hudtype == 2
-			if player.alphazm == 1 then
-			   v.drawString(0,200,"\x85\ALPHA ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-			   v.drawString(242,184,"\x87\C1 \x80\ - \x85\RAGE",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-			   v.drawString(242,176,"\x85\RAGE\x80 COOLDOWN: "+tostring(player.boostcount/TICRATE),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-			end
-		end
 	end
 end)
 
@@ -57,10 +49,13 @@ hud.add(function(v, player, camera)
 				local y = 170
 				local ya = y-2 
 				local mipatch2 = v.cachePatch("ZEBGBAR")
-				v.drawStretched(0*FU,ya*FU,(100*FU/50)*TICRATE,FU*6, mipatch2,V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_50TRANS)
+				v.drawStretched(0*FU,ya*FU,(125*FU/50)*TICRATE,FU*6, mipatch2,V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_50TRANS)
 				local mipatch = v.cachePatch("ZEHPBAR")
-				--v.drawStretched(0*FU,90*FU,( ( player.mo.health / player.mo.maxHealth ) * 50)*FU,FU*2, mipatch,V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT)
-				v.drawString(0,y, max(0,player.mo.health)+"/"+max(0,player.mo.maxHealth) + " Health", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_REDMAP, "thin")
+				if player.mo.skin ~= "dzombie" then
+					v.drawString(0,y, max(0,player.mo.health)+"/"+max(0,player.mo.maxHealth) + " Health", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_REDMAP, "thin")
+				else
+					v.drawString(0,y+5, max(0,player.mo.health)+"/"+max(0,player.mo.maxHealth) + " Health", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_REDMAP, "thin")
+				end
 			end
 			
 			
@@ -136,6 +131,9 @@ hud.add(function(g,player,cam)
 				c=V_SNAPTOTOP|V_50TRANS
 			elseif player.ctfteam == 1 then
 				str="ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
+				if player.alphazm == 1 then
+					str="ALPHA ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
+				end
 			elseif player.ctfteam == 0 then
 				str="SPECTATOR" c=V_SNAPTOTOP|V_50TRANS
 			end
@@ -159,6 +157,13 @@ hud.add(function(v, player, camera)
 				else
 					v.fadeScreen(0xFF00, 16)
 					v.draw(160,50,v.cachePatch(patches[teamwin]), V_PERPLAYER|V_SNAPTOBOTTOM)
+				end
+				if CV.timeafterwin == TICRATE*2 then
+					S_StartSound(nil,sfx_dmst,player)
+				end
+				if CV.timeafterwin > TICRATE*2 then
+					local score = player.score
+					v.drawString(160,130, "Score: " + score , 0, "center") --127+yo
 				end
 			end
 		
