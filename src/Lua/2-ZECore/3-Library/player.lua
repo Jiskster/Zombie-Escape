@@ -64,7 +64,7 @@ ZE.CharacterStamina = function(player)
 		and (cmd.forwardmove > 0 or cmd.forwardmove < 0 or cmd.sidemove < 0 or cmd.sidemove > 0))
 
 		local staminacheck = player.staminanormal and player.staminarun and player.staminacost
-		if ZE.CharacterStats[skinname] and buttoncheck and staminacheck
+		if buttoncheck and staminacheck
 			player.normalspeed = player.staminanormal
 			player.runspeed = player.staminarun
 			player.stamina = $ - player.staminacost
