@@ -6,21 +6,36 @@ freeslot(
 "MT_RS_FIST"
 )
 
+
+
+
+/*
+local cs_mt
+local default = "defaultconfig"
+setmetatable(ZE.CharacterStats[skinname], {
+__index = function(table, index)
+	return{
+		ZE.CharacterStats[default].normalspeed,
+		ZE.CharacterStats[default].runspeed,
+		ZE.CharacterStats[default].jumpfactor,
+		ZE.CharacterStats[default].charability,
+		ZE.CharacterStats[default].charability2,
+		ZE.CharacterStats[default].staminacost,
+		ZE.CharacterStats[default].staminarun,
+		ZE.CharacterStats[default].staminanormal,
+	}
+end
+})
+
+registerMetatable(cs_mt)
+
+*/
+
 ZE.CharacterConfig = function(player)
 	if (player.mo and player.mo.valid)
 		local skinname = skins[player.mo.skin].name
 		local default = "defaultconfig"
-		/*
-		setmetatable(ZE.CharacterStats[skinname], {
-			__index = function()
-				return{
-				
-				}
-			end
-		})
-		
 
-		*/
 		if ZE.CharacterStats[skinname] then
 			player.normalspeed = ZE.CharacterStats[skinname].normalspeed
 			player.runspeed = ZE.CharacterStats[skinname].runspeed
