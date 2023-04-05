@@ -10,8 +10,15 @@ ZE.CharacterConfig = function(player)
 	if (player.mo and player.mo.valid)
 		local skinname = skins[player.mo.skin].name
 		local default = "defaultconfig"
-
 		/*
+		setmetatable(ZE.CharacterStats[skinname], {
+			__index = function()
+				return{
+				
+				}
+			end
+		})
+		
 
 		*/
 		if ZE.CharacterStats[skinname] then
