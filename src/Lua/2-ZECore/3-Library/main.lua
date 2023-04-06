@@ -1,5 +1,6 @@
 local ZE = RV_ZESCAPE
 local CV = RV_ZESCAPE.Console
+ZE.gameversion = "2.1b"
 
 ZE.ringlist = {}
 ZE.survcount = 0
@@ -9,6 +10,7 @@ ZE.infectdelay = 0
 ZE.winTriggerDelay = 0
 ZE.survskins = {"sonic", "tails", "amy", "knuckles", "fang", "metalsonic"}
 ZE.survskinsplay = {"sonic", "tails", "knuckles"}
+
 ZE.alpha_attack = 0
 ZE.alpha_attack_show = 0 -- gui show time
 
@@ -44,8 +46,30 @@ end
 
 ZE.CountUp = function()
 	CV.countup = $ + (1/2)
-	
+end
 
+ZE.AliveCount = function(ptype)
+	local count = 0
+	for player in player.iterate do
+		if ptype == "zombie" then
+			if player.mo and player.mo.skin == "dzombie" then
+				count = $ + 1
+			end
+		end
+
+		if ptype == "survivor" then
+			if player.mo and player.mo.skin ~= "dzombie" then
+				count = $ + 1
+			end
+		end
+
+		if not(ptype) then
+			if player.mo then
+				count = $ + 1
+			end
+		end
+	end
+	return count
 end
 
 ZE.PostWin = function(player)
