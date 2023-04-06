@@ -14,7 +14,7 @@ mobjinfo[MT_HLME_BUBBLE] = {
 
 states[S_HLME_BUBBLE] = {
 		sprite = SPR_HLME,
-		frame = FF_FULLBRIGHT|A,
+		frame = FF_FULLBRIGHT|FF_TRANS50|A,
 		nextstate = S_HLME_BUBBLE
 }
 
