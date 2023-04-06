@@ -15,6 +15,7 @@ for _, filename in ipairs{
 	
 	--main ze code	
 	"2-ZECore/3-Library/main.lua",
+	"2-ZECore/3-Library/inputfeatures.lua",
 	"2-ZECore/3-Library/rhealth.lua",
 	"2-ZECore/3-Library/rhealth_dmg.lua",
 	"2-ZECore/3-Library/playerstats.lua",
