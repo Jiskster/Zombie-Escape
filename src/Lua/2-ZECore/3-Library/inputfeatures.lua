@@ -48,12 +48,19 @@ end)
 addHook("MobjThinker", function(mobj)
 	mobj.hm_inc = $ or 0
 	mobj.hm_inc = $ + 1
-	
+	if mobj.target and mobj.target.valid and mobj.target.player and mobj.target.player.speed > 0 then
+		mobj.hm_inc = $ + 5
+		if not (mobj.target.player.helpmelastpress - 5 < 0) then
+			mobj.target.player.helpmelastpress = $ - 5
+		end
+	end
 	if mobj.hm_inc > TICRATE*3 then
 		mobj.scale = $/2
 	end
-	if mobj.hm_inc == (TICRATE*3 + 25) then
+	if mobj.hm_inc > (TICRATE*3 + 25) then
 		mobj.target.helpme = nil
 		P_KillMobj(mobj)
 	end
+	
+
 end,MT_HLME_BUBBLE)
