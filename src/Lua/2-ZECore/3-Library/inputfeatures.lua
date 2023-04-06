@@ -48,12 +48,14 @@ end)
 addHook("MobjThinker", function(mobj)
 	mobj.hm_inc = $ or 0
 	mobj.hm_inc = $ + 1
-	if mobj.target and mobj.target.valid and mobj.target.player and mobj.target.player.speed > 0 then
-		P_TeleportMove(mobj, mobj.target.x, mobj.target.y, mobj.target.z+mobj.target.height)
-		mobj.hm_inc = $ + 3
-		if not (mobj.target.player.helpmelastpress - 3 < 0) then
-			mobj.target.player.helpmelastpress = $ - 3
+	if mobj.target and mobj.target.valid and mobj.target.player then
+		if mobj.target.player.speed > 0 then
+			mobj.hm_inc = $ + 3
+			if not (mobj.target.player.helpmelastpress - 3 < 0) then
+				mobj.target.player.helpmelastpress = $ - 3
+			end
 		end
+		P_TeleportMove(mobj, mobj.target.x, mobj.target.y, mobj.target.z+mobj.target.height)
 	end
 	if mobj.hm_inc > TICRATE*3 then
 		mobj.scale = $/2
