@@ -25,7 +25,7 @@ ZE.GoldenGlowThink = function(player)
 		player.mo.colorized = true
 		if leveltime % 3 == 0 then
 			local glowghost = P_SpawnGhostMobj(player.mo)
-			glowghost.color = P_RandomRange(SKINCOLOR_YELLOW)
+			glowghost.color = SKINCOLOR_YELLOW
 			glowghost.colorized = true
 			glowghost.fuse = 3
 			glowghost.blendmode = AST_ADD
