@@ -163,7 +163,7 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 							truedmg = $1 * P_RandomRange(2, 4) -- 1.5 to
 						end
 						hurtplayer.health = $1 - truedmg
-						if not(ZE.teamWin != 0 and player.ctfteam != 0 and CV.savedendtic != 0) then
+						if not(ZE.teamWin) then
 							P_AddPlayerScore(shooter.player, truedmg)
 						end
 						hurtplayer.player.health = hurtplayer.health
@@ -178,7 +178,9 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 							truedmg = $1 / 2
 						end
 						hurtplayer.health = $1 - truedmg
-						P_AddPlayerScore(shooter.player, truedmg)
+						if not(ZE.teamWin) then
+							P_AddPlayerScore(shooter.player, truedmg)
+						end
 						hurtplayer.player.health = hurtplayer.health
 						hurtplayer.player.powers[pw_invulnerability] = 25
 					end
@@ -205,7 +207,9 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 						else
 							print(string.format(ZE.damagetable.killmsg[catch], name1, name2))
 						end
-						P_AddPlayerScore(shooter.player, 100)
+						if not(ZE.teamWin) then
+							P_AddPlayerScore(shooter.player, 100)
+						end
 					else
 						S_StartSound(hurtplayer,painsfx[P_RandomRange(1,#painsfx)])
 
