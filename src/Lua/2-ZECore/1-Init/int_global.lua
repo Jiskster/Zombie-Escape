@@ -14,6 +14,7 @@ G_AddGametype({
 	description = "Escape from the Zombies! Don't get caught and eaten by them! They can catch up with you anytime..."
 })
 
+--kays#5325
 ZE.GOTONHelper = function(t)
 	return _G[t]
 end
