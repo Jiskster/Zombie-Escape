@@ -667,7 +667,7 @@ local function AccountStuff_Game(v) local player = displayplayer
 	end
 	if player.stuffname == nil
 		if player.delay_stuffload == 0
-			v.drawString(0, 194, (tostring("\x85".."[Offline Moe]")), V_ALLOWLOWERCASE|V_SNAPTOLEFT|V_SNAPTOBOTTOM, "small")
+			v.drawString(0, 194, (tostring("\x85".."[Offline Mode]")), V_ALLOWLOWERCASE|V_SNAPTOLEFT|V_SNAPTOBOTTOM, "small")
 		else
 			v.drawString(0, 194, (tostring("\x82".."Signing in...")), V_ALLOWLOWERCASE|V_SNAPTOLEFT|V_SNAPTOBOTTOM, "small")
 		end
