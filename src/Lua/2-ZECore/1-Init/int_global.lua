@@ -13,3 +13,12 @@ G_AddGametype({
 	headerrightcolor = 40,
 	description = "Escape from the Zombies! Don't get caught and eaten by them! They can catch up with you anytime..."
 })
+
+ZE.GOTONHelper = function(t)
+	return _G[t]
+end
+
+ZE.GetObjectTypeOrNull = function(t)
+	local status, value = pcall(ZE.GOTONHelper, t)
+	return status and value or MT_NULL 
+end

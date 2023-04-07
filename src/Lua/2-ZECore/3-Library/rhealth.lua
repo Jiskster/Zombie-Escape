@@ -143,6 +143,10 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 					if truedmg < 1
 						return false
 					end
+					
+					if shooter.player.alphazm == 1 and shooter.player.boosttimer > 0 then -- if player.boosttimer > 0 then the player is in rage
+						truedmg = $1 * P_RandomRange(2, 4) -- 1.5 to
+					end
 					if CV.knockback.value == 1
 						if ZE.F_NotTeamed(shooter.player, hurtplayer.player)
 							P_Thrust(hurtplayer, hazard.angle, ZE.damagetable.knockback[catch])
@@ -158,9 +162,6 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 					if CV.debug.value == 0 and shooter.player.ctfteam == 2
 						if hurtplayer.player.powers[pw_super]
 							truedmg = $1 / 2
-						end
-						if shooter.player.alphazm == 1 and shooter.player.boosttimer > 0 then -- if player.boosttimer > 0 then the player is in rage
-							truedmg = $1 * P_RandomRange(2, 4) -- 1.5 to
 						end
 						hurtplayer.health = $1 - truedmg
 						if not(ZE.teamWin) then

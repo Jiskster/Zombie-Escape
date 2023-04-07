@@ -39,6 +39,7 @@ COM_AddCommand("togglegg", function(player)
 	
 	if player.hasGoldenGlow ~= 1 and not IsPlayerAdmin(player) then
 		CONS_Printf(player, "You must atleast play 125 games to have this feature!")
+		return
 	end
 	if player and player.valid and player.mo and player.mo.valid then
 		if player.ggtoggle == nil then

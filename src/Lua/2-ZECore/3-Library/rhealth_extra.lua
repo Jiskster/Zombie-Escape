@@ -1,7 +1,7 @@
 local ZE = RV_ZESCAPE
 
 ZE.G_SwordDamage = function(mobj, hurthealth)
-	if mobj.type == MT_SWORDDAMAGE
+	if mobj.type == ZE.GetObjectTypeOrNull("MT_SWORDDAMAGE")
 		return 15
 	else
 		return 0
@@ -9,7 +9,7 @@ ZE.G_SwordDamage = function(mobj, hurthealth)
 end
 
 ZE.G_ScarfPlasmaDamage = function(mobj, hurthealth)
-	if mobj.type == MT_SCARFSHOT
+	if mobj.type == ZE.GetObjectTypeOrNull("MT_SCARFSHOT")
 		return 50
 	else
 		return 0
@@ -17,7 +17,7 @@ ZE.G_ScarfPlasmaDamage = function(mobj, hurthealth)
 end
 
 ZE.G_MilneCrystalDamage = function(mobj, hurthealth)
-	if mobj.type == MT_THROWNCRYSTAL
+	if mobj.type == ZE.GetObjectTypeOrNull("MT_THROWNCRYSTAL")
 		return 25
 	else
 		return 0
@@ -25,7 +25,7 @@ ZE.G_MilneCrystalDamage = function(mobj, hurthealth)
 end
 
 ZE.G_ClawsDamage = function(mobj, hurthealth)
-	if mobj.type == MT_RS_ZCLAWS
+	if mobj.type == ZE.GetObjectTypeOrNull("MT_RS_ZCLAWS")
 		return 50
 	else
 		return 0
@@ -33,7 +33,7 @@ ZE.G_ClawsDamage = function(mobj, hurthealth)
 end
 
 ZE.G_RSBounceDamage = function(mobj, hurthealth)
-	if mobj.type == MT_RS_THROWNBOUNCE
+	if mobj.type == ZE.GetObjectTypeOrNull("MT_RS_THROWNBOUNCE")
 		return 50
 	else
 		return 0
@@ -41,7 +41,7 @@ ZE.G_RSBounceDamage = function(mobj, hurthealth)
 end
 
 ZE.G_HS_PistolDamage = function(mobj, hurthealth)
-	if mobj.type == MT_RS_HS_SHOT
+	if mobj.type == ZE.GetObjectTypeOrNull("MT_RS_HS_SHOT")
 		return 10
 	else
 		return 0
@@ -49,7 +49,7 @@ ZE.G_HS_PistolDamage = function(mobj, hurthealth)
 end
 
 ZE.G_FistDamage = function(mobj, hurthealth)
-	if mobj.type == MT_RS_FIST
+	if mobj.type == ZE.GetObjectTypeOrNull("MT_RS_FIST")
 		return 150
 	else
 		return 0
@@ -57,7 +57,7 @@ ZE.G_FistDamage = function(mobj, hurthealth)
 end
 
 ZE.G_ScarfRevoler = function(mobj, hurthealth)
-    if mobj.type == MT_SCARFHELLREVOLER
+    if mobj.type == ZE.GetObjectTypeOrNull("MT_SCARFHELLREVOLER")
         return 50
     else
         return 0
@@ -65,7 +65,7 @@ ZE.G_ScarfRevoler = function(mobj, hurthealth)
 end
 
 ZE.G_SerpentineRocket = function(mobj, hurthealth)
-    if mobj.type == MT_SERPENTINE_ROCKET
+    if mobj.type == ZE.GetObjectTypeOrNull("MT_SERPENTINE_ROCKET")
         return 75
     else
         return 0
@@ -73,7 +73,7 @@ ZE.G_SerpentineRocket = function(mobj, hurthealth)
 end
 
 ZE.G_SerpentineFire = function(mobj, hurthealth)
-    if mobj.type == MT_SERPENTINE_FIRE
+    if mobj.type == ZE.GetObjectTypeOrNull("MT_SERPENTINE_FIRE")
         return 26
     else
         return 0
@@ -81,7 +81,7 @@ ZE.G_SerpentineFire = function(mobj, hurthealth)
 end
 
 ZE.G_SteveCrossbow = function(mobj, hurthealth)
-    if mobj.type == MT_CROSSBOW
+    if mobj.type == ZE.GetObjectTypeOrNull("MT_CROSSBOW")
         return 140
     else
         return 0
@@ -89,7 +89,7 @@ ZE.G_SteveCrossbow = function(mobj, hurthealth)
 end
 
 ZE.G_OofBall = function(mobj, hurthealth)
-    if mobj.type == MT_BASKETBALL
+    if mobj.type == ZE.GetObjectTypeOrNull("MT_BASKETBALL")
         return 60
     else
         return 0
