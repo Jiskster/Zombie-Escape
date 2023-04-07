@@ -1,7 +1,9 @@
 local ZE = RV_ZESCAPE
 local CV = RV_ZESCAPE.Console
 freeslot("MT_ZEMO_BUBBLE", "S_ZEMO_BUBBLE", "SPR_ZEMO")
-freeslot("SPR_HLME")
+freeslot("SPR_ZT00","SPR_ZT01", "SPR_ZT02")
+freeslot("sfx_huhem", "sfx_vboom")
+
 
 mobjinfo[MT_ZEMO_BUBBLE] = {		
 	doomednum = -1,
@@ -22,41 +24,58 @@ states[S_ZEMO_BUBBLE] = {
 }
 
 ZE.Emotes = {}
-ZE.AddEmote = function(emote_spr, name, desc)
-	table.insert(ZE.Emotes, {
+ZE.AddEmote = function(emote_spr, name, desc, sound)
+	local id = #ZE.Emotes + 1
+	ZE.Emotes[id] = {
 		["Sprite"] = emote_spr,
 		["Name"] = name,
 		["Description"] = desc,
-	})
+		["Sound"] = sound or 100,
+	}
 	
-	print("Added ZE Emote: " + ZE.Emotes[#ZE.Emotes].Name)
-	print(unpack(ZE.Emotes[#ZE.Emotes]))
+	print("Added ZE Emote: " + ZE.Emotes[#ZE.Emotes].Name +" ("+#ZE.Emotes+")" )
 end
 
 
-ZE.AddEmote(SPR_HLME, "Heal Me!", "Heal me mother fucker")
+ZE.AddEmote(SPR_ZT00, "Heal Me!", "Heal me NOW!")
+ZE.AddEmote(SPR_ZT01, "Huh?", "What the?..", sfx_huhem)
+ZE.AddEmote(SPR_ZT02, "Skull Emoji", "hell nah bruh", sfx_vboom)
 
 
-COM_AddCommand("ze_emote1", function(player)
+
+
+COM_AddCommand("ze_emote", function(player, emotenum)
 	if player.mo and player.mo.valid 
 	and player.playerstate ~= PST_DEAD and
 	netgame and multiplayer and player.speed == 0 then
-		
+		local emotenum_tonum = tonumber(emotenum)
+		if not ZE.Emotes[emotenum_tonum] then
+			CONS_Printf(player, "Invalid Emote: ("+emotenum_tonum+")")
+		end
 		if not(player.emotebubble) and not player.lastemotepress then
 			player.lastemotepress = (TICRATE*3 + 25)
 			player.mo.emotebubble = P_SpawnMobj(player.mo.x,player.mo.y,player.mo.z+player.mo.height,MT_ZEMO_BUBBLE)
 			local ebub = player.mo.emotebubble
 			ebub.target = player.mo
 			ebub.isemotebubble = true
+			ebub.sprite = ZE.Emotes[emotenum_tonum].Sprite
 			P_SetScale(ebub, ebub.scale/4)
-			S_StartSound(player.mo,100)
+			S_StartSound(player.mo,ZE.Emotes[emotenum_tonum].Sound)
 		end
 	end
 end)
 
 addHook("KeyDown", function(k)
 	if k.name == "1" then
-		COM_BufInsertText(nil, "ze_emote1")
+		COM_BufInsertText(nil, "ze_emote 1")
+	end
+	
+	if k.name == "2" then
+		COM_BufInsertText(nil, "ze_emote 2")
+	end
+	
+	if k.name == "3" then
+		COM_BufInsertText(nil, "ze_emote 3")
 	end
 end)
 
