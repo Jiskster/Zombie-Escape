@@ -1,37 +1,40 @@
 local ZE = RV_ZESCAPE
 local CV = RV_ZESCAPE.Console
+freeslot("MT_ZEMO_BUBBLE", "S_ZEMO_BUBBLE", "SPR_ZEMO")
+freeslot("SPR_HLME")
 
-freeslot("MT_HLME_BUBBLE", "S_HLME_BUBBLE", "SPR_HLME")
+mobjinfo[MT_ZEMO_BUBBLE] = {		
+	doomednum = -1,
+	spawnstate = S_ZEMO_BUBBLE,
+	spawnhealth = 2000,
+	radius = 9 *FRACUNIT,
+	height = 9*FRACUNIT,
+	dispoffset = 0,
+	activesound = sfx_none,
+	flags = MF_NOGRAVITY|MF_NOCLIPHEIGHT|MF_NOBLOCKMAP,
+	raisestate = S_NULL
+}
+
+states[S_ZEMO_BUBBLE] = {
+	sprite = SPR_ZEMO,
+	frame = FF_FULLBRIGHT|FF_TRANS50|A,
+	nextstate = S_ZEMO_BUBBLE
+}
+
 ZE.Emotes = {}
-ZE.AddEmote = function(emote_mt, emote_s, emote_spr, name, desc)
-	local mt_template = {		
-		doomednum = -1,
-		spawnstate = emote_s,
-		spawnhealth = 2000,
-		radius = 9 *FRACUNIT,
-		height = 9*FRACUNIT,
-		dispoffset = 0,
-		activesound = sfx_None,
-		flags = MF_NOGRAVITY|MF_NOCLIPHEIGHT|MF_NOBLOCKMAP,
-		raisestate = S_NULL
-	}
-	local s_template = {
-		sprite = emote_spr,
-		frame = FF_FULLBRIGHT|FF_TRANS50|A,
-		nextstate = emote_s
-	}
-	
-	mobjinfo[emote_mt] = mt_template
-	mobjinfo[emote_s] = s_template
-	
+ZE.AddEmote = function(emote_spr, name, desc)
 	table.insert(ZE.Emotes, {
-		["Key"] = emote_mt,
+		["Sprite"] = emote_spr,
 		["Name"] = name,
 		["Description"] = desc,
 	})
+	
+	print("Added ZE Emote: " + ZE.Emotes[#ZE.Emotes].Name)
+	print(unpack(ZE.Emotes[#ZE.Emotes]))
 end
 
-ZE.AddEmote(MT_HLME_BUBBLE, S_HLME_BUBBLE, SPR_HLME)
+
+ZE.AddEmote(SPR_HLME, "Heal Me!", "Heal me mother fucker")
 
 
 COM_AddCommand("ze_emote1", function(player)
@@ -39,11 +42,13 @@ COM_AddCommand("ze_emote1", function(player)
 	and player.playerstate ~= PST_DEAD and
 	netgame and multiplayer and player.speed == 0 then
 		
-		if not(player.emotebuble) and not player.lastemotepress then
+		if not(player.emotebubble) and not player.lastemotepress then
 			player.lastemotepress = (TICRATE*3 + 25)
-			player.mo.emotebuble = P_SpawnMobj(player.mo.x,player.mo.y,player.mo.z+player.mo.height,MT_HLME_BUBBLE)
-			player.mo.emotebuble.target = player.mo
-			P_SetScale(player.mo.emotebuble, player.mo.emotebuble.scale/4)
+			player.mo.emotebubble = P_SpawnMobj(player.mo.x,player.mo.y,player.mo.z+player.mo.height,MT_ZEMO_BUBBLE)
+			local ebub = player.mo.emotebubble
+			ebub.target = player.mo
+			ebub.isemotebubble = true
+			P_SetScale(ebub, ebub.scale/4)
 			S_StartSound(player.mo,100)
 		end
 	end
@@ -77,7 +82,7 @@ addHook("MobjThinker", function(mobj)
 		mobj.scale = $/2
 	end
 	if mobj.em_inc > (TICRATE*3 + 25) then
-		mobj.target.emotebuble = nil
+		mobj.target.emotebubble = nil
 		P_KillMobj(mobj)
 	end
 	
