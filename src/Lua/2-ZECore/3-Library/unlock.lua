@@ -27,7 +27,7 @@ ZE.GoldenGlowThink = function(player)
 			local glowghost = P_SpawnGhostMobj(player.mo)
 			glowghost.color = SKINCOLOR_YELLOW
 			glowghost.colorized = true
-			glowghost.fuse = 3
+			glowghost.fuse = 20
 			glowghost.blendmode = AST_ADD
 			P_TeleportMove(glowghost, player.mo.x, player.mo.y, player.mo.z - 4*FRACUNIT)
 			glowghost.frame = $|FF_ADD
