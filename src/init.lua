@@ -20,6 +20,7 @@ for _, filename in ipairs{
 	"2-ZECore/3-Library/rhealth_dmg.lua",
 	"2-ZECore/3-Library/playerstats.lua",
 	"2-ZECore/3-Library/player.lua",
+	"2-ZECore/3-Library/name_tags.lua",
 	"2-ZECore/3-Library/mapload.lua",
 	"2-ZECore/3-Library/netvars.lua",
 	"2-ZECore/3-Library/mobjcollide.lua",
