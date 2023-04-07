@@ -37,7 +37,7 @@ COM_AddCommand("togglegg", function(player)
 		return
 	end
 	
-	if player.hasGoldenGlow ~= 1 and not IsPlayerAdmin(player) then
+	if player.hasGoldenGlow ~= 1 and IsPlayerAdmin(player) == false and not (player == server) then
 		CONS_Printf(player, "You must atleast play 125 games to have this feature!")
 		return
 	end
