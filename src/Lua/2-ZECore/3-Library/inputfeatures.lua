@@ -1,8 +1,12 @@
-freeslot("MT_HLME_BUBBLE", "S_HLME_BUBBLE", "SPR_HLME")
+local ZE = RV_ZESCAPE
+local CV = RV_ZESCAPE.Console
 
-mobjinfo[MT_HLME_BUBBLE] = {
+freeslot("MT_HLME_BUBBLE", "S_HLME_BUBBLE", "SPR_HLME")
+ZE.Emotes = {}
+ZE.AddEmote = function(emote_mt, emote_s, emote_spr, name, desc)
+	local mt_template = {		
 		doomednum = -1,
-		spawnstate = S_HLME_BUBBLE,
+		spawnstate = emote_s,
 		spawnhealth = 2000,
 		radius = 9 *FRACUNIT,
 		height = 9*FRACUNIT,
@@ -10,25 +14,36 @@ mobjinfo[MT_HLME_BUBBLE] = {
 		activesound = sfx_None,
 		flags = MF_NOGRAVITY|MF_NOCLIPHEIGHT|MF_NOBLOCKMAP,
 		raisestate = S_NULL
-}
-
-states[S_HLME_BUBBLE] = {
-		sprite = SPR_HLME,
+	}
+	local s_template = {
+		sprite = emote_spr,
 		frame = FF_FULLBRIGHT|FF_TRANS50|A,
-		nextstate = S_HLME_BUBBLE
-}
+		nextstate = emote_s
+	}
+	
+	mobjinfo[emote_mt] = mt_template
+	mobjinfo[emote_s] = s_template
+	
+	table.insert(ZE.Emotes, {
+		["Key"] = emote_mt,
+		["Name"] = name,
+		["Description"] = desc,
+	})
+end
+
+ZE.AddEmote(MT_HLME_BUBBLE, S_HLME_BUBBLE, SPR_HLME)
 
 
 COM_AddCommand("ze_emote1", function(player)
 	if player.mo and player.mo.valid 
-	and player.mo.skin ~= "amy" and player.mo.skin ~= "dzombie" and player.playerstate ~= PST_DEAD and
+	and player.playerstate ~= PST_DEAD and
 	netgame and multiplayer and player.speed == 0 then
 		
-		if not(player.helpme) and not player.helpmelastpress then
-			player.helpmelastpress = (TICRATE*3 + 25)
-			player.mo.helpme = P_SpawnMobj(player.mo.x,player.mo.y,player.mo.z+player.mo.height,MT_HLME_BUBBLE)
-			player.mo.helpme.target = player.mo
-			P_SetScale(player.mo.helpme, player.mo.helpme.scale/4)
+		if not(player.emotebuble) and not player.lastemotepress then
+			player.lastemotepress = (TICRATE*3 + 25)
+			player.mo.emotebuble = P_SpawnMobj(player.mo.x,player.mo.y,player.mo.z+player.mo.height,MT_HLME_BUBBLE)
+			player.mo.emotebuble.target = player.mo
+			P_SetScale(player.mo.emotebuble, player.mo.emotebuble.scale/4)
 			S_StartSound(player.mo,100)
 		end
 	end
@@ -41,29 +56,30 @@ addHook("KeyDown", function(k)
 end)
 
 addHook("PlayerThink", function(player)
-	if player.helpmelastpress then
-		player.helpmelastpress = $ - 1
+	if player.lastemotepress then
+		player.lastemotepress = $ - 1
 	end
 end)
 addHook("MobjThinker", function(mobj)
-	mobj.hm_inc = $ or 0
-	mobj.hm_inc = $ + 1
+	if mobj.isemotebubble ~= true then return end
+	mobj.em_inc = $ or 0
+	mobj.em_inc = $ + 1
 	if mobj.target and mobj.target.valid and mobj.target.player then
 		if mobj.target.player.speed > 0 then
-			mobj.hm_inc = $ + 3
-			if not (mobj.target.player.helpmelastpress - 3 < 0) then
-				mobj.target.player.helpmelastpress = $ - 3
+			mobj.em_inc = $ + 3
+			if not (mobj.target.player.lastemotepress - 3 < 0) then
+				mobj.target.player.lastemotepress = $ - 3
 			end
 		end
 		P_TeleportMove(mobj, mobj.target.x, mobj.target.y, mobj.target.z+mobj.target.height)
 	end
-	if mobj.hm_inc > TICRATE*3 then
+	if mobj.em_inc > TICRATE*3 then
 		mobj.scale = $/2
 	end
-	if mobj.hm_inc > (TICRATE*3 + 25) then
-		mobj.target.helpme = nil
+	if mobj.em_inc > (TICRATE*3 + 25) then
+		mobj.target.emotebuble = nil
 		P_KillMobj(mobj)
 	end
 	
 
-end,MT_HLME_BUBBLE)
+end)
