@@ -18,5 +18,6 @@ addHook("PlayerThink", function(player)
 			ZE.AlphaZmRage(player)
 			ZE.SpawnProps(player)
 			ZE.AlphaZmCfg(player)
+			ZE.GoldenGlowThink(player)
 	end
 end)

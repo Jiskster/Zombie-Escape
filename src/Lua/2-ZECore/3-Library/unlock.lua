@@ -17,6 +17,27 @@ ZE.UnlockGoldenGlow = function(player)
 	end
 end
 
+
+
+ZE.GoldenGlowThink = function(player)
+	if player.ggtoggle == true then
+		player.mo.color = SKINCOLOR_YELLOW
+		player.mo.colorized = true
+		if leveltime % 3 == 0 then
+			local glowghost = P_SpawnGhostMobj(player.mo)
+			glowghost.color = P_RandomRange(SKINCOLOR_YELLOW)
+			glowghost.colorized = true
+			glowghost.fuse = 3
+			glowghost.blendmode = AST_ADD
+			P_TeleportMove(glowghost, player.mo.x, player.mo.y, player.mo.z - 4*FRACUNIT)
+			glowghost.frame = $|FF_ADD
+			if glowghost.tracer
+				glowghost.tracer.fuse = glowghost.fuse
+			end
+		end
+	end
+end
+
 ZE.CheckUnlocks = function(player)	
 	if player.gamesPlayed == 25 then
 		ZE.UnlockRevenger(player)

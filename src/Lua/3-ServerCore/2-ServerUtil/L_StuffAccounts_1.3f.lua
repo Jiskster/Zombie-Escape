@@ -27,7 +27,7 @@
 local ZE = RV_ZESCAPE
 local CV = RV_ZESCAPE.Console
 
-local stuff_servername = "MinisZombieEscape"
+local stuff_servername = "MinisZombieEscape_REV1"
 -- Folder where accounts will be saved.
 local folderstuff = "StuffAccounts/Accounts/"
 -- The folder in which the player saves the username and password for HIMSELF.
@@ -115,11 +115,13 @@ local OtherStuff = {}
 local function SaveOtherStuff(stuff, player) --loading1
 	stuff.rvgrpass = player.rvgrpass 
 	stuff.gamesPlayed = player.gamesPlayed 
+	stuff.hasGoldenGlow = player.hasGoldenGlow 
 end
 
 local function LoadOtherStuff(stuff, player) --loading2
 	player.rvgrpass = stuff.rvgrpass 
 	player.gamesPlayed = stuff.gamesPlayed 
+	player.hasGoldenGlow = stuff.hasGoldenGlow
 end
 
 rawset(_G, "cv_autoreg", CV_RegisterVar({
