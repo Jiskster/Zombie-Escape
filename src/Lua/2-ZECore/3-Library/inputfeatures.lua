@@ -36,10 +36,19 @@ ZE.AddEmote = function(emote_spr, name, desc, sound)
 	print("Added ZE Emote: " + ZE.Emotes[#ZE.Emotes].Name +" ("+#ZE.Emotes+")" )
 end
 
-
+addHook("PlayerThink", function(player)
+	if player.mo and player.mo.valid then
+		player.emoteslots = $ or {
+			1,
+			2,
+			3
+		}
+	end
+end)
 ZE.AddEmote(SPR_ZT00, "Heal Me!", "Heal me NOW!")
 ZE.AddEmote(SPR_ZT01, "Huh?", "What the?..", sfx_huhem)
 ZE.AddEmote(SPR_ZT02, "Skull Emoji", "hell nah bruh", sfx_vboom)
+ZE.AddEmote(SPR_ZT03, "Sad Sponge", "me when when no 2.3", sfx_thwop)
 
 
 
@@ -51,37 +60,62 @@ COM_AddCommand("ze_emote", function(player, emotenum)
 		local emotenum_tonum = tonumber(emotenum)
 		if not ZE.Emotes[emotenum_tonum] then
 			CONS_Printf(player, "Invalid Emote: ("+emotenum_tonum+")")
+			return
 		end
 		if not(player.emotebubble) and not player.lastemotepress then
 			player.lastemotepress = (TICRATE*3 + 25)
 			player.mo.emotebubble = P_SpawnMobj(player.mo.x,player.mo.y,player.mo.z+player.mo.height,MT_ZEMO_BUBBLE)
 			local ebub = player.mo.emotebubble
+			local slotchosen = player.emoteslots[emotenum_tonum]
 			ebub.target = player.mo
 			ebub.isemotebubble = true
-			ebub.sprite = ZE.Emotes[emotenum_tonum].Sprite
+			ebub.sprite = ZE.Emotes[slotchosen].Sprite
 			P_SetScale(ebub, ebub.scale/4)
-			S_StartSound(player.mo,ZE.Emotes[emotenum_tonum].Sound)
+			S_StartSound(player.mo,ZE.Emotes[slotchosen].Sound)
 		end
 	end
 end)
 
-addHook("KeyDown", function(k)
-	if k.name == "1" then
-		COM_BufInsertText(nil, "ze_emote 1")
+COM_AddCommand("ze_emotelist", function(player)
+	for i,v in ipairs(ZE.Emotes) do
+		CONS_Printf(player,"+ (\$i\): \$v.Name\")
+		CONS_Printf(player,"| Description: \$v.Description\")
+	end
+end)
+
+COM_AddCommand("ze_setemote", function(player, slot, emote)
+	if slot == nil and emote == nil then
+		CONS_Printf(player,"ze_setemote <slot> <emotenumber>: Sets your slot to an emote.")
+	end
+	if not(slot) or tonumber(slot) > 3 or tonumber(slot) < 1 then
+		CONS_Printf(player,"Slot must be a valid number. And between 1 - 3")
+		return
 	end
 	
-	if k.name == "2" then
-		COM_BufInsertText(nil, "ze_emote 2")
-	end
-	
-	if k.name == "3" then
-		COM_BufInsertText(nil, "ze_emote 3")
+	if ZE.Emotes[tonumber(emote)] then
+		player.emoteslots[tonumber(slot)] = tonumber(emote)
+		CONS_Printf(player,"Slot \$tonumber(slot)\ replaced \$ZE.Emotes[tonumber(emote)].Name\")
+		return
+	else
+		CONS_Printf(player,"Invalid Emote.")
+		return
 	end
 end)
 
 addHook("PlayerThink", function(player)
 	if player.lastemotepress then
 		player.lastemotepress = $ - 1
+	end
+	if (player.cmd.buttons & BT_WEAPONMASK) == 1 then
+		COM_BufInsertText(player, "ze_emote 1")
+	end
+	
+	if (player.cmd.buttons & BT_WEAPONMASK) == 2 then
+		COM_BufInsertText(player, "ze_emote 2")
+	end
+	
+	if (player.cmd.buttons & BT_WEAPONMASK) == 3 then
+		COM_BufInsertText(player, "ze_emote 3")
 	end
 end)
 addHook("MobjThinker", function(mobj)

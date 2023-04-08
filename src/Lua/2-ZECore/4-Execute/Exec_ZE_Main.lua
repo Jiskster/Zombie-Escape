@@ -9,7 +9,7 @@ addHook("ThinkFrame", function()
 	for player in players.iterate
 		ZE.SetRings(player)
 		ZE.InfectPlayer(player)
-		ZE.AntiBounce(player) --level header
+		ZE.AntiBounce(player)--level header
 	end
 	ZE.WinScript()
 	ZE.PlayerCount()

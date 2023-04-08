@@ -262,6 +262,8 @@ ZE.ZombieRegen = function(player)
 		if (player.regen <= 0*TICRATE) then
 		   if not (player.mo.health + 100 > 1000) -- kinda the limit for zombies is 1000 for healing
 			  player.mo.health = $ + 100
+		   else
+			  player.mo.health = 1000
 		   end
 		   player.regen = 12*TICRATE
 		else

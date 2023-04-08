@@ -44,10 +44,10 @@ COM_AddCommand("togglegg", function(player)
 	if player and player.valid and player.mo and player.mo.valid then
 		if player.ggtoggle == nil then
 			player.ggtoggle = true
-			print("\x87\Golden Glow On!")
+			CONS_Printf(player,"\x87\Golden Glow On!")
 		else
 			player.ggtoggle = not player.ggtoggle
-			print("\x87\Golden Glow Off!")
+			CONS_Printf(player,"\x87\Golden Glow Off!")
 			player.mo.colorized = false
 		end
 	end

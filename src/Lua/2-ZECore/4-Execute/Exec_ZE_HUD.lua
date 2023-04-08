@@ -96,6 +96,27 @@ hud.add(function(v, player)
 	end
 end, "game")
 
+hud.add(function(g, player)
+	local hudtype = CV.hudtype.value 
+	if (gametype ~= GT_ZESCAPE) return end
+	if (player.mo and player.mo.valid)
+		if hudtype == 1
+		    g.drawString(90,0, "SURVIVORS:", V_BLUEMAP|V_SNAPTOTOP|V_50TRANS, "center")
+			g.drawString(141, 0, tostring(ZE.survcount), V_BLUEMAP|V_SNAPTOTOP|V_50TRANS, "center")
+		    g.drawString(224,0, ":ZOMBIES", V_REDMAP|V_SNAPTOTOP|V_50TRANS, "center")
+			g.drawString(181, 0, tostring(ZE.zombcount), V_REDMAP|V_SNAPTOTOP|V_50TRANS, "center")	
+		end
+		
+		if hudtype == 2
+		    g.drawString(90,16, "SURVIVORS:", V_BLUEMAP|V_SNAPTOTOP|V_50TRANS, "center")
+			g.drawString(141, 16, tostring(ZE.survcount), V_BLUEMAP|V_SNAPTOTOP|V_50TRANS, "center")
+		    g.drawString(224,16, ":ZOMBIES", V_REDMAP|V_SNAPTOTOP|V_50TRANS, "center")
+			g.drawString(181, 16, tostring(ZE.zombcount), V_REDMAP|V_SNAPTOTOP|V_50TRANS, "center")	
+		end
+	end
+end, "game")
+
+
 hud.add(function(g,player,cam)
 	local client = 0
 	local hudtype = CV.hudtype.value 
