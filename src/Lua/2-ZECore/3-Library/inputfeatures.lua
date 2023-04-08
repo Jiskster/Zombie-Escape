@@ -1,8 +1,8 @@
 local ZE = RV_ZESCAPE
 local CV = RV_ZESCAPE.Console
 freeslot("MT_ZEMO_BUBBLE", "S_ZEMO_BUBBLE", "SPR_ZEMO")
-freeslot("SPR_ZT00","SPR_ZT01", "SPR_ZT02")
-freeslot("sfx_huhem", "sfx_vboom")
+freeslot("SPR_ZT00","SPR_ZT01", "SPR_ZT02", "SPR_ZT03")
+freeslot("sfx_huhem", "sfx_vboom", "sfx_thwop")
 
 
 mobjinfo[MT_ZEMO_BUBBLE] = {		
@@ -69,6 +69,7 @@ COM_AddCommand("ze_emote", function(player, emotenum)
 			local slotchosen = player.emoteslots[emotenum_tonum]
 			ebub.target = player.mo
 			ebub.isemotebubble = true
+			
 			ebub.sprite = ZE.Emotes[slotchosen].Sprite
 			P_SetScale(ebub, ebub.scale/4)
 			S_StartSound(player.mo,ZE.Emotes[slotchosen].Sound)
@@ -78,14 +79,15 @@ end)
 
 COM_AddCommand("ze_emotelist", function(player)
 	for i,v in ipairs(ZE.Emotes) do
-		CONS_Printf(player,"+ (\$i\): \$v.Name\")
-		CONS_Printf(player,"| Description: \$v.Description\")
+		CONS_Printf(player,"\x82\+ (\$i\): \$v.Name\")
+		CONS_Printf(player,"\x88\| Description: \$v.Description\")
 	end
 end)
 
 COM_AddCommand("ze_setemote", function(player, slot, emote)
 	if slot == nil and emote == nil then
 		CONS_Printf(player,"ze_setemote <slot> <emotenumber>: Sets your slot to an emote.")
+		return
 	end
 	if not(slot) or tonumber(slot) > 3 or tonumber(slot) < 1 then
 		CONS_Printf(player,"Slot must be a valid number. And between 1 - 3")
