@@ -9,9 +9,11 @@ freeslot(
 
 
 
-/*
+
 local cs_mt
 local default = "defaultconfig"
+
+/*
 setmetatable(ZE.CharacterStats[skinname], {
 __index = function(table, index)
 	return{
@@ -27,7 +29,6 @@ __index = function(table, index)
 end
 })
 
-registerMetatable(cs_mt)
 
 */
 

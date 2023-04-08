@@ -47,7 +47,7 @@ ZE.AddEmote(SPR_ZT02, "Skull Emoji", "hell nah bruh", sfx_vboom)
 COM_AddCommand("ze_emote", function(player, emotenum)
 	if player.mo and player.mo.valid 
 	and player.playerstate ~= PST_DEAD and
-	netgame and multiplayer and player.speed == 0 then
+	netgame and multiplayer then
 		local emotenum_tonum = tonumber(emotenum)
 		if not ZE.Emotes[emotenum_tonum] then
 			CONS_Printf(player, "Invalid Emote: ("+emotenum_tonum+")")
@@ -89,12 +89,14 @@ addHook("MobjThinker", function(mobj)
 	mobj.em_inc = $ or 0
 	mobj.em_inc = $ + 1
 	if mobj.target and mobj.target.valid and mobj.target.player then
+		/*
 		if mobj.target.player.speed > 0 then
 			mobj.em_inc = $ + 3
 			if not (mobj.target.player.lastemotepress - 3 < 0) then
 				mobj.target.player.lastemotepress = $ - 3
 			end
 		end
+		*/
 		P_TeleportMove(mobj, mobj.target.x, mobj.target.y, mobj.target.z+mobj.target.height)
 	end
 	if mobj.em_inc > TICRATE*3 then

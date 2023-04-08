@@ -27,11 +27,12 @@ end)
 addHook("PlayerSpawn", function(player)
 
 	if (gametype == GT_ZESCAPE)
-		player.rvgrpass = $ or 0
-		player.hasGoldenGlow = $ or 0
-		player.gamesPlayed = $ or 0
+
 		if player and player.valid and not player.spectator
 		and player.mo and player.mo.valid
+			player.rvgrpass = $ or 0
+			player.hasGoldenGlow = $ or 0
+			player.gamesPlayed = $ or 0
 			ZE.DeathPointTp(player)
 			ZE.SpawnSounds(player)
 		end
