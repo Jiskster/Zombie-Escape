@@ -9,7 +9,12 @@ end
 
 ZE.HearthMobjMoveCollide = function(mo, pmo)
    if not GT_ZESCAPE then return end
-   	if pmo.skin ~= "dzombie" and pmo.health >= pmo.maxHealth then
+   if not pmo.player or not (pmo.flags & MF_MONITOR) then return end
+	if (pmo.flags & MF_MONITOR) then
+		return true
+	end
+	
+   	if pmo.skin ~= "dzombie" and pmo.health >= pmo.maxHealth
 		return false
 	end
 end
@@ -20,6 +25,7 @@ ZE.PropMobjCollide = function(mo, pmo)
 		return false
 	  else
 	     P_SetObjectMomZ(mo,mo.scale*-128)
+		
 	end
 end
 

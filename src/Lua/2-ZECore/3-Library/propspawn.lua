@@ -17,6 +17,8 @@ ZE.BuildPropShieldBox = function(player)
 		player.propspawn = $-1
 	end
 end
+
+
 ZE.ResetPropSpawn = function(player)
 	if player.mo and player.mo.valid then
 		player.propspawn = 2
@@ -39,6 +41,7 @@ ZE.SpawnProps = function(player)
 	            player.builddelay = $-1
 		end
 	end
+	 --disable amy for now
 		 if player.mo and player.mo.skin == "amy"
 		   if player.propspawn == 0 then return end
 		      player.builddelay = $ or 0

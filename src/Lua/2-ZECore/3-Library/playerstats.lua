@@ -30,7 +30,7 @@ ZE.CharacterStats = {
 		staminanormal = 27*FRACUNIT,
     },
 	["sonic"] = {
-		normalspeed = 26 * FRACUNIT,
+		normalspeed = 24 * FRACUNIT,
 		runspeed = 100 * FRACUNIT,
 		jumpfactor = 17 * FRACUNIT / 19,
 		charability = CA_JUMPTHOK,
@@ -52,7 +52,7 @@ ZE.CharacterStats = {
 		maxHealth = 125,
 		staminacost = 12,
 		staminarun = 16*FRACUNIT,
-		staminanormal = 25*FRACUNIT,
+		staminanormal = 28*FRACUNIT,
     },
     ["knuckles"] = {
         normalspeed = 17 * FRACUNIT,
@@ -64,7 +64,7 @@ ZE.CharacterStats = {
 		maxHealth = 175,
 		staminacost = 16,
 		staminarun = 16*FRACUNIT,
-		staminanormal = 24*FRACUNIT,
+		staminanormal = 27*FRACUNIT,
     },
     ["amy"] = {
         normalspeed = 22 * FRACUNIT,
@@ -161,7 +161,7 @@ ZE.CharacterStats = {
 		maxHealth = 125,
 		staminacost = 12,
 		staminarun = 16*FRACUNIT,
-		staminanormal = 25*FRACUNIT,
+		staminanormal = 27*FRACUNIT,
 	},
 	["w"] = {
 		normalspeed = 22 * FRACUNIT,
@@ -173,7 +173,7 @@ ZE.CharacterStats = {
 		maxHealth = 120,
 		staminacost = 9,
 		staminarun = 16*FRACUNIT,
-		staminanormal = 25*FRACUNIT,
+		staminanormal = 26*FRACUNIT,
 	},
 	["serpentine"] = {
 		normalspeed = 22 * FRACUNIT,
@@ -185,7 +185,7 @@ ZE.CharacterStats = {
 		maxHealth = 120,
 		staminacost = 12,
 		staminarun = 16*FRACUNIT,
-		staminanormal = 25*FRACUNIT,
+		staminanormal = 24*FRACUNIT,
 	},
 	["steve"] = {
 		normalspeed = 22 * FRACUNIT,
