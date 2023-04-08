@@ -27,7 +27,7 @@ CV.timeafterwin = 0
 CV.winWait = 9999*TICRATE
 CV.onwinscreen = 0
 COM_BufInsertText(server, "ze_winwait 9999")
-if mapheaderinfo[mapnum].swarmmap then 
+if mapheaderinfo[mapnum].survivetime then 
 	local convsurvtime = tonumber(mapheaderinfo[mapnum].survivetime)*60
 	CV.survtime = convsurvtime*TICRATE
 	COM_BufInsertText(server, "ze_survtime "+ convsurvtime)
@@ -46,30 +46,6 @@ end
 
 ZE.CountUp = function()
 	CV.countup = $ + (1/2)
-end
-
-ZE.AliveCount = function(ptype)
-	local count = 0
-	for player in player.iterate do
-		if ptype == "zombie" then
-			if player.mo and player.mo.skin == "dzombie" then
-				count = $ + 1
-			end
-		end
-
-		if ptype == "survivor" then
-			if player.mo and player.mo.skin ~= "dzombie" then
-				count = $ + 1
-			end
-		end
-
-		if not(ptype) then
-			if player.mo then
-				count = $ + 1
-			end
-		end
-	end
-	return count
 end
 
 ZE.PostWin = function(player)
