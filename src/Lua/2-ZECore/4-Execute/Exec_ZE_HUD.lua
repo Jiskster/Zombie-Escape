@@ -214,7 +214,7 @@ hud.add(function(v, player)
 	if (gametype ~= GT_ZESCAPE) return end
 	if (player.mo and player.mo.valid)
 		if player.mo.skin == "amy" then
-		   v.drawString(225,176,"\x87\TOSSFLAG \x80\- \x84\SHIELD BOX",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		   --v.drawString(225,176,"\x87\TOSSFLAG \x80\- \x84\SHIELD BOX",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
         end
 		if player.mo.skin == "tails" then
 		   v.drawString(224,176,"\x87\TOSSFLAG \x80\- \x84\WOOD FENCE",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
