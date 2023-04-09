@@ -11,10 +11,10 @@ end
 
 ZE.BuildPropShieldBox = function(player)
 		if player.mo and player.mo.valid
-        P_SpawnMobj(player.mo.x+FixedMul(0*FRACUNIT, cos(player.mo.angle)),
-					player.mo.y+FixedMul(0*FRACUNIT, sin(player.mo.angle)), player.mo.z, MT_PITY_BOX)
-		S_StartSound(player.mo, sfx_jshard)
-		player.propspawn = $-1
+        --P_SpawnMobj(player.mo.x+FixedMul(0*FRACUNIT, cos(player.mo.angle)),
+					--player.mo.y+FixedMul(0*FRACUNIT, sin(player.mo.angle)), player.mo.z, MT_PITY_BOX)
+		--S_StartSound(player.mo, sfx_jshard)
+		--player.propspawn = $-1
 	end
 end
 
