@@ -208,6 +208,10 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 						else
 							print(string.format(ZE.damagetable.killmsg[catch], name1, name2))
 						end
+						if mapheaderinfo[gamemap].zombieswarm
+							shooter.maxHealth = $ + (25*ZE.Wave)
+							shooter.health = $ + (25*ZE.Wave)
+						end
 						if not(ZE.teamWin) then
 							P_AddPlayerScore(shooter.player, 250)
 							shooter.player.propspawn = $ + 1

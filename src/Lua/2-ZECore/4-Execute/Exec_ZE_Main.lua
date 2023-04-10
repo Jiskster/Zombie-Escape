@@ -21,6 +21,8 @@ addHook("ThinkFrame", function()
 	ZE.HudStuffDisable()
 	ZE.Inc_Show_alpha_attack()
 	ZE.CountUp()
+	
+	ZE.SwarmParition()
 	end
 end)
 

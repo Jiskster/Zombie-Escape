@@ -5,6 +5,7 @@ ZE.ringlist = {}
 ZE.survcount = 0
 ZE.zombcount = 0
 ZE.teamWin = 0
+ZE.Wave = 0
 ZE.infectdelay = 0
 ZE.winTriggerDelay = 0
 ZE.survskins = {"sonic", "tails", "amy", "knuckles", "fang", "metalsonic"}
@@ -20,33 +21,34 @@ CV.countup = 0
 CV.gametime = 14*60*TICRATE
 CV.timeafterwin = 0
 CV.onwinscreen = 0
+CV.gamestarted = false
 
 ZE.ResetTimers = function(mapnum) -- code needed to be changed?
-CV.timeafterwin = 0
-CV.winWait = 9999*TICRATE
-CV.onwinscreen = 0
-COM_BufInsertText(server, "ze_winwait 9999")
-if mapheaderinfo[mapnum].survivetime then 
-	local convsurvtime = tonumber(mapheaderinfo[mapnum].survivetime)*60
-	CV.survtime = convsurvtime*TICRATE
-	COM_BufInsertText(server, "ze_survtime "+ convsurvtime)
-	CV.countup = 0
-	--print(convsurvtime)
-else
-	local convsurvtime = 10*60
-	CV.survtime = convsurvtime*TICRATE
-	COM_BufInsertText(server, "ze_survtime "+ convsurvtime)
-	CV.countup = 0
-	--print("No var found, New var: " +convsurvtime)
+	CV.timeafterwin = 0
+	CV.winWait = 9999*TICRATE
+	CV.onwinscreen = 0
+	COM_BufInsertText(server, "ze_winwait 9999")
+	if mapheaderinfo[mapnum].survivetime then 
+		local convsurvtime = tonumber(mapheaderinfo[mapnum].survivetime)*60
+		CV.survtime = convsurvtime*TICRATE + CV.waittime
+		COM_BufInsertText(server, "ze_survtime "+ convsurvtime)
+		CV.countup = 0
+		--print(convsurvtime)
+	else
+		local convsurvtime = 10*60
+		CV.survtime = convsurvtime*TICRATE + CV.waittime
+		COM_BufInsertText(server, "ze_survtime "+ convsurvtime)
+		CV.countup = 0
+		--print("No var found, New var: " +convsurvtime)
+	end
+
+	COM_BufInsertText(server, "rh_enable 1")
 end
 
-COM_BufInsertText(server, "rh_enable 1")
-end
-ZE.IsZombie = function(player)
-	
-end
 ZE.CountUp = function()
-	CV.countup = $ + (1/2)
+	if CV.gamestarted == true
+		CV.countup = $ + 1
+	end
 end
 
 ZE.PostWin = function(player)
@@ -380,11 +382,17 @@ end
 ZE.CountDown = function()
 	if gametype == GT_ZESCAPE
 		if CV.waittime-leveltime == 0*TICRATE -- if done
-		   S_StartSound(player, sfx_rstart)
-		   if P_RandomChance(FRACUNIT/7) then
-			  ZE.Start_alpha_attack()
-		   end
-        end
+			S_StartSound(player, sfx_rstart)
+			CV.gamestarted = true
+			if mapheaderinfo[gamemap].zombieswarm
+				ZE.Wave = 1
+				chatprint("\x83\[Zombie Swarm] Wave -> "..ZE.Wave)
+			end
+			
+			if P_RandomChance(FRACUNIT/7) and not(mapheaderinfo[gamemap].zombieswarm) then
+				ZE.Start_alpha_attack()
+			end
+		end
 	end
 end
 
@@ -439,5 +447,24 @@ ZE.HudStuffDisable = function()
 		hud.enable("lives")
 		hud.enable("teamscores")
 		hud.enable("rings")
+	end
+end
+
+ZE.SwarmParition = function()
+	if CV.gamestarted == true and mapheaderinfo[gamemap].zombieswarm
+		if (CV.countup) == 60*TICRATE then
+			ZE.Wave = $ + 1
+			chatprint("\x83\[Zombie Swarm] Wave -> "..ZE.Wave.." (+HP)")
+		end
+		
+		if (CV.countup) == 60*TICRATE*2 then
+			ZE.Wave = $ + 1
+			chatprint("\x83\[Zombie Swarm] Wave -> "..ZE.Wave.." (+HP +SPINDASH)")
+		end
+		
+		if (CV.countup) == 60*TICRATE*3 then
+			ZE.Wave = $ + 1
+			chatprint("\x83\[Zombie Swarm] Wave -> "..ZE.Wave.." (+HP +SPINDASH +THOK)")
+		end
 	end
 end

@@ -256,15 +256,58 @@ ZE.ZombieHealth = function(player)
 	if gametype == GT_ZESCAPE
 		if player.mo and player.mo.valid
 			if player.ctfteam == 2 return end
-			
-			if (player.ctfteam == 1) and not (player.spectator) and not (player.alphazm == 1)
-			and player.powers[pw_flashing] > 0
-				player.mo.health = ZE.ZombieStats["Normal"].startHealth
-				player.mo.maxHealth = ZE.ZombieStats["Normal"].maxHealth  --normal zombie health
+			if player.powers[pw_flashing] > 0
+				if (player.ctfteam == 1) and not (player.spectator) and not (player.alphazm == 1)
+					player.mo.health = ZE.ZombieStats["Normal"].startHealth
+					player.mo.maxHealth = ZE.ZombieStats["Normal"].maxHealth  --normal zombie health
+				end
+				if (player.alphazm == 1)
+					player.mo.health = ZE.ZombieStats["Alpha"].startHealth
+					player.mo.maxHealth = ZE.ZombieStats["Alpha"].maxHealth
+				end	
+				
+				--zombie swarm
+
 			end
-			if (player.alphazm == 1) and player.powers[pw_flashing] > 0 then
-				player.mo.health = ZE.ZombieStats["Alpha"].startHealth
-				player.mo.maxHealth = ZE.ZombieStats["Alpha"].maxHealth -- alpha zombie health
+		end
+	end
+end
+
+ZE.ZombieSwarmWave = function(player)
+	if gametype ~= GT_ZESCAPE return end
+	if player.mo and player.mo.valid
+		if player.ctfteam == 2 return end
+		if mapheaderinfo[gamemap].zombieswarm then 
+			if ZE.Wave == 1
+				if player.powers[pw_flashing] > 0
+					player.mo.health = 150
+					player.mo.maxHealth = 150
+				end
+			end
+			
+			if ZE.Wave == 2
+				if player.powers[pw_flashing] > 0
+					player.mo.health = 500
+					player.mo.maxHealth = 500
+				end
+			end
+			
+			if ZE.Wave == 3
+				if player.powers[pw_flashing] > 0
+					player.mo.health = 800
+					player.mo.maxHealth = 800
+				end
+				player.charability = CA_NONE
+				player.charability2 = CA2_SPINDASH
+			end
+			
+			if ZE.Wave == 4
+				if player.powers[pw_flashing] > 0
+					player.mo.health = 1000
+					player.mo.maxHealth = 1000
+				end
+				player.charability = CA_THOK
+				player.charability2 = CA2_SPINDASH
 			end
 		end
 	end

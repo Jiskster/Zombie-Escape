@@ -29,7 +29,7 @@ hud.add(function(v, player)
 			if player.alphazm == 1 then
 			   v.drawString(1,176,"\x85\ALPHA ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 			   v.drawString(262,184,"\x87\C1 \x80\ - \x85\RAGE",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-			   v.drawString(262,176,"\x85\RAGE\x80 COOLDOWN: "+tostring(player.boostcount/TICRATE),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+			   v.drawString(242,176,"\x85\RAGE\x80 COOLDOWN: "+tostring(player.boostcount/TICRATE),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 			end
 		end
 	end
@@ -231,7 +231,7 @@ end)
 local function TimerHud(v,p,c)
 	--if not mapheaderinfo[gamemap].swarmmap then return end
 	local hudtype = CV.hudtype.value 
-	local basetime = ((CV.survtime/TICRATE))- (CV.countup/TICRATE)
+	local basetime = ((CV.survtime/TICRATE))
 	if hudtype == 1 
 		v.drawString(0,167,"\x85\Time Left: "+basetime, V_PERPLAYER|V_SNAPTOLEFT|V_SNAPTOBOTTOM)
 	end

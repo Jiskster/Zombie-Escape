@@ -1,8 +1,8 @@
 @ECHO OFF
 
 ::--------------------------------------------------------------------------
-set "name=ZGL_MZombieEscape"
-set "version=2.1.1"
+set "name=ZGL_ZombieEscape"
+set "version=2.2"
 
 set /A "delump=0"
 
