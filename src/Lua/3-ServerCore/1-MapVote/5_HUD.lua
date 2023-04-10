@@ -32,8 +32,9 @@ hud.add(function(v)
 			end
 			local image = v.cachePatch(patchname)
 			local name = MV.GetNameFromMapnum(map)
+
 			local gtname = NET.gametypedata[NET.gtchoices[i]].name
-			
+
 			local highlighted = player.mapvote and player.mapvote.vote_slot and player.mapvote.vote_slot == i
 			local colormap 
 			
@@ -56,6 +57,10 @@ hud.add(function(v)
 				pos = $ - 1
 			end
 			xx = $ + 44 * pos
+			
+			if mapheaderinfo[tonumber(map)].zombieswarm then -- if zombie swarm header then rename gametype to fake
+				gtname = "Zombie Swarm"
+			end
 			if highlighted
 				v.drawScaled(FRACUNIT*(xx+4), FRACUNIT*(yy+4), FRACUNIT / 2, image, V_60TRANS, v.getColormap(TC_BLINK, SKINCOLOR_PITCHBLACK))
 				v.drawScaled(FRACUNIT*(xx-2), FRACUNIT*(yy-2), FRACUNIT / 2, image, 0, colormap)

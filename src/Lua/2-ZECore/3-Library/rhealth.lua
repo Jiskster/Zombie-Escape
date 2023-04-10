@@ -209,7 +209,7 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 							print(string.format(ZE.damagetable.killmsg[catch], name1, name2))
 						end
 						if not(ZE.teamWin) then
-							P_AddPlayerScore(shooter.player, 100)
+							P_AddPlayerScore(shooter.player, 250)
 							shooter.player.propspawn = $ + 1
 						end
 					else

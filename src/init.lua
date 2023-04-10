@@ -29,7 +29,6 @@ for _, filename in ipairs{
 	"2-ZECore/3-Library/ability_milne.lua",
 	"2-ZECore/3-Library/rhealth_extra.lua",
 	"2-ZECore/3-Library/revenger.lua",
-	"2-ZECore/3-Library/swarmhud.lua",
 	"2-ZECore/3-Library/antibounce.lua",
 	"2-ZECore/3-Library/unlock.lua",
 
