@@ -1,3 +1,6 @@
+local ZE = RV_ZESCAPE
+local CV = RV_ZESCAPE.Console
+
 COM_AddCommand("ze_spectate", function(player)
 	if (gametype ~= GT_ZESCAPE) then
 		CONS_Printf(player, "The game mode must be Zombie Escape to use this command.")
@@ -79,5 +82,20 @@ COM_AddCommand("cleardata", function(player,arg1) --rvgrpass
 		COM_BufInsertText(players[arg1], "savestuff")
 		CONS_Printf(players[arg1],string.format(string,players[arg1].name))
 		
+	end
+end,1)
+
+COM_AddCommand("forcewin", function(player, arg1)
+	arg1 = tonumber(arg1)
+	if arg1 ~= nil and arg1 <= 2 and arg1 > 0 then
+		if arg1 == 1 then
+			ZE.survWin()
+		end
+		
+		if arg1 == 2 then
+			ZE.zmWin()
+		end
+	else
+		CONS_Printf(player, "Invalid number")
 	end
 end,1)
