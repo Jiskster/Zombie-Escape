@@ -49,8 +49,10 @@ ZE.CountUp = function()
 end
 
 ZE.PostWin = function(player)
-	player.gamesPlayed = $ + 1
-	ZE.CheckUnlocks(player)
+	if player.gamesPlayed then --anti softlock
+		player.gamesPlayed = $ + 1
+		ZE.CheckUnlocks(player)
+	end
 end
 ZE.Win = function(team)
 	ZE.teamWin = team
