@@ -1,6 +1,5 @@
 local ZE = RV_ZESCAPE
 local CV = RV_ZESCAPE.Console
-ZE.gameversion = "2.1b"
 
 ZE.ringlist = {}
 ZE.survcount = 0
