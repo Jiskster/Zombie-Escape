@@ -39,19 +39,19 @@ local hostmod_motddebug = CV_RegisterVar({
 })
 local hostmod_motdname = CV_RegisterVar({
 	name = "hostmod_motdname",
-	defaultvalue = "\129[PE] Mini's \130Zombie Escape",
+	defaultvalue = "hostmod_motdname",
 	flags = CV_NETVAR,
 	possiblevalue = nil
 })
 local hostmod_motdcontact = CV_RegisterVar({
 	name = "hostmod_motdcontact",
-	defaultvalue = "Mini the BunnyBoy#1337",
+	defaultvalue = "hostmod_motdcontact",
 	flags = CV_NETVAR,
 	possiblevalue = nil
 })
 local hostmod_motddesc = CV_RegisterVar({
 	name = "hostmod_motddesc",
-	defaultvalue = "Welcome to \139Zombie Escape! \128Rules are simple. \133Don't be an asshole. \131Enjoy Playing!",
+	defaultvalue = "Configure this text with hostmotd_motddesc",
 	flags = CV_NETVAR,
 	possiblevalue = nil
 })
