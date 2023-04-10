@@ -185,7 +185,7 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 						hurtplayer.player.health = hurtplayer.health
 						hurtplayer.player.powers[pw_invulnerability] = 25
 					end
-					if hurtplayer.health < 1
+					if hurtplayer.health < 1 -- on death
 						P_PlayerWeaponPanelBurst(hurtplayer.player)
 						P_PlayerWeaponAmmoBurst(hurtplayer.player)
 						P_PlayerEmeraldBurst(hurtplayer.player)
@@ -210,6 +210,7 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 						end
 						if not(ZE.teamWin) then
 							P_AddPlayerScore(shooter.player, 100)
+							shooter.player.propspawn = $ + 1
 						end
 					else
 						S_StartSound(hurtplayer,painsfx[P_RandomRange(1,#painsfx)])

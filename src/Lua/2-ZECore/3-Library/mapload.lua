@@ -9,7 +9,6 @@ ZE.MapLoad = function(mapnum)
 			player.alphazm = 0
 			player.boostcount = 0
 			player.stamina = 100*TICRATE
-			player.propspawn = 2
 		end
             ZE.teamWin = 0
 			ZE.infectdelay = 0

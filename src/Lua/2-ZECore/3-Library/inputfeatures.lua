@@ -1,8 +1,8 @@
 local ZE = RV_ZESCAPE
 local CV = RV_ZESCAPE.Console
 freeslot("MT_ZEMO_BUBBLE", "S_ZEMO_BUBBLE", "SPR_ZEMO")
-freeslot("SPR_ZT00","SPR_ZT01", "SPR_ZT02", "SPR_ZT03")
-freeslot("sfx_huhem", "sfx_vboom", "sfx_thwop")
+freeslot("SPR_ZT00","SPR_ZT01", "SPR_ZT02", "SPR_ZT03", "SPR_ZT04", "SPR_ZT05")
+freeslot("sfx_huhem", "sfx_vboom", "sfx_thwop", "sfx_heheha", "sfx_4ayo")
 
 
 mobjinfo[MT_ZEMO_BUBBLE] = {		
@@ -49,6 +49,9 @@ ZE.AddEmote(SPR_ZT00, "Heal Me!", "Heal me NOW!")
 ZE.AddEmote(SPR_ZT01, "Huh?", "What the?..", sfx_huhem)
 ZE.AddEmote(SPR_ZT02, "Skull Emoji", "hell nah bruh", sfx_vboom)
 ZE.AddEmote(SPR_ZT03, "Sad Sponge", "me when when no 2.3", sfx_thwop)
+ZE.AddEmote(SPR_ZT04, "heheheha", "HE HE HE HA", sfx_heheha)
+ZE.AddEmote(SPR_ZT05, "AYO?", "bro said something mad sus", sfx_4ayo)
+
 
 
 
@@ -136,13 +139,19 @@ addHook("MobjThinker", function(mobj)
 		P_TeleportMove(mobj, mobj.target.x, mobj.target.y, mobj.target.z+mobj.target.height)
 	end
 	if mobj.target then
-		if mobj.em_inc > TICRATE*3 then
-			mobj.scale = $/2
-		end
 		if mobj.em_inc > (TICRATE*3 + 25) then
 			mobj.target.emotebubble = nil
 			P_KillMobj(mobj)
+			return
+		end
+	else
+		if mobj and mobj.valid
+			mobj.target.emotebubble = nil
+			P_KillMobj(mobj)
+			return
 		end
 	end
-
+	if mobj.em_inc > TICRATE*3 then
+		mobj.scale = $/2
+	end
 end)

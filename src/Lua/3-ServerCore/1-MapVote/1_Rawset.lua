@@ -9,7 +9,7 @@ end
 MV.MakeEnum("MV",{"SCORE","VOTE","END","MAPCHANGE"})
 
 NET.gametypedata = {}
-NET.enabled_gametypes = {GT_COMPETITION, GT_RACE, GT_MATCH, GT_TEAMMATCH, GT_TAG, GT_HIDEANDSEEK, GT_CTF}
+NET.enabled_gametypes = {GT_ZESCAPE}
 NET.mapqueue = {}
 NET.mapblacklist = {}
 NET.mapwhitelist = {}

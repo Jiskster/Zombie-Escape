@@ -1,10 +1,14 @@
 local ZE = RV_ZESCAPE
+local CV = RV_ZESCAPE.Console
 
 ZE.BuildPropWood = function(player)
 		if player.mo and player.mo.valid
-        P_SpawnMobj(player.mo.x+FixedMul(128*FRACUNIT, cos(player.mo.angle)),
+        local wood = P_SpawnMobj(player.mo.x+FixedMul(128*FRACUNIT, cos(player.mo.angle)),
 					player.mo.y+FixedMul(128*FRACUNIT, sin(player.mo.angle)), player.mo.z, MT_PROPWOOD)
+		wood.angle = player.mo.angle+ANGLE_90
 		S_StartSound(player.mo, sfx_jshard)
+		wood.renderflags = $|RF_PAPERSPRITE
+		wood.fuse = CV.propdespawn.value*TICRATE
 		player.propspawn = $-1
 	end
 end
@@ -21,7 +25,7 @@ end
 
 ZE.ResetPropSpawn = function(player)
 	if player.mo and player.mo.valid then
-		player.propspawn = 2
+		player.propspawn = CV.propmax.value
 	end
 end
 

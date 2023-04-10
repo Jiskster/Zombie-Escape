@@ -33,6 +33,7 @@ addHook("PlayerSpawn", function(player)
 			player.rvgrpass = $ or 0
 			player.hasGoldenGlow = $ or 0
 			player.gamesPlayed = $ or 0
+			ZE.ResetPropSpawn(player)
 			ZE.DeathPointTp(player)
 			ZE.SpawnSounds(player)
 		end

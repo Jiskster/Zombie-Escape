@@ -2,12 +2,13 @@ RIP Multiworld...
 
 Original author of the mod - "Hamitto"
 Original Creator of this pk3 - TuXe
-Maintained creators of this pk3 - Mini the BunnyBoy and Jisk
+Maintained devs of this pk3 - Mini the BunnyBoy and Jisk
+(we're accepting anyone. so if you wanna dev go ahead and contribute a bit and you'll be listed as a dev)
 
 
 The best og maps by Hamitto
 
-Good maps by Vasyan
+Good original maps by Vasyan
 
 Lua, touchups and maps by Jisk.
 
@@ -17,3 +18,5 @@ Map submissions:
 
 Vasyan#9040
 bypigs2#8634
+Neonius|Next#6509
+Soouguy#6585

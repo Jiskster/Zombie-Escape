@@ -14,6 +14,27 @@ ZE.AddStat = function(
 end
 */
 
+--zombie stats doesnt really need much info
+--flexible
+ZE.ZombieStats = {
+	["Normal"] = {
+		normalspeed = 25*FRACUNIT,
+		jumpfactor = 24 * FRACUNIT / 19,
+		charability = CA_NONE,
+		charability2 = CA2_NONE,
+		startHealth = 900,
+		maxHealth = 900,
+	},
+	["Alpha"] = {
+		normalspeed = 26*FRACUNIT,
+		jumpfactor = 26 * FRACUNIT / 19,
+		charability = CA_NONE,
+		charability2 = CA2_NONE,
+		startHealth = 2000,
+		maxHealth = 2000,
+		scale = 13*FRACUNIT/10,
+	}
+}
 
 
 ZE.CharacterStats = {
@@ -103,13 +124,13 @@ ZE.CharacterStats = {
 		staminanormal = 28*FRACUNIT,
     },
 	["dzombie"] = {
-	    normalspeed = 25*FRACUNIT,
+	    normalspeed = ZE.ZombieStats["Normal"].normalspeed,
 		runspeed = 100*FRACUNIT,
-		jumpfactor = 24 * FRACUNIT / 19,
-		charability = CA_NONE,
-		charability2 = CA2_NONE,
-		startHealth = 900,
-		maxHealth = 900,
+		jumpfactor = ZE.ZombieStats["Normal"].jumpfactor,
+		charability = ZE.ZombieStats["Normal"].charability,
+		charability2 = ZE.ZombieStats["Normal"].charability2,
+		startHealth = ZE.ZombieStats["Normal"].startHealth,
+		maxHealth = ZE.ZombieStats["Normal"].maxHealth,
 		staminacost = 0,
 		staminarun = 16*FRACUNIT,
 		staminanormal = 25*FRACUNIT,
@@ -261,7 +282,7 @@ ZE.CharacterStats = {
 		staminanormal = 24*FRACUNIT,
 	},
 	["motobugze"] = {
-		normalspeed = 7 * FRACUNIT,
+		normalspeed = 11 * FRACUNIT,
 		runspeed = 100 * FRACUNIT,
 		jumpfactor = 17 * FRACUNIT/19,
 		charability = CA_DOUBLEJUMP,
@@ -269,8 +290,8 @@ ZE.CharacterStats = {
 		startHealth = 1,
 		maxHealth = 1,
 		staminacost = 7,
-		staminarun = 16*FRACUNIT,
-		staminanormal = 23*FRACUNIT,
+		staminarun = 22*FRACUNIT,
+		staminanormal = 24*FRACUNIT,
 	},
 	["chaoze"] = {
 		normalspeed = 10 * FRACUNIT,
@@ -297,3 +318,4 @@ ZE.CharacterStats = {
 		staminanormal = 27*FRACUNIT,
 	},
 }
+

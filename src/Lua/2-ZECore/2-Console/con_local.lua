@@ -8,6 +8,6 @@ CV.hudtype = CV_RegisterVar{
 
 CV.showendscore = CV_RegisterVar{
 	name = "showendscore",
-	defaultvalue = "Off",
+	defaultvalue = "On",
 	PossibleValue = CV_OnOff
 }

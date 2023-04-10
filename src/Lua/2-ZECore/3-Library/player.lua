@@ -10,27 +10,8 @@ freeslot(
 
 
 
-local cs_mt
+
 local default = "defaultconfig"
-
-/*
-setmetatable(ZE.CharacterStats[skinname], {
-__index = function(table, index)
-	return{
-		ZE.CharacterStats[default].normalspeed,
-		ZE.CharacterStats[default].runspeed,
-		ZE.CharacterStats[default].jumpfactor,
-		ZE.CharacterStats[default].charability,
-		ZE.CharacterStats[default].charability2,
-		ZE.CharacterStats[default].staminacost,
-		ZE.CharacterStats[default].staminarun,
-		ZE.CharacterStats[default].staminanormal,
-	}
-end
-})
-
-
-*/
 
 ZE.CharacterConfig = function(player)
 	if (player.mo and player.mo.valid)
@@ -108,13 +89,13 @@ ZE.AlphaZmCfg = function(player)
 	if not (gametype == GT_ZESCAPE) then return end
 	if (player.mo and player.mo.valid)
 		if (player.alphazm == 1) and not (player.ctfteam == 2)
-			player.mo.scale = 13*FRACUNIT/10
+			player.mo.scale = ZE.ZombieStats["Alpha"].scale
 		elseif (player.ctfteam == 2) or (player.spectator == 1) then
 			return
 		end
 		if (player.alphazm == 1) and not (player.boost == 1) and not (player.ctfteam == 2) and not (leveltime < CV.waittime) then
-			player.normalspeed = 23*FRACUNIT
-			player.jumpfactor = 17*FRACUNIT/22
+			player.normalspeed = ZE.ZombieStats["Alpha"].normalspeed
+			player.jumpfactor = ZE.ZombieStats["Alpha"].jumpfactor
 		end
 	end
 end

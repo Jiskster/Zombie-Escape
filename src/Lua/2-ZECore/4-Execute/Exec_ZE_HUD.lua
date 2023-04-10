@@ -179,12 +179,17 @@ hud.add(function(v, player, camera)
 					v.fadeScreen(0xFF00, 16)
 					v.draw(160,50,v.cachePatch(patches[teamwin]), V_PERPLAYER|V_SNAPTOBOTTOM)
 				end
-				if CV.timeafterwin == TICRATE*2 then
-					S_StartSound(nil,sfx_dmst,player)
+				if CV.showendscore.value == 1
+					if CV.timeafterwin == TICRATE*2 then
+						S_StartSound(nil,sfx_dmst,player)
+					end
+					if CV.timeafterwin > TICRATE*2 then
+						local score = player.score
+						v.drawString(160,130, "Score: " + score , V_PERPLAYER, "center") --127+yo
+					end
 				end
-				if CV.timeafterwin > TICRATE*2 then
-					local score = player.score
-					v.drawString(160,130, "Score: " + score , 0, "center") --127+yo
+				if CV.winWait < 10*TICRATE then
+					v.drawString(160,140, "Intermission in: " + CV.winWait/TICRATE , V_PERPLAYER|V_REDMAP|V_50TRANS, "center") --127+yo
 				end
 			end
 		
@@ -216,8 +221,9 @@ hud.add(function(v, player)
 		if player.mo.skin == "amy" then
 		   --v.drawString(225,176,"\x87\TOSSFLAG \x80\- \x84\SHIELD BOX",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
         end
-		if player.mo.skin == "tails" then
+		if player.mo.skin == "tails" and player.propspawn ~= nil then
 		   v.drawString(224,176,"\x87\TOSSFLAG \x80\- \x84\WOOD FENCE",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		   v.drawString(262,168,"\x87\Fences: \x80\- \x84\ "+tostring(player.propspawn),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 	    end
 	end
 end)

@@ -43,7 +43,9 @@ end
 
 COM_BufInsertText(server, "rh_enable 1")
 end
-
+ZE.IsZombie = function(player)
+	
+end
 ZE.CountUp = function()
 	CV.countup = $ + (1/2)
 end
