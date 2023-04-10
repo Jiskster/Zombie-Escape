@@ -135,15 +135,14 @@ addHook("MobjThinker", function(mobj)
 		*/
 		P_TeleportMove(mobj, mobj.target.x, mobj.target.y, mobj.target.z+mobj.target.height)
 	end
-	if mobj.em_inc > TICRATE*3 then
-		mobj.scale = $/2
-	end
-	if mobj.em_inc > (TICRATE*3 + 25) then
-		if mobj.target then
+	if mobj.target then
+		if mobj.em_inc > TICRATE*3 then
+			mobj.scale = $/2
+		end
+		if mobj.em_inc > (TICRATE*3 + 25) then
 			mobj.target.emotebubble = nil
 			P_KillMobj(mobj)
 		end
 	end
-	
 
 end)
