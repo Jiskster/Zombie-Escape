@@ -264,7 +264,7 @@ ZE.ZombieHealth = function(player)
 			end
 			if (player.alphazm == 1) and player.powers[pw_flashing] > 0 then
 				player.mo.health = ZE.ZombieStats["Alpha"].startHealth
-				player.mo.maxHealth = ZE.ZombieStats["Normal"].maxHealth -- alpha zombie health
+				player.mo.maxHealth = ZE.ZombieStats["Alpha"].maxHealth -- alpha zombie health
 			end
 		end
 	end
