@@ -139,8 +139,10 @@ addHook("MobjThinker", function(mobj)
 		mobj.scale = $/2
 	end
 	if mobj.em_inc > (TICRATE*3 + 25) then
-		mobj.target.emotebubble = nil
-		P_KillMobj(mobj)
+		if mobj.target then
+			mobj.target.emotebubble = nil
+			P_KillMobj(mobj)
+		end
 	end
 	
 

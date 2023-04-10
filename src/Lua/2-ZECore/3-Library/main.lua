@@ -49,7 +49,7 @@ ZE.CountUp = function()
 end
 
 ZE.PostWin = function(player)
-	if player.gamesPlayed then --anti softlock
+	if player.gamesPlayed ~= nil then --anti softlock
 		player.gamesPlayed = $ + 1
 		ZE.CheckUnlocks(player)
 	end
