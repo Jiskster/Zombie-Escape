@@ -58,7 +58,7 @@ CV.deathonwin = CV_RegisterVar{
 
 CV.propdespawn = CV_RegisterVar{
 	name = "rh_propdespawn",
-	defaultvalue = "10",
+	defaultvalue = "25",
 	flags = CV_NETVAR,
 	PossibleValue={MIN = 1, MAX = 60}
 }

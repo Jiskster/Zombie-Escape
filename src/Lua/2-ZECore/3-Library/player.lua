@@ -59,6 +59,7 @@ ZE.CharacterStamina = function(player)
 	if (gametype == GT_ZESCAPE)
 		player.stamina = $ or 0
 		if not (player.mo and player.mo.valid) return end
+		if (player.mo.skin == "dzombie") return end
 		local cmd = player.cmd
 		local skinname = skins[player.mo.skin].name
 		local default = "defaultconfig"
@@ -283,7 +284,7 @@ ZE.ZombieSwarmWave = function(player)
 					player.mo.health = 200
 					player.mo.maxHealth = 200
 				end
-				normalspeed = 28*FRACUNIT
+				normalspeed = 27*FRACUNIT
 			end
 			
 			if ZE.Wave == 2

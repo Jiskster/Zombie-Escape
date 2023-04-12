@@ -43,6 +43,7 @@ addHook("PlayerThink", function(player)
 			2,
 			3
 		}
+		player.emotetime = $ or 3*TICRATE
 	end
 end)
 ZE.AddEmote(SPR_ZT00, "Heal Me!", "Heal me NOW!")
@@ -76,6 +77,32 @@ COM_AddCommand("ze_emote", function(player, emotenum)
 			ebub.sprite = ZE.Emotes[slotchosen].Sprite
 			P_SetScale(ebub, ebub.scale/4)
 			S_StartSound(player.mo,ZE.Emotes[slotchosen].Sound)
+		end
+	end
+end)
+
+COM_AddCommand("ze_emotetime", function(player, emotetime)
+	if player.mo and player.mo.valid 
+	and player.playerstate ~= PST_DEAD and
+	netgame and multiplayer then
+	
+		if emotetime == nil and tonumber(emotetime) == nil then
+			CONS_Printf(player,"ze_emotetime <emotetime>: How long your emote stays up")
+			return
+		end
+		if tonumber(emotetime) < 1 or tonumber(emotetime) > 5 then
+			CONS_Printf(player,"\x88\Emote Time must be valid. And more than 1 and less than 5.")
+			return
+		end
+		if (player.mo.emotebubble) then
+			CONS_Printf(player,"\x88\You must not be emoting to use this command.")
+			return
+		end
+		
+		if (player.emotetime) then
+			player.emotetime = tonumber(emotetime)*TICRATE
+			local printemotetime = tonumber(emotetime)
+			CONS_Printf(player,"\x88\Set emote time to \$printemotetime\.")
 		end
 	end
 end)
@@ -138,20 +165,22 @@ addHook("MobjThinker", function(mobj)
 		*/
 		P_TeleportMove(mobj, mobj.target.x, mobj.target.y, mobj.target.z+mobj.target.height)
 	end
-	if mobj.target then
-		if mobj.em_inc > (TICRATE*3 + 25) then
+	if mobj.target and mobj.target.player.emotetime then
+		if mobj.em_inc > (mobj.target.player.emotetime + 10) then
 			mobj.target.emotebubble = nil
 			P_KillMobj(mobj)
 			return
 		end
 	else
-		if mobj and mobj.valid
+		if mobj and mobj.valid  then
 			mobj.target.emotebubble = nil
 			P_KillMobj(mobj)
 			return
 		end
 	end
-	if mobj.em_inc > TICRATE*3 then
-		mobj.scale = $/2
+	if mobj.target and mobj.target.player.emotetime
+		if mobj.em_inc > mobj.target.player.emotetime then
+			mobj.scale = $/2
+		end
 	end
 end)
