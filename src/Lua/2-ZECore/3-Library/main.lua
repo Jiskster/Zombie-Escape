@@ -454,17 +454,17 @@ ZE.SwarmParition = function()
 	if CV.gamestarted == true and mapheaderinfo[gamemap].zombieswarm
 		if (CV.countup) == 60*TICRATE then
 			ZE.Wave = $ + 1
-			chatprint("\x83\[Zombie Swarm] Wave -> "..ZE.Wave.." (+HP)")
+			chatprint("\x83\[Zombie Swarm] Wave -> "..ZE.Wave.." (+HP +SPD)")
 		end
 		
 		if (CV.countup) == 60*TICRATE*2 then
 			ZE.Wave = $ + 1
-			chatprint("\x83\[Zombie Swarm] Wave -> "..ZE.Wave.." (+HP +SPINDASH)")
+			chatprint("\x83\[Zombie Swarm] Wave -> "..ZE.Wave.." (+HP +SPD +SPINDASH)")
 		end
 		
 		if (CV.countup) == 60*TICRATE*3 then
 			ZE.Wave = $ + 1
-			chatprint("\x83\[Zombie Swarm] Wave -> "..ZE.Wave.." (+HP +SPINDASH +THOK)")
+			chatprint("\x83\[Zombie Swarm] Wave -> "..ZE.Wave.." (+HP +SPD +SPINDASH +THOK)")
 		end
 	end
 end
