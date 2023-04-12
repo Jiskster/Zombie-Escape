@@ -284,7 +284,7 @@ ZE.ZombieSwarmWave = function(player)
 					player.mo.health = 200
 					player.mo.maxHealth = 200
 				end
-				normalspeed = 27*FRACUNIT
+				player.normalspeed = 27*FRACUNIT
 			end
 			
 			if ZE.Wave == 2
@@ -300,7 +300,7 @@ ZE.ZombieSwarmWave = function(player)
 					player.mo.health = 800
 					player.mo.maxHealth = 800
 				end
-				normalspeed = 32*FRACUNIT
+				player.normalspeed = 32*FRACUNIT
 				player.charability = CA_NONE
 				player.charability2 = CA2_SPINDASH
 			end
@@ -310,7 +310,7 @@ ZE.ZombieSwarmWave = function(player)
 					player.mo.health = 1000
 					player.mo.maxHealth = 1000
 				end
-				normalspeed = 35*FRACUNIT
+				player.normalspeed = 35*FRACUNIT
 				player.charability = CA_THOK
 				player.charability2 = CA2_SPINDASH
 			end
