@@ -95,8 +95,8 @@ addHook("ThinkFrame", do
 			weapons = {RSWPN_AUTOSCATTER, RSWPN_BURST}
 		}
 		RingSlinger.Skins["w"] = {
-			ammo = 60,
-			weapons = {RSWPN_SEEKER, RSWPN_BOUNCE}
+			ammo = 85,
+			weapons = {RSWPN_SPLASH, RSWPN_INFINITY}
 		}
 		RingSlinger.Skins["bob"] = {
 			ammo = 80,

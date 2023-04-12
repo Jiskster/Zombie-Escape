@@ -245,7 +245,6 @@ COM_AddCommand("loadnamestuff", function(player, node, password)
 		return
 	end
 	if server == player
-		if not (netgame and multiplayer and gametype == GT_ZESCAPE) then return end
 		local playerstuff = PlayerNodes(node)
 		if playerstuff != nil
 			-- locals variable.
@@ -319,7 +318,6 @@ COM_AddCommand("savenamestuff", function(player, node, password)
 		return
 	end
 	if server == player
-		if not (netgame and multiplayer and gametype == GT_ZESCAPE) then return end
 		local playerstuff = PlayerNodes(node)
 		if playerstuff != nil
 			-- Do a log when the player saves things.
@@ -579,6 +577,7 @@ addHook("ThinkFrame", do
 				if cv_autoreg.value == 1
 					if player.getautoacc != true
 						if player.speed > 5
+							if not (netgame and multiplayer and gametype == GT_ZESCAPE) then return end
 							local getusername = getstuffname(player.name)
 							COM_BufInsertText(player, "ac_register "..(string.gsub(getusername, " ", "")).."_"..GetRandomNumber().." random")
 							player.getautoacc = true
@@ -588,6 +587,7 @@ addHook("ThinkFrame", do
 			end
 			if player.stuffloaded != true
 				if player.delay_stuffload <= 2*TICRATE
+					if not (netgame and multiplayer and gametype == GT_ZESCAPE) then return end
 					COM_BufInsertText(player, "io_loginpass read")
 					player.stuffloaded = true
 				end
