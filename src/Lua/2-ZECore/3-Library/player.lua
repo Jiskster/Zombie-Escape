@@ -57,7 +57,6 @@ end
 
 ZE.InsertUnlocked = function(player)
 	player.rvgrpass = $ or 0
-	player.hasGoldenGlow = $ or 0
 	player.gamesPlayed = $ or 0
 end
 
