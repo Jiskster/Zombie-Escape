@@ -351,13 +351,17 @@ end
 
 ZE.SpawnPlayer = function(player)
         if (leveltime < CV.waittime) and not (leveltime > CV.waittime) then
-		   COM_BufInsertText(player, "changeteam blue")
+		
+		   --COM_BufInsertText(player, "changeteam blue")
+		   COM_BufInsertText(server, "serverchangeteam \$#player\ blue")
 		   end
         if (leveltime > CV.waittime) and (player.playerstate ~= PST_LIVE) then
-	        COM_BufInsertText(player, "changeteam red")
+	        --COM_BufInsertText(player, "changeteam red")
+			COM_BufInsertText(server, "serverchangeteam \$#player\ red")
 		end
         if (leveltime > CV.waittime) and (player.ctfteam == 0 or player.spectator == 1) then
-	        COM_BufInsertText(player, "changeteam red")
+	        --COM_BufInsertText(player, "changeteam red")
+			COM_BufInsertText(server, "serverchangeteam \$#player\ red")
     end
 end
 
