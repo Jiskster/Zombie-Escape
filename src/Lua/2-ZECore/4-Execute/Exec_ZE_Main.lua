@@ -32,9 +32,6 @@ addHook("PlayerSpawn", function(player)
 
 		if player and player.valid and not player.spectator
 		and player.mo and player.mo.valid
-			player.rvgrpass = $ or 0
-			player.hasGoldenGlow = $ or 0
-			player.gamesPlayed = $ or 0
 			ZE.ResetPropSpawn(player)
 			ZE.DeathPointTp(player)
 			ZE.SpawnSounds(player)

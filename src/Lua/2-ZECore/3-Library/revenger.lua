@@ -38,18 +38,6 @@ ZE.RevengerAbility = function(player)
 	end
 end
 
-ZE.Revenger = function(player)
-	for player in players.iterate
-		if player.mo and player.mo.valid
-			if not (player.rvgrpass == 1)
-			and (player.mo.skin == "revenger") then
-				R_SetPlayerSkin(player,ZE.survskinsplay[P_RandomRange(1,#ZE.survskinsplay)])
-				chatprintf(player,"\x87\You need atleast 25 games played to use this character!",true)
-	       end
-	    end
-	end
-end
-
 addHook("MapChange", do
        for player in players.iterate do
 			player.rvgrcount = 0

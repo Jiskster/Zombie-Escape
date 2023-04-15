@@ -115,13 +115,11 @@ local OtherStuff = {}
 local function SaveOtherStuff(stuff, player) --loading1
 	stuff.rvgrpass = player.rvgrpass 
 	stuff.gamesPlayed = player.gamesPlayed 
-	stuff.hasGoldenGlow = player.hasGoldenGlow 
 end
 
 local function LoadOtherStuff(stuff, player) --loading2
 	player.rvgrpass = stuff.rvgrpass 
 	player.gamesPlayed = stuff.gamesPlayed 
-	player.hasGoldenGlow = stuff.hasGoldenGlow
 end
 
 rawset(_G, "cv_autoreg", CV_RegisterVar({
@@ -186,7 +184,7 @@ COM_AddCommand("setusername", function(player, pname, username, usererror, passw
 	end
 end, 1)
 
-COM_AddCommand("setstuff", function(player, pname, arg1, arg2, arg3)
+COM_AddCommand("setstuff", function(player, pname, arg1, arg2)
 	if player != server
 		if server.isdedicated != true
 			CONS_Printf(player, "Remote admin can't use this command.")
@@ -203,9 +201,6 @@ COM_AddCommand("setstuff", function(player, pname, arg1, arg2, arg3)
 		end
 		if arg2 then
 			player2.gamesPlayed = arg2 --loading3
-		end
-		if arg3 then
-			player2.hasGoldenGlow = arg3 --loading3
 		end
 	end
 end, 1)
@@ -251,7 +246,6 @@ COM_AddCommand("loadnamestuff", function(player, node, password)
 			local ps_password = "none"
 			local ps_revenger = playerstuff.revenger
 			local ps_gamesPlayed = playerstuff.gamesPlayed
-			local ps_hasGoldenGlow = playerstuff.hasGoldenGlow
 			local ps_admin = "false"
 			local check_user = IsUsernameLogged(playerstuff.username)
 			
@@ -288,12 +282,6 @@ COM_AddCommand("loadnamestuff", function(player, node, password)
 					ps_gamesPlayed = gamesPlayed:read("*a") or $ --loading4
 					gamesPlayed:close()
 				end
-				--ps_hasGoldenGlow
-				local hasGoldenGlow = io.openlocal(folderstuff..playerstuff.stuffname.."/hasGoldenGlow.dat", "r")
-				if hasGoldenGlow
-					ps_hasGoldenGlow = hasGoldenGlow:read("*a") or $ --loading4
-					hasGoldenGlow:close()
-				end
 				if cv_setadmin.value == 1
 					-- Promote the player, if the player was admin on the server.
 					local adminstuff = io.openlocal(folderstuff..playerstuff.stuffname.."/admin.dat", "r")
@@ -306,7 +294,7 @@ COM_AddCommand("loadnamestuff", function(player, node, password)
 					end
 				end
 				-- Set stuff
-				COM_BufInsertText(server, "setstuff "..node.." "..ps_revenger.." "..ps_gamesPlayed.." "..ps_hasGoldenGlow)
+				COM_BufInsertText(server, "setstuff "..node.." "..ps_revenger.." "..ps_gamesPlayed)
 			end
 		end
 	end
@@ -371,10 +359,6 @@ COM_AddCommand("savenamestuff", function(player, node, password)
 					local gamesplayedstuff = io.openlocal(folderstuff..playerstuff.stuffname.."/gamesPlayed.dat", "w")
 					gamesplayedstuff:write(playerstuff.gamesPlayed)
 					gamesplayedstuff:close()
-					
-					local goldenglowstuff = io.openlocal(folderstuff..playerstuff.stuffname.."/hasGoldenGlow.dat", "w")
-					goldenglowstuff:write(playerstuff.hasGoldenGlow)
-					goldenglowstuff:close()
 				end
 				-- Save admin
 				if cv_setadmin.value == 1

@@ -55,6 +55,12 @@ ZE.CharacterConfig = function(player)
 	end
 end
 
+ZE.InsertUnlocked = function(player)
+	player.rvgrpass = $ or 0
+	player.hasGoldenGlow = $ or 0
+	player.gamesPlayed = $ or 0
+end
+
 ZE.CharacterStamina = function(player)
 	if (gametype == GT_ZESCAPE)
 		player.stamina = $ or 0

@@ -20,5 +20,6 @@ addHook("PlayerThink", function(player)
 			ZE.SpawnProps(player)
 			ZE.AlphaZmCfg(player)
 			ZE.GoldenGlowThink(player)
+			ZE.InsertUnlocked(player)
 	end
 end)
