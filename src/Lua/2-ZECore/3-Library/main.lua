@@ -202,32 +202,32 @@ ZE.InfectRandomPlayer = function()
 
 local activeplayers = {}
 
-  for player in players.iterate do
-    if player.mo and player.mo.valid then
-	  if not ZE.infectdelay
-      if (player.playerstate == PST_DEAD) or (player.playerstate == PST_REBORN) then continue end
-      table.insert(activeplayers, player)
-	   end
-    end
-  end
+	for player in players.iterate do
+		if player.mo and player.mo.valid then
+			if not ZE.infectdelay
+				if (player.playerstate == PST_DEAD) or (player.playerstate == PST_REBORN) then continue end
+				table.insert(activeplayers, player)
+			end
+		end
+	end
 
-  if #activeplayers and (ZE.survcount > 1) and not (ZE.survcount > 8) then
-    P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
-	ZE.infectdelay = 1
-	activeplayers = {}
-  elseif #activeplayers and (ZE.survcount > 8) and not (ZE.survcount > 16) and not (ZE.survcount < 8) then
-  P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
-  P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
-  ZE.infectdelay = 1
-  activeplayers = {}
-end
-  if #activeplayers and (ZE.survcount > 16) and not (ZE.survcount < 16) then
-  P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
-  P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
-  P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
-  ZE.infectdelay = 1
-  activeplayers = {}
-  end
+	if #activeplayers and (ZE.survcount > 1) and not (ZE.survcount > 8) then
+		P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
+		ZE.infectdelay = 1
+		activeplayers = {}
+	elseif #activeplayers and (ZE.survcount > 8) and not (ZE.survcount > 16) and not (ZE.survcount < 8) then
+		P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
+		P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
+		ZE.infectdelay = 1
+		activeplayers = {}
+	end
+	if #activeplayers and (ZE.survcount > 16) and not (ZE.survcount < 16) then
+		P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
+		P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
+		P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
+		ZE.infectdelay = 1
+		activeplayers = {}
+	end
 end
 
 -- ignore rings if zombie
