@@ -609,7 +609,7 @@ addHook("ThinkFrame", do
 					player.cansavestuff = true
 					COM_BufInsertText(player, "savestuff")
 					player.hud_countsave = 2*TICRATE
-					player.stuffsave = 5*TICRATE
+					player.stuffsave = 30*TICRATE
 				else
 					player.stuffsave = $ - 1
 				end

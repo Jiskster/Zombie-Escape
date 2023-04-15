@@ -89,11 +89,11 @@ COM_AddCommand("forcewin", function(player, arg1)
 	arg1 = tonumber(arg1)
 	if arg1 ~= nil and arg1 <= 2 and arg1 > 0 then
 		if arg1 == 1 then
-			ZE.survWin()
+			ZE.Win(1)
 		end
 		
 		if arg1 == 2 then
-			ZE.zmWin()
+			ZE.Win(2)
 		end
 	else
 		CONS_Printf(player, "Invalid number")

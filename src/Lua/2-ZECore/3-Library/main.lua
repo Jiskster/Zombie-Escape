@@ -61,13 +61,21 @@ ZE.Win = function(team)
 	ZE.teamWin = team
 	for player in players.iterate do
 		if team == player.ctfteam
-			S_ChangeMusic("ZMWIN",false,player)
+			if not(mapheaderinfo[gamemap].zombieswarm) then
+				S_ChangeMusic("ZMWIN",false,player)
+			else -- else if zombie swarm
+				S_ChangeMusic("ZSLOSE",false,player)	
+			end
 			ZE.PostWin(player)
 			COM_BufInsertText(player, "savestuff")
 			CV.onwinscreen = 1
 
 		else
-			S_ChangeMusic("ZMLOSE",false,player)
+			if not(mapheaderinfo[gamemap].zombieswarm) then
+				S_ChangeMusic("ZMLOSE",false,player)
+			else
+				S_ChangeMusic("ZSWIN",true,player) --these music names will stay confusing lmao
+			end
 			ZE.PostWin(player)
 			COM_BufInsertText(player, "savestuff")
 			CV.onwinscreen = 1
@@ -75,6 +83,10 @@ ZE.Win = function(team)
 		end
 	end
 	CV.winWait = 30*TICRATE
+	
+	if mapheaderinfo[gamemap].zombieswarm
+		CV.winWait = 15*TICRATE
+	end
 end
 
 ZE.survKill = function(player)
@@ -215,16 +227,17 @@ local activeplayers = {}
 		P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
 		ZE.infectdelay = 1
 		activeplayers = {}
-	elseif #activeplayers and (ZE.survcount > 8) and not (ZE.survcount > 16) and not (ZE.survcount < 8) then
-		P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
-		P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
+	elseif #activeplayers and (ZE.survcount > 10) and not (ZE.survcount > 16) and not (ZE.survcount < 10) then
+		for i=1,4 do
+			P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
+		end
 		ZE.infectdelay = 1
 		activeplayers = {}
 	end
 	if #activeplayers and (ZE.survcount > 16) and not (ZE.survcount < 16) then
-		P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
-		P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
-		P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
+		for i=1,6 do
+			P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
+		end
 		ZE.infectdelay = 1
 		activeplayers = {}
 	end
@@ -340,14 +353,9 @@ end
 
 ZE.RandomInfect = function()
 	if gametype == GT_ZESCAPE	
-		      if leveltime-CV.waittime == 0
-		         ZE.InfectRandomPlayer()
+		if leveltime-CV.waittime == 0
+			ZE.InfectRandomPlayer()
 		end
-		for player in players.iterate do
-		  if leveltime-CV.waittime == 0
-		  player.score = $+1
-		  end
-	   end
 	end
 end
 
