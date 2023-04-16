@@ -316,13 +316,15 @@ end
 
 addHook("ThinkFrame", function(mo)
 	for player in players.iterate
-	     player.reloadingdelay = $ or 0
-		 player.reloadingdelay = $-1
+		player.reloadingdelay = $ or 0
+		player.reloadingdelay = $-1
+		/*
 		if (player.cmd.buttons & BT_CUSTOM2) and not (player.ctfteam == 1) and (player.reloadingdelay <= 0) then
-		  local mo = player.mo
-		   RS.DoReload(mo)
-		   player.reloadingdelay = 4*TICRATE
-	   end
+			local mo = player.mo
+			RS.DoReload(mo)
+			player.reloadingdelay = 4*TICRATE
+		end
+		*/
 	end
 end)
 

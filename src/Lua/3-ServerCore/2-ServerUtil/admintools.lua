@@ -141,6 +141,7 @@ COM_AddCommand("makehuman", function(player, pname)
 	local player2 = GetPlayer(player, pname)
 	if player2 then
 		MakeHumanPlayer(player2)
+		ZE.setStatDefaults(player2)
 	end
 end, 1)
 
