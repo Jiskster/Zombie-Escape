@@ -220,7 +220,7 @@ hud.add(function(v, player)
 	if (player.mo and player.mo.valid)
 		if player.mo.skin == "amy" then
 		   v.drawString(225,176,"\x87\TOSSFLAG \x80\- \x84\HEAL STATION",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-		   v.drawString(262,168,"\x87\Stations: \x80\- \x84\ "+tostring(player.propspawn),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		   v.drawString(262,160,"\x87\Stations: \x80\- \x84\ "+tostring(player.propspawn),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
         end
 		if player.mo.skin == "tails" and player.propspawn ~= nil then
 		   v.drawString(224,176,"\x87\TOSSFLAG \x80\- \x84\WOOD FENCE",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")

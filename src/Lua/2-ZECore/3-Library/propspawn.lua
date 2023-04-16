@@ -133,7 +133,16 @@ addHook("MobjThinker", function (mobj)
                 currentmiddle.color = SKINCOLOR_GREY
             end
         end
-
+		if leveltime % 35 == 0 then
+			mobj.healtries = $ + 1
+			if mobj.healtries <= 5 then
+				S_StartSound(mobj, 192)
+				ZE.addHP(player.mo, 20)
+			end
+			if mobj.healtries > 20 then              
+				mobj.healtries = 0
+			end
+		end
         for player in players.iterate do
             if player.mo and player.mo.valid 
             and player.playerstate ~= PST_DEAD 
@@ -149,16 +158,6 @@ addHook("MobjThinker", function (mobj)
                         amyglow.fuse = 5
                         if amyglow.tracer
                             amyglow.tracer.fuse = amyglow.fuse
-                        end
-                    end
-                    if leveltime % 35 == 0 then
-                        mobj.healtries = $ + 1
-                        if mobj.healtries <= 5 then
-                            S_StartSound(player.mo, 192)
-                            player.mo.health = $ + 20
-                        end
-                        if mobj.healtries > 20 then              
-                            mobj.healtries = 0
                         end
                     end
                 end
