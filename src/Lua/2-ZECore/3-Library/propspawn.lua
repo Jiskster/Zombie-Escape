@@ -137,7 +137,6 @@ addHook("MobjThinker", function (mobj)
 			mobj.healtries = $ + 1
 			if mobj.healtries <= 5 then
 				S_StartSound(mobj, 192)
-				ZE.addHP(player.mo, 20)
 			end
 			if mobj.healtries > 20 then              
 				mobj.healtries = 0
@@ -159,6 +158,9 @@ addHook("MobjThinker", function (mobj)
                         if amyglow.tracer
                             amyglow.tracer.fuse = amyglow.fuse
                         end
+						if leveltime % 35 == 0 then
+							ZE.addHP(player.mo, 20)
+						end
                     end
                 end
             end
