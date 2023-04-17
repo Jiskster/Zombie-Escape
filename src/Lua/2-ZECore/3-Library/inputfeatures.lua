@@ -65,6 +65,9 @@ ZE.AddEmote(SPR_ZT0D, "tails slang", "you can count on me", sfx_yccom)
 ZE.AddEmote(SPR_ZT0E, "knuckles thing", "oh no", sfx_kohno)
 ZE.AddEmote(SPR_ZT0F, "dumbass", "scoutdumbass", sfx_dumba)
 ZE.AddEmote(SPR_ZT10, "nerd emoji", "ackktually!", sfx_dumba)
+ZE.AddEmote(SPR_ZT11, "who invited this kid", "oh my god who invited this kid!", sfx_whoinv)
+ZE.AddEmote(SPR_ZT12, "bruh", "BRUH", sfx_bruh)
+
 
 
 
