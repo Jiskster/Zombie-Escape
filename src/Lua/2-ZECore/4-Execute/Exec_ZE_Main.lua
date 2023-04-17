@@ -34,6 +34,7 @@ addHook("PlayerSpawn", function(player)
 		and player.mo and player.mo.valid
 			ZE.DeathPointTp(player)
 			ZE.SpawnSounds(player)
+			ZE.InsertUnlocked(player)
 		end
 		if player and player.valid
 		ZE.SpawnPlayer(player)

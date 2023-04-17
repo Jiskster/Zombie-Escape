@@ -21,7 +21,6 @@ addHook("PlayerThink", function(player)
 			ZE.AlphaZmRage(player)
 			ZE.SpawnProps(player)
 			ZE.ZtypeCfg(player)
-			ZE.InsertUnlocked(player)
 			if (leveltime < CV.waittime) then
 				ZE.ResetPropSpawn(player)
 			end
