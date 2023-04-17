@@ -1,9 +1,14 @@
-Exclusive maps for the "MultiWorld" server from the author "TuXe"
-
-MapList:
+List of maps that made by TuXe:
 	MAPR0 - SCP 87-B V1
 	MAPR1 - Roblox Obby
 	MAPR2 - Empty Lab
 	MAPR3 - Ice Mountain
-	
-The list of maps will grow, it takes time.
+
+Map list from other authors (Soouguy, Bypigs2, Neonius, Mini, Jisk, Others...):
+	MAP18 - Train Station 18
+	MAP70 - Old River XMas
+	MAP71 - Forest XMas
+	MAP72 - Highrise 2021
+	MAPN0 - Ancient Catacombs
+	MAPS0 - City Escape
+	MAPTZ - Iridescent Abyss
