@@ -10,7 +10,7 @@ hud.add(function(v, player)
 		and (player.mo.state != S_PLAY_DEAD)
 		if player.ctfteam == 2
 		    v.drawString(272,184,"\x87\C1 \x80\- \x84\RUN",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-		    v.drawString(272,192,"\x87\C2 \x80\- \x84\RELOAD",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		    v.drawString(272,192,"\x87\FN \x80\- \x84\RELOAD",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 		end
 		if player.ctfteam == 1
 		   v.drawString(262,192,"\x87\FIRE \x80\- \x85\ATTACK",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
