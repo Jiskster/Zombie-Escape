@@ -149,7 +149,7 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 					end
 					if CV.knockback.value == 1 then 
 						if ZE.F_NotTeamed(shooter.player, hurtplayer.player)
-							if hurtplayer.player.ztype == ZM_ALPHA and hurtplayer.player.boosttimer ~= nil and hurtplayer.player.boosttimer <= 0 then return end
+							--if hurtplayer.player.ztype == ZM_ALPHA and hurtplayer.player.boosttimer ~= nil and hurtplayer.player.boosttimer <= 0 then return end
 							P_Thrust(hurtplayer, hazard.angle, ZE.damagetable.knockback[catch])
 						else
 							if CV.friendlypushing.value == 1
