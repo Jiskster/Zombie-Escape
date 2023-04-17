@@ -158,6 +158,10 @@ addHook("MobjSpawn", function (mobj)
     end
 end, MT_AMYSTATION)
 
+addHook("MobjSpawn", function (mobj)
+	mobj.scale = $*(2+(1/2))
+end,MT_LANDMINE)
+
 addHook("MobjThinker", function (mobj)
     if mobj and mobj.valid and mobj.heartlist ~= nil and mobj.middlelist ~= nil then
         local numhearts = #mobj.heartlist
@@ -239,10 +243,12 @@ addHook("MobjThinker", function (mobj)
 				local zdiff = abs(player.mo.z - mobj.z)/FU
 				if dist < 20 and zdiff < 10 then
 					S_StartSound(player.mo,sfx_s244)
-					P_SetObjectMomZ(player.mo, 25*FU)
-					player.mo.angle = $ + ANGLE_180
+					P_SetObjectMomZ(player.mo, 8*FU)
+					local angles = {ANGLE_90,ANGLE_180,ANGLE_270,ANGLE_135}
+					local newangle = P_RandomRange(1, #angles)
+					player.mo.angle = angles[newangle]
 					mobj.target.player.propspawn = $ + 1
-					P_InstaThrust(player.mo, player.mo.angle, 45*FU)
+					P_InstaThrust(player.mo, player.mo.angle, 50*FU)
 					P_RemoveMobj(mobj)
 				end
 			end

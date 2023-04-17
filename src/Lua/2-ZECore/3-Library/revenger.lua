@@ -5,7 +5,7 @@ local CV = RV_ZESCAPE.Console
 
 ZE.RevengerAbility = function(player)
    if player.mo and player.mo.valid
-    if not (player.mo.skin == "revenger") or (player.ztype == ZM_DARK) then return end
+    if not (player.mo.skin == "revenger") or (player.ztype ~= ZM_DARK) then return end
 	if (player.mo and player.mo.valid)
 		player.rvgrtimer = $ or 0
 		player.rvgrcount = $ or 0
