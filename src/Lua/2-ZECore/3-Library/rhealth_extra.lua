@@ -94,6 +94,8 @@ ZE.G_OofBall = function(mobj, hurthealth)
     else
         return 0
     end
+end
+
 
 ZE.G_AddToDamageTable(27*FRACUNIT, "%s killed %s.", ZE.G_OofBall)
 ZE.G_AddToDamageTable(27*FRACUNIT, "%s killed %s.", ZE.G_SteveCrossbow)
