@@ -10,4 +10,5 @@ If anyone wants, contribute to this
 project, this will be really good!
 
 Main Developer now is: **Jisk (Jiskster)**
+
 Current version now:   **2.3 release**
