@@ -2,6 +2,10 @@ local ZE = RV_ZESCAPE
 local CV = RV_ZESCAPE.Console
 freeslot("MT_ZEMO_BUBBLE", "S_ZEMO_BUBBLE", "SPR_ZEMO")
 freeslot("SPR_ZT00","SPR_ZT01", "SPR_ZT02", "SPR_ZT03", "SPR_ZT04", "SPR_ZT05")
+freeslot("SPR_ZT06","SPR_ZT07", "SPR_ZT08", "SPR_ZT09", "SPR_ZT0A", "SPR_ZT0B")
+freeslot("SPR_ZT0C","SPR_ZT0D", "SPR_ZT0E", "SPR_ZT0F", "SPR_ZT10", "SPR_ZT11")
+freeslot("SPR_ZT12","SPR_ZT13", "SPR_ZT14")
+
 freeslot("sfx_huhem", "sfx_vboom", "sfx_thwop", "sfx_heheha", "sfx_4ayo")
 freeslot("sfx_syeah", "sfx_kohno", "sfx_yccom", "sfx_noiscr", "sfx_pepscr")
 freeslot("sfx_actu", "sfx_memore", "sfx_dumba", "sfx_demoem", "sfx_whoinv")
@@ -64,9 +68,11 @@ ZE.AddEmote(SPR_ZT0C, "sonic yeah!", "YEAH", sfx_syeah)
 ZE.AddEmote(SPR_ZT0D, "tails slang", "you can count on me", sfx_yccom)
 ZE.AddEmote(SPR_ZT0E, "knuckles thing", "oh no", sfx_kohno)
 ZE.AddEmote(SPR_ZT0F, "dumbass", "scoutdumbass", sfx_dumba)
-ZE.AddEmote(SPR_ZT10, "nerd emoji", "ackktually!", sfx_dumba)
+ZE.AddEmote(SPR_ZT10, "nerd emoji", "ackktually!", sfx_actu)
 ZE.AddEmote(SPR_ZT11, "who invited this kid", "oh my god who invited this kid!", sfx_whoinv)
 ZE.AddEmote(SPR_ZT12, "bruh", "BRUH", sfx_bruh)
+ZE.AddEmote(SPR_ZT13, "The zombies will be back", "source: trust me", sfx_inf1)
+ZE.AddEmote(SPR_ZT13, "You have been enslaved by the zombies", "1865", sfx_inf2)
 
 
 
