@@ -127,7 +127,7 @@ COM_AddCommand("ze_emotetime", function(player, emotetime)
 			CONS_Printf(player,"\x88\Set emote time to \$printemotetime\.")
 		end
 	end
-end)
+end,1)--admin for now
 
 COM_AddCommand("ze_emotelist", function(player)
 	for i,v in ipairs(ZE.Emotes) do

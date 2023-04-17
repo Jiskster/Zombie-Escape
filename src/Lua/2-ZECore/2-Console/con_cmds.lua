@@ -23,14 +23,15 @@ COM_AddCommand("liststats", function(player)
 		CONS_Printf(player, "The game mode must be Zombie Escape to use this command.")
 		return
 	end
-	local string1 = "\x82\<%s> -> Games Played: (%s) | Has Revenger: (%s) | Has GoldenGlow: (%s)"
-	local string2 = "\x83\<%s> -> Games Played: (%s) | Has Revenger: (%s) | Has GoldenGlow: (%s)"
-	CONS_Printf(player, string.format(string2, player.name, player.gamesPlayed, player.rvgrpass, player.hasGoldenGlow))
+	local string1 = "\x82\<%s> -> Games Played: (%s) | Has Revenger: (%s)"
+	local string2 = "\x83\<%s> -> Games Played: (%s) | Has Revenger: (%s)"
+	if player.gamesPlayed == nil or player.rvgrpass == nil then return end
+	CONS_Printf(player, string.format(string2, player.name, player.gamesPlayed, player.rvgrpass))
 	for listplayer in players.iterate do
 		if listplayer == player then
 			continue
 		end
-		CONS_Printf(player, string.format(string1, listplayer.name, listplayer.gamesPlayed, listplayer.rvgrpass, listplayer.hasGoldenGlow))
+		CONS_Printf(player, string.format(string1, listplayer.name, listplayer.gamesPlayed, listplayer.rvgrpass))
 	end
 end)
 
@@ -85,7 +86,7 @@ COM_AddCommand("cleardata", function(player,arg1) --rvgrpass
 	end
 end,1)
 
-COM_AddCommand("forcewin", function(player, arg1)
+COM_AddCommand("ze_forcewin", function(player, arg1)
 	arg1 = tonumber(arg1)
 	if arg1 ~= nil and arg1 <= 2 and arg1 > 0 then
 		if arg1 == 1 then
@@ -97,5 +98,12 @@ COM_AddCommand("forcewin", function(player, arg1)
 		end
 	else
 		CONS_Printf(player, "Invalid number")
+	end
+end,1)
+
+COM_AddCommand("ze_changeztype", function(player, arg1)
+	arg1 = tonumber(arg1)
+	if player.mo and player.mo.valid and arg1 ~= nil then
+		player.ztype = arg1
 	end
 end,1)
