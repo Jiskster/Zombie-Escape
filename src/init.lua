@@ -2,6 +2,8 @@ for _, filename in ipairs{
 -- Funny init
 
 	--first thing to load
+	"2-ZECore/1-Init/int_spawnobject.lua",
+	"2-ZECore/1-Init/int_showhitbox.lua",
 	"2-ZECore/1-Init/int_freeslot.lua",
 	"2-ZECore/1-Init/int_global.lua",
 	"2-ZECore/1-Init/int_ZE_RSNEO.lua",

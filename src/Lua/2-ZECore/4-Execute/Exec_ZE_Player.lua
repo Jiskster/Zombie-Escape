@@ -1,4 +1,5 @@
 local ZE = RV_ZESCAPE
+local CV = RV_ZESCAPE.Console
 
 addHook("PlayerThink", function(player)
 	if not (gametype == GT_ZESCAPE) then return end
@@ -19,7 +20,10 @@ addHook("PlayerThink", function(player)
 			ZE.CharacterStamina(player)
 			ZE.AlphaZmRage(player)
 			ZE.SpawnProps(player)
-			ZE.AlphaZmCfg(player)
+			ZE.ZtypeCfg(player)
 			ZE.InsertUnlocked(player)
+			if (leveltime < CV.waittime) then
+				ZE.ResetPropSpawn(player)
+			end
 	end
 end)

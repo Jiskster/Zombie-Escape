@@ -91,23 +91,45 @@ ZE.CharacterStamina = function(player)
 	end
 end
 
-ZE.AlphaZmCfg = function(player)
+ZE.ZtypeCfg = function(player)
 	if not (gametype == GT_ZESCAPE) then return end
 	if (player.mo and player.mo.valid)
-		if (player.alphazm == 1) and not (player.ctfteam == 2)
+		if (player.ztype == ZM_ALPHA) and not (player.ctfteam == 2)
 			player.mo.scale = ZE.ZombieStats["Alpha"].scale
 		elseif (player.ctfteam == 2) or (player.spectator == 1) then
 			return
 		end
-		if (player.alphazm == 1) and not (player.boost == 1) and not (player.ctfteam == 2) and not (leveltime < CV.waittime) then
-			player.normalspeed = ZE.ZombieStats["Alpha"].normalspeed
-			player.jumpfactor = ZE.ZombieStats["Alpha"].jumpfactor
+		if not (leveltime < CV.waittime) and not (player.ctfteam == 2)  then
+			if (player.ztype == ZM_ALPHA) and not (player.boost == 1) then
+				player.normalspeed = ZE.ZombieStats["Alpha"].normalspeed
+				player.jumpfactor = ZE.ZombieStats["Alpha"].jumpfactor
+			end
+			
+			if (player.ztype == ZM_FAST)
+				player.normalspeed = ZE.ZombieStats["Fast"].normalspeed
+				player.jumpfactor = ZE.ZombieStats["Fast"].jumpfactor
+			end
+			
+			if (player.ztype == ZM_POISON)
+				player.normalspeed = ZE.ZombieStats["Poison"].normalspeed
+				player.jumpfactor = ZE.ZombieStats["Poison"].jumpfactor
+			end
+			
+			if (player.ztype == ZM_GOLDEN)
+				player.normalspeed = ZE.ZombieStats["Golden"].normalspeed
+				player.jumpfactor = ZE.ZombieStats["Golden"].jumpfactor
+			end
+			
+			if (player.ztype == ZM_DARK)
+				player.normalspeed = ZE.ZombieStats["Dark"].normalspeed
+				player.jumpfactor = ZE.ZombieStats["Dark"].jumpfactor
+			end
 		end
 	end
 end
 
 ZE.AlphaZmRage = function(player)
-    if not (player.alphazm == 1) then return end
+    if not (player.ztype == ZM_ALPHA) then return end
 	if not player.playerstate != PST_LIVE
 	if (player.mo and player.mo.valid)
 		player.boosttimer = $ or 0
@@ -139,7 +161,7 @@ ZE.AlphaZmRage = function(player)
 	end
 end
 
-ZE.AlphaZmAura = function()
+ZE.ZtypeAura = function()
   if not (gametype == GT_ZESCAPE) then return end
     for player in players.iterate
         if player.mo and player.mo.valid and player.mo.skin == "dzombie"
@@ -147,7 +169,7 @@ ZE.AlphaZmAura = function()
         and not player.powers[pw_carry]
         and not P_PlayerInPain(player)
         and not player.exiting
-			 if (player.alphazm == 1)
+			if (player.ztype == ZM_ALPHA)
 				local zombienumber1 = P_SpawnGhostMobj(player.mo)
 				zombienumber1.color = P_RandomRange(SKINCOLOR_RED, SKINCOLOR_RUBY)
 				zombienumber1.colorized = true
@@ -159,6 +181,67 @@ ZE.AlphaZmAura = function()
 				if zombienumber1.tracer
 					zombienumber1.tracer.fuse = zombienumber1.fuse
 				end
+			end
+			
+			
+			if (player.ztype == ZM_FAST)
+				local zombienumber1 = P_SpawnGhostMobj(player.mo)
+				zombienumber1.color = SKINCOLOR_MOSS
+				zombienumber1.colorized = true
+				zombienumber1.fuse = 1
+				zombienumber1.blendmode = AST_ADD
+				P_TeleportMove(zombienumber1, player.mo.x, player.mo.y, player.mo.z - 4*FRACUNIT)
+				zombienumber1.frame = $|FF_ADD
+				if zombienumber1.tracer
+					zombienumber1.tracer.fuse = zombienumber1.fuse
+				end
+				player.mo.colorized = true
+				player.mo.color = SKINCOLOR_MOSS
+			end
+			
+			if (player.ztype == ZM_GOLDEN)
+				local zombienumber1 = P_SpawnGhostMobj(player.mo)
+				zombienumber1.color = SKINCOLOR_GOLD
+				zombienumber1.colorized = true
+				zombienumber1.fuse = 1
+				zombienumber1.blendmode = AST_ADD
+				P_TeleportMove(zombienumber1, player.mo.x, player.mo.y, player.mo.z - 4*FRACUNIT)
+				zombienumber1.frame = $|FF_ADD
+				if zombienumber1.tracer
+					zombienumber1.tracer.fuse = zombienumber1.fuse
+				end
+				player.mo.colorized = true
+				player.mo.color = SKINCOLOR_GOLD
+			end
+			
+			if (player.ztype == ZM_DARK)
+				local zombienumber1 = P_SpawnGhostMobj(player.mo)
+				zombienumber1.color = SKINCOLOR_BLACK
+				zombienumber1.colorized = true
+				zombienumber1.fuse = 1
+				zombienumber1.blendmode = AST_ADD
+				P_TeleportMove(zombienumber1, player.mo.x, player.mo.y, player.mo.z - 4*FRACUNIT)
+				zombienumber1.frame = $|FF_ADD
+				if zombienumber1.tracer
+					zombienumber1.tracer.fuse = zombienumber1.fuse
+				end
+				player.mo.colorized = true
+				player.mo.color = SKINCOLOR_BLACK
+			end
+			
+			if (player.ztype == ZM_POISON)
+				local zombienumber1 = P_SpawnGhostMobj(player.mo)
+				zombienumber1.color = SKINCOLOR_FOREST
+				zombienumber1.colorized = true
+				zombienumber1.fuse = 1
+				zombienumber1.blendmode = AST_ADD
+				P_TeleportMove(zombienumber1, player.mo.x, player.mo.y, player.mo.z - 4*FRACUNIT)
+				zombienumber1.frame = $|FF_ADD
+				if zombienumber1.tracer
+					zombienumber1.tracer.fuse = zombienumber1.fuse
+				end
+				player.mo.colorized = true
+				player.mo.color = SKINCOLOR_FOREST
 			end
         end
     end
@@ -242,8 +325,8 @@ ZE.ZombieRegen = function(player)
 	if (player.mo and player.mo.valid)
 	  if not (player.mo.skin == "dzombie") return end
 	    player.regen = $ or 0
-	    if ( (player.mo.health < 900) and (not player.alphazm) )
-		or ( (player.mo.health < 2000) and (player.alphazm == 1) ) then
+	    if ( (player.mo.health < 900) and (not player.ztype) )
+		or ( (player.mo.health < 2000) and (player.ztype == ZM_ALPHA) ) then
 		  player.regen = $1 - 1
 		end
 		if (player.regen <= 0*TICRATE) then
@@ -263,15 +346,34 @@ ZE.ZombieHealth = function(player)
 		if player.mo and player.mo.valid
 			if player.ctfteam == 2 return end
 			if player.powers[pw_flashing] > 0
-				if (player.ctfteam == 1) and not (player.spectator) and not (player.alphazm == 1)
+				if (player.ctfteam == 1) and not (player.spectator) and not (player.ztype == ZM_ALPHA)
 					player.mo.health = ZE.ZombieStats["Normal"].startHealth
 					player.mo.maxHealth = ZE.ZombieStats["Normal"].maxHealth  --normal zombie health
 				end
-				if (player.alphazm == 1)
+				if (player.ztype == ZM_ALPHA)
 					player.mo.health = ZE.ZombieStats["Alpha"].startHealth
 					player.mo.maxHealth = ZE.ZombieStats["Alpha"].maxHealth
 				end	
 				
+				if (player.ztype == ZM_FAST)
+					player.mo.health = ZE.ZombieStats["Fast"].startHealth
+					player.mo.maxHealth = ZE.ZombieStats["Fast"].maxHealth
+				end
+				
+				if (player.ztype == ZM_POISON)
+					player.mo.health = ZE.ZombieStats["Poison"].startHealth
+					player.mo.maxHealth = ZE.ZombieStats["Poison"].maxHealth
+				end
+				
+				if (player.ztype == ZM_GOLDEN)
+					player.mo.health = ZE.ZombieStats["Golden"].startHealth
+					player.mo.maxHealth = ZE.ZombieStats["Golden"].maxHealth
+				end
+				
+				if (player.ztype == ZM_DARK)
+					player.mo.health = ZE.ZombieStats["Dark"].startHealth
+					player.mo.maxHealth = ZE.ZombieStats["Dark"].maxHealth
+				end
 				--zombie swarm
 
 			end

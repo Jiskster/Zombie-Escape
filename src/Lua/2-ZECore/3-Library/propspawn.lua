@@ -1,7 +1,19 @@
 local ZE = RV_ZESCAPE
 local CV = RV_ZESCAPE.Console
 
+
+ZE.ResetPropSpawn = function(player)
+	if player.mo and player.mo.valid then
+		if player.mo.skin == "metalsonic" then
+			player.propspawn = 15
+			return
+		end
+		player.propspawn = CV.propmax.value
+	end
+end
+
 freeslot("MT_AMYSTATION","S_AMYSTATION")
+freeslot("MT_LANDMINE","S_LANDMINE","S_LANDMINE2", "SPR_MMVC")
 
 mobjinfo[MT_AMYSTATION] = {
     sprite = SPR_NULL,
@@ -21,63 +33,111 @@ states[S_AMYSTATION] = {
 	nextstate = S_AMYSTATION,
 	sprite = SPR_NULL,
 	frame = FF_FULLBRIGHT,
-	tics = 2
+	tics = 2,
 }
 
 
+mobjinfo[MT_LANDMINE] = {
+    sprite = SPR_MMVC,
+	spawnstate = S_LANDMINE,
+	painstate = S_LANDMINE,
+	painsound = sfx_None,
+	deathstate = S_LANDMINE,
+	deathsound = sfx_None,
+	spawnhealth = 50,
+	speed = 0,
+	radius = 96*FRACUNIT,
+	height = 138*FRACUNIT,
+	flags = MF_SHOOTABLE|MF_NOCLIPHEIGHT|MF_NOGRAVITY,
+}
+
+states[S_LANDMINE] = {
+	nextstate = S_LANDMINE2,
+	sprite = SPR_MMVC,
+	frame = FF_FULLBRIGHT|A,
+	tics = 70,
+}
+
+states[S_LANDMINE2] = {
+	nextstate = S_LANDMINE,
+	sprite = SPR_MMVC,
+	frame = FF_FULLBRIGHT|B,
+	tics = 70,
+}
+
 ZE.BuildPropWood = function(player)
-		if player.mo and player.mo.valid
+	if player.mo and player.mo.valid
         local wood = P_SpawnMobj(player.mo.x+FixedMul(128*FRACUNIT, cos(player.mo.angle)),
 					player.mo.y+FixedMul(128*FRACUNIT, sin(player.mo.angle)), player.mo.z, MT_PROPWOOD)
 		wood.angle = player.mo.angle+ANGLE_90
 		S_StartSound(player.mo, sfx_jshard)
 		wood.renderflags = $|RF_PAPERSPRITE
 		wood.fuse = CV.propdespawn.value*TICRATE
+		wood.target = player.mo
 		player.propspawn = $-1
 	end
 end
 
 ZE.BuildHealStation = function(player)
-		if player.mo and player.mo.valid
-        P_SpawnMobj(player.mo.x+FixedMul(0*FRACUNIT, cos(player.mo.angle)),
+	if player.mo and player.mo.valid
+        local healstation = P_SpawnMobj(player.mo.x+FixedMul(0*FRACUNIT, cos(player.mo.angle)),
 					player.mo.y+FixedMul(0*FRACUNIT, sin(player.mo.angle)), player.mo.z, MT_AMYSTATION)
 		S_StartSound(player.mo, sfx_jshard)
+		healstation.target = player.mo
+		player.propspawn = $-1
+	end
+end
+
+ZE.BuildLandMine = function(player)
+	if player.mo and player.mo.valid
+        local landmine = P_SpawnMobj(player.mo.x+FixedMul(0*FRACUNIT, cos(player.mo.angle)),
+					player.mo.y+FixedMul(0*FRACUNIT, sin(player.mo.angle)), player.mo.z, MT_LANDMINE)
+		S_StartSound(player.mo, sfx_jshard)
+		landmine.target = player.mo
 		player.propspawn = $-1
 	end
 end
 
 
-ZE.ResetPropSpawn = function(player)
-	if player.mo and player.mo.valid then
-		player.propspawn = CV.propmax.value
-	end
-end
-
 ZE.SpawnProps = function(player)
-     if player.mo and player.mo.valid
-	    player.propspawn = $ or 0
+	if player.mo and player.mo.valid
+		player.propspawn = $ or 0
 	end  
-	   if (propspawn == 0) then return end
-		 if player.mo and player.mo.skin == "tails"
-		   if player.propspawn == 0 then return end
-		      player.builddelay = $ or 0
-		      if (player.cmd.buttons & BT_TOSSFLAG) and not (player.builddelay ~= 0)
-		         player.builddelay = 1*TICRATE
-		         ZE.BuildPropWood(player)
-              end
-	         if player.builddelay ~= 0 then
-	            player.builddelay = $-1
+	if (propspawn == 0) then return end
+	if (leveltime < CV.waittime) then return end
+	if player.powers[pw_flashing] > 0 then return end
+	if player.mo and player.mo.skin == "tails"
+		if player.propspawn == 0 then return end
+		player.builddelay = $ or 0
+		if (player.cmd.buttons & BT_TOSSFLAG) and not (player.builddelay ~= 0)
+			player.builddelay = 1*TICRATE
+			ZE.BuildPropWood(player)
+		end
+		if player.builddelay ~= 0 then
+			player.builddelay = $-1
 		end
 	end
-		 if player.mo and player.mo.skin == "amy"
-		   if player.propspawn == 0 then return end
-		      player.builddelay = $ or 0
-		     if (player.cmd.buttons & BT_TOSSFLAG) and not (player.builddelay ~= 0)
-		         player.builddelay = 1*TICRATE
-		         ZE.BuildHealStation(player)
-             end
-	     if player.builddelay ~= 0 then
-	        player.builddelay = $-1
+	if player.mo and player.mo.skin == "amy"
+		if player.propspawn == 0 then return end
+		player.builddelay = $ or 0
+		if (player.cmd.buttons & BT_TOSSFLAG) and not (player.builddelay ~= 0)
+			player.builddelay = 1*TICRATE
+			ZE.BuildHealStation(player)
+		end
+		if player.builddelay ~= 0 then
+			player.builddelay = $-1
+		end
+	end
+	
+	if player.mo and player.mo.skin == "metalsonic"
+		if player.propspawn == 0 then return end
+		player.builddelay = $ or 0
+		if (player.cmd.buttons & BT_TOSSFLAG) and not (player.builddelay ~= 0)
+			player.builddelay = 1*TICRATE
+			ZE.BuildLandMine(player)
+		end
+		if player.builddelay ~= 0 then
+			player.builddelay = $-1
 		end
 	end
 end
@@ -167,3 +227,25 @@ addHook("MobjThinker", function (mobj)
         end
     end
 end, MT_AMYSTATION)
+
+addHook("MobjThinker", function (mobj)
+	if mobj and mobj.valid then
+		for player in players.iterate do
+			if player.mo and player.mo.valid 
+			and player.playerstate ~= PST_DEAD 
+			and player.mo.skin == "dzombie" then
+
+				local dist = R_PointToDist2(player.mo.x, player.mo.y, mobj.x, mobj.y)/FU
+				local zdiff = abs(player.mo.z - mobj.z)/FU
+				if dist < 20 and zdiff < 10 then
+					S_StartSound(player.mo,sfx_s244)
+					P_SetObjectMomZ(player.mo, 25*FU)
+					player.mo.angle = $ + ANGLE_180
+					P_InstaThrust(player.mo, player.mo.angle, 45*FU)
+					P_RemoveMobj(mobj)
+				end
+			end
+			
+		end
+	end
+end, MT_LANDMINE)

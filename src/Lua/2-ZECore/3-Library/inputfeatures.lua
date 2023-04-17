@@ -3,7 +3,9 @@ local CV = RV_ZESCAPE.Console
 freeslot("MT_ZEMO_BUBBLE", "S_ZEMO_BUBBLE", "SPR_ZEMO")
 freeslot("SPR_ZT00","SPR_ZT01", "SPR_ZT02", "SPR_ZT03", "SPR_ZT04", "SPR_ZT05")
 freeslot("sfx_huhem", "sfx_vboom", "sfx_thwop", "sfx_heheha", "sfx_4ayo")
-
+freeslot("sfx_syeah", "sfx_kohno", "sfx_yccom", "sfx_noiscr", "sfx_pepscr")
+freeslot("sfx_actu", "sfx_memore", "sfx_dumba", "sfx_demoem", "sfx_whoinv")
+freeslot("sfx_bruh", "sfx_haha1", "sfx_orchit")
 
 mobjinfo[MT_ZEMO_BUBBLE] = {		
 	doomednum = -1,
@@ -52,6 +54,17 @@ ZE.AddEmote(SPR_ZT02, "Skull Emoji", "hell nah bruh", sfx_vboom)
 ZE.AddEmote(SPR_ZT03, "Sad Sponge", "me when when no 2.3", sfx_thwop)
 ZE.AddEmote(SPR_ZT04, "heheheha", "HE HE HE HA", sfx_heheha)
 ZE.AddEmote(SPR_ZT05, "AYO?", "bro said something mad sus", sfx_4ayo)
+ZE.AddEmote(SPR_ZT06, "HAHA ONE!", "ONE!", sfx_haha1)
+ZE.AddEmote(SPR_ZT07, "sexysonic", "oh yeah", sfx_orchhit)
+ZE.AddEmote(SPR_ZT08, "insanesonic", "memory card", sfx_memore)
+ZE.AddEmote(SPR_ZT09, "peppino scream", "italian mating call", sfx_pepscr)
+ZE.AddEmote(SPR_ZT0A, "noise scream", "noid mating call", sfx_noiscr)
+ZE.AddEmote(SPR_ZT0B, "chaos emeralds?", "did you get those chaos emeralds?", sfx_demoem)
+ZE.AddEmote(SPR_ZT0C, "sonic yeah!", "YEAH", sfx_syeah)
+ZE.AddEmote(SPR_ZT0D, "tails slang", "you can count on me", sfx_yccom)
+ZE.AddEmote(SPR_ZT0E, "knuckles thing", "oh no", sfx_kohno)
+ZE.AddEmote(SPR_ZT0F, "dumbass", "scoutdumbass", sfx_dumba)
+ZE.AddEmote(SPR_ZT10, "nerd emoji", "ackktually!", sfx_dumba)
 
 
 

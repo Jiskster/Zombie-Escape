@@ -362,6 +362,38 @@ ZE.SpawnPlayer = function(player)
 		COM_BufInsertText(player, "changeteam red")
 		--COM_BufInsertText(server, "serverchangeteam \$#player\ red")
 	end
+	
+	if player.mo and player.mo.valid then
+		if player.mo.skin == "dzombie" and not (mapheaderinfo[gamemap].zombieswarm) then
+			if P_RandomChance(FU/7) then
+				player.ztype = ZM_ALPHA
+				return
+			end
+			
+			if P_RandomChance(FU/25) then
+				player.ztype = ZM_DARK
+				return
+			end
+			
+			if P_RandomChance(FU/14) then
+				player.ztype = ZM_FAST
+				return
+			end
+			/*
+			if P_RandomChance(FU/13) then
+				player.ztype = ZM_POISON
+				return
+			end
+			*/
+			
+			if P_RandomChance(FU/12) then
+				player.ztype = ZM_GOLDEN
+				return
+			end
+			
+
+		end
+	end
 end
 
 ZE.RandomInfect = function()
@@ -381,7 +413,7 @@ end
 ZE.DeathPointTp = function(player)
 	if (gametype == GT_ZESCAPE)
 	       player.respawned = $ or 0
-		if (player.alphazm == 1) and player.ctfteam == 1 then
+		if (player.ztype == ZM_ALPHA) and player.ctfteam == 1 then
 		   player.respawned = 1
 	end
         if (leveltime > CV.waittime) and player.ctfteam == 1 and not (player.respawned == 1) and player.deathpoint and player.score != 0 then
@@ -394,7 +426,12 @@ end
 ZE.SpawnSounds = function(player)
 	if (gametype == GT_ZESCAPE)
 	  local infsfx = {sfx_inf1, sfx_inf2}
+	  local infswsfx = {sfx_zszm1, sfx_zszm2}
         if (player.ctfteam == 1) and not (leveltime < CV.waittime) then
+			if mapheaderinfo[gamemap].zombieswarm
+				S_StartSound(player.mo,infsfx[P_RandomRange(1,#infswsfx)])
+				return
+			end
 		   S_StartSound(player.mo,infsfx[P_RandomRange(1,#infsfx)])
 	   end
     end
@@ -417,21 +454,24 @@ ZE.CountDown = function()
 	end
 end
 
-ZE.BecomeAlphaZm = function()
+ZE.InitZtype = function()
 	if not (gametype == GT_ZESCAPE) then return end
 		for player in players.iterate
 			if (player.ctfteam == 1) and (leveltime-CV.waittime <= 10*TICRATE) and (player.playerstate == PST_DEAD) then
-				player.alphazm = $ or 0
-				player.alphazm = 1
+				player.ztype = $ or 0
+				
+				if not	(mapheaderinfo[gamemap].zombieswarm) then
+					player.ztype = ZM_ALPHA
+				end
 			end
 			if (player.ctfteam == 1) and (player.playerstate == PST_DEAD) and (leveltime-CV.waittime >= 10*TICRATE) then
-				player.alphazm = 0
+				player.ztype = 0
 			end
 			if (player.ctfteam == 2) or (player.spectator == 1) then
-				player.alphazm = 0
+				player.ztype = 0
 			end
 			if ZE.alpha_attack == 1 and player.mo and player.mo.valid and player.mo.skin == "dzombie" then
-				player.alphazm = 1
+				player.ztype = ZM_ALPHA
 			end
 	end
 end

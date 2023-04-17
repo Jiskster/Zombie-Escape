@@ -16,7 +16,7 @@ addHook("ThinkFrame", function()
 	ZE.RandomInfect()
 	ZE.RestrictSkin()
 	ZE.ShieldToHealth()
-	ZE.BecomeAlphaZm()
+	ZE.InitZtype()
 	ZE.CountDown()
 	ZE.HudStuffDisable()
 	ZE.Inc_Show_alpha_attack()
@@ -32,7 +32,6 @@ addHook("PlayerSpawn", function(player)
 
 		if player and player.valid and not player.spectator
 		and player.mo and player.mo.valid
-			ZE.ResetPropSpawn(player)
 			ZE.DeathPointTp(player)
 			ZE.SpawnSounds(player)
 		end
@@ -46,8 +45,9 @@ end)
 
 addHook("PostThinkFrame", function()
 	if netgame and multiplayer then
-		ZE.AlphaZmAura()
+		ZE.ZtypeAura()
 	end
+	
 end)
 
 addHook("MobjSpawn",function(mo) return ZE.CorkStuff(mo) end,MT_CORK)

@@ -144,10 +144,10 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 						return false
 					end
 					
-					if shooter.player.alphazm == 1 and shooter.player.boosttimer > 0 then -- rage = double damage
+					if shooter.player.ztype == ZM_ALPHA and shooter.player.boosttimer > 0 then -- rage = double damage
 						truedmg = $1 * 2
 					end
-					if CV.knockback.value == 1 and shooter.player.alphazm ~= 1
+					if CV.knockback.value == 1 and hurtplayer.player.boosttimer <= 0 then 
 						if ZE.F_NotTeamed(shooter.player, hurtplayer.player)
 							P_Thrust(hurtplayer, hazard.angle, ZE.damagetable.knockback[catch])
 						else
@@ -183,7 +183,7 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 							P_AddPlayerScore(shooter.player, truedmg)
 						end
 						hurtplayer.player.health = hurtplayer.health
-						hurtplayer.player.powers[pw_invulnerability] = 25
+						hurtplayer.player.powers[pw_invulnerability] = 30
 					end
 					if hurtplayer.health < 1 -- on death
 						P_PlayerWeaponPanelBurst(hurtplayer.player)
@@ -208,9 +208,17 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 						else
 							print(string.format(ZE.damagetable.killmsg[catch], name1, name2))
 						end
+						
+						
 						if mapheaderinfo[gamemap].zombieswarm
-							shooter.maxHealth = $ + (50*ZE.Wave)
-							shooter.health = $ + (50*ZE.Wave)
+							
+							shooter.maxHealth = $ + (30*ZE.Wave)
+							shooter.health = $ + (30*ZE.Wave)
+						end
+						
+						if hurtplayer.player.ztype == ZM_GOLDEN then
+							shooter.maxHealth = $ + (500)
+							shooter.health = $ + (500)
 						end
 						if not(ZE.teamWin) then
 							if ZE.Wave then
