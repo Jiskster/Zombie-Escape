@@ -241,6 +241,7 @@ addHook("MobjThinker", function (mobj)
 					S_StartSound(player.mo,sfx_s244)
 					P_SetObjectMomZ(player.mo, 25*FU)
 					player.mo.angle = $ + ANGLE_180
+					mobj.target.player.propspawn = $ + 1
 					P_InstaThrust(player.mo, player.mo.angle, 45*FU)
 					P_RemoveMobj(mobj)
 				end

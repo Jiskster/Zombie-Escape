@@ -369,11 +369,11 @@ ZE.SpawnPlayer = function(player)
 				player.ztype = ZM_DARK
 				return
 			end
-			if P_RandomChance(FU/10) then
+			if P_RandomChance(FU/8) then
 				player.ztype = ZM_GOLDEN
 				return
 			end
-			if P_RandomChance(FU/6) then
+			if P_RandomChance(FU/5) then
 				player.ztype = ZM_ALPHA
 				return
 			end	
