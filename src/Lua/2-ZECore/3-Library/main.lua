@@ -223,7 +223,7 @@ local activeplayers = {}
 		end
 	end
 
-	if #activeplayers and (ZE.survcount > 1) and not (ZE.survcount > 8) then
+	if #activeplayers and (ZE.survcount > 1) and not (ZE.survcount > 10) then
 		P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
 		ZE.infectdelay = 1
 		activeplayers = {}
