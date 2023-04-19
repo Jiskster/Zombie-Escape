@@ -1,0 +1,14 @@
+## DB-UA-DE/Zombie-Escape
+A fork of Jiskster/Zombie-Escape repo with
+some things that i add my self and commit
+to the original repository.
+
+Mostly this things are unstable but when
+i make pull requests i make them more stable
+so they can be on original repository.
+
+All credits to: Jisk (Jiskster)
+Original repository: Jiskster/Zombie-Escape
+Original maps repository: Jiskster/Zombie-Escape-Maps
+
+There's no license.
