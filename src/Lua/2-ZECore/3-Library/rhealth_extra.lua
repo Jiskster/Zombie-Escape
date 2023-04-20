@@ -42,7 +42,7 @@ end
 
 ZE.G_HS_PistolDamage = function(mobj, hurthealth)
 	if mobj.type == ZE.GetObjectTypeOrNull("MT_RS_HS_SHOT")
-		return 10
+		return 65
 	else
 		return 0
 	end
@@ -105,7 +105,7 @@ ZE.G_AddToDamageTable(27*FRACUNIT, "%s killed %s.", ZE.G_ScarfRevoler)
 ZE.G_AddToDamageTable(10*FRACUNIT, "%s killed %s.", ZE.G_SwordDamage)
 ZE.G_AddToDamageTable(27*FRACUNIT, "%s killed %s.", ZE.G_ScarfPlasmaDamage)
 ZE.G_AddToDamageTable(16*FRACUNIT, "%s killed %s.", ZE.G_MilneCrystalDamage)
-ZE.G_AddToDamageTable(6*FRACUNIT, "%s beat %s to death.", ZE.G_ClawsDamage)
+ZE.G_AddToDamageTable(100*FRACUNIT, "%s beat %s to death.", ZE.G_ClawsDamage)
 ZE.G_AddToDamageTable(16*FRACUNIT, "%s killed %s.", ZE.G_RSBounceDamage)
-ZE.G_AddToDamageTable(24*FRACUNIT, "%s killed %s.", ZE.G_HS_PistolDamage)
+ZE.G_AddToDamageTable(55*FRACUNIT, "%s killed %s.", ZE.G_HS_PistolDamage)
 ZE.G_AddToDamageTable(48*FRACUNIT, "%s killed %s.", ZE.G_FistDamage)

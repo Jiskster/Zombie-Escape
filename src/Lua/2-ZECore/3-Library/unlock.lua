@@ -13,6 +13,7 @@ ZE.Revenger = function(player)
 	for player in players.iterate
 		if player.mo and player.mo.valid
 			if player.rvgrpass == 0 and (player.mo.skin == "revenger") then
+				if IsPlayerAdmin(player) or player == server then return end
 				R_SetPlayerSkin(player,ZE.survskinsplay[P_RandomRange(1,#ZE.survskinsplay)])
 				chatprintf(player,"\x87\You need atleast 25 games played to use this character!",true)
 	       end

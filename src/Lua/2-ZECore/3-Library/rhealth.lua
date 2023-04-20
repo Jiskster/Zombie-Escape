@@ -184,7 +184,7 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 							P_AddPlayerScore(shooter.player, truedmg)
 						end
 						hurtplayer.player.health = hurtplayer.health
-						hurtplayer.player.powers[pw_invulnerability] = 30
+						hurtplayer.player.powers[pw_invulnerability] = 40
 					end
 					if hurtplayer.health < 1 -- on death
 						P_PlayerWeaponPanelBurst(hurtplayer.player)
@@ -220,6 +220,16 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 						if hurtplayer.player.ztype == ZM_GOLDEN then
 							shooter.maxHealth = $ + (500)
 							shooter.health = $ + (500)
+						end
+						
+						if hurtplayer.player.ztype == ZM_ALPHA then
+							shooter.maxHealth = $ + (150)
+							shooter.health = $ + (150)
+						end
+						
+						if hurtplayer.player.ztype == ZM_DARK then
+							shooter.maxHealth = $ + (1500)
+							shooter.health = $ + (1500)
 						end
 						if not(ZE.teamWin) then
 							if ZE.Wave then

@@ -22,7 +22,7 @@ end
 
 ZE.G_AutomaticRingDamage = function(mobj, hurthealth)
 	if mobj.type == MT_RS_THROWNAUTOMATIC
-		return 10
+		return 18
 	else
 		return 0
 	end
@@ -30,7 +30,7 @@ end
 
 ZE.G_ExplosionRingDamage = function(mobj, hurthealth)
 	if mobj.type == MT_RS_THROWNEXPLOSION
-		return 80
+		return 120
 	else
 		return 0
 	end
@@ -38,7 +38,7 @@ end
 
 ZE.G_ScatterRingDamage = function(mobj, hurthealth)
 	if mobj.type == MT_RS_THROWNSCATTER
-		return 25
+		return 35
 	else
 		return 0
 	end
@@ -223,15 +223,15 @@ ZE.G_CorkDamage = function(mobj, hurthealth)
 end
 
 ZE.G_AddToDamageTable(2*FRACUNIT, "%s humiliated %s with the red ring of death.", ZE.G_NormalRingRS)
-ZE.G_AddToDamageTable(48*FRACUNIT, "%s poked a hole in %s with a rail ring.", ZE.G_RailRingDamage)
+ZE.G_AddToDamageTable(100*FRACUNIT, "%s poked a hole in %s with a rail ring.", ZE.G_RailRingDamage)
 ZE.G_AddToDamageTable(2*FRACUNIT, "%s stood in the face of %s's immortal aura.", ZE.G_MeleeDamage, true)
 ZE.G_AddToDamageTable(3*FRACUNIT, "%s turned %s into swiss cheese with automatic rings.", ZE.G_AutomaticRingDamage)
 ZE.G_AddToDamageTable(14*FRACUNIT, "%s bounced away %s with bounce rings.", ZE.G_BounceRingDamage)
-ZE.G_AddToDamageTable(7*FRACUNIT, "%s scatterbrained %s with scatter rings.", ZE.G_ScatterRingDamage)
+ZE.G_AddToDamageTable(4*FRACUNIT, "%s scatterbrained %s with scatter rings.", ZE.G_ScatterRingDamage)
 ZE.G_AddToDamageTable(9*FRACUNIT, "%s showed %s that the possibilities are never-ending.", ZE.G_InfinityRingDamage)
 ZE.G_AddToDamageTable(0, "%s is cooking fried %s for dinner.", ZE.G_FireTrailDamage)
 ZE.G_AddToDamageTable(24*FRACUNIT, "%s hit with a hammer to the %s face.", ZE.G_HammerDamage)
-ZE.G_AddToDamageTable(4*FRACUNIT, "%s gave a few scratches on %s arm.", ZE.G_ZMeleeDamage)
+ZE.G_AddToDamageTable(80*FRACUNIT, "%s gave a few scratches on %s arm.", ZE.G_ZMeleeDamage)
 ZE.G_AddToDamageTable(24*FRACUNIT, "%s knocked %s in the head with a cork.", ZE.G_CorkDamage)
 ZE.G_AddToDamageTable(48*FRACUNIT, "%s poked a hole in %s with a rail ring.", ZE.G_RailRingRSDamage)
 ZE.G_AddToDamageTable(2*FRACUNIT, "%s turned %s into fried bacon", ZE.G_FlameRSDamage)
