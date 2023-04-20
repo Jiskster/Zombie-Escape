@@ -223,11 +223,19 @@ local activeplayers = {}
 		end
 	end
 
-	if #activeplayers and (ZE.survcount > 1) and not (ZE.survcount > 10) then
+	if #activeplayers and (ZE.survcount > 1) and not (ZE.survcount > 5) then
 		P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
 		ZE.infectdelay = 1
 		activeplayers = {}
-	elseif #activeplayers and (ZE.survcount > 10) and not (ZE.survcount > 16) and not (ZE.survcount < 10) then
+	end
+	if #activeplayers and (ZE.survcount > 5) and not (ZE.survcount > 10) and not (ZE.survcount < 5) then
+		for i=1,2 do
+			P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
+		end
+		ZE.infectdelay = 1
+		activeplayers = {}
+	end
+	if #activeplayers and (ZE.survcount > 10) and not (ZE.survcount > 16) and not (ZE.survcount < 10) then
 		for i=1,4 do
 			P_DamageMobj(activeplayers[P_RandomRange(1, #activeplayers)].mo, nil, nil, 1, DMG_INSTAKILL)
 		end
