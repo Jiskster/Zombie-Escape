@@ -58,7 +58,8 @@ if [ $verbose == 1 ]
 then
 echo "Working directory: $PWD"
 fi
-7z rn "$cdir/bin/$zepk3" @textures.txt
-rm textures.txt
+# Deleted some unimportant things.
+#7z rn "$cdir/bin/$zepk3" @textures.txt
+#rm textures.txt
 echo Done!
 exit 0
