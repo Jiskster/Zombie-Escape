@@ -314,7 +314,7 @@ ZE.AmyRegen = function(player)
 		  player.regen = $1 - 1
 		end
 		if (player.regen <= 0*TICRATE) then
-		   player.mo.health = $ + 2
+		   player.mo.health = $ + 1
 		   player.regen = 1*TICRATE
 		else
 		    return end
@@ -325,17 +325,17 @@ ZE.ZombieRegen = function(player)
 	if (player.mo and player.mo.valid)
 	  if not (player.mo.skin == "dzombie") return end
 	    player.regen = $ or 0
-	    if ( (player.mo.health < 900) and (not player.ztype) )
-		or ( (player.mo.health < 2000) and (player.ztype == ZM_ALPHA) ) then
+	    if ( (player.mo.health < player.mo.maxHealth) and (player.ztype ~= ZM_ALPHA) ) then
 		  player.regen = $1 - 1
 		end
 		if (player.regen <= 0*TICRATE) then
-		   if not (player.mo.health + 100 > player.mo.maxHealth) -- kinda the limit for zombies is 1000 for healing
-			  player.mo.health = $ + 100
+		   local increment = 20
+		   if not (player.mo.health + increment > player.mo.maxHealth) -- kinda the limit for zombies is 1000 for healing
+			  player.mo.health = $ + increment
 		   else
 			  player.mo.health = player.mo.maxHealth
 		   end
-		   player.regen = 12*TICRATE
+		   player.regen = 10*TICRATE
 		else
 		    return end
 	end
@@ -388,10 +388,10 @@ ZE.ZombieSwarmWave = function(player)
 		if mapheaderinfo[gamemap].zombieswarm then 
 			if ZE.Wave == 1
 				if player.powers[pw_flashing] > 0
-					player.mo.health = 200
-					player.mo.maxHealth = 200
+					player.mo.health = 300
+					player.mo.maxHealth = 300
 				end
-				player.normalspeed = 27*FRACUNIT
+				player.normalspeed = 24*FRACUNIT
 			end
 			
 			if ZE.Wave == 2
@@ -399,25 +399,25 @@ ZE.ZombieSwarmWave = function(player)
 					player.mo.health = 400
 					player.mo.maxHealth = 400
 				end
-				player.normalspeed = 30*FRACUNIT
+				player.normalspeed = 28*FRACUNIT
 			end
 			
 			if ZE.Wave == 3
 				if player.powers[pw_flashing] > 0
-					player.mo.health = 800
-					player.mo.maxHealth = 800
+					player.mo.health = 600
+					player.mo.maxHealth = 600
 				end
-				player.normalspeed = 32*FRACUNIT
+				player.normalspeed = 35*FRACUNIT
 				player.charability = CA_NONE
 				player.charability2 = CA2_SPINDASH
 			end
 			
 			if ZE.Wave == 4
 				if player.powers[pw_flashing] > 0
-					player.mo.health = 1000
-					player.mo.maxHealth = 1000
+					player.mo.health = 650
+					player.mo.maxHealth = 650
 				end
-				player.normalspeed = 35*FRACUNIT
+				player.normalspeed = 42*FRACUNIT
 				player.charability = CA_THOK
 				player.charability2 = CA2_SPINDASH
 			end

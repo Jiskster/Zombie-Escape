@@ -5,7 +5,7 @@ RS.AddWeapon({
 	hudsprite = "RINGIND",
 	viewsprite = "TRNGD0V0",
 	viewoffset = 5*FRACUNIT,
-	delay = 10,
+	delay = 12,
 	cost = 1
 })
 RS.AddWeapon({
@@ -38,10 +38,10 @@ RS.AddWeapon({
 	viewsprite = "RNGSD0",
 	hudsprite = "SCATIND",
 	mt = MT_RS_THROWNSCATTER,
-	fuse = 15,
-	delay = 30,
-	cost = 4,
-	shake = 3,
+	fuse = 25,
+	delay = 25,
+	cost = 6,
+	shake = 2,
 	slingfunc = function(mo, weapon)
 		local player = mo.player
 		local mt = weapon.mt
@@ -86,7 +86,14 @@ RS.AddWeapon({
 				shot.momz = $ + mo.momz / 3
 			end
 		end
-		
+		if not P_IsObjectOnGround(mo)
+			local aim = max(-FRACUNIT, min(FRACUNIT, -player.aiming/13000))
+			if P_MobjFlip(mo) * aim > 0
+				aim = $ * 2/8
+			end
+			mo.momz = $ + FixedMul(mo.scale, aim)
+			P_Thrust(mo, mo.angle, -FRACUNIT*9)
+		end
 		return true
 	end
 })
@@ -137,8 +144,8 @@ RS.AddWeapon({
 	hudsprite = "RAILIND",
 	scale = FRACUNIT*6/5,
 	delay = 64,
-	cost = 7,
-	shake = 7,
+	cost = 10,
+	shake = 10,
 	slingfunc = function(mo, weapon)
 		local player = mo.player
 		S_StartSound(mo, sfx_rail1)
@@ -492,15 +499,15 @@ RS.AddWeapon({
 	viewsprite = "RNGSD0",
 	hudsprite = "SCATIND",
 	mt = MT_RS_THROWNSCATTER,
-	fuse = 15,
-	delay = 30,
-	cost = 4,
+	fuse = 10,
+	delay = 9,
+	cost = 13,
 	shake = 3,
 	auto = true,
 	slingfunc = function(mo, weapon)
 		local player = mo.player
 		local mt = weapon.mt
-		local spread = 4
+		local spread = 8
 		S_StartSound(mo, sfx_shgn)
 		for i = -1, 1
 			local shot = P_SPMAngle(mo, mt, mo.angle + i * ANG1*spread, 1, 0)

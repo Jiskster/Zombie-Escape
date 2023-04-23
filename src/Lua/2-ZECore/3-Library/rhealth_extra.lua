@@ -2,7 +2,7 @@ local ZE = RV_ZESCAPE
 
 ZE.G_SwordDamage = function(mobj, hurthealth)
 	if mobj.type == ZE.GetObjectTypeOrNull("MT_SWORDDAMAGE")
-		return 2
+		return 1
 	else
 		return 0
 	end
@@ -97,6 +97,15 @@ ZE.G_OofBall = function(mobj, hurthealth)
 end
 
 
+
+ZE.G_LandMine = function(mobj, hurthealth)
+    if mobj.type == ZE.GetObjectTypeOrNull("MT_LANDMINE")
+        return 60
+    else
+        return 0
+    end
+end
+
 ZE.G_AddToDamageTable(27*FRACUNIT, "%s killed %s.", ZE.G_OofBall)
 ZE.G_AddToDamageTable(27*FRACUNIT, "%s killed %s.", ZE.G_SteveCrossbow)
 ZE.G_AddToDamageTable(27*FRACUNIT, "%s killed %s.", ZE.G_SerpentineRocket)
@@ -105,7 +114,8 @@ ZE.G_AddToDamageTable(27*FRACUNIT, "%s killed %s.", ZE.G_ScarfRevoler)
 ZE.G_AddToDamageTable(10*FRACUNIT, "%s killed %s.", ZE.G_SwordDamage)
 ZE.G_AddToDamageTable(27*FRACUNIT, "%s killed %s.", ZE.G_ScarfPlasmaDamage)
 ZE.G_AddToDamageTable(16*FRACUNIT, "%s killed %s.", ZE.G_MilneCrystalDamage)
-ZE.G_AddToDamageTable(100*FRACUNIT, "%s beat %s to death.", ZE.G_ClawsDamage)
+ZE.G_AddToDamageTable(50*FRACUNIT, "%s beat %s to death.", ZE.G_ClawsDamage)
 ZE.G_AddToDamageTable(16*FRACUNIT, "%s killed %s.", ZE.G_RSBounceDamage)
 ZE.G_AddToDamageTable(55*FRACUNIT, "%s killed %s.", ZE.G_HS_PistolDamage)
 ZE.G_AddToDamageTable(48*FRACUNIT, "%s killed %s.", ZE.G_FistDamage)
+ZE.G_AddToDamageTable(48*FRACUNIT, "%s exploded %s.", ZE.G_LandMine)

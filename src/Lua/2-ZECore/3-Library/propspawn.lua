@@ -46,7 +46,7 @@ mobjinfo[MT_LANDMINE] = {
 	deathsound = sfx_None,
 	spawnhealth = 50,
 	speed = 0,
-	radius = 96*FRACUNIT,
+	radius = 140*FRACUNIT,
 	height = 138*FRACUNIT,
 	flags = MF_SHOOTABLE|MF_NOCLIPHEIGHT|MF_NOGRAVITY,
 }
@@ -197,7 +197,7 @@ addHook("MobjThinker", function (mobj)
                 currentmiddle.color = SKINCOLOR_GREY
             end
         end
-		if leveltime % 35 == 0 then
+		if leveltime % 15 == 0 then
 			mobj.healtries = $ + 1
 			if mobj.healtries <= 5 then
 				S_StartSound(mobj, 192)
@@ -222,8 +222,8 @@ addHook("MobjThinker", function (mobj)
                         if amyglow.tracer
                             amyglow.tracer.fuse = amyglow.fuse
                         end
-						if leveltime % 35 == 0 then
-							ZE.addHP(player.mo, 20)
+						if leveltime % 15 == 0 then
+							ZE.addHP(player.mo, 4)
 						end
                     end
                 end

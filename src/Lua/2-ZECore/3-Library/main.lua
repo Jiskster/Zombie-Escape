@@ -433,7 +433,7 @@ ZE.SpawnSounds = function(player)
 	  local infswsfx = {sfx_zszm1, sfx_zszm2}
         if (player.ctfteam == 1) and not (leveltime < CV.waittime) then
 			if mapheaderinfo[gamemap].zombieswarm
-				S_StartSound(player.mo,infsfx[P_RandomRange(1,#infswsfx)])
+				S_StartSound(player.mo,infswsfx[P_RandomRange(1,#infswsfx)])
 				return
 			end
 		   S_StartSound(player.mo,infsfx[P_RandomRange(1,#infsfx)])
