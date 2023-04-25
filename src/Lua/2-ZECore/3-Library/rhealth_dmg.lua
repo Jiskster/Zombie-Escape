@@ -143,7 +143,7 @@ end
 
 ZE.G_NormalRingRS = function(mobj, hurthealth)
 	if mobj.type == MT_RS_SHOT
-		return 75
+		return 85
 	else
 		return 0
 	end
