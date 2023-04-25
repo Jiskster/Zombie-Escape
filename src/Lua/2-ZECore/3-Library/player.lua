@@ -287,17 +287,17 @@ ZE.ZombieHealth = function(player)
 			if player.ctfteam == 2 return end
 			if player.powers[pw_flashing] > 0
 				if (player.ctfteam == 1) and not (player.spectator) and not (player.ztype == ZM_ALPHA)
-					player.mo.health = ZE.ZombieStats["Normal"].startHealth
-					player.mo.maxHealth = ZE.ZombieStats["Normal"].maxHealth  --normal zombie health
+					player.mo.health = ZE.ZombieStats["Normal"].startHealth + (35*ZE.survcount)
+					player.mo.maxHealth = ZE.ZombieStats["Normal"].maxHealth + (35*ZE.survcount)      --normal zombie health
 				end
 				if (player.ztype == ZM_ALPHA)
-					player.mo.health = ZE.ZombieStats["Alpha"].startHealth
-					player.mo.maxHealth = ZE.ZombieStats["Alpha"].maxHealth
+					player.mo.health = ZE.ZombieStats["Alpha"].startHealth + (40*ZE.survcount)
+					player.mo.maxHealth = ZE.ZombieStats["Alpha"].maxHealth + (40*ZE.survcount)
 				end	
 				
 				if (player.ztype == ZM_FAST)
-					player.mo.health = ZE.ZombieStats["Fast"].startHealth
-					player.mo.maxHealth = ZE.ZombieStats["Fast"].maxHealth
+					player.mo.health = ZE.ZombieStats["Fast"].startHealth + (25*ZE.survcount)
+					player.mo.maxHealth = ZE.ZombieStats["Fast"].maxHealth + (25*ZE.survcount)
 				end
 				--zombie swarm
 

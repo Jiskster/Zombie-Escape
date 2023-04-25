@@ -22,16 +22,16 @@ ZE.ZombieStats = {
 		jumpfactor = 24 * FRACUNIT / 19,
 		charability = CA_NONE,
 		charability2 = CA2_NONE,
-		startHealth = (200 + (35*ZE.survcount)),
-		maxHealth = (200 + (35*ZE.survcount)),
+		startHealth = 200,
+		maxHealth = 200,
 	},
 	["Alpha"] = {
 		normalspeed = 23*FRACUNIT,
 		jumpfactor = 26 * FRACUNIT / 19,
 		charability = CA_NONE,
 		charability2 = CA2_NONE,
-		startHealth = (500 + (40*ZE.survcount)),
-		maxHealth = (500 + (40*ZE.survcount)),
+		startHealth = 500,
+		maxHealth = 500,
 		scale = 13*FRACUNIT/10,
 	},
 	["Fast"] = {
@@ -39,8 +39,8 @@ ZE.ZombieStats = {
 		jumpfactor = 18 * FRACUNIT / 19,
 		charability = CA_NONE,
 		charability2 = CA2_NONE,
-		startHealth = (50 + (25*ZE.survcount)),
-		maxHealth = (50 + (25*ZE.survcount)),
+		startHealth = 50,
+		maxHealth = 50,
 	},
 }
 

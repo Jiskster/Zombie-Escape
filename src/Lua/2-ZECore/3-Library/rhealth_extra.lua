@@ -26,7 +26,7 @@ end
 
 ZE.G_ClawsDamage = function(mobj, hurthealth)
 	if mobj.type == ZE.GetObjectTypeOrNull("MT_RS_ZCLAWS")
-		return 50
+		return 35
 	else
 		return 0
 	end
