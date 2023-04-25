@@ -14,8 +14,8 @@ s["tails"] = {
 	weapons = {RSWPN_FLAME, RSWPN_SCATTER}
 }
 s["knuckles"] = {
-	ammo = 125,
-	weapons = {RSWPN_MACHINEGUN, RSWPN_STONE}
+	ammo = 160,
+	weapons = {RSWPN_AUTOMATIC, RSWPN_STONE}
 }
 s["amy"] = {
 	ammo = 65,

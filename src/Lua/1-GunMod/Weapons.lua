@@ -17,8 +17,8 @@ RS.AddWeapon({
 	scale = FRACUNIT * 5/6,
 	viewoffset = -15*FRACUNIT,
 	auto = true,
-	delay = 4,
-	cost = 1,
+	delay = 5,
+	cost = 2,
 	shake = 1
 })
 RS.AddWeapon({
@@ -247,8 +247,8 @@ RS.AddWeapon({
 	viewsprite = "RNGCB0",
 	hudsprite = "CROSIND",
 	mt = MT_RS_THROWNACCEL,
-	delay = 8,
-	cost = 4,
+	delay = 6,
+	cost = 3,
 	scale = FRACUNIT * 5/4,
 	slingfunc = function(mo, weapon)
 		local player = mo.player
@@ -440,10 +440,10 @@ RS.AddWeapon({
 	hudsprite = "AUTOIND",
 	mt = MT_RS_THROWNAUTOMATIC,
 	scale = FRACUNIT * 5/6,
-	fuse = 15,
-	delay = 3,
-	cost = 3,
-	shake = 3,
+	fuse = 10,
+	delay = 10,
+	cost = 2,
+	shake = 5,
 	auto = true,
 	slingfunc = function(mo, weapon)
 		local player = mo.player
@@ -455,6 +455,9 @@ RS.AddWeapon({
 			if shot and shot.valid
 				shot.color = player.skincolor
 				shot.lifetime = weapon.fuse
+				shot.momx = $ * 2
+				shot.momy = $ * 2
+				shot.momz = $ * 2
 				if mo.ringslinger.powers[RSPOWER_POWERTOSS]
 					shot.momx = $ * 3/2
 					shot.momy = $ * 3/2
