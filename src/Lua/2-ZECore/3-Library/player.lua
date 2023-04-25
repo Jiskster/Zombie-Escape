@@ -313,24 +313,24 @@ ZE.ZombieSwarmWave = function(player)
 		if mapheaderinfo[gamemap].zombieswarm then 
 			if ZE.Wave == 1
 				if player.powers[pw_flashing] > 0
-					player.mo.health = 300
-					player.mo.maxHealth = 300
+					player.mo.health = 150 + (15*ZE.survcount)
+					player.mo.maxHealth = 150 + (15*ZE.survcount)
 				end
 				player.normalspeed = 24*FRACUNIT
 			end
 			
 			if ZE.Wave == 2
 				if player.powers[pw_flashing] > 0
-					player.mo.health = 400
-					player.mo.maxHealth = 400
+					player.mo.health = 175 + (30*ZE.survcount)
+					player.mo.maxHealth = 175 + (30*ZE.survcount)
 				end
 				player.normalspeed = 28*FRACUNIT
 			end
 			
 			if ZE.Wave == 3
 				if player.powers[pw_flashing] > 0
-					player.mo.health = 600
-					player.mo.maxHealth = 600
+					player.mo.health = 200 + (35*ZE.survcount)
+					player.mo.maxHealth = 200 + (35*ZE.survcount)
 				end
 				player.normalspeed = 35*FRACUNIT
 				player.charability = CA_NONE
@@ -339,8 +339,8 @@ ZE.ZombieSwarmWave = function(player)
 			
 			if ZE.Wave == 4
 				if player.powers[pw_flashing] > 0
-					player.mo.health = 650
-					player.mo.maxHealth = 650
+					player.mo.health = 215 + (40*ZE.survcount)
+					player.mo.maxHealth = 215 + (40*ZE.survcount)
 				end
 				player.normalspeed = 42*FRACUNIT
 				player.charability = CA_THOK
