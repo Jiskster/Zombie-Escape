@@ -197,7 +197,7 @@ addHook("MobjThinker", function (mobj)
                 currentmiddle.color = SKINCOLOR_GREY
             end
         end
-		if leveltime % 15 == 0 then
+		if leveltime % 25 == 0 then
 			mobj.healtries = $ + 1
 			if mobj.healtries <= 5 then
 				S_StartSound(mobj, 192)
@@ -213,7 +213,7 @@ addHook("MobjThinker", function (mobj)
 
                 local dist = R_PointToDist2(player.mo.x, player.mo.y, mobj.x, mobj.y)/FU
                 local zdiff = abs(player.mo.z - mobj.z)/FU
-                if dist < 255 and zdiff < 50 then
+                if dist < 255*2 and zdiff < 150 and P_CheckSight(mobj, player.mo) then
                     if mobj.healtries <= 5
                         local amyglow = P_SpawnGhostMobj(player.mo)
                         amyglow.color = SKINCOLOR_ROSY
@@ -222,8 +222,8 @@ addHook("MobjThinker", function (mobj)
                         if amyglow.tracer
                             amyglow.tracer.fuse = amyglow.fuse
                         end
-						if leveltime % 15 == 0 then
-							ZE.addHP(player.mo, 4)
+						if leveltime % 27 == 0 then
+							ZE.addHP(player.mo, 11)
 						end
                     end
                 end

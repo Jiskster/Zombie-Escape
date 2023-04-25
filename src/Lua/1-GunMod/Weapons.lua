@@ -558,8 +558,8 @@ RS.AddWeapon({
 	viewsprite = 0,
 	hudsprite = "VOLTIND",
 	mt = MT_RS_ZMELEE,
-	fuse = 2,
-	delay = 13,
+	fuse = 5,
+	delay = 7,
 	cost = 0,
 	shake = 0,
 	slingfunc = function(mo, weapon)

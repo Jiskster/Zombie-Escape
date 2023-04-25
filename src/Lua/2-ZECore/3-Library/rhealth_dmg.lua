@@ -208,7 +208,7 @@ end
 
 ZE.G_ZMeleeDamage = function(mobj, hurthealth)
 	if mobj.type == MT_RS_ZMELEE
-		return 25
+		return 15
 	else
 		return 0
 	end
@@ -231,7 +231,7 @@ ZE.G_AddToDamageTable(4*FRACUNIT, "%s scatterbrained %s with scatter rings.", ZE
 ZE.G_AddToDamageTable(9*FRACUNIT, "%s showed %s that the possibilities are never-ending.", ZE.G_InfinityRingDamage)
 ZE.G_AddToDamageTable(0, "%s is cooking fried %s for dinner.", ZE.G_FireTrailDamage)
 ZE.G_AddToDamageTable(24*FRACUNIT, "%s hit with a hammer to the %s face.", ZE.G_HammerDamage)
-ZE.G_AddToDamageTable(55*FRACUNIT, "%s gave a few scratches on %s arm.", ZE.G_ZMeleeDamage)
+ZE.G_AddToDamageTable(2*FRACUNIT, "%s gave a few scratches on %s arm.", ZE.G_ZMeleeDamage)
 ZE.G_AddToDamageTable(24*FRACUNIT, "%s knocked %s in the head with a cork.", ZE.G_CorkDamage)
 ZE.G_AddToDamageTable(48*FRACUNIT, "%s poked a hole in %s with a rail ring.", ZE.G_RailRingRSDamage)
 ZE.G_AddToDamageTable(2*FRACUNIT, "%s turned %s into fried bacon", ZE.G_FlameRSDamage)
