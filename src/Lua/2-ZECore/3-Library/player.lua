@@ -109,21 +109,6 @@ ZE.ZtypeCfg = function(player)
 				player.normalspeed = ZE.ZombieStats["Fast"].normalspeed
 				player.jumpfactor = ZE.ZombieStats["Fast"].jumpfactor
 			end
-			
-			if (player.ztype == ZM_POISON)
-				player.normalspeed = ZE.ZombieStats["Poison"].normalspeed
-				player.jumpfactor = ZE.ZombieStats["Poison"].jumpfactor
-			end
-			
-			if (player.ztype == ZM_GOLDEN)
-				player.normalspeed = ZE.ZombieStats["Golden"].normalspeed
-				player.jumpfactor = ZE.ZombieStats["Golden"].jumpfactor
-			end
-			
-			if (player.ztype == ZM_DARK)
-				player.normalspeed = ZE.ZombieStats["Dark"].normalspeed
-				player.jumpfactor = ZE.ZombieStats["Dark"].jumpfactor
-			end
 		end
 	end
 end
@@ -197,52 +182,7 @@ ZE.ZtypeAura = function()
 				end
 				player.mo.colorized = true
 				player.mo.color = SKINCOLOR_MOSS
-			end
-			
-			if (player.ztype == ZM_GOLDEN)
-				local zombienumber1 = P_SpawnGhostMobj(player.mo)
-				zombienumber1.color = SKINCOLOR_GOLD
-				zombienumber1.colorized = true
-				zombienumber1.fuse = 1
-				zombienumber1.blendmode = AST_ADD
-				P_TeleportMove(zombienumber1, player.mo.x, player.mo.y, player.mo.z - 4*FRACUNIT)
-				zombienumber1.frame = $|FF_ADD
-				if zombienumber1.tracer
-					zombienumber1.tracer.fuse = zombienumber1.fuse
-				end
-				player.mo.colorized = true
-				player.mo.color = SKINCOLOR_GOLD
-			end
-			
-			if (player.ztype == ZM_DARK)
-				local zombienumber1 = P_SpawnGhostMobj(player.mo)
-				zombienumber1.color = SKINCOLOR_BLACK
-				zombienumber1.colorized = true
-				zombienumber1.fuse = 1
-				zombienumber1.blendmode = AST_ADD
-				P_TeleportMove(zombienumber1, player.mo.x, player.mo.y, player.mo.z - 4*FRACUNIT)
-				zombienumber1.frame = $|FF_ADD
-				if zombienumber1.tracer
-					zombienumber1.tracer.fuse = zombienumber1.fuse
-				end
-				player.mo.colorized = true
-				player.mo.color = SKINCOLOR_BLACK
-			end
-			
-			if (player.ztype == ZM_POISON)
-				local zombienumber1 = P_SpawnGhostMobj(player.mo)
-				zombienumber1.color = SKINCOLOR_FOREST
-				zombienumber1.colorized = true
-				zombienumber1.fuse = 1
-				zombienumber1.blendmode = AST_ADD
-				P_TeleportMove(zombienumber1, player.mo.x, player.mo.y, player.mo.z - 4*FRACUNIT)
-				zombienumber1.frame = $|FF_ADD
-				if zombienumber1.tracer
-					zombienumber1.tracer.fuse = zombienumber1.fuse
-				end
-				player.mo.colorized = true
-				player.mo.color = SKINCOLOR_FOREST
-			end
+			end	
         end
     end
 end
@@ -358,21 +298,6 @@ ZE.ZombieHealth = function(player)
 				if (player.ztype == ZM_FAST)
 					player.mo.health = ZE.ZombieStats["Fast"].startHealth
 					player.mo.maxHealth = ZE.ZombieStats["Fast"].maxHealth
-				end
-				
-				if (player.ztype == ZM_POISON)
-					player.mo.health = ZE.ZombieStats["Poison"].startHealth
-					player.mo.maxHealth = ZE.ZombieStats["Poison"].maxHealth
-				end
-				
-				if (player.ztype == ZM_GOLDEN)
-					player.mo.health = ZE.ZombieStats["Golden"].startHealth
-					player.mo.maxHealth = ZE.ZombieStats["Golden"].maxHealth
-				end
-				
-				if (player.ztype == ZM_DARK)
-					player.mo.health = ZE.ZombieStats["Dark"].startHealth
-					player.mo.maxHealth = ZE.ZombieStats["Dark"].maxHealth
 				end
 				--zombie swarm
 

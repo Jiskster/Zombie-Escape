@@ -18,7 +18,7 @@ end
 --flexible
 ZE.ZombieStats = {
 	["Normal"] = {
-		normalspeed = 25*FRACUNIT,
+		normalspeed = 20*FRACUNIT,
 		jumpfactor = 24 * FRACUNIT / 19,
 		charability = CA_NONE,
 		charability2 = CA2_NONE,
@@ -26,7 +26,7 @@ ZE.ZombieStats = {
 		maxHealth = 500,
 	},
 	["Alpha"] = {
-		normalspeed = 26*FRACUNIT,
+		normalspeed = 23*FRACUNIT,
 		jumpfactor = 26 * FRACUNIT / 19,
 		charability = CA_NONE,
 		charability2 = CA2_NONE,
@@ -41,30 +41,6 @@ ZE.ZombieStats = {
 		charability2 = CA2_NONE,
 		startHealth = 300,
 		maxHealth = 300,
-	},
-	["Poison"] = {
-		normalspeed = 20*FRACUNIT,
-		jumpfactor = 20 * FRACUNIT / 19,
-		charability = CA_NONE,
-		charability2 = CA2_NONE,
-		startHealth = 500,
-		maxHealth = 500,
-	},
-	["Golden"] = {
-		normalspeed = 14*FRACUNIT,
-		jumpfactor = 14 * FRACUNIT / 19,
-		charability = CA_NONE,
-		charability2 = CA2_NONE,
-		startHealth = 2500,
-		maxHealth = 2500,
-	},
-	["Dark"] = {
-		normalspeed = 20*FRACUNIT,
-		jumpfactor = 30 * FRACUNIT / 19,
-		charability = CA_NONE,
-		charability2 = CA2_NONE,
-		startHealth = 5000,
-		maxHealth = 5000,
 	},
 }
 

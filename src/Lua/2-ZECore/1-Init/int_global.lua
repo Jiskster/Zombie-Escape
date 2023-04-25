@@ -3,10 +3,6 @@ rawset(_G,"RV_ZESCAPE",{})
 //ztypes
 rawset(_G,"ZM_ALPHA",1)
 rawset(_G,"ZM_FAST",2)
-rawset(_G,"ZM_POISON",3)
-rawset(_G,"ZM_GOLDEN",4)
-rawset(_G,"ZM_DARK",5)
-
 
 local ZE = RV_ZESCAPE
 

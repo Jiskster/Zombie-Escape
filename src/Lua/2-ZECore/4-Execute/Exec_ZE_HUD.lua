@@ -28,25 +28,12 @@ hud.add(function(v, player)
 		if hudtype == 1
 			if player.ztype == ZM_ALPHA then
 			   v.drawString(1,176,"\x85\ALPHA ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-			   v.drawString(262,184,"\x87\C1 \x80\ - \x85\RAGE",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+			   v.drawString(242,184,"\x87\C1 \x80\ - \x85\RAGE",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 			   v.drawString(242,176,"\x85\RAGE\x80 COOLDOWN: "+tostring(player.boostcount/TICRATE),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 			end
 			
-			if player.ztype == ZM_DARK then
-				v.drawString(1,176,"\x85\DARK ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-			end
-			
-			
 			if player.ztype == ZM_FAST then
 				v.drawString(1,176,"\x85\FAST ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-			end
-			
-			if player.ztype == ZM_POISON then
-				v.drawString(1,176,"\x85\POISON ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-			end
-			
-			if player.ztype == ZM_GOLDEN then
-				v.drawString(1,176,"\x85\GOLDEN ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 			end
 		end
 	end
@@ -173,20 +160,8 @@ hud.add(function(g,player,cam)
 					str="ALPHA ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
 				end
 				
-				if player.ztype == ZM_DARK then
-					str="DARK ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
-				end
-
 				if player.ztype == ZM_FAST then
 					str="FAST ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
-				end
-				
-				if player.ztype == ZM_POISON then
-					str="POISON ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
-				end
-				
-				if player.ztype == ZM_GOLDEN then
-					str="GOLDEN ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
 				end
 			elseif player.ctfteam == 0 then
 				str="SPECTATOR" c=V_SNAPTOTOP|V_50TRANS

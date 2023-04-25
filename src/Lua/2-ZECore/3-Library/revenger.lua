@@ -5,7 +5,7 @@ local CV = RV_ZESCAPE.Console
 
 ZE.RevengerAbility = function(player)
    if player.mo and player.mo.valid
-    if (player.mo.skin ~= "revenger") or (player.ztype ~= ZM_DARK) then return end
+    if not (player.mo.skin == "revenger") then return end
 	if (player.mo and player.mo.valid)
 		player.rvgrtimer = $ or 0
 		player.rvgrcount = $ or 0
@@ -47,7 +47,7 @@ end)
 hud.add(function(v, player)
    if (gametype != GT_ZESCAPE) return end
 	if (player.mo and player.mo.valid)
-		if (player.mo.skin == "revenger") or (player.ztype == ZM_DARK) and player.rvgrcount ~= nil then
+		if (player.mo.skin == "revenger") then
 		   v.drawString(244,176,"\x87\TF\x80 button to \x85\????",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 		   v.drawString(244,168,"\x85\????\x80 COOLDOWN: "+tostring(player.rvgrcount/TICRATE),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 		end
