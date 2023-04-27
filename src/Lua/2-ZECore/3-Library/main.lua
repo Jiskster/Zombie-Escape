@@ -201,13 +201,16 @@ end
 ZE.TeamSwitch = function(player, fromspectators, team)
     if not (gametype == GT_ZESCAPE) then return end
 	local gamestarted = (leveltime > CV.waittime)
-	if (player.ctfteam == 2) and not (player.playerstate == PST_DEAD) and gamestarted then -- disallow switch when is survivor and not dead and game has started
-		return false
-	elseif (player.ctfteam == 0) and gamestarted then -- allow switch when spectator and game has started
-		return nil
+	
+	if gamestarted and player.ctfteam ~= 0 and team == 0 then
+		player.spectator = 1
+		player.ctfteam = 0
 	end
-	if (player.ctfteam == 1) and  gamestarted then -- disallow switch when zombie and game has started
-	   return false
+	if (player.ctfteam == 0 or player.ctfteam == 1) and gamestarted then -- allow switch when spectator and game has started
+		if team == 2 and not IsPlayerAdmin(player) then
+			return false
+		end
+		return nil
 	end
 end
 
