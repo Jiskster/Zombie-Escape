@@ -202,16 +202,18 @@ ZE.TeamSwitch = function(player, fromspectators, team)
     if not (gametype == GT_ZESCAPE) then return end
 	local gamestarted = (leveltime > CV.waittime)
 	
-	if gamestarted and player.spectator == 0 and team == 0 then
-		player.spectator = 1
-		player.ctfteam = 0
-		return false
-	end
+
 	if (player.ctfteam == 0 or player.ctfteam == 1) and gamestarted then -- allow switch when spectator and game has started
-		if team == 2 and not IsPlayerAdmin(player) then
+		if team == 1 and not IsPlayerAdmin(player) then
 			return false
 		end
 		return nil
+	end
+	
+	if team == 0 then
+		player.spectator = 1
+		player.ctfteam = 0
+		return false
 	end
 end
 
