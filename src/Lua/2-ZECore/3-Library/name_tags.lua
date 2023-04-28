@@ -308,9 +308,7 @@ addHook("PostThinkFrame", function()
 				end
 				local thok = P_SpawnMobj(cam.x, cam.y, cam.z, MT_THOK)
 				local sight = P_CheckSight(thok, player.mo)
-				if thok and thok.valid 
-					P_RemoveMobj(thok)
-				end
+				P_RemoveMobj(thok)
 				if not sight -- if not sight
 					continue
 				end
@@ -331,9 +329,7 @@ addHook("PostThinkFrame", function()
 			end
 			local thok = P_SpawnMobj(cam.x, cam.y, cam.z, MT_THOK)
 			local sight = P_CheckSight(thok, npc)
-			if thok and thok.valid 
-				P_RemoveMobj(thok)
-			end
+			P_RemoveMobj(thok)
 			if not sight
 				continue
 			end
