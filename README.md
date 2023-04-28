@@ -19,6 +19,6 @@ Main Developer is: **@Jiskster**
 
 __" I recently removed support for the extra characters such as scarf, xtreme and the pizza chars.
 In the source file, go to **extra/ExtraCharConfig** for the support for those extra characters. Thank you.
-The reason we detatched these is because they are mods irrelevant to zombie escape, and was here for server hosting.
+The reason we detached these is because they are mods irrelevant to zombie escape, and was here for server hosting.
 I'm going to start removing server resources that has no relation to zombie escape. Since it is considered bloating.
 Thank you "__ - Jisk
