@@ -14,7 +14,7 @@ s["tails"] = {
 	weapons = {RSWPN_FLAME, RSWPN_SCATTER}
 }
 s["knuckles"] = {
-	ammo = 160,
+	ammo = 185,
 	weapons = {RSWPN_AUTOMATIC, RSWPN_STONE}
 }
 s["amy"] = {
@@ -67,7 +67,7 @@ s["bob"] = {
 
 s["revenger"] = {
 	ammo = 65,
-	weapons = {RSWPN_PISTOL, RSWPN_AUTOSCATTER}
+	weapons = {RSWPN_PISTOL, RSWPN_SCATTER}
 }
 
 s["chaoze"] = {
@@ -82,7 +82,7 @@ s["peppino"] = {
 
 s["noise"] = {
 	ammo = 70,
-	weapons = {RSWPN_MACHINEGUN, RSWPN_AUTOSCATTER}
+	weapons = {RSWPN_AUTOMATIC, RSWPN_SCATTER}
 }
 
 s["snick"] = {

@@ -14,12 +14,12 @@ RS.AddWeapon({
 	hudsprite = "AUTOIND",
 	mt = MT_RS_THROWNAUTOMATIC,
 	sound = sfx_rs_aut,
-	scale = FRACUNIT * 5/6,
+	scale = FRACUNIT * 3/6,
 	viewoffset = -15*FRACUNIT,
 	auto = true,
-	delay = 5,
+	delay = 3,
 	cost = 2,
-	shake = 1
+	shake = 0
 })
 RS.AddWeapon({
 	name = "Bounce",
@@ -247,7 +247,7 @@ RS.AddWeapon({
 	viewsprite = "RNGCB0",
 	hudsprite = "CROSIND",
 	mt = MT_RS_THROWNACCEL,
-	delay = 6,
+	delay = 13,
 	cost = 3,
 	scale = FRACUNIT * 5/4,
 	slingfunc = function(mo, weapon)
@@ -434,6 +434,7 @@ RS.AddWeapon({
 	end
 })
 
+/*
 RS.AddWeapon({
 	name = "MACHINEGUN",
 	viewsprite = "RNGAD0",
@@ -496,7 +497,9 @@ RS.AddWeapon({
 		return true
 	end
 })
+*/
 
+/*
 RS.AddWeapon({
 	name = "AutoScatter",
 	viewsprite = "RNGSD0",
@@ -555,7 +558,7 @@ RS.AddWeapon({
 		return true
 	end
 })
-
+*/
 RS.AddWeapon({
 	name = "ZMelee",
 	viewsprite = 0,
