@@ -101,7 +101,7 @@ local function hudstuff(v, user, cam)
 						color = c_blue
 					end
 					
-					if notdrawing then
+					if notdrawing then -- mainly for revenger
 						color = c_black
 					end
 				end

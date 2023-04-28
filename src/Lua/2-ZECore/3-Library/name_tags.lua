@@ -49,15 +49,16 @@ local string_linebreak = function(view, message, flags)
 end
 
 CV_RegisterVar({
-	name = "nametags",
+	name = "ze_nametags",
 	defaultvalue = 1,
 	PossibleValue = CV_OnOff
 })
 
 hud.add( function(v, player, camera)
-	if not CV_FindVar("nametags").value
+	if not CV_FindVar("ze_nametags").value
 		return
 	end
+	if (gametype ~= GT_ZESCAPE) return end
 	
 	local width = 320
 	local height = 200
