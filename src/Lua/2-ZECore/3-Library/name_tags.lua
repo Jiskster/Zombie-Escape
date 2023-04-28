@@ -298,53 +298,56 @@ end, "game")
 addHook("PostThinkFrame", function()
 	sorted_players = {}
 	sorted_npcs = {}
-	
-	for player in players.iterate() do
-		if player and player.valid and player.mo and player.mo.valid then
+	local function drawThink()
+		for player in players.iterate() do
+			if player and player.valid and player.mo and player.mo.valid then
+				if displayplayer and displayplayer.realmo and displayplayer.realmo.valid
+					local cam = displayplayer.realmo
+					if consoleplayer_camera and consoleplayer_camera.chase
+						cam = consoleplayer_camera
+					end
+					local thok = P_SpawnMobj(cam.x, cam.y, cam.z, MT_NULL)
+					local sight = P_CheckSight(thok, player.mo)
+					P_RemoveMobj(thok)
+					if not sight -- if not sight
+						continue
+					end
+				end
+				table.insert(sorted_players, player)
+			end
+		end
+		
+		for i,npc in ipairs(ZE.npclist) do
+			if not npc then
+				table.remove(ZE.npclist,i)
+				continue
+			end
 			if displayplayer and displayplayer.realmo and displayplayer.realmo.valid
 				local cam = displayplayer.realmo
 				if consoleplayer_camera and consoleplayer_camera.chase
 					cam = consoleplayer_camera
 				end
 				local thok = P_SpawnMobj(cam.x, cam.y, cam.z, MT_NULL)
-				local sight = P_CheckSight(thok, player.mo)
+				local sight = P_CheckSight(thok, npc)
 				P_RemoveMobj(thok)
-				if not sight -- if not sight
+				if not sight
 					continue
 				end
 			end
-			table.insert(sorted_players, player)
+			table.insert(sorted_npcs, npc)
 		end
+		--This list will be different for every player in a network game
+		--Don't use it for anything other than HUD drawing
+		table.sort(sorted_players, function(a, b)
+			return R_PointToDist(a.mo.x, a.mo.y) > R_PointToDist(b.mo.x, b.mo.y)
+		end)
+		
+		table.sort(sorted_npcs, function(a, b)
+			return R_PointToDist(a.x, a.y) > R_PointToDist(b.x, b.y)
+		end)
 	end
 	
-	for i,npc in ipairs(ZE.npclist) do
-		if not npc then
-			table.remove(ZE.npclist,i)
-			continue
-		end
-		if displayplayer and displayplayer.realmo and displayplayer.realmo.valid
-			local cam = displayplayer.realmo
-			if consoleplayer_camera and consoleplayer_camera.chase
-				cam = consoleplayer_camera
-			end
-			local thok = P_SpawnMobj(cam.x, cam.y, cam.z, MT_NULL)
-			local sight = P_CheckSight(thok, npc)
-			P_RemoveMobj(thok)
-			if not sight
-				continue
-			end
-		end
-		table.insert(sorted_npcs, npc)
-	end
-	--This list will be different for every player in a network game
-	--Don't use it for anything other than HUD drawing
-	table.sort(sorted_players, function(a, b)
-		return R_PointToDist(a.mo.x, a.mo.y) > R_PointToDist(b.mo.x, b.mo.y)
-	end)
-	
-	table.sort(sorted_npcs, function(a, b)
-		return R_PointToDist(a.x, a.y) > R_PointToDist(b.x, b.y)
-	end)
+	pcall(drawThink)
 end)
 
 addHook("MapLoad", function()
