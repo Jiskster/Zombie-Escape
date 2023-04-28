@@ -297,6 +297,8 @@ end, "game")
 
 addHook("PostThinkFrame", function()
 	sorted_players = {}
+	sorted_npcs = {}
+	
 	for player in players.iterate() do
 		if player and player.valid and player.mo and player.mo.valid then
 			if displayplayer and displayplayer.realmo and displayplayer.realmo.valid
@@ -313,6 +315,22 @@ addHook("PostThinkFrame", function()
 			end
 			table.insert(sorted_players, player)
 		end
+	end
+	
+	for i,npc in ipairs(ZE.npclist) do
+		if displayplayer and displayplayer.realmo and displayplayer.realmo.valid
+			local cam = displayplayer.realmo
+			if consoleplayer_camera and consoleplayer_camera.chase
+				cam = consoleplayer_camera
+			end
+			local thok = P_SpawnMobj(cam.x, cam.y, cam.z, MT_THOK)
+			local sight = P_CheckSight(thok, npc)
+			P_RemoveMobj(thok)
+			if not sight
+				continue
+			end
+		end
+		table.insert(sorted_npcs, npc)
 	end
 	--This list will be different for every player in a network game
 	--Don't use it for anything other than HUD drawing
