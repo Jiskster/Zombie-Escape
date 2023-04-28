@@ -5,7 +5,7 @@ ZE.MapLoad = function(mapnum)
     if gametype == GT_ZESCAPE
        for player in players.iterate do
 			player.respawned = 0
-			player.alphazm = 0
+			player.ztype = 0
 			player.boostcount = 0
 			player.stamina = 100*TICRATE
 		end
