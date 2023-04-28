@@ -264,7 +264,7 @@ end)
 local function TimerHud(v,p,c)
 	--if not mapheaderinfo[gamemap].swarmmap then return end
 	local hudtype = CV.hudtype.value 
-	local basetime = ((CV.survtime/TICRATE))
+	local basetime = ((CV.survtime))
 	if hudtype == 1 
 		v.drawString(0,167,"\x85\Time Left: "+G_TicsToMTIME(basetime), V_PERPLAYER|V_SNAPTOLEFT|V_SNAPTOBOTTOM)
 	end
