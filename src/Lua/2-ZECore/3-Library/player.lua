@@ -31,6 +31,12 @@ ZE.CharacterConfig = function(player)
 			if ZE.CharacterStats[skinname].actionspd then
 				player.actionspd = ZE.CharacterStats[skinname].actionspd
 			end
+			if ZE.CharacterStats[skinname].accelstart then
+				player.accelstart = ZE.CharacterStats[skinname].accelstart
+			end
+			if ZE.CharacterStats[skinname].acceleration then
+				player.acceleration = ZE.CharacterStats[skinname].acceleration
+			end
 		else 
 			player.normalspeed = ZE.CharacterStats[default].normalspeed 
 			player.runspeed = ZE.CharacterStats[default].runspeed 
