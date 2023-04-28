@@ -261,7 +261,7 @@ hud.add( function(v, player, camera)
 
 		local flash = (leveltime/(TICRATE/6))%2 == 0
 		local rflags = V_YELLOWMAP
-		if flash and target_player.mo.health == 0 then
+		if flash and target_npc.health == 0 then
 			rflags = V_REDMAP
 		end
 
