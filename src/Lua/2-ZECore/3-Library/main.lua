@@ -78,6 +78,13 @@ ZE.killNpc = function(mobj)
 	end
 end
 
+ZE.registerNpc = function(mobj, health, maxHealth)
+	mobj.isNPC = true
+	mobj.health = health
+	mobj.maxHealth = maxHealth
+	table.insert(ZE.npclist, mobj)
+end
+
 ZE.Win = function(team)
 	ZE.teamWin = team
 	for player in players.iterate do

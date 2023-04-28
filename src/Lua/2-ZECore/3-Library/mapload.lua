@@ -16,6 +16,7 @@ ZE.MapLoad = function(mapnum)
 			ZE.alpha_attack_show = 0
 			ZE.alpha_attack_doneshow = false
 			ZE.Wave = 0
+			ZE.npclist = {}
 			CV.gamestarted = false
     end
 

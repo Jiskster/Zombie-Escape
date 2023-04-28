@@ -88,6 +88,19 @@ ZE.BuildHealStation = function(player)
 	end
 end
 
+
+ZE.SpawnZombieNPC = function(player) -- debug thing
+	if player.mo and player.mo.valid
+        local zombie = P_SpawnMobj(player.mo.x+FixedMul(32*FRACUNIT, cos(player.mo.angle)),
+					player.mo.y+FixedMul(32*FRACUNIT, sin(player.mo.angle)), player.mo.z, MT_PLAYER)
+		ZE.registerNpc(zombie,100,100)
+		S_StartSound(player.mo, sfx_inf2)
+		zombie.name = "Zombie"
+		zombie.skin = "dzombie"
+		zombie.color = SKINCOLOR_MOSS
+	end
+end
+
 ZE.BuildLandMine = function(player)
 	if player.mo and player.mo.valid
         local landmine = P_SpawnMobj(player.mo.x+FixedMul(0*FRACUNIT, cos(player.mo.angle)),

@@ -105,6 +105,14 @@ COM_AddCommand("ze_forcewin", function(player, arg1)
 	end
 end,1)
 
+COM_AddCommand("ze_spawnzombienpc", function(player)
+	if (gametype ~= GT_ZESCAPE) then
+		CONS_Printf(player, "The game mode must be Zombie Escape to use this command.")
+		return
+	end
+	ZE.SpawnZombieNPC(player)
+end,1)
+
 COM_AddCommand("ze_changeztype", function(player, arg1)
 	if (gametype ~= GT_ZESCAPE) then
 		CONS_Printf(player, "The game mode must be Zombie Escape to use this command.")

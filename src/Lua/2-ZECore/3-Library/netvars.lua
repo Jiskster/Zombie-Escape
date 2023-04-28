@@ -15,4 +15,5 @@ ZE.NetVars = function(net)
 	CV.timeafterwin = net($)
 	CV.onwinscreen = net($)
 	ZE.Wave = net($)
+	ZE.npclist = net($)
 end

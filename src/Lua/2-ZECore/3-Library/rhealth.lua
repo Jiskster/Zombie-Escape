@@ -35,6 +35,9 @@ ZE.G_AddToDamageTable = function(knockback, killmsg, logic, swapnames)
 end
 
 ZE.F_NotTeamed = function(play1, play2)
+	if not play2 or not play1 then
+		return true
+	end
 	if play1.ctfteam == 0
 	or play2.ctfteam == 0
 		return true
@@ -109,22 +112,26 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 					return false
 				end
 				if shooter.type & MT_PLAYER
-				and hurtplayer.player.powers[pw_invulnerability] < 1
 				and hurtplayer != shooter --Stop hitting yourself!
+					if hurtplayer.player and not hurtplayer.player.powers[pw_invulnerability] < 1 then
+						return
+					end
 					if hazard == nil
 						return
 					end
 					if hazard.hits == nil
 						hazard.hits = {}
 					end
-					local node = ZE.F_GetNode(hurtplayer.player)
-					if hazard.hits[node] ~= nil
-						if hazard.type ~= MT_PLAYER
-						and hazard.type ~= MT_THROWNBOUNCE
-							return false --Prevents ring multi-hitting, except for bounce rings and players. They are special cases.
+					if hurtplayer.player then
+						local node = ZE.F_GetNode(hurtplayer.player)
+						if hazard.hits[node] ~= nil
+							if hazard.type ~= MT_PLAYER
+							and hazard.type ~= MT_THROWNBOUNCE
+								return false --Prevents ring multi-hitting, except for bounce rings and players. They are special cases.
+							end
+						else
+							hazard.hits[node] = true
 						end
-					else
-						hazard.hits[node] = true
 					end
 					local deathmsg = "%s killed %s."
 					local truedmg = 0

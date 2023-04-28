@@ -245,7 +245,7 @@ hud.add( function(v, player, camera)
 		local hpos = hudwidth/2 - FixedMul(hud_distance, tan(hangle) * realwidth/width)
 		local vpos = hudheight/2 + FixedMul(hud_distance, tan(vangle) * realheight/height)
 
-		local name = target_npc.name
+		local name = target_npc.name or "NPC"
 		local health = ("["+tostring(target_npc.health)+"/"+tostring(target_npc.maxHealth)+"]")
 
 		local namefont = "thin-fixed-center"
@@ -265,7 +265,7 @@ hud.add( function(v, player, camera)
 			rflags = V_REDMAP
 		end
 
-		local nameflags = skincolors[target_player.skincolor].chatcolor
+		local nameflags = V_GREENMAP
 		local distedit = max(0, distance - (distlimit*FRACUNIT/2)) * 2
 		local trans = min(9, (((distedit * 10) / FRACUNIT) / distlimit)) * V_10TRANS
 		v.drawString(hpos, vpos, name, nameflags|trans|V_ALLOWLOWERCASE, namefont)
@@ -308,8 +308,10 @@ addHook("PostThinkFrame", function()
 				end
 				local thok = P_SpawnMobj(cam.x, cam.y, cam.z, MT_THOK)
 				local sight = P_CheckSight(thok, player.mo)
-				P_RemoveMobj(thok)
-				if not sight
+				if thok and thok.valid 
+					P_RemoveMobj(thok)
+				end
+				if not sight -- if not sight
 					continue
 				end
 			end
@@ -318,6 +320,10 @@ addHook("PostThinkFrame", function()
 	end
 	
 	for i,npc in ipairs(ZE.npclist) do
+		if not npc then
+			table.remove(ZE.npclist,i)
+			continue
+		end
 		if displayplayer and displayplayer.realmo and displayplayer.realmo.valid
 			local cam = displayplayer.realmo
 			if consoleplayer_camera and consoleplayer_camera.chase
@@ -325,7 +331,9 @@ addHook("PostThinkFrame", function()
 			end
 			local thok = P_SpawnMobj(cam.x, cam.y, cam.z, MT_THOK)
 			local sight = P_CheckSight(thok, npc)
-			P_RemoveMobj(thok)
+			if thok and thok.valid 
+				P_RemoveMobj(thok)
+			end
 			if not sight
 				continue
 			end
@@ -339,7 +347,7 @@ addHook("PostThinkFrame", function()
 	end)
 	
 	table.sort(sorted_npcs, function(a, b)
-		return R_PointToDist(a.mo.x, a.mo.y) > R_PointToDist(b.mo.x, b.mo.y)
+		return R_PointToDist(a.x, a.y) > R_PointToDist(b.x, b.y)
 	end)
 end)
 
