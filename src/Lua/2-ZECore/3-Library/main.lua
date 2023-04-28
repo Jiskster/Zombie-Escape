@@ -284,6 +284,8 @@ ZE.SetRings = function(player)
 	   end
 	end
 end
+
+/*
 ZE.AntiPiracy = function(player) -- anti neo for a bit, very annoying having mods slapped on this project
 	if player.mo and player.mo.valid then
 		if player.mo.dropdash ~= nil then
@@ -295,6 +297,8 @@ ZE.AntiPiracy = function(player) -- anti neo for a bit, very annoying having mod
 		end
 	end
 end
+*/
+
 ZE.PlayerCount = function()
 	if gametype == GT_ZESCAPE
 		-- team count
