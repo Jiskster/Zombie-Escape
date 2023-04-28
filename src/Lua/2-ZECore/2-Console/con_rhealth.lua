@@ -1,4 +1,5 @@
 local CV = RV_ZESCAPE.Console
+-- the name is gonna stay as rhealth bc its cool
 
 CV.rhenable = CV_RegisterVar{
 	name = "rh_enable",
