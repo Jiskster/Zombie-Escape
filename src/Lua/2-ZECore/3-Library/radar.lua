@@ -19,7 +19,7 @@ local bo = 2 //border offset
 
 local function hudstuff(v, user, cam)
 	if not(multiplayer)
-	    --or user.ctfteam == 2
+	    or user.ctfteam == 2
 		or maptol&TOL_NIGHTS
 		or (gametype == GT_HIDEANDSEEK and user.pflags&PF_TAGIT)
 		then return
