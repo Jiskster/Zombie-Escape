@@ -1,6 +1,20 @@
 local ZE = RV_ZESCAPE
 local CV = RV_ZESCAPE.Console
 
+local function G_TicsToMTIME(tics)
+    local minutes = tostring(G_TicsToMinutes(tics))
+    local seconds = tostring(G_TicsToSeconds(tics))
+
+    if minutes:len() < 2 then
+        minutes = "0"..$
+    end
+
+    if seconds:len() < 2 then
+        seconds = "0"..$
+    end
+    return minutes..":"..seconds
+end
+
 hud.add(function(v, player)
 	local hudtype = CV.hudtype.value 
 	if (gametype ~= GT_ZESCAPE) return end
@@ -245,15 +259,17 @@ hud.add(function(v, player)
 	end
 end)
 
+
+
 local function TimerHud(v,p,c)
 	--if not mapheaderinfo[gamemap].swarmmap then return end
 	local hudtype = CV.hudtype.value 
 	local basetime = ((CV.survtime/TICRATE))
 	if hudtype == 1 
-		v.drawString(0,167,"\x85\Time Left: "+basetime, V_PERPLAYER|V_SNAPTOLEFT|V_SNAPTOBOTTOM)
+		v.drawString(0,167,"\x85\Time Left: "+G_TicsToMTIME(basetime), V_PERPLAYER|V_SNAPTOLEFT|V_SNAPTOBOTTOM)
 	end
 	if hudtype == 2
-		v.drawString(160,8,"\x85\Time Left: "+basetime, V_PERPLAYER|V_REDMAP|V_SNAPTOTOP|V_50TRANS, "center")
+		v.drawString(160,8,"\x85\Time Left: "+G_TicsToMTIME(basetime), V_PERPLAYER|V_REDMAP|V_SNAPTOTOP|V_50TRANS, "center")
 	end
 
 
