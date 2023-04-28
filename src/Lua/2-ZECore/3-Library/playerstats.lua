@@ -14,6 +14,42 @@ ZE.AddStat = function(
 end
 */
 
+ZE.RegisterStat = function(table, skin,
+	normalspeed, runspeed,
+	jumpfactor,
+	charability,charability2,
+	startHealth,maxHealth,
+	staminacost,staminarun,staminanormal)
+	
+	/*
+		"normalspeed",
+		"runspeed",
+		"jumpfactor",
+		"charability",
+		"charability2",
+		"startHealth",
+		"maxHealth",
+		"staminacost",
+		"staminarun",
+		"staminanormal",
+	*/
+	
+	if table == nil then
+		error("Table doesn't exist.", 2)
+	end
+	
+	table[skin].normalspeed = normalspeed or ZE.CharacterStats["defaultconfig"].normalspeed
+	table[skin].runspeed = runspeed or ZE.CharacterStats["defaultconfig"].runspeed
+	table[skin].jumpfactor = jumpfactor or ZE.CharacterStats["defaultconfig"].jumpfactor
+	table[skin].charability = charability or ZE.CharacterStats["defaultconfig"].charability
+	table[skin].charability2 = charability2 or ZE.CharacterStats["defaultconfig"].charability2
+	table[skin].startHealth = startHealth or ZE.CharacterStats["defaultconfig"].startHealth
+	table[skin].maxHealth = maxHealth or ZE.CharacterStats["defaultconfig"].maxHealth
+	table[skin].staminacost = staminacost or ZE.CharacterStats["defaultconfig"].staminacost
+	table[skin].staminarun = staminarun or ZE.CharacterStats["defaultconfig"].staminarun
+	table[skin].staminanormal = staminanormal or ZE.CharacterStats["defaultconfig"].staminanormal
+end
+
 --zombie stats doesnt really need much info
 --flexible
 ZE.ZombieStats = {
@@ -26,7 +62,7 @@ ZE.ZombieStats = {
 		maxHealth = 200,
 	},
 	["Alpha"] = {
-		normalspeed = 23*FRACUNIT,
+		normalspeed = 19*FRACUNIT,
 		jumpfactor = 26 * FRACUNIT / 19,
 		charability = CA_NONE,
 		charability2 = CA2_NONE,
@@ -58,6 +94,7 @@ ZE.CharacterStats = {
 		staminarun = 16*FRACUNIT,
 		staminanormal = 27*FRACUNIT,
     },
+	/*
 	["sonic"] = {
 		normalspeed = 24 * FRACUNIT,
 		runspeed = 100 * FRACUNIT,
@@ -71,6 +108,7 @@ ZE.CharacterStats = {
 		staminarun = 16*FRACUNIT,
 		staminanormal = 29*FRACUNIT,
 	},
+	*/
 	["tails"] = {
 		normalspeed = 21 * FRACUNIT,
 		runspeed = 100 * FRACUNIT,
@@ -329,3 +367,17 @@ ZE.CharacterStats = {
 	},
 }
 
+
+ZE.RegisterStat("sonic",
+	normalspeed = 24 * FRACUNIT,
+	runspeed = 100 * FRACUNIT,
+	jumpfactor = 17 * FRACUNIT / 19,
+	charability = CA_JUMPTHOK,
+	charability2 = CA2_NONE,
+	actionspd = 9 * FRACUNIT,
+	startHealth = 115,
+	maxHealth = 130,
+	staminacost = 17,
+	staminarun = 16*FRACUNIT,
+	staminanormal = 29*FRACUNIT,
+)
