@@ -92,12 +92,17 @@ local function hudstuff(v, user, cam)
 				if gametype == GT_ZESCAPE
 					local it = mo.player.ctfteam == 1
 					local notmyteam = mo.player.ctfteam == 1
+					local notdrawing = (mo.flags2 & MF2_DONTDRAW)
 					if notmyteam and flash2 then
 						color = c_yellow
 					elseif it then
 						color = c_red
 					else
 						color = c_blue
+					end
+					
+					if notdrawing then
+						color = c_black
 					end
 				end
 			//Badniks and bosses
@@ -145,8 +150,6 @@ local function hudstuff(v, user, cam)
 				else
 					color = c_yellow
 				end
-			elseif (mo.flags2 & MF2_DONTDRAW) then
-				color = c_black
 -- 				size = $*2/3
 			else return nil
 			end
