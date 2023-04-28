@@ -11,6 +11,4 @@ project, we would be happy to accept anything equitable.
 
 "This is a community project so this doesn't really belong to anyone, I'm just here to manage things. " - Jisk
 
-Main Developer now is: **Jisk (Jiskster)**
-
-Current version now:   **2.3.5 release**
+Main Developer is: **@Jiskster**
