@@ -384,11 +384,11 @@ ZE.SpawnPlayer = function(player)
 	
 	if player.mo and player.mo.valid then
 		if player.mo.skin == "dzombie" and not (mapheaderinfo[gamemap].zombieswarm) and not (ZE.alpha_attack) then
-			if P_RandomChance(FU/5) then
+			if P_RandomChance(FU/4) then
 				player.ztype = ZM_ALPHA
 				return
 			end	
-			if P_RandomChance(FU/3) then
+			if P_RandomChance(FU/4) then
 				player.ztype = ZM_FAST
 				return
 			end
