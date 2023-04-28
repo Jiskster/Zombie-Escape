@@ -1,6 +1,12 @@
 --Original script by wired-aunt, heavily modified for use in those battle mod servers
---but this is for zombie escape lmao and sorta modified by Jisk#4833
+--but this is for zombie escape lmao and sorta modified by Jisk
+
+local ZE = RV_ZESCAPE
+local CV = RV_ZESCAPE.Console
+
 local sorted_players = {}
+local sorted_npcs = {}
+
 
 local string_linebreak = function(view, message, flags)
 	--print("string_linebreak( "..message..", "..flags..")")
@@ -175,6 +181,96 @@ hud.add( function(v, player, camera)
 			end
 		end
 	end
+	
+	--target_player bootleg below
+	
+	--target_npc: is a mobj_t
+	for _, target_npc in pairs(sorted_npcs) do  --note: sorted_npcs arent a thing yet
+		if not target_npc.valid or not target_npc then continue end
+		if not target_npc.isNPC then continue end -- is npc? 
+		local tmo = target_npc -- didnt feel like renaming, but its fine
+
+		if not tmo.valid then continue end
+		--if not player.showownname and player == target_player then continue end
+		--if not player.showbotnames and target_player.bot == 1 then continue end
+
+
+		--how far away is the other player?
+		local distance = R_PointToDist(tmo.x, tmo.y)
+
+		local distlimit = 1000
+		if distance > distlimit*FRACUNIT then continue end
+
+		--Angle between camera vector and target
+		local hangdiff = R_PointToAngle2(cam.x, cam.y, tmo.x, tmo.y)
+		local hangle = hangdiff - cam.angle
+
+		--check if object is outside of our field of view
+		--converting to fixed just to normalise things
+		--e.g. this will convert 365° to 5° for us
+		local fhanlge = AngleFixed(hangle)
+		local fhfov = AngleFixed(fov/2)
+		local f360 = AngleFixed(ANGLE_MAX)
+		if fhanlge < f360 - fhfov and fhanlge > fhfov then
+			continue
+		end
+		
+		--flipcam adjustment
+		local flip = 1
+		if displayplayer.mo and displayplayer.mo.valid
+			flip = P_MobjFlip(displayplayer.mo)
+		end
+
+		--figure out vertical angle
+		local h = FixedHypot(cam.x-tmo.x, cam.y-tmo.y)
+		local tmoz = tmo.z
+		if (flip == -1)
+			tmoz = tmo.z + tmo.height
+		end
+		if spectator
+			tmoz = $ - 48*tmo.scale
+		end
+		local vangdiff = R_PointToAngle2(0, 0, tmoz-cam.z-48*FRACUNIT*flip, h) - ANGLE_90
+		local vcangle = first_person and player.aiming or cam.aiming or 0
+		
+		local vangle = (vcangle + vangdiff) * flip
+
+		--again just check if we're outside the FOV
+		local fvangle = AngleFixed(vangle)
+		local fvfov = FixedMul(AngleFixed(fov), FRACUNIT*v.height()/v.width())
+		if fvangle < f360 - fvfov and fvangle > fvfov then
+			continue
+		end
+
+		local hpos = hudwidth/2 - FixedMul(hud_distance, tan(hangle) * realwidth/width)
+		local vpos = hudheight/2 + FixedMul(hud_distance, tan(vangle) * realheight/height)
+
+		local name = target_npc.name
+		local health = ("["+tostring(target_npc.health)+"/"+tostring(target_npc.maxHealth)+"]")
+
+		local namefont = "thin-fixed-center"
+		local ringfont = "small-fixed-center"
+		local charwidth = 5
+		local lineheight = 8
+		if distance > 500*FRACUNIT then
+			--namefont = "small-thin-fixed-center"
+			--ringfont = "small-thin-fixed-center"
+			--charwidth = 4
+			--lineheight = 4
+		end
+
+		local flash = (leveltime/(TICRATE/6))%2 == 0
+		local rflags = V_YELLOWMAP
+		if flash and target_player.mo.health == 0 then
+			rflags = V_REDMAP
+		end
+
+		local nameflags = skincolors[target_player.skincolor].chatcolor
+		local distedit = max(0, distance - (distlimit*FRACUNIT/2)) * 2
+		local trans = min(9, (((distedit * 10) / FRACUNIT) / distlimit)) * V_10TRANS
+		v.drawString(hpos, vpos, name, nameflags|trans|V_ALLOWLOWERCASE, namefont)
+		v.drawString(hpos, vpos+(lineheight*FRACUNIT), health, rflags|trans|V_ALLOWLOWERCASE, ringfont)
+	end
 end, "game")
 
 addHook("PlayerMsg", function(player, typenum, target, message)
@@ -221,6 +317,10 @@ addHook("PostThinkFrame", function()
 	--This list will be different for every player in a network game
 	--Don't use it for anything other than HUD drawing
 	table.sort(sorted_players, function(a, b)
+		return R_PointToDist(a.mo.x, a.mo.y) > R_PointToDist(b.mo.x, b.mo.y)
+	end)
+	
+	table.sort(sorted_npcs, function(a, b)
 		return R_PointToDist(a.mo.x, a.mo.y) > R_PointToDist(b.mo.x, b.mo.y)
 	end)
 end)

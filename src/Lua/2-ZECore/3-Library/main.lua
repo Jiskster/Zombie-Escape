@@ -23,6 +23,8 @@ CV.timeafterwin = 0
 CV.onwinscreen = 0
 CV.gamestarted = false
 
+ZE.npclist = {} -- mobj only
+
 ZE.ResetTimers = function(mapnum) -- code needed to be changed?
 	CV.timeafterwin = 0
 	CV.winWait = 9999*TICRATE
@@ -51,12 +53,31 @@ ZE.CountUp = function()
 	end
 end
 
+ZE.npcCount = function()
+	local count = 0
+	for i,npc in ipairs(ZE.npclist)
+		count = $+1
+	end
+	
+	return count
+end
+
 ZE.PostWin = function(player)
 	if player.gamesPlayed ~= nil then --anti softlock
 		player.gamesPlayed = $ + 1
 		ZE.CheckUnlocks(player)
 	end
 end
+
+ZE.killNpc = function(mobj)
+	for i,npc in ipairs(ZE.npclist) -- find npc and delete(i know this is weird)
+		if mobj and mobj == npc then
+			P_DamageMobj(mobj, nil, nil, 1, DMG_INSTAKILL)
+			table.remove(ZE.npclist, i)
+		end
+	end
+end
+
 ZE.Win = function(team)
 	ZE.teamWin = team
 	for player in players.iterate do
