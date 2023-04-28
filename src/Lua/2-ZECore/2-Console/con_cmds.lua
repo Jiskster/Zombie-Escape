@@ -87,6 +87,10 @@ COM_AddCommand("cleardata", function(player,arg1) --rvgrpass
 end,1)
 
 COM_AddCommand("ze_forcewin", function(player, arg1)
+	if (gametype ~= GT_ZESCAPE) then
+		CONS_Printf(player, "The game mode must be Zombie Escape to use this command.")
+		return
+	end
 	arg1 = tonumber(arg1)
 	if arg1 ~= nil and arg1 <= 2 and arg1 > 0 then
 		if arg1 == 1 then
@@ -102,6 +106,10 @@ COM_AddCommand("ze_forcewin", function(player, arg1)
 end,1)
 
 COM_AddCommand("ze_changeztype", function(player, arg1)
+	if (gametype ~= GT_ZESCAPE) then
+		CONS_Printf(player, "The game mode must be Zombie Escape to use this command.")
+		return
+	end
 	arg1 = tonumber(arg1)
 	if player.mo and player.mo.valid and arg1 ~= nil then
 		player.ztype = arg1

@@ -355,17 +355,31 @@ ZE.RestrictSkin = function()
 end
 
 ZE.SpawnPlayer = function(player)
+	local servercheck = (consoleplayer == server or isserver or isdedicatedserver) 
+	local minjointime = 5*TICRATE -- min jointime until server kicks in
 	if (leveltime < CV.waittime) and not (leveltime > CV.waittime) then
-		COM_BufInsertText(player, "changeteam blue")
-		--COM_BufInsertText(server, "serverchangeteam \$#player\ blue")
+		if servercheck and player.jointime > minjointime  then
+			CONS_Printf(server, "Forced team change")
+			COM_BufInsertText(server, "serverchangeteam \$#player\ blue")
+		else
+			COM_BufInsertText(player, "changeteam blue")
+		end
 	end
 	if (leveltime > CV.waittime) and (player.playerstate ~= PST_LIVE) then
-		COM_BufInsertText(player, "changeteam red")
-		--COM_BufInsertText(server, "serverchangeteam \$#player\ red")
+		if servercheck and player.jointime > minjointime then
+			CONS_Printf(server, "Forced team change")
+			COM_BufInsertText(server, "serverchangeteam \$#player\ red")
+		else
+			COM_BufInsertText(player, "changeteam red")
+		end
 	end
 	if (leveltime > CV.waittime) and (player.ctfteam == 0 or player.spectator == 1) then
-		COM_BufInsertText(player, "changeteam red")
-		--COM_BufInsertText(server, "serverchangeteam \$#player\ red")
+		if servercheck and player.jointime > minjointime then
+			CONS_Printf(server, "Forced team change")
+			COM_BufInsertText(server, "serverchangeteam \$#player\ red")
+		else
+			COM_BufInsertText(player, "changeteam red")
+		end
 	end
 	
 	if player.mo and player.mo.valid then
