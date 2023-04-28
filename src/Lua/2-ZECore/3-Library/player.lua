@@ -359,7 +359,6 @@ end
 ZE.HealthOrb = function(obj, play)
 	local player = play.player
 	if (player.mo) and (player.ctfteam == 2)
-		player.maxhp = 1 -- deprecated
 		player.mo.maxHealth = $ + 200
 		player.mo.health = $ + 200
 	end
