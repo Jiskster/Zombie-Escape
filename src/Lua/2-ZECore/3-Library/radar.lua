@@ -146,8 +146,7 @@ local function hudstuff(v, user, cam)
 					color = c_yellow
 				end
 			elseif (mo.flags2 & MF2_DONTDRAW) then
-					color = c_black
-				end
+				color = c_black
 -- 				size = $*2/3
 			else return nil
 			end
