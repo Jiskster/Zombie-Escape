@@ -100,7 +100,7 @@ end
 ZE.ZtypeCfg = function(player)
 	if not (gametype == GT_ZESCAPE) then return end
 	if (player.mo and player.mo.valid)
-		if (player.ztype == ZM_ALPHA) and not (player.ctfteam == 2)
+		if (player.ztype == ZM_ALPHA) and not (player.ctfteam == 2) and CV.gamestarted
 			player.mo.scale = ZE.ZombieStats["Alpha"].scale
 		elseif (player.ctfteam == 2) or (player.spectator == 1) then
 			return
@@ -338,17 +338,17 @@ ZE.ZombieSwarmWave = function(player)
 					player.mo.health = 200 + (35*ZE.survcount)
 					player.mo.maxHealth = 200 + (35*ZE.survcount)
 				end
-				player.normalspeed = 35*FRACUNIT
+				player.normalspeed = 32*FRACUNIT
 				player.charability = CA_NONE
 				player.charability2 = CA2_SPINDASH
 			end
 			
 			if ZE.Wave == 4
 				if player.powers[pw_flashing] > 0
-					player.mo.health = 215 + (40*ZE.survcount)
-					player.mo.maxHealth = 215 + (40*ZE.survcount)
+					player.mo.health = 315 + (40*ZE.survcount)
+					player.mo.maxHealth = 315 + (40*ZE.survcount)
 				end
-				player.normalspeed = 42*FRACUNIT
+				player.normalspeed = 32*FRACUNIT
 				player.charability = CA_THOK
 				player.charability2 = CA2_SPINDASH
 			end

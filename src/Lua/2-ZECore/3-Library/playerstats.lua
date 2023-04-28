@@ -13,7 +13,7 @@ ZE.ZombieStats = {
 		maxHealth = 200,
 	},
 	["Alpha"] = {
-		normalspeed = 19*FRACUNIT,
+		normalspeed = 18*FRACUNIT,
 		jumpfactor = 26 * FRACUNIT / 19,
 		charability = CA_NONE,
 		charability2 = CA2_NONE,
@@ -22,7 +22,7 @@ ZE.ZombieStats = {
 		scale = 13*FRACUNIT/10,
 	},
 	["Fast"] = {
-		normalspeed = 50*FRACUNIT,
+		normalspeed = 35*FRACUNIT,
 		jumpfactor = 18 * FRACUNIT / 19,
 		charability = CA_NONE,
 		charability2 = CA2_NONE,
