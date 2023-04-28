@@ -21,4 +21,5 @@ __" I recently removed support for the extra characters such as scarf, xtreme an
 In the source file, go to **extra/ExtraCharConfig** for the support for those extra characters. Thank you.
 The reason we detached these is because they are mods irrelevant to zombie escape, and was here for server hosting.
 I'm going to start removing server resources that has no relation to zombie escape. Since it is considered bloating.
+We're keeping them in a way so we have some legacy things.
 Thank you "__ - Jisk
