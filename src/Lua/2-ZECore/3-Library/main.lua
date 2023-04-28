@@ -357,7 +357,7 @@ ZE.SpawnPlayer = function(player)
 	local minjointime = 5*TICRATE -- min jointime until server kicks in
 	if (leveltime < CV.waittime) and not (leveltime > CV.waittime) then
 		if servercheck and player.jointime > minjointime  then
-			CONS_Printf(server, "Forced team change")
+			--CONS_Printf(server, "Forced team change")
 			COM_BufInsertText(server, "serverchangeteam \$#player\ blue")
 		else
 			COM_BufInsertText(player, "changeteam blue")
@@ -365,7 +365,7 @@ ZE.SpawnPlayer = function(player)
 	end
 	if (leveltime > CV.waittime) and (player.playerstate ~= PST_LIVE) then
 		if servercheck and player.jointime > minjointime then
-			CONS_Printf(server, "Forced team change")
+			--CONS_Printf(server, "Forced team change")
 			COM_BufInsertText(server, "serverchangeteam \$#player\ red")
 		else
 			COM_BufInsertText(player, "changeteam red")
@@ -373,7 +373,7 @@ ZE.SpawnPlayer = function(player)
 	end
 	if (leveltime > CV.waittime) and (player.ctfteam == 0 or player.spectator == 1) then
 		if servercheck and player.jointime > minjointime then
-			CONS_Printf(server, "Forced team change")
+			--CONS_Printf(server, "Forced team change")
 			COM_BufInsertText(server, "serverchangeteam \$#player\ red")
 		else
 			COM_BufInsertText(player, "changeteam red")
