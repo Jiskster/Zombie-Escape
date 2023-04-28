@@ -306,7 +306,7 @@ addHook("PostThinkFrame", function()
 				if consoleplayer_camera and consoleplayer_camera.chase
 					cam = consoleplayer_camera
 				end
-				local thok = P_SpawnMobj(cam.x, cam.y, cam.z, MT_THOK)
+				local thok = P_SpawnMobj(cam.x, cam.y, cam.z, MT_NULL)
 				local sight = P_CheckSight(thok, player.mo)
 				P_RemoveMobj(thok)
 				if not sight -- if not sight
@@ -327,7 +327,7 @@ addHook("PostThinkFrame", function()
 			if consoleplayer_camera and consoleplayer_camera.chase
 				cam = consoleplayer_camera
 			end
-			local thok = P_SpawnMobj(cam.x, cam.y, cam.z, MT_THOK)
+			local thok = P_SpawnMobj(cam.x, cam.y, cam.z, MT_NULL)
 			local sight = P_CheckSight(thok, npc)
 			P_RemoveMobj(thok)
 			if not sight
