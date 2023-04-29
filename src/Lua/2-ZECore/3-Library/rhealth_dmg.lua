@@ -135,7 +135,7 @@ end
 
 ZE.G_BurstRSDamage = function(mobj, hurthealth)
 	if mobj.type == MT_RS_THROWNBURST
-		return 75
+		return 45
 	else
 		return 0
 	end
@@ -222,27 +222,27 @@ ZE.G_CorkDamage = function(mobj, hurthealth)
 	end
 end
 
-ZE.G_AddToDamageTable(35*FRACUNIT, "%s humiliated %s with the red ring of death.", ZE.G_NormalRingRS)
+ZE.G_AddToDamageTable(25*FRACUNIT, "%s humiliated %s with the red ring of death.", ZE.G_NormalRingRS)
 ZE.G_AddToDamageTable(250*FRACUNIT, "%s poked a hole in %s with a rail ring.", ZE.G_RailRingDamage)
 ZE.G_AddToDamageTable(2*FRACUNIT, "%s stood in the face of %s's immortal aura.", ZE.G_MeleeDamage, true)
-ZE.G_AddToDamageTable(3*FRACUNIT, "%s turned %s into swiss cheese with automatic rings.", ZE.G_AutomaticRingDamage)
+ZE.G_AddToDamageTable(2*FRACUNIT, "%s turned %s into swiss cheese with automatic rings.", ZE.G_AutomaticRingDamage)
 ZE.G_AddToDamageTable(14*FRACUNIT, "%s bounced away %s with bounce rings.", ZE.G_BounceRingDamage)
-ZE.G_AddToDamageTable(4*FRACUNIT, "%s scatterbrained %s with scatter rings.", ZE.G_ScatterRingDamage)
+ZE.G_AddToDamageTable(2*FRACUNIT, "%s scatterbrained %s with scatter rings.", ZE.G_ScatterRingDamage)
 ZE.G_AddToDamageTable(9*FRACUNIT, "%s showed %s that the possibilities are never-ending.", ZE.G_InfinityRingDamage)
 ZE.G_AddToDamageTable(0, "%s is cooking fried %s for dinner.", ZE.G_FireTrailDamage)
-ZE.G_AddToDamageTable(24*FRACUNIT, "%s hit with a hammer to the %s face.", ZE.G_HammerDamage)
+ZE.G_AddToDamageTable(35*FRACUNIT, "%s hit with a hammer to the %s face.", ZE.G_HammerDamage)
 ZE.G_AddToDamageTable(2*FRACUNIT, "%s gave a few scratches on %s arm.", ZE.G_ZMeleeDamage)
 ZE.G_AddToDamageTable(24*FRACUNIT, "%s knocked %s in the head with a cork.", ZE.G_CorkDamage)
-ZE.G_AddToDamageTable(48*FRACUNIT, "%s poked a hole in %s with a rail ring.", ZE.G_RailRingRSDamage)
+ZE.G_AddToDamageTable(250*FRACUNIT, "%s poked a hole in %s with a rail ring.", ZE.G_RailRingRSDamage)
 ZE.G_AddToDamageTable(2*FRACUNIT, "%s turned %s into fried bacon", ZE.G_FlameRSDamage)
 ZE.G_AddToDamageTable(1*FRACUNIT, "%s pumped %s with bubbles (WHAT?)", ZE.G_SplashRSDamage)
 ZE.G_AddToDamageTable(1*FRACUNIT, "%s pumped %s with bubbles (WHAT?)", ZE.G_SplashAOERSDamage)
 ZE.G_AddToDamageTable(24*FRACUNIT, "%s exploded %s with an flash shot.", ZE.G_FlashShotDamage)
-ZE.G_AddToDamageTable(27*FRACUNIT, "%s exploded %s with an seeker.", ZE.G_SeekerRSDamage)
-ZE.G_AddToDamageTable(24*FRACUNIT, "%s trapped %s with a grenade ring.", ZE.G_GrenadeRingDamage)
-ZE.G_AddToDamageTable(24*FRACUNIT, "%s exploded %s with an explosion ring.", ZE.G_ExplosionRingDamage)
-ZE.G_AddToDamageTable(18*FRACUNIT, "%s killed %s.", ZE.G_StoneRSDamage)
-ZE.G_AddToDamageTable(8*FRACUNIT, "%s killed %s.", ZE.G_StoneDebrisRSDamage)
-ZE.G_AddToDamageTable(6*FRACUNIT, "%s killed %s.", ZE.G_AccelRSDamage)
+ZE.G_AddToDamageTable(20*FRACUNIT, "%s exploded %s with an seeker.", ZE.G_SeekerRSDamage)
+ZE.G_AddToDamageTable(15*FRACUNIT, "%s trapped %s with a grenade ring.", ZE.G_GrenadeRingDamage)
+ZE.G_AddToDamageTable(15*FRACUNIT, "%s exploded %s with an explosion ring.", ZE.G_ExplosionRingDamage)
+ZE.G_AddToDamageTable(15*FRACUNIT, "%s killed %s.", ZE.G_StoneRSDamage)
+ZE.G_AddToDamageTable(12*FRACUNIT, "%s killed %s.", ZE.G_StoneDebrisRSDamage)
+ZE.G_AddToDamageTable(9*FRACUNIT, "%s killed %s.", ZE.G_AccelRSDamage)
 ZE.G_AddToDamageTable(38*FRACUNIT, "%s killed %s.", ZE.G_FlashShotRSDamage)
-ZE.G_AddToDamageTable(8*FRACUNIT, "%s killed %s.", ZE.G_BurstRSDamage)
+ZE.G_AddToDamageTable(6*FRACUNIT, "%s killed %s.", ZE.G_BurstRSDamage)
