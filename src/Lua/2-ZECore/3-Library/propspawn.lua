@@ -88,7 +88,7 @@ ZE.BuildHealStation = function(player)
 	end
 end
 
-
+/*
 ZE.SpawnZombieNPC = function(player) -- debug thing
 	if player.mo and player.mo.valid
         local zombie = P_SpawnMobj(player.mo.x+FixedMul(32*FRACUNIT, cos(player.mo.angle)),
@@ -100,6 +100,7 @@ ZE.SpawnZombieNPC = function(player) -- debug thing
 		zombie.color = SKINCOLOR_MOSS
 	end
 end
+*/
 
 ZE.BuildLandMine = function(player)
 	if player.mo and player.mo.valid
