@@ -123,6 +123,10 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 					else
 						hazard.hits[node] = true
 					end
+					
+					local critical = P_RandomChance(FRACUNIT/50)
+					
+					
 					local deathmsg = "%s killed %s."
 					local truedmg = 0
 					local catch = 0
@@ -143,22 +147,39 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 					if truedmg < 1
 						return false
 					end
-					
+
 					if shooter.player.ztype == ZM_ALPHA and shooter.player.boosttimer > 0 then -- rage = double damage
 						truedmg = $1 * 2
 					end
 					if CV.knockback.value == 1 then  --knockbackk stuff
 						if ZE.F_NotTeamed(shooter.player, hurtplayer.player)
-							
-							P_Thrust(hurtplayer, hazard.angle, ZE.damagetable.knockback[catch])
+							local knockback = ZE.damagetable.knockback[catch]
+							if critical then
+								knockback = $1 * 4
+							end
+							P_Thrust(hurtplayer, hazard.angle, knockback)
 						else
 							if CV.friendlypushing.value == 1
-								P_Thrust(hurtplayer, hazard.angle, ZE.damagetable.knockback[catch])
+								local knockback = ZE.damagetable.knockback[catch]
+								if critical then
+									knockback = $1 * 4
+								end
+								P_Thrust(hurtplayer, hazard.angle, knockback)
 							end
 						end
 					end
+					
+
 					if ZE.F_NotTeamed(shooter.player, hurtplayer.player) == false
 						return
+					end
+					if critical then
+						truedmg = $1 * 3
+						S_StartSound(hurtplayer,sfx_critze)
+						S_StartSound(nil,sfx_critze,shooter.player) -- so shooter can hear clearly too
+						local goldghost = P_SpawnGhostMobj(hurtplayer)
+						P_SetScale(goldghost, hurtplayer.scale*2)
+						goldghost.color = SKINCOLOR_GOLD
 					end
 					if CV.debug.value == 0 and shooter.player.ctfteam == 2
 						if hurtplayer.player.powers[pw_super]
@@ -180,6 +201,7 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 							truedmg = $1 / 2
 						end
 						hurtplayer.health = $1 - truedmg
+
 						if not(ZE.teamWin) then
 							P_AddPlayerScore(shooter.player, truedmg)
 						end

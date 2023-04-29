@@ -51,6 +51,8 @@ ZE.PropProjectileCollide = function(mo, mobj)
      or mobj.type == MT_RS_THROWNBOUNCE
 	 or mobj.type == MT_CORK
 	 or mobj.type == MT_LHRT
+	 or mobj.type == MT_RS_HS_SHOT
+	 or mobj.type == MT_RS_FIST
 		return false
 	end
 end

@@ -6,6 +6,7 @@ freeslot("TOL_ZESCAPE",
 "sfx_scpdr","sfx_tesla1",
 "sfx_samb1","sfx_samb2","sfx_samb3","sfx_samb4","sfx_samb5",
 "sfx_salrm","sfx_srdio","sfx_elvr",
+"sfx_critze",
 "MT_PROPWOOD","MT_MEGAHP",
 "S_PROP1","S_PROP1_BREAK",
 "SPR_WPRP"

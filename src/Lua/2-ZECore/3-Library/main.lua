@@ -22,6 +22,7 @@ CV.gametime = 14*60*TICRATE
 CV.timeafterwin = 0
 CV.onwinscreen = 0
 CV.gamestarted = false
+ZE.secretshowtime = 0
 
 ZE.npclist = {} -- mobj only
 
@@ -223,7 +224,18 @@ ZE.WinScript = function()
 end
 
 ZE.secretsound = function()
-	     COM_BufInsertText(player, "cecho A secret is revealed!")
+	ZE.secretShow()
+	S_StartSound(nil, sfx_secret)
+end
+
+ZE.secretShow = function()
+	ZE.secretshowtime = 5*TICRATE
+end
+
+ZE.secretTick = function()
+	if ZE.secretshowtime then
+		ZE.secretshowtime = $ - 1
+	end
 end
 
 ZE.TeamSwitch = function(player, fromspectators, team)
@@ -481,7 +493,7 @@ ZE.CountDown = function()
 				chatprint("\x83\[Zombie Swarm] Wave -> "..ZE.Wave)
 			end
 			
-			if P_RandomChance(FRACUNIT/7) and not(mapheaderinfo[gamemap].zombieswarm) then
+			if P_RandomChance(FRACUNIT/10) and not(mapheaderinfo[gamemap].zombieswarm) then
 				ZE.Start_alpha_attack()
 			end
 		end

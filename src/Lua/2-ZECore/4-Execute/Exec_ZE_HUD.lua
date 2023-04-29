@@ -243,7 +243,11 @@ hud.add(function(v, player, camera)
 		
 		
 		if ZE.alpha_attack == 1 and ZE.alpha_attack_show < 15*FRACUNIT and ZE.alpha_attack_doneshow == false then
-			v.draw(160,50,v.cachePatch("ALPHATT"), V_PERPLAYER|V_SNAPTOBOTTOM)
+			v.draw(160,50,v.cachePatch("ALPHATT"), V_PERPLAYER|V_SNAPTOBOTTOM|V_50TRANS)
+		end
+		
+		if ZE.secretshowtime then
+			v.draw(160,50,v.cachePatch("SECRETZE"), V_PERPLAYER|V_SNAPTOBOTTOM|V_50TRANS)
 		end
 	end
 end, "game")
