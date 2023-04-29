@@ -35,9 +35,6 @@ ZE.G_AddToDamageTable = function(knockback, killmsg, logic, swapnames)
 end
 
 ZE.F_NotTeamed = function(play1, play2)
-	if not play2 or not play1 then
-		return true
-	end
 	if play1.ctfteam == 0
 	or play2.ctfteam == 0
 		return true
@@ -104,34 +101,27 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 				if hurtplayer.health < 1 --Do not repeat this process multiple times!
 					return false
 				end
-				if (hurtplayer.isNPC == nil and hurtplayer.player == nil)
-					return false
-				end
-				
-				if (shooter.isNPC == nil and shooter.player == nil)
+				if shooter.player == nil
+				or hurtplayer.player == nil
 					return false
 				end
 				if shooter.type & MT_PLAYER
+				and hurtplayer.player.powers[pw_invulnerability] < 1
 				and hurtplayer != shooter --Stop hitting yourself!
-					if hurtplayer.player and not hurtplayer.player.powers[pw_invulnerability] < 1 then
-						return
-					end
 					if hazard == nil
 						return
 					end
 					if hazard.hits == nil
 						hazard.hits = {}
 					end
-					if hurtplayer.player then
-						local node = ZE.F_GetNode(hurtplayer.player)
-						if hazard.hits[node] ~= nil
-							if hazard.type ~= MT_PLAYER
-							and hazard.type ~= MT_THROWNBOUNCE
-								return false --Prevents ring multi-hitting, except for bounce rings and players. They are special cases.
-							end
-						else
-							hazard.hits[node] = true
+					local node = ZE.F_GetNode(hurtplayer.player)
+					if hazard.hits[node] ~= nil
+						if hazard.type ~= MT_PLAYER
+						and hazard.type ~= MT_THROWNBOUNCE
+							return false --Prevents ring multi-hitting, except for bounce rings and players. They are special cases.
 						end
+					else
+						hazard.hits[node] = true
 					end
 					local deathmsg = "%s killed %s."
 					local truedmg = 0
@@ -158,7 +148,7 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 						truedmg = $1 * 2
 					end
 					if CV.knockback.value == 1 then 
-						if (hurtplayer.player and ZE.F_NotTeamed(shooter.player, hurtplayer.player)) or hurtplayer.isNPC
+						if ZE.F_NotTeamed(shooter.player, hurtplayer.player)
 							--if hurtplayer.player.ztype == ZM_ALPHA and hurtplayer.player.boosttimer ~= nil and hurtplayer.player.boosttimer <= 0 then return end
 							P_Thrust(hurtplayer, hazard.angle, ZE.damagetable.knockback[catch])
 						else
@@ -167,64 +157,53 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 							end
 						end
 					end
-					if (ZE.F_NotTeamed(shooter.player, hurtplayer.player) == false or hurtplayer.isNPC and shooter.player)
+					if ZE.F_NotTeamed(shooter.player, hurtplayer.player) == false
 						return
 					end
 					if CV.debug.value == 0 and shooter.player.ctfteam == 2
-						if hurtplayer.player
-							if hurtplayer.player.powers[pw_super]
-								truedmg = $1 / 2
-							end
-							hurtplayer.health = $1 - truedmg
-							if not(ZE.teamWin) then
-								P_AddPlayerScore(shooter.player, truedmg)
-							end
-							hurtplayer.player.health = hurtplayer.health
-							if hurtplayer.player
-								if hurtplayer.player.powers[pw_super] > 0
-								and hurtplayer.health < 1
-									hurtplayer.health = 1
-									hurtplayer.player.health = 1
-								end
-							end
+						if hurtplayer.player.powers[pw_super]
+							truedmg = $1 / 2
+						end
+						hurtplayer.health = $1 - truedmg
+						if not(ZE.teamWin) then
+							P_AddPlayerScore(shooter.player, truedmg)
+						end
+						hurtplayer.player.health = hurtplayer.health
+						if hurtplayer.player.powers[pw_super] > 0
+						and hurtplayer.health < 1
+							hurtplayer.health = 1
+							hurtplayer.player.health = 1
 						end
 					end
 					if CV.debug.value == 0 and shooter.player.ctfteam == 1
-						if hurtplayer.player then
-							if hurtplayer.player.powers[pw_super]
-								truedmg = $1 / 2
-							end
-							hurtplayer.health = $1 - truedmg
-							if not(ZE.teamWin) then
-								P_AddPlayerScore(shooter.player, truedmg)
-							end
-							hurtplayer.player.health = hurtplayer.health
-							hurtplayer.player.powers[pw_invulnerability] = 40
+						if hurtplayer.player.powers[pw_super]
+							truedmg = $1 / 2
 						end
+						hurtplayer.health = $1 - truedmg
+						if not(ZE.teamWin) then
+							P_AddPlayerScore(shooter.player, truedmg)
+						end
+						hurtplayer.player.health = hurtplayer.health
+						hurtplayer.player.powers[pw_invulnerability] = 40
 					end
 					if hurtplayer.health < 1 -- on death
-						if hurtplayer.player then
-							P_PlayerWeaponPanelBurst(hurtplayer.player)
-							P_PlayerWeaponAmmoBurst(hurtplayer.player)
-							P_PlayerEmeraldBurst(hurtplayer.player)
-							P_PlayerFlagBurst(hurtplayer.player)
-						end
+						P_PlayerWeaponPanelBurst(hurtplayer.player)
+						P_PlayerWeaponAmmoBurst(hurtplayer.player)
+						P_PlayerEmeraldBurst(hurtplayer.player)
+						P_PlayerFlagBurst(hurtplayer.player)
 						P_KillMobj(hurtplayer, hazard, shooter)
-						local name1 = shooter.name or shooter.player.name
-						local name2 = hurtplayer.name or hurtplayer.player.name
-						if hurtplayer.player then
-							if shooter.player.ctfteam == 1
-								name1 = "\x85" .. $1 .. "\x80"
-							elseif shooter.player.ctfteam == 2
-								name1 = "\x84" .. $1 .. "\x80"
-							end
-							if hurtplayer.player.ctfteam == 1
-								name2 = "\x85" .. $1 .. "\x80"
-							elseif hurtplayer.player.ctfteam == 2
-								name2 = "\x84" .. $1 .. "\x80"
-							end
+						local name1 = shooter.player.name
+						local name2 = hurtplayer.player.name
+						if shooter.player.ctfteam == 1
+							name1 = "\x85" .. $1 .. "\x80"
+						elseif shooter.player.ctfteam == 2
+							name1 = "\x84" .. $1 .. "\x80"
 						end
-						
+						if hurtplayer.player.ctfteam == 1
+							name2 = "\x85" .. $1 .. "\x80"
+						elseif hurtplayer.player.ctfteam == 2
+							name2 = "\x84" .. $1 .. "\x80"
+						end
 						if ZE.damagetable.swapnames[catch] == true
 							print(string.format(ZE.damagetable.killmsg[catch], name2, name1))
 						else
