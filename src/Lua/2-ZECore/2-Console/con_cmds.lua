@@ -125,3 +125,11 @@ COM_AddCommand("ze_changeztype", function(player, arg1)
 		player.ztype = arg1
 	end
 end,1)
+
+
+COM_AddCommand("zmsuicide", function(player)
+	if player.mo and player.mo.valid then
+		player.suicided = true
+		P_DamageMobj(player.mo, nil, nil, 1, DMG_INSTAKILL)
+	end
+end)

@@ -1,8 +1,8 @@
 name = dzombie
 realname = Default_Zombie
 hudname = _
-prefcolor = moss
-supercolor = moss
+prefcolor = SKINCOLOR_ZOMBIE
+supercolor = SKINCOLOR_ZOMBIE
 ability = CA_NONE
 ability2 = CA2_NONE
 actionspd = 60

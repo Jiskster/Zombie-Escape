@@ -52,6 +52,10 @@ hud.add(function(v, player)
 			if player.ztype == ZM_FAST then
 				v.drawString(1,176,"\x85\FAST ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 			end
+			
+			if player.ztype == ZM_TANK then
+				v.drawString(1,176,"\x85\TANK ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+			end
 		end
 	end
 end)
@@ -179,6 +183,10 @@ hud.add(function(g,player,cam)
 				
 				if player.ztype == ZM_FAST then
 					str="FAST ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
+				end
+				
+				if player.ztype == ZM_TANK then
+					str="TANK ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
 				end
 			elseif player.ctfteam == 0 then
 				str="SPECTATOR" c=V_SNAPTOTOP|V_50TRANS

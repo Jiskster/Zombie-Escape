@@ -100,20 +100,32 @@ end
 ZE.ZtypeCfg = function(player)
 	if not (gametype == GT_ZESCAPE) then return end
 	if (player.mo and player.mo.valid)
-		if (player.ztype == ZM_ALPHA) and not (player.ctfteam == 2) and CV.gamestarted
-			player.mo.scale = ZE.ZombieStats["Alpha"].scale
+		if not (player.ctfteam == 2) and CV.gamestarted then
+			if (player.ztype == ZM_ALPHA) then
+				player.mo.scale = ZE.ZombieStats["Alpha"].scale
+			end
+
+			if (player.ztype == ZM_TANK) then
+				player.mo.scale = ZE.ZombieStats["Tank"].scale
+			end
 		elseif (player.ctfteam == 2) or (player.spectator == 1) then
 			return
 		end
+
 		if not (leveltime < CV.waittime) and not (player.ctfteam == 2)  then
 			if (player.ztype == ZM_ALPHA) and not (player.boost == 1) then
 				player.normalspeed = ZE.ZombieStats["Alpha"].normalspeed
 				player.jumpfactor = ZE.ZombieStats["Alpha"].jumpfactor
 			end
-			
+
 			if (player.ztype == ZM_FAST)
 				player.normalspeed = ZE.ZombieStats["Fast"].normalspeed
 				player.jumpfactor = ZE.ZombieStats["Fast"].jumpfactor
+			end
+
+			if (player.ztype == ZM_TANK)
+				player.normalspeed = ZE.ZombieStats["Tank"].normalspeed
+				player.jumpfactor = ZE.ZombieStats["Tank"].jumpfactor
 			end
 		end
 	end
@@ -130,20 +142,20 @@ ZE.AlphaZmRage = function(player)
 				player.boostcount = $ - 1
 			end
 			if (player.boostcount == 0) and (player.boosttimer == 0) and (player.cmd.buttons & BT_CUSTOM1)
-				player.boosttimer = 5*TICRATE
+				player.boosttimer = 3*TICRATE
 				S_StartSound(player.mo, sfx_bstup)
 			end
 			if (player.boosttimer ~= 0)
-				player.normalspeed = 40*FRACUNIT
+				player.normalspeed = 45*FRACUNIT
 				player.charability = CA_JUMPTHOK
-				player.actionspd = 30*FRACUNIT
+				player.actionspd = 35*FRACUNIT
 				P_SpawnGhostMobj(player.mo)
 			else
 				return
 			end
 			if (player.boosttimer > 0)
 				if (player.boosttimer == 1)
-					player.boostcount = 45*TICRATE
+					player.boostcount = 12*TICRATE
 					S_StartSound(player.mo, sfx_bstdn)
 				end
 				player.boosttimer = $ - 1
@@ -195,8 +207,18 @@ end
 
 ZE.CharacterColors = function()
 	for player in players.iterate
-		if (player.mo and player.mo.valid)
-			player.mo.color = skins[player.mo.skin].prefcolor
+		if player.mo and player.mo.valid then
+			player.mo.color = player.skincolor
+			if CV.lockcolors.value == 1 then
+				player.mo.color = skins[player.mo.skin].prefcolor
+			end
+			
+			if player.mo.skin == "dzombie" then
+				player.mo.color = SKINCOLOR_ZOMBIE
+				if player.ztype == ZM_ALPHA then
+					player.mo.color = SKINCOLOR_ALPHAZOMBIE
+				end
+			end
 		end
 	end
 end
@@ -306,7 +328,10 @@ ZE.ZombieHealth = function(player)
 					player.mo.maxHealth = ZE.ZombieStats["Fast"].maxHealth + (25*ZE.survcount)
 				end
 				--zombie swarm
-
+				if (player.ztype == ZM_TANK)
+					player.mo.health = ZE.ZombieStats["Tank"].startHealth + (150*ZE.survcount)
+					player.mo.maxHealth = ZE.ZombieStats["Tank"].maxHealth + (150*ZE.survcount)
+				end	
 			end
 		end
 	end

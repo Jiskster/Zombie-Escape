@@ -6,7 +6,7 @@ local CV = ZE.Console
 ZE.ZombieStats = {
 	["Normal"] = {
 		normalspeed = 20*FRACUNIT,
-		jumpfactor = 24 * FRACUNIT / 19,
+		jumpfactor = 22 * FRACUNIT / 19,
 		charability = CA_NONE,
 		charability2 = CA2_NONE,
 		startHealth = 200,
@@ -14,7 +14,7 @@ ZE.ZombieStats = {
 	},
 	["Alpha"] = {
 		normalspeed = 18*FRACUNIT,
-		jumpfactor = 26 * FRACUNIT / 19,
+		jumpfactor = 24 * FRACUNIT / 19,
 		charability = CA_NONE,
 		charability2 = CA2_NONE,
 		startHealth = 500,
@@ -28,6 +28,15 @@ ZE.ZombieStats = {
 		charability2 = CA2_NONE,
 		startHealth = 50,
 		maxHealth = 50,
+	},
+	["Tank"] = {
+		normalspeed = 9*FRACUNIT,
+		jumpfactor = 18 * FRACUNIT / 19,
+		charability = CA_NONE,
+		charability2 = CA2_NONE,
+		startHealth = 2500,
+		maxHealth = 2500,
+		scale = 24*FRACUNIT/10,
 	},
 }
 

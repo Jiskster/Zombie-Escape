@@ -130,10 +130,6 @@ bit.floatnumber = function(src)
 	end
 end
 
-COM_AddCommand("zmsuicide", function(player)
-	ForceKillPlayer(player)
-end)
-
 COM_AddCommand("makehuman", function(player, pname)
 	if not pname then
 		return

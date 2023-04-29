@@ -15,6 +15,13 @@ CV.knockback = CV_RegisterVar{
 	PossibleValue = CV_OnOff
 }
 
+CV.lockcolors = CV_RegisterVar{
+	name = "rh_lockcolors",
+	defaultvalue = "On",
+	flags = CV_NETVAR,
+	PossibleValue = CV_OnOff
+}
+
 CV.debug = CV_RegisterVar{
 	name = "rh_debug",
 	defaultvalue = "Off",

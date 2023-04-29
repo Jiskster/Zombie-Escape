@@ -193,7 +193,7 @@ ZE.WinScript = function()
 				ZE.Win(1)
 			end
 		end
-		 if CV.survtime > 0 then
+		 if CV.survtime > 0 and not(CV.onwinscreen) then
 		    CV.survtime = $1-1
 			if CV.survtime <= 0 then
 				ZE.survWin()
@@ -410,14 +410,22 @@ ZE.SpawnPlayer = function(player)
 	
 	if player.mo and player.mo.valid then
 		if player.mo.skin == "dzombie" and not (mapheaderinfo[gamemap].zombieswarm) and not (ZE.alpha_attack) then
-			if P_RandomChance(FU/4) then
+			if player.suicided then
+				player.suicided = false
+				return
+			end
+			if P_RandomChance(FU/6) then
+				player.ztype = ZM_TANK
+				return
+			end
+			if P_RandomChance(FU/5) then
 				player.ztype = ZM_ALPHA
 				return
 			end	
 			if P_RandomChance(FU/4) then
 				player.ztype = ZM_FAST
 				return
-			end
+			end	
 		end
 	end
 end
