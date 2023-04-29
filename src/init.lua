@@ -77,6 +77,15 @@ for _, filename in ipairs{
 	"3-ServerCore/2-ServerUtil/SaveMap.lua",
 	"3-ServerCore/2-ServerUtil/LUA_MOTD",
 	"3-ServerCore/2-ServerUtil/L_StuffAccounts_1.3f.lua",
+	
+	
+	"5-Maps/corruptedvoid.lua",
+	"5-Maps/minecraftv1.lua",
+	"5-Maps/scp.lua",
+	"5-Maps/secretlab2.lua",
+	"5-Maps/specialstage.lua",
+	"5-Maps/stonewood.lua",
+	"5-Maps/undertalept1.lua",
 } do
     dofile(filename)
 end

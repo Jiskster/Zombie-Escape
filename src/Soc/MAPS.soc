@@ -1,0 +1,248 @@
+Level 1
+Levelname = Egypt
+Subtitle = Zombie Escape
+Act = 0
+Music = EGZEM
+TypeOfLevel = ZESCAPE
+NextLevel = 41
+SkyNum = 15
+NoZone = True
+SelectHeading = Zombie Escape Maps
+
+Level 2
+Levelname = Stonewood
+Subtitle = Zombie Escape
+Act = 0
+Music = SWZEM
+TypeOfLevel = ZESCAPE
+NextLevel = 43
+SkyNum = 11
+Weather = 1
+NoZone = True
+SelectHeading = Zombie Escape Maps
+
+Level 3
+Levelname = Secret Lab 1
+Subtitle = Zombie Escape
+Act = 0
+Music = SCP1
+TypeOfLevel = ZESCAPE
+NextLevel = 43
+SkyNum = 21
+NoZone = True
+SelectHeading = Zombie Escape Maps
+
+Level 4
+Levelname = Corrupted Void
+Subtitle = Zombie Escape
+Act = 0
+Music = VOID1
+TypeOfLevel = ZESCAPE
+NextLevel = 44
+SkyNum = 22
+NoZone = True
+SelectHeading = Zombie Escape Maps
+
+Level 5
+Levelname = Secret Lab 2
+Subtitle = Zombie Escape
+Act = 0
+Music = ZE0
+TypeOfLevel = ZESCAPE
+NextLevel = 45
+NoZone = True
+SelectHeading = Zombie Escape Maps
+Skynum = 21
+
+Level 6
+Levelname = Special Stage
+Subtitle = Zombie Escape
+Act = 0
+Music = SPEC8
+TypeOfLevel = ZESCAPE
+NextLevel = 47
+SkyNum = 1
+SelectHeading = Zombie Escape Maps
+
+Level 7
+Levelname = Minecraft v1
+Subtitle = Zombie Escape
+Act = 0
+Music = MC1
+TypeOfLevel = ZESCAPE
+NextLevel = 48
+SkyNum = 14
+NoZone = True
+SelectHeading = Zombie Escape Maps
+
+Level 8
+Levelname = Undertale Pt 1
+Subtitle = Zombie Escape
+Act = 0
+Music = UTSTR1
+TypeOfLevel = ZESCAPE
+NextLevel = 40
+SkyNum = 10
+NoZone = True
+SelectHeading = Zombie Escape Maps
+
+Cutscene 1
+NumScenes 4
+Scene 1
+NumberOfPics = 1
+Pic1Name = UTSTORY1
+Pic1Hires = 1
+Pic1Duration = 1024
+Pic1XCoord = 32
+Pic1YCoord = 16
+TextXPos = 16
+TextYPos = 152
+Music = UTSTR1
+SceneText = 
+Long ago, two races ruled over Earth:
+HUMANS and MONSTERS.
+      #
+Scene 2
+NumberOfPics = 1
+Pic1Name = UTSTORY2
+Pic1Hires = 1
+Pic1Duration = 1024
+Pic1XCoord = 32
+Pic1YCoord = 16
+TextXPos = 16
+TextYPos = 152
+Music = UTSTR1
+SceneText = 
+One day, war broke out between the two races.
+      #
+Scene 3
+NumberOfPics = 1
+Pic1Name = UTSTORY3
+Pic1Hires = 1
+Pic1Duration = 128
+Pic1XCoord = 32
+Pic1YCoord = 16
+TextXPos = 16
+TextYPos = 152
+Music = UTSTR1
+SceneText = 
+Many years later...
+      #
+Scene 4
+NumberOfPics = 1
+Pic1Name = UTSTORY4
+Pic1Hires = 1
+Pic1Duration = 1024
+Pic1XCoord = 32
+Pic1YCoord = 16
+TextXPos = 128
+TextYPos = 152
+Music = UTSTR1
+SceneText = 
+MT. EGGOT
+  202X
+      #
+
+Level 9
+Levelname = SCP 87-B (V1)
+Subtitle = Ladders and traps
+Act = 0
+Music = SCP87B
+TypeOfLevel = ZESCAPE
+NextLevel = R1
+NoZone = True
+SelectHeading = Zombie Escape Maps
+Lua.SurviveTime = 10
+
+Level 10
+Levelname = Roblox Obby
+Subtitle = Easy parkour
+Act = 0
+SkyNum = 52
+Music = RBXO
+TypeOfLevel = ZESCAPE
+NextLevel = R2
+NoZone = True
+SelectHeading = Zombie Escape Maps
+Lua.BounceOff = true
+
+Level 11
+Levelname = Empty Lab
+Subtitle = A lab that has no way out.
+Act = 0
+SkyNum = 34
+Music = SCP87B
+TypeOfLevel = ZESCAPE
+NextLevel = R3
+NoZone = True
+SelectHeading = Zombie Escape Maps
+
+Level 12
+Levelname = Ice Mountain
+Subtitle = Squares, Pits and Trees.
+Act = 0
+Weather = 2
+SkyNum = 17
+Music = MP_ICE
+TypeOfLevel = ZESCAPE
+NextLevel = R0
+NoZone = True
+SelectHeading = Zombie Escape Maps
+
+Level 13
+Levelname = Old River XMAS
+Subtitle = Zombie Swarm Maps
+Act = 0
+Music = MP_ICE
+TypeOfLevel = ZESCAPE
+NextLevel = 71
+SkyNum = 17
+Palette = 5
+weather = 2
+NoZone = True
+SelectHeading = Zombie Swarm Maps
+Lua.SurviveTime = 5
+Lua.ZombieSwarm = true
+
+Level 14
+Levelname = Forest XMAS
+Subtitle = Zombie Swarm Maps
+Act = 0
+Music = ZE_RRZ
+TypeOfLevel = ZESCAPE
+NextLevel = 70
+SkyNum = 17
+Palette = 5
+weather = 2
+NoZone = True
+SelectHeading = Zombie Swarm Maps
+Lua.SurviveTime = 5
+Lua.ZombieSwarm = true
+
+
+Level 15
+Levelname = Highrise 2021
+Subtitle = Zombie Swarm Maps
+Act = 0
+Music = M72
+TypeOfLevel = ZESCAPE
+NextLevel = 70
+SkyNum = 21
+weather = 2
+NoZone = True
+SelectHeading = Zombie Swarm Maps
+Lua.SurviveTime = 5
+Lua.ZombieSwarm = true
+
+Level 16
+Levelname = Train Station 17
+Subtitle = EXE Survival Maps
+Music = MAPESM
+TypeOfLevel = ZESCAPE
+NoZone = True
+Weather = 0
+SkyNum = 5
+Lua.SurviveTime = 5
+Lua.BounceOff = true
+SelectHeading = Zombie Swarm Maps
+Lua.ZombieSwarm = true
