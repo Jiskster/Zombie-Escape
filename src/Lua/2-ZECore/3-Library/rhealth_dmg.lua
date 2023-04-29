@@ -223,7 +223,7 @@ ZE.G_CorkDamage = function(mobj, hurthealth)
 end
 
 ZE.G_AddToDamageTable(25*FRACUNIT, "%s humiliated %s with the red ring of death.", ZE.G_NormalRingRS)
-ZE.G_AddToDamageTable(250*FRACUNIT, "%s poked a hole in %s with a rail ring.", ZE.G_RailRingDamage)
+ZE.G_AddToDamageTable(125*FRACUNIT, "%s poked a hole in %s with a rail ring.", ZE.G_RailRingDamage)
 ZE.G_AddToDamageTable(2*FRACUNIT, "%s stood in the face of %s's immortal aura.", ZE.G_MeleeDamage, true)
 ZE.G_AddToDamageTable(2*FRACUNIT, "%s turned %s into swiss cheese with automatic rings.", ZE.G_AutomaticRingDamage)
 ZE.G_AddToDamageTable(14*FRACUNIT, "%s bounced away %s with bounce rings.", ZE.G_BounceRingDamage)
@@ -233,7 +233,7 @@ ZE.G_AddToDamageTable(0, "%s is cooking fried %s for dinner.", ZE.G_FireTrailDam
 ZE.G_AddToDamageTable(35*FRACUNIT, "%s hit with a hammer to the %s face.", ZE.G_HammerDamage)
 ZE.G_AddToDamageTable(2*FRACUNIT, "%s gave a few scratches on %s arm.", ZE.G_ZMeleeDamage)
 ZE.G_AddToDamageTable(24*FRACUNIT, "%s knocked %s in the head with a cork.", ZE.G_CorkDamage)
-ZE.G_AddToDamageTable(250*FRACUNIT, "%s poked a hole in %s with a rail ring.", ZE.G_RailRingRSDamage)
+ZE.G_AddToDamageTable(125*FRACUNIT, "%s poked a hole in %s with a rail ring.", ZE.G_RailRingRSDamage)
 ZE.G_AddToDamageTable(2*FRACUNIT, "%s turned %s into fried bacon", ZE.G_FlameRSDamage)
 ZE.G_AddToDamageTable(1*FRACUNIT, "%s pumped %s with bubbles (WHAT?)", ZE.G_SplashRSDamage)
 ZE.G_AddToDamageTable(1*FRACUNIT, "%s pumped %s with bubbles (WHAT?)", ZE.G_SplashAOERSDamage)

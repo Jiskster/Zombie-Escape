@@ -147,20 +147,26 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 					if truedmg < 1
 						return false
 					end
-
+					local knockback = ZE.damagetable.knockback[catch]
 					if shooter.player.ztype == ZM_ALPHA and shooter.player.boosttimer > 0 then -- rage = double damage
 						truedmg = $1 * 2
 					end
+					if hurtplayer.player.ztype == ZM_TANK then
+						knockback = $1 / 3
+					end
+					
+					if hurtplayer.player.ztype == ZM_ALPHA then
+						knockback = $1 * 2
+					end
 					if CV.knockback.value == 1 then  --knockbackk stuff
 						if ZE.F_NotTeamed(shooter.player, hurtplayer.player)
-							local knockback = ZE.damagetable.knockback[catch]
+							
 							if critical then
 								knockback = $1 * 4
 							end
 							P_Thrust(hurtplayer, hazard.angle, knockback)
 						else
 							if CV.friendlypushing.value == 1
-								local knockback = ZE.damagetable.knockback[catch]
 								if critical then
 									knockback = $1 * 4
 								end
