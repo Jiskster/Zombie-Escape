@@ -185,6 +185,7 @@ hud.add( function(v, player, camera)
 	--target_player bootleg below
 	
 	--target_npc: is a mobj_t
+	/*
 	for _, target_npc in pairs(sorted_npcs) do  --note: sorted_npcs arent a thing yet
 		if not target_npc.valid or not target_npc then continue end
 		if not target_npc.isNPC then continue end -- is npc? 
@@ -271,6 +272,7 @@ hud.add( function(v, player, camera)
 		v.drawString(hpos, vpos, name, nameflags|trans|V_ALLOWLOWERCASE, namefont)
 		v.drawString(hpos, vpos+(lineheight*FRACUNIT), health, rflags|trans|V_ALLOWLOWERCASE, ringfont)
 	end
+	*/
 end, "game")
 
 addHook("PlayerMsg", function(player, typenum, target, message)
@@ -317,6 +319,7 @@ addHook("PostThinkFrame", function()
 			end
 		end
 		
+		/*
 		for i,npc in ipairs(ZE.npclist) do
 			if not npc then
 				table.remove(ZE.npclist,i)
@@ -336,15 +339,18 @@ addHook("PostThinkFrame", function()
 			end
 			table.insert(sorted_npcs, npc)
 		end
+		*/
 		--This list will be different for every player in a network game
 		--Don't use it for anything other than HUD drawing
 		table.sort(sorted_players, function(a, b)
 			return R_PointToDist(a.mo.x, a.mo.y) > R_PointToDist(b.mo.x, b.mo.y)
 		end)
 		
+		/*
 		table.sort(sorted_npcs, function(a, b)
 			return R_PointToDist(a.x, a.y) > R_PointToDist(b.x, b.y)
 		end)
+		*/
 	end
 	
 	pcall(drawThink)
