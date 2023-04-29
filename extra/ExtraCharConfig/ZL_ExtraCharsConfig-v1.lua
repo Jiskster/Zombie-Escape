@@ -14,18 +14,6 @@ local extrachars = {
         staminarun = 16*FRACUNIT,
         staminanormal = 27*FRACUNIT,
     },
-    ["w"] = {
-        normalspeed = 22 * FRACUNIT,
-        runspeed = 100 * FRACUNIT,
-        jumpfactor = 17 * FRACUNIT / 19,
-        charability = CA_AIRDRILL,
-        charability2 = CA2_NONE,
-        startHealth = 120,
-        maxHealth = 120,
-        staminacost = 9,
-        staminarun = 16*FRACUNIT,
-        staminanormal = 26*FRACUNIT,
-    },
     ["serpentine"] = {
         normalspeed = 22 * FRACUNIT,
         runspeed = 100 * FRACUNIT,
@@ -148,6 +136,19 @@ local extrachars = {
         staminarun = 16*FRACUNIT,
         staminanormal = 27*FRACUNIT,
     },
+    ["milne"] = {
+		normalspeed = 22 * FRACUNIT,
+		runspeed = 100 * FRACUNIT,
+		jumpfactor = 12 * FRACUNIT/10,
+		charability = CA_NONE,
+		charability2 = CA2_NONE,
+		charflags = SF_NOJUMPSPIN|SF_NOSKID,
+		startHealth = 75,
+		maxHealth = 100,
+		staminacost = 10,
+		staminarun = 16*FRACUNIT,
+		staminanormal = 25*FRACUNIT,
+	},
 }
 
 

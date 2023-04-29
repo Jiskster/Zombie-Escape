@@ -311,7 +311,7 @@ RS.AddWeapon({
 	slingfunc = function(mo, weapon)
 		mo.momx = $ / 3
 		mo.momy = $ / 3
-		P_SetObjectMomZ(mo, 6*FRACUNIT, false)
+		P_SetObjectMomZ(mo, 1*FRACUNIT, false)
 		mo.state = S_PLAY_SPRING
 		mo.player.pflags = $ & ~(PF_JUMPED | PF_SPINNING)
 		
