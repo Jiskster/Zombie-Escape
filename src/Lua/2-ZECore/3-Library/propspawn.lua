@@ -124,7 +124,7 @@ ZE.SpawnProps = function(player)
 		if player.propspawn == 0 then return end
 		player.builddelay = $ or 0
 		if (player.cmd.buttons & BT_TOSSFLAG) and not (player.builddelay ~= 0)
-			player.builddelay = 1*TICRATE
+			player.builddelay = 5*TICRATE
 			ZE.BuildPropWood(player)
 		end
 		if player.builddelay ~= 0 then
@@ -135,7 +135,7 @@ ZE.SpawnProps = function(player)
 		if player.propspawn == 0 then return end
 		player.builddelay = $ or 0
 		if (player.cmd.buttons & BT_TOSSFLAG) and not (player.builddelay ~= 0)
-			player.builddelay = 1*TICRATE
+			player.builddelay = 5*TICRATE
 			ZE.BuildHealStation(player)
 		end
 		if player.builddelay ~= 0 then
@@ -147,7 +147,7 @@ ZE.SpawnProps = function(player)
 		if player.propspawn == 0 then return end
 		player.builddelay = $ or 0
 		if (player.cmd.buttons & BT_TOSSFLAG) and not (player.builddelay ~= 0)
-			player.builddelay = 1*TICRATE
+			player.builddelay = TICRATE/4
 			ZE.BuildLandMine(player)
 		end
 		if player.builddelay ~= 0 then
@@ -237,7 +237,7 @@ addHook("MobjThinker", function (mobj)
                             amyglow.tracer.fuse = amyglow.fuse
                         end
 						if leveltime % 27 == 0 then
-							ZE.addHP(player.mo, 11)
+							ZE.addHP(player.mo, 9)
 						end
                     end
                 end
