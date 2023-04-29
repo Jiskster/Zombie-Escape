@@ -12,18 +12,41 @@ addHook("PlayerThink", function(player)
 end)
 
 addHook("ThinkFrame", function()
+	local resetlevelneeded = false
+	local gotfile = false
 	if leveltime == 1
 		if server_init == false
-			COM_BufInsertText(server, "exec luafiles/client/MultiWorld/ZE/lastmap.dat")
-			server_init= true
+			local lastmap = io.openlocal("ZombieEscape/lastmap.dat", "r")
+			if isdedicatedserver then
+				if lastmap then
+					COM_BufInsertText(server, lastmap:read("*a"))
+					gotfile = true
+				end
+				if not lastmap then
+					resetlevelneeded = true
+				end
+			end
+			server_init = true
 		end
 	end
-	if leveltime == 2
-		if gamemap != 1035
+	
+	if resetlevelneeded then
+		CONS_Printf(server, "ZombieEscape/lastmap.dat not found, going to first map.")
+		COM_BufInsertText(server, "map 01 -gametype 8")
+	end
+	if leveltime == 3 then
+		if gamemap != 1035 and isdedicatedserver then
 			if G_IsSpecialStage(gamemap) then return end
-			local lastmap = io.openlocal("client/MultiWorld/ZE/lastmap.dat", "w")
-			lastmap:write("map "..gamemap)
+			if gametype ~= GT_ZESCAPE and gotfile == false and server_init == true then 
+				CONS_Printf(server, "ZombieEscape/lastmap.dat not found, going to first map.")
+				COM_BufInsertText(server, "map 01 -gametype 8")
+				return 
+			end
+			local lastmap = io.openlocal("ZombieEscape/lastmap.dat", "w")
+			lastmap:write("map "..gamemap.." -gametype 8")
 			lastmap:close()
 		end
 	end
+
+
 end)

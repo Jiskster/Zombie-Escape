@@ -239,17 +239,21 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 						end
 						
 						
-						if mapheaderinfo[gamemap].zombieswarm
+						if mapheaderinfo[gamemap].zombieswarm and shooter.maxHealth and shooter.health then
 							
 							shooter.maxHealth = $ + (15)
 							shooter.health = $ + (15)
 						end
 						
-						if hurtplayer.player.ztype == ZM_ALPHA then
+						if hurtplayer.player.ztype == ZM_ALPHA and shooter.maxHealth and shooter.health then
 							shooter.maxHealth = $ + (30)
 							shooter.health = $ + (30)
 						end
 						
+						if hurtplayer.player.ztype == ZM_TANK and shooter.maxHealth and shooter.health then
+							shooter.maxHealth = $ + (125)
+							shooter.health = $ + (30)
+						end
 						if not(ZE.teamWin) then
 							if ZE.Wave then
 								P_AddPlayerScore(shooter.player, 250*ZE.Wave)
