@@ -30,7 +30,7 @@ ZE.ZombieStats = {
 		maxHealth = 50,
 	},
 	["Tank"] = {
-		normalspeed = 9*FRACUNIT,
+		normalspeed = 8*FRACUNIT,
 		jumpfactor = 18 * FRACUNIT / 19,
 		charability = CA_NONE,
 		charability2 = CA2_NONE,

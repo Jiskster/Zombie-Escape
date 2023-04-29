@@ -218,6 +218,10 @@ ZE.CharacterColors = function()
 				if player.ztype == ZM_ALPHA then
 					player.mo.color = SKINCOLOR_ALPHAZOMBIE
 				end
+				
+				if player.ztype == ZM_TANK then
+					player.mo.color = SKINCOLOR_SEAFOAM
+				end
 			end
 		end
 	end
