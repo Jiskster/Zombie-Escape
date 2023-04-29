@@ -137,7 +137,9 @@ hud.add( function(v, player, camera)
 		if fvangle < f360 - fvfov and fvangle > fvfov then
 			continue
 		end
-
+		if (tmo.flags2 & MF2_DONTDRAW) then
+			continue
+		end
 		local hpos = hudwidth/2 - FixedMul(hud_distance, tan(hangle) * realwidth/width)
 		local vpos = hudheight/2 + FixedMul(hud_distance, tan(vangle) * realheight/height)
 
