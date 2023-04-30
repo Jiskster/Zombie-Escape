@@ -239,19 +239,32 @@ ZE.secretTick = function()
 end
 
 ZE.TeamSwitch = function(player, fromspectators, team)
-    if not (gametype == GT_ZESCAPE) then return end	
-
-	if (player.spectator == 1 or player.ctfteam == 1) and CV.gamestarted then -- allow switch when spectator and game has started
-		if team == 2 and not IsPlayerAdmin(player) then
-			return false
-		end
+    if not (gametype == GT_ZESCAPE) then return end
+	if (player.ctfteam == 2) and not (player.playerstate == PST_DEAD) and (leveltime > CV.waittime) then
+		return false
+	end
+	
+	if (player.ctfteam == 0) and (leveltime > CV.waittime) then
 		return nil
 	end
 	
-	if team == 0 then
-		player.spectator = 1
-		player.ctfteam = 0
-		return false
+	if (player.ctfteam == 1) and (leveltime > CV.waittime) then
+	   return false
+	end
+	
+	if (player.ctfteam == 2) and (leveltime < CV.waittime) then
+		local textnum = P_RandomRange(1, 3)
+		if textnum == 1 then
+			chatprintf(player, "\x85\<Zombie>\x80\ The game still registers you in RNG. You cannot escape from being enslaved by the zombies.")
+		end 
+		
+		if textnum == 2 then
+			chatprintf(player, "\x85\<Zombie>\x80\ The zombies will always be back. You cannot escape from the RNG.")
+		end
+		
+		if textnum == 3 then
+			chatprintf(player, "\x85\<Zombie>\x80\ You will be enslaved by the zombies if you continue.")
+		end
 	end
 end
 
