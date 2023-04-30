@@ -14,20 +14,20 @@ ZE.RevengerAbility = function(player)
 				player.rvgrcount = $ - 1
 			end
 			if (player.rvgrcount == 0) and (player.rvgrtimer == 0) and (player.cmd.buttons & BT_TOSSFLAG)
-				player.rvgrtimer = 5*TICRATE
+				player.rvgrtimer = 3*TICRATE
 				S_StartSound(player.mo, sfx_stop1)
 				P_SpawnGhostMobj(player.mo)
 				P_SpawnSpinMobj(player,MT_THOK)
 			end
 			if (player.rvgrtimer ~= 0)
-				player.normalspeed = 35*FRACUNIT
+				player.normalspeed = 60*FRACUNIT
 				player.mo.flags2 = $|MF2_DONTDRAW
 			else
 				return
 			end
 			if (player.rvgrtimer > 0)
 				if (player.rvgrtimer == 1)
-					player.rvgrcount = 15*TICRATE
+					player.rvgrcount = 20*TICRATE
 					S_StartSound(player.mo, sfx_stop2)
 					P_SpawnGhostMobj(player.mo)
 				    P_SpawnSpinMobj(player,MT_THOK)

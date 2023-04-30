@@ -3,6 +3,7 @@ local ZE = RV_ZESCAPE
 addHook("MobjMoveCollide", function(mo, pmo) return ZE.ProjectileCollide(mo, pmo) end, MT_RS_THROWNSCATTER)
 addHook("MobjMoveCollide", function(mo, pmo) return ZE.ProjectileCollide(mo, pmo) end, MT_RS_THROWNEXPLOSION)
 addHook("MobjMoveCollide", function(mo, pmo) return ZE.ProjectileCollide(mo, pmo) end, MT_RS_THROWNAUTOMATIC)
+addHook("MobjMoveCollide", function(mo, pmo) return ZE.ProjectileCollide(mo, pmo) end, MT_RS_THROWNBOUNCE)
 addHook("MobjMoveCollide", function(mo, pmo) return ZE.ProjectileCollide(mo, pmo) end, MT_REDRING)
 addHook("MobjMoveCollide", function(mo, pmo) return ZE.ProjectileCollide(mo, pmo) end, MT_RS_THROWNSEEKER)
 addHook("MobjMoveCollide", function(mo, pmo) return ZE.ProjectileCollide(mo, pmo) end, MT_RS_THROWNSPLASH)
@@ -18,6 +19,7 @@ addHook("MobjMoveCollide", function(mo, pmo) return ZE.ProjectileCollide(mo, pmo
 addHook("MobjMoveCollide", function(mo, pmo) return ZE.ProjectileCollide(mo, pmo) end, MT_RS_MEGASHOT)
 addHook("MobjMoveCollide", function(mo, pmo) return ZE.ProjectileCollide(mo, pmo) end, MT_RS_RAILSHOT)
 addHook("MobjMoveCollide", function(mo, pmo) return ZE.ProjectileCollide(mo, pmo) end, MT_CORK)
+addHook("MobjMoveCollide", function(mo, pmo) return ZE.ProjectileCollide(mo, pmo) end, MT_RS_HS_SHOT)
 addHook("MobjMoveCollide", function(mo, pmo) return ZE.HearthMobjMoveCollide(mo, pmo) end, MT_LHRT)
 
 

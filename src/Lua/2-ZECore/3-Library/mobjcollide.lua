@@ -30,29 +30,31 @@ ZE.PropMobjCollide = function(mo, pmo)
 end
 
 ZE.PropProjectileCollide = function(mo, mobj)
-     if mobj.type == MT_RS_THROWNAUTOMATIC
-     or mobj.type == MT_RS_THROWNSCATTER
-     or mobj.type == MT_RS_THROWNGRENADE
-     or mobj.type == MT_RS_THROWNEXPLOSION
-     or mobj.type == MT_RS_THROWNSEEKER
-     or mobj.type == MT_RS_THROWNSPLASH
-     or mobj.type == MT_RS_SPLASH_AOE
-     or mobj.type == MT_RS_THROWNACCEL
-     or mobj.type == MT_RS_THROWNWAVE
-     or mobj.type == MT_RS_THROWNSTONE
-     or mobj.type == MT_RS_STONEDEBRIS
-     or mobj.type == MT_RS_FLASHSHOT
-     or mobj.type == MT_RS_THROWNBURST
-     or mobj.type == MT_RS_THROWNFLAME
-     or mobj.type == MT_RS_THROWNINFINITY
-     or mobj.type == MT_RS_SHOT
-     or mobj.type == MT_RS_MINISHOT
-     or mobj.type == MT_RS_MEGASHOT
-     or mobj.type == MT_RS_THROWNBOUNCE
-	 or mobj.type == MT_CORK
-	 or mobj.type == MT_LHRT
-	 or mobj.type == MT_RS_HS_SHOT
-	 or mobj.type == MT_RS_FIST
+     if mobj.type == ZE.GetObjectTypeOrNull("MT_RS_THROWNAUTOMATIC")
+     or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_THROWNSCATTER")
+     or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_THROWNGRENADE")
+     or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_THROWNEXPLOSION")
+     or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_THROWNSEEKER")
+     or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_THROWNSPLASH")
+     or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_SPLASH_AOE")
+     or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_THROWNACCEL")
+     or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_THROWNWAVE")
+     or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_THROWNSTONE")
+     or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_STONEDEBRIS")
+     or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_FLASHSHOT")
+     or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_THROWNBURST")
+     or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_THROWNFLAME")
+     or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_THROWNINFINITY")
+     or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_SHOT")
+     or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_MINISHOT")
+     or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_MEGASHOT")
+     or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_THROWNBOUNCE")
+	 or mobj.type == ZE.GetObjectTypeOrNull("MT_CORK")
+	 or mobj.type == ZE.GetObjectTypeOrNull("MT_LHRT")
+	 or mobj.type == ZE.GetObjectTypeOrNull("MT_SCARFSHOT")
+	 or mobj.type == ZE.GetObjectTypeOrNull("MT_SWORDDAMAGE")
+	 or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_HS_SHOT")
+	 or mobj.type == ZE.GetObjectTypeOrNull("MT_RS_FIST")
 		return false
 	end
 end

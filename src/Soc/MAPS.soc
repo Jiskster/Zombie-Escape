@@ -8,6 +8,7 @@ NextLevel = 41
 SkyNum = 15
 NoZone = True
 SelectHeading = Zombie Escape Maps
+Lua.PlayerCountName = EGYPTIANS
 
 Level 2
 Levelname = Stonewood
@@ -165,6 +166,7 @@ NextLevel = R2
 NoZone = True
 SelectHeading = Zombie Escape Maps
 Lua.BounceOff = true
+Lua.PlayerCountName = ROBLOXIANS
 
 Level 11
 Levelname = Empty Lab

@@ -183,7 +183,10 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 						truedmg = $1 * 5
 						S_StartSound(hurtplayer,sfx_critze)
 						S_StartSound(nil,sfx_critze,shooter.player) -- so shooter can hear clearly too
-						local goldghost = P_SpawnGhostMobj(hurtplayer)
+						local goldghost = P_SpawnMobjFromMobj(hurtplayer,0,0,0,MT_THOK) --this used to be a mobj ghost so the name is that - Jisk 4/30/2023 
+						goldghost.scale = $/3
+						goldghost.fuse = 15
+						--A_MultiShot(goldghost, MT_FLINGRING*FU+25)
 						P_SetScale(goldghost, hurtplayer.scale*2)
 						goldghost.color = SKINCOLOR_GOLD
 					end
@@ -208,7 +211,7 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 						end
 						if mapheaderinfo[gamemap].zombieswarm then
 							if ZE.Wave > 2 then
-								truedmg = $1 * ZE.Wave
+								truedmg = $1 * 2
 							end
 						end
 						hurtplayer.health = $1 - truedmg

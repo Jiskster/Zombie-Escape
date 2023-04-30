@@ -10,15 +10,15 @@ COM_AddCommand("ze_spectate", function(player)
 	player.ctfteam = 0
 end, 1)
 
-COM_AddCommand("unlockprop", function(player)
+COM_AddCommand("ze_maxrings", function(player)
 	if (gametype ~= GT_ZESCAPE) then
 		CONS_Printf(player, "The game mode must be Zombie Escape to use this command.")
 		return
 	end
-	player.propspawn = $+10
+	player.rings = 9999
 end, 1)
 
-COM_AddCommand("liststats", function(player)
+COM_AddCommand("ze_liststats", function(player)
 	if (gametype ~= GT_ZESCAPE) then
 		CONS_Printf(player, "The game mode must be Zombie Escape to use this command.")
 		return
@@ -35,29 +35,7 @@ COM_AddCommand("liststats", function(player)
 	end
 end)
 
-COM_AddCommand("togglegg", function(player)
-	if (gametype ~= GT_ZESCAPE) then
-		CONS_Printf(player, "The game mode must be Zombie Escape to use this command.")
-		return
-	end
-	
-	if player.hasGoldenGlow ~= 1 and IsPlayerAdmin(player) == false and not (player == server) then
-		CONS_Printf(player, "You must atleast play 125 games to have this feature!")
-		return
-	end
-	if player and player.valid and player.mo and player.mo.valid then
-		if player.ggtoggle == nil then
-			player.ggtoggle = true
-			CONS_Printf(player,"\x87\Golden Glow On!")
-		else
-			player.ggtoggle = not player.ggtoggle
-			CONS_Printf(player,"\x87\Golden Glow Off!")
-			player.mo.colorized = false
-		end
-	end
-end)
-
-COM_AddCommand("cleardata", function(player,arg1) --rvgrpass
+COM_AddCommand("ze_cleardata", function(player,arg1) --rvgrpass
 	if (gametype ~= GT_ZESCAPE) then
 		CONS_Printf(player, "The game mode must be Zombie Escape to use this command.")
 		return
@@ -127,7 +105,7 @@ COM_AddCommand("ze_changeztype", function(player, arg1)
 end,1)
 
 
-COM_AddCommand("zmsuicide", function(player)
+COM_AddCommand("ze_suicide", function(player)
 	if player.mo and player.mo.valid then
 		player.suicided = true
 		P_DamageMobj(player.mo, nil, nil, 1, DMG_INSTAKILL)

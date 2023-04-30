@@ -115,7 +115,7 @@ ZE.SpawnProps = function(player)
 		if player.rings < ZE.PropCosts["Wood"] then return end
 		player.builddelay = $ or 0
 		if (player.cmd.buttons & BT_TOSSFLAG) and not (player.builddelay ~= 0)
-			player.builddelay = 5*TICRATE
+			player.builddelay = 5*TICRATE/2
 			ZE.BuildPropWood(player)
 		end
 		if player.builddelay ~= 0 then
@@ -127,7 +127,7 @@ ZE.SpawnProps = function(player)
 		if player.rings < ZE.PropCosts["HealStation"] then return end
 		player.builddelay = $ or 0
 		if (player.cmd.buttons & BT_TOSSFLAG) and not (player.builddelay ~= 0)
-			player.builddelay = 30*TICRATE
+			player.builddelay = 10
 			ZE.BuildHealStation(player)
 		end
 		if player.builddelay ~= 0 then

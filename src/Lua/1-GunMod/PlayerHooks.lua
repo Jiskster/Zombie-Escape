@@ -66,7 +66,6 @@ end
 
 RS.DoReload = function(mo)
 	local player = mo.player
-	player.rings = max(0, $ - 20)
 	mo.ringslinger.ammo = 0
 	mo.ringslinger.reloadcosthud = TICRATE/2
 	mo.ringslinger.reload = FRACUNIT

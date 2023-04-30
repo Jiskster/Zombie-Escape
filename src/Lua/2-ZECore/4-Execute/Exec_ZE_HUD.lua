@@ -29,38 +29,38 @@ hud.add(function(v, player)
 			offset = 8
 		end
 		if player.ctfteam == 2
-		    v.drawString(272,184-offset,"\x87\C1 \x80\- \x84\RUN",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-		    v.drawString(272,192-offset,"\x87\FN \x80\- \x84\RELOAD",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		    v.drawString(320,184-offset,"\x87\CUSTOM 1 \x80\- \x84\RUN",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
+		    v.drawString(320,192-offset,"\x87\FIRE NORMAL \x80\- \x84\RELOAD",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
 		end
 		if player.ctfteam == 1
-		   v.drawString(262,192-offset,"\x87\FIRE \x80\- \x85\ATTACK",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		   v.drawString(320,192-offset,"\x87\FIRE \x80\- \x85\ATTACK",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
 		end
 		if player.mo.skin == "amy" then
-		   v.drawString(225,168-offset,"\x87\SPIN \x80\- \x85\ATTACK\x80 or \x83\HEAL",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		   v.drawString(320,168-offset,"\x87\SPIN \x80\- \x85\ATTACK\x80 or \x83\HEAL",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
         end
 		if player.mo.skin == "fang" then
-		   v.drawString(262,176-offset,"\x87\SPIN \x80\- \x85\ATTACK",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		   v.drawString(320,176-offset,"\x87\SPIN \x80\- \x85\ATTACK",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
 	    end
 		if player.mo.skin == "scarf" then --keeping this here for legacy purposes
-		   v.drawString(235,168-offset,"\x87\SPIN \x80\- \x85\Melee",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-		   v.drawString(235,176-offset,"\x87\HOLD SPIN \x80\- \x85\FireBall",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		   v.drawString(320,168-offset,"\x87\SPIN \x80\- \x85\Melee",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
+		   v.drawString(320,176-offset,"\x87\HOLD SPIN \x80\- \x85\FireBall",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
 		end
 		
 		if player.ztype == ZM_ALPHA then
-			v.drawString(242,184-offset,"\x87\C1 \x80\ - \x85\RAGE",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-			v.drawString(242,176-offset,"\x85\RAGE\x80 COOLDOWN: "+tostring(player.boostcount/TICRATE),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+			v.drawString(320,184-offset,"\x87\CUSTOM 1 \x80\ - \x85\RAGE",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
+			v.drawString(320,176-offset,"\x85\RAGE\x80 COOLDOWN: "+tostring(player.boostcount/TICRATE),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
 		end
 		if hudtype == 1
 			if player.ztype == ZM_ALPHA then
-			   v.drawString(1,176,"\x85\ALPHA ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+			   v.drawString(1,176,"\x85\ALPHA ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-left")
 			end
 			
 			if player.ztype == ZM_FAST then
-				v.drawString(1,176,"\x85\FAST ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+				v.drawString(1,176,"\x85\FAST ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-left")
 			end
 			
 			if player.ztype == ZM_TANK then
-				v.drawString(1,176,"\x85\TANK ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+				v.drawString(1,176,"\x85\TANK ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-left")
 			end
 		end
 	end
@@ -142,10 +142,23 @@ hud.add(function(g, player)
 		end
 		
 		if hudtype == 2
+			/*
 		    g.drawString(90,16, "SURVIVORS:", V_BLUEMAP|V_SNAPTOTOP|V_50TRANS, "center")
 			g.drawString(141, 16, tostring(ZE.survcount), V_BLUEMAP|V_SNAPTOTOP|V_50TRANS, "center")
 		    g.drawString(224,16, ":ZOMBIES", V_REDMAP|V_SNAPTOTOP|V_50TRANS, "center")
 			g.drawString(181, 16, tostring(ZE.zombcount), V_REDMAP|V_SNAPTOTOP|V_50TRANS, "center")	
+			*/
+			local zombies = ZE.zombcount
+			local survivors = ZE.survcount
+			
+			if mapheaderinfo[gamemap].playercountname then 
+				local pcn = mapheaderinfo[gamemap].playercountname:upper()
+				g.drawString(160,16, "\x86\ \$pcn\ : \x85\ \$zombies\ \x86\/\x84\ \$survivors\",V_SNAPTOTOP|V_50TRANS, "center")
+				return
+			else
+				g.drawString(160,16, "\x86\PLAYERS : \x85\ \$zombies\ \x86\/\x84\ \$survivors\",V_SNAPTOTOP|V_50TRANS, "center")
+			end
+			
 		end
 	end
 end, "game")
@@ -270,17 +283,17 @@ hud.add(function(v, player)
 			offset = 8
 		end
 		if player.mo.skin == "amy" then
-		   v.drawString(205,176-offset,"\x87\TOSSFLAG \x80\- \x84\HEAL STATION",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-		   v.drawString(270,160-offset,"\x87\COST:\x84\ "+tostring(ZE.PropCosts["HealStation"]),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		   v.drawString(320,176-offset,"\x87\TOSSFLAG \x80\- \x84\HEAL STATION",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
+		   v.drawString(320,160-offset,"\x87\COST:\x84\ "+tostring(ZE.PropCosts["HealStation"]),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
         end
 		if player.mo.skin == "tails" then
-		   v.drawString(224,176-offset,"\x87\TOSSFLAG \x80\- \x84\WOOD FENCE",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-		   v.drawString(270,168-offset,"\x87\COST:\x84\ "+tostring(ZE.PropCosts["Wood"]),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		   v.drawString(320,176-offset,"\x87\TOSSFLAG \x80\- \x84\WOOD FENCE",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
+		   v.drawString(320,168-offset,"\x87\COST:\x84\ "+tostring(ZE.PropCosts["Wood"]),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
 	    end
 		
 		if player.mo.skin == "metalsonic" then
-		   v.drawString(224,176-offset,"\x87\TOSSFLAG \x80\- \x84\LAND MINES",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-		   v.drawString(270,168-offset,"\x87\COST:\x84\ "+tostring(ZE.PropCosts["LandMine"]),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		   v.drawString(320,176-offset,"\x87\TOSSFLAG \x80\- \x84\LAND MINES",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
+		   v.drawString(320,168-offset,"\x87\COST:\x84\ "+tostring(ZE.PropCosts["LandMine"]),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
 	    end
 	end
 end)
@@ -295,7 +308,7 @@ local function TimerHud(v,p,c)
 		v.drawString(0,167,"\x85\Time Left: "+G_TicsToMTIME(basetime), V_PERPLAYER|V_SNAPTOLEFT|V_SNAPTOBOTTOM)
 	end
 	if hudtype == 2
-		v.drawString(160,8,"\x85\Time Left: "+G_TicsToMTIME(basetime), V_PERPLAYER|V_REDMAP|V_SNAPTOTOP|V_50TRANS, "center")
+		v.drawString(160,8,"\x88\Time Left: \x82\ "+G_TicsToMTIME(basetime), V_PERPLAYER|V_SNAPTOTOP|V_50TRANS, "center")
 	end
 
 

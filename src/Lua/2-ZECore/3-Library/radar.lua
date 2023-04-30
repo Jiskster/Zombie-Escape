@@ -55,6 +55,8 @@ local function hudstuff(v, user, cam)
 	local ypos = 8*yscale //Top corner
 -- 	local ypos = 8 //Top corner
 -- 	local ypos = v.height()/yscale-radarsize-32 //Bottom corner
+
+
 	if splitscreen then //2-Player offsets
 		ypos = $/2
 		if user == secondarydisplayplayer then
