@@ -71,9 +71,9 @@ CV.propdespawn = CV_RegisterVar{
 	PossibleValue={MIN = 1, MAX = 60}
 }
 
-CV.propmax = CV_RegisterVar{
-	name = "rh_propmax",
-	defaultvalue = "2",
+CV.defaultrings = CV_RegisterVar{
+	name = "rh_defaultrings",
+	defaultvalue = "100",
 	flags = CV_NETVAR,
 	PossibleValue={MIN = 1, MAX = 9999}
 }

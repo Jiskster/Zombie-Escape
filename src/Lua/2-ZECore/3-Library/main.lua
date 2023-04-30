@@ -8,8 +8,8 @@ ZE.teamWin = 0
 ZE.Wave = 0
 ZE.infectdelay = 0
 ZE.winTriggerDelay = 0
-ZE.survskins = {"sonic", "tails", "amy", "knuckles", "fang", "metalsonic"}
-ZE.survskinsplay = {"sonic", "tails", "knuckles"}
+ZE.survskins = {"sonic", "tails", "amy", "knuckles", "fang", "metalsonic", "w", "bob"}
+ZE.survskinsplay = {"sonic", "tails", "amy", "knuckles", "fang", "metalsonic", "w", "bob"}
 
 ZE.alpha_attack = 0
 ZE.alpha_attack_show = 0 -- gui show time
@@ -331,7 +331,7 @@ ZE.SetRings = function(player)
   if not (gametype == GT_ZESCAPE) then return end
 	for player in players.iterate do
 	  if leveltime-CV.waittime == 0
-		   player.rings = 100
+		   player.rings = tonumber(CV.defaultrings.value)
 	   end
 	end
 end
@@ -408,6 +408,7 @@ end
 ZE.SpawnPlayer = function(player)
 	local servercheck = (consoleplayer == server or isserver or isdedicatedserver) 
 	local minjointime = 5*TICRATE -- min jointime until server kicks in
+	player.kills = $ or 0
 	if (leveltime < CV.waittime) and not (leveltime > CV.waittime) then
 		if servercheck and player.jointime > minjointime  then
 			--CONS_Printf(server, "Forced team change")
@@ -434,23 +435,46 @@ ZE.SpawnPlayer = function(player)
 	end
 	
 	if player.mo and player.mo.valid then
-		if player.mo.skin == "dzombie" and not (mapheaderinfo[gamemap].zombieswarm) and not (ZE.alpha_attack) then
-			if player.suicided then
-				player.suicided = false
-				return
+		if player.mo.skin == "dzombie" and not (ZE.alpha_attack) then
+			local swarm = mapheaderinfo[gamemap].zombieswarm 
+			if not swarm then
+				if player.suicided then
+					player.suicided = false
+					return
+				end
+				if P_RandomChance(FU/4) then
+					player.ztype = ZM_TANK
+					return
+				end
+				if P_RandomChance(FU/4) then
+					player.ztype = ZM_ALPHA
+					return
+				end	
+				if P_RandomChance(FU/4) then
+					player.ztype = ZM_FAST
+					return
+				end	
 			end
-			if P_RandomChance(FU/6) then
-				player.ztype = ZM_TANK
-				return
+			
+			if swarm then
+				-- if swarm then
+				if player.suicided then
+					player.suicided = false
+					return
+				end
+				if P_RandomChance(FU/4) then
+					player.ztype = ZM_TANK
+					return
+				end
+				if P_RandomChance(FU/10) then
+					player.ztype = ZM_ALPHA
+					return
+				end	
+				if P_RandomChance(FU/4) then
+					player.ztype = ZM_FAST
+					return
+				end	
 			end
-			if P_RandomChance(FU/5) then
-				player.ztype = ZM_ALPHA
-				return
-			end	
-			if P_RandomChance(FU/4) then
-				player.ztype = ZM_FAST
-				return
-			end	
 		end
 	end
 end
@@ -503,7 +527,7 @@ ZE.CountDown = function()
 			CV.gamestarted = true
 			if mapheaderinfo[gamemap].zombieswarm
 				ZE.Wave = 1
-				chatprint("\x83\[Zombie Swarm] Wave -> "..ZE.Wave)
+				chatprint("\x83\<Zombie Swarm>\x80\ Wave "..ZE.Wave)
 			end
 			
 			if P_RandomChance(FRACUNIT/10) and not(mapheaderinfo[gamemap].zombieswarm) then
@@ -574,17 +598,17 @@ ZE.SwarmParition = function()
 	if CV.gamestarted == true and mapheaderinfo[gamemap].zombieswarm
 		if (CV.countup) == 60*TICRATE then
 			ZE.Wave = $ + 1
-			chatprint("\x83\[Zombie Swarm] Wave -> "..ZE.Wave.." (+HP +SPD)")
+			chatprint("\x83\<Zombie Swarm>\x80\ Wave "..ZE.Wave.." (+HP +SPD)")
 		end
 		
 		if (CV.countup) == 60*TICRATE*2 then
 			ZE.Wave = $ + 1
-			chatprint("\x83\[Zombie Swarm] Wave -> "..ZE.Wave.." (+HP +SPD +SPINDASH)")
+			chatprint("\x83\<Zombie Swarm>\x80\ Wave "..ZE.Wave.." (+HP +SPD +SPINDASH)")
 		end
 		
 		if (CV.countup) == 60*TICRATE*3 then
 			ZE.Wave = $ + 1
-			chatprint("\x83\[Zombie Swarm] Wave -> "..ZE.Wave.." (+HP +SPD +SPINDASH +THOK)")
+			chatprint("\x83\<Zombie Swarm>\x80\ Wave "..ZE.Wave.." (+HP +SPD +SPINDASH +THOK)")
 		end
 	end
 end

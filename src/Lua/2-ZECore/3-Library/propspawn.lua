@@ -1,17 +1,11 @@
 local ZE = RV_ZESCAPE
 local CV = RV_ZESCAPE.Console
 
-
-ZE.ResetPropSpawn = function(player)
-	if player.mo and player.mo.valid then
-		if player.mo.skin == "metalsonic" then
-			player.propspawn = 15
-			return
-		end
-		player.propspawn = CV.propmax.value
-	end
-end
-
+ZE.PropCosts = {
+	["Wood"] = 50,
+	["HealStation"] = 50,
+	["LandMine"] = 6,
+}
 freeslot("MT_AMYSTATION","S_AMYSTATION")
 freeslot("MT_LANDMINE","S_LANDMINE","S_LANDMINE2", "SPR_MMVC")
 
@@ -74,7 +68,7 @@ ZE.BuildPropWood = function(player)
 		wood.renderflags = $|RF_PAPERSPRITE
 		wood.fuse = CV.propdespawn.value*TICRATE
 		wood.target = player.mo
-		player.propspawn = $-1
+		P_GivePlayerRings(player,-ZE.PropCosts["Wood"])
 	end
 end
 
@@ -84,7 +78,7 @@ ZE.BuildHealStation = function(player)
 					player.mo.y+FixedMul(0*FRACUNIT, sin(player.mo.angle)), player.mo.z, MT_AMYSTATION)
 		S_StartSound(player.mo, sfx_jshard)
 		healstation.target = player.mo
-		player.propspawn = $-1
+		P_GivePlayerRings(player,-ZE.PropCosts["HealStation"])
 	end
 end
 
@@ -108,20 +102,17 @@ ZE.BuildLandMine = function(player)
 					player.mo.y+FixedMul(0*FRACUNIT, sin(player.mo.angle)), player.mo.z, MT_LANDMINE)
 		S_StartSound(player.mo, sfx_jshard)
 		landmine.target = player.mo
-		player.propspawn = $-1
+		P_GivePlayerRings(player,-ZE.PropCosts["LandMine"])
 	end
 end
 
 
 ZE.SpawnProps = function(player)
-	if player.mo and player.mo.valid
-		player.propspawn = $ or 0
-	end  
-	if (propspawn == 0) then return end
 	if (leveltime < CV.waittime) then return end
 	if player.powers[pw_flashing] > 0 then return end
 	if player.mo and player.mo.skin == "tails"
-		if player.propspawn == 0 then return end
+		if player.rings == 0 then return end
+		if player.rings < ZE.PropCosts["Wood"] then return end
 		player.builddelay = $ or 0
 		if (player.cmd.buttons & BT_TOSSFLAG) and not (player.builddelay ~= 0)
 			player.builddelay = 5*TICRATE
@@ -132,7 +123,8 @@ ZE.SpawnProps = function(player)
 		end
 	end
 	if player.mo and player.mo.skin == "amy"
-		if player.propspawn == 0 then return end
+		if player.rings == 0 then return end
+		if player.rings < ZE.PropCosts["HealStation"] then return end
 		player.builddelay = $ or 0
 		if (player.cmd.buttons & BT_TOSSFLAG) and not (player.builddelay ~= 0)
 			player.builddelay = 30*TICRATE
@@ -144,7 +136,8 @@ ZE.SpawnProps = function(player)
 	end
 	
 	if player.mo and player.mo.skin == "metalsonic"
-		if player.propspawn == 0 then return end
+		if player.rings == 0 then return end
+		if player.rings < ZE.PropCosts["LandMine"] then return end
 		player.builddelay = $ or 0
 		if (player.cmd.buttons & BT_TOSSFLAG) and not (player.builddelay ~= 0)
 			player.builddelay = TICRATE/4
@@ -178,13 +171,14 @@ end,MT_LANDMINE)
 
 addHook("MobjThinker", function (mobj)
     if mobj and mobj.valid and mobj.heartlist ~= nil and mobj.middlelist ~= nil then
+		local swarm = mapheaderinfo[gamemap].zombieswarm 
         local numhearts = #mobj.heartlist
         local nummiddle = #mobj.middlelist
         for i=1,numhearts
             local currentheart = mobj.heartlist[i]
             local x = mobj.x + FixedMul(64*FU,cos((ANG1)* (360/numhearts) * i ) )
             local y = mobj.y + FixedMul(64*FU,sin((ANG1)* (360/numhearts) * i ) )
-            P_TeleportMove(currentheart,x,y,mobj.floorz+(48*FU*3))
+            P_TeleportMove(currentheart,x,y,mobj.z+(48*FU*3))
 
             if i % 2 == 0 then
                 currentheart.colorized = true
@@ -203,7 +197,7 @@ addHook("MobjThinker", function (mobj)
             local currentmiddle = mobj.middlelist[i]
             local x = mobj.x
             local y = mobj.y
-            P_TeleportMove(currentmiddle,x,y,mobj.floorz+(24*FU*i) )
+            P_TeleportMove(currentmiddle,x,y,mobj.z+(24*FU*i) )
             currentmiddle.colorized = true
             currentmiddle.color = SKINCOLOR_ROSY
 
@@ -237,7 +231,13 @@ addHook("MobjThinker", function (mobj)
                             amyglow.tracer.fuse = amyglow.fuse
                         end
 						if leveltime % 27 == 0 then
-							ZE.addHP(player.mo, 6)
+						
+							if not swarm then
+								ZE.addHP(player.mo, 6)
+							end
+							if swarm then
+								ZE.addHP(player.mo, 12 / ZE.Wave)
+							end
 						end
                     end
                 end
@@ -261,7 +261,7 @@ addHook("MobjThinker", function (mobj)
 					local angles = {ANGLE_90,ANGLE_180,ANGLE_270,ANGLE_135}
 					local newangle = P_RandomRange(1, #angles)
 					player.mo.angle = angles[newangle]
-					mobj.target.player.propspawn = $ + 1
+					P_GivePlayerRings(mobj.target.player, ZE.PropCosts["LandMine"])
 					P_InstaThrust(player.mo, player.mo.angle, 50*FU)
 					P_RemoveMobj(mobj)
 				end

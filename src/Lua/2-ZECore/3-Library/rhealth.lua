@@ -162,13 +162,13 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 						if ZE.F_NotTeamed(shooter.player, hurtplayer.player)
 							
 							if critical then
-								knockback = $1 * 4
+								knockback = $1 * 7
 							end
 							P_Thrust(hurtplayer, hazard.angle, knockback)
 						else
 							if CV.friendlypushing.value == 1
 								if critical then
-									knockback = $1 * 4
+									knockback = $1 * 7
 								end
 								P_Thrust(hurtplayer, hazard.angle, knockback)
 							end
@@ -180,7 +180,7 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 						return
 					end
 					if critical then
-						truedmg = $1 * 3
+						truedmg = $1 * 5
 						S_StartSound(hurtplayer,sfx_critze)
 						S_StartSound(nil,sfx_critze,shooter.player) -- so shooter can hear clearly too
 						local goldghost = P_SpawnGhostMobj(hurtplayer)
@@ -205,6 +205,11 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 					if CV.debug.value == 0 and shooter.player.ctfteam == 1
 						if hurtplayer.player.powers[pw_super]
 							truedmg = $1 / 2
+						end
+						if mapheaderinfo[gamemap].zombieswarm then
+							if ZE.Wave > 2 then
+								truedmg = $1 * ZE.Wave
+							end
 						end
 						hurtplayer.health = $1 - truedmg
 
@@ -238,11 +243,12 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 							print(string.format(ZE.damagetable.killmsg[catch], name1, name2))
 						end
 						
+						shooter.player.kills = $ + 1
 						
 						if mapheaderinfo[gamemap].zombieswarm and shooter.maxHealth and shooter.health then
 							
-							shooter.maxHealth = $ + (15)
-							shooter.health = $ + (15)
+							shooter.maxHealth = $ + (15* ZE.Wave)
+							shooter.health = $ + (15* ZE.Wave)
 						end
 						
 						if hurtplayer.player.ztype == ZM_ALPHA and shooter.maxHealth and shooter.health then
@@ -260,7 +266,14 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 							else
 								P_AddPlayerScore(shooter.player, 250)
 							end
-							shooter.player.propspawn = $ + 1
+							
+							if not critical then
+								P_GivePlayerRings(shooter.player,50)
+							end
+							
+							if critical then
+								P_GivePlayerRings(shooter.player,250)
+							end
 						end
 					else
 						S_StartSound(hurtplayer,painsfx[P_RandomRange(1,#painsfx)])

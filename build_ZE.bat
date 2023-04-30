@@ -2,7 +2,7 @@
 
 ::--------------------------------------------------------------------------
 set "name=ZGL_ZombieEscape"
-set "version=2.4.2"
+set "version=2.4.3"
 
 set /A "delump=0"
 

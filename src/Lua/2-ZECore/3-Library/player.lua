@@ -345,7 +345,7 @@ ZE.ZombieSwarmWave = function(player)
 	if gametype ~= GT_ZESCAPE return end
 	if player.mo and player.mo.valid
 		if player.ctfteam == 2 return end
-		if mapheaderinfo[gamemap].zombieswarm then 
+		if mapheaderinfo[gamemap].zombieswarm and not player.ztype then 
 			if ZE.Wave == 1
 				if player.powers[pw_flashing] > 0
 					player.mo.health = 150 + (15*ZE.survcount)
@@ -390,6 +390,7 @@ ZE.HealthOrb = function(obj, play)
 	if (player.mo) and (player.ctfteam == 2)
 		player.mo.maxHealth = $ + 200
 		player.mo.health = $ + 200
+		P_GivePlayerRings(player, 275)
 	end
 end
 

@@ -20,8 +20,5 @@ addHook("PlayerThink", function(player)
 			ZE.AlphaZmRage(player)
 			ZE.SpawnProps(player)
 			ZE.ZtypeCfg(player)
-			if (leveltime < CV.waittime) then
-				ZE.ResetPropSpawn(player)
-			end
 	end
 end)

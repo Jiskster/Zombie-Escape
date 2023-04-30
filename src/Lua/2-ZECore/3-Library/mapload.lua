@@ -7,6 +7,7 @@ ZE.MapLoad = function(mapnum)
 			player.respawned = 0
 			player.ztype = 0
 			player.boostcount = 0
+			player.kills = 0
 			player.stamina = 100*TICRATE
 		end
             ZE.teamWin = 0

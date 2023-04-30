@@ -22,27 +22,33 @@ hud.add(function(v, player)
 		and player.mo and player.mo.valid
 		and (player.playerstate != PST_DEAD)
 		and (player.mo.state != S_PLAY_DEAD)
+		
+		local offset = 0
+		
+		if CV_FindVar("showfps").value > 0 then
+			offset = 8
+		end
 		if player.ctfteam == 2
-		    v.drawString(272,184,"\x87\C1 \x80\- \x84\RUN",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-		    v.drawString(272,192,"\x87\FN \x80\- \x84\RELOAD",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		    v.drawString(272,184-offset,"\x87\C1 \x80\- \x84\RUN",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		    v.drawString(272,192-offset,"\x87\FN \x80\- \x84\RELOAD",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 		end
 		if player.ctfteam == 1
-		   v.drawString(262,192,"\x87\FIRE \x80\- \x85\ATTACK",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		   v.drawString(262,192-offset,"\x87\FIRE \x80\- \x85\ATTACK",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 		end
 		if player.mo.skin == "amy" then
-		   v.drawString(225,168,"\x87\SPIN \x80\- \x85\ATTACK\x80 or \x83\HEAL",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		   v.drawString(225,168-offset,"\x87\SPIN \x80\- \x85\ATTACK\x80 or \x83\HEAL",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
         end
 		if player.mo.skin == "fang" then
-		   v.drawString(262,176,"\x87\SPIN \x80\- \x85\ATTACK",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		   v.drawString(262,176-offset,"\x87\SPIN \x80\- \x85\ATTACK",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 	    end
-		if player.mo.skin == "scarf" then
-		   v.drawString(235,168,"\x87\SPIN \x80\- \x85\Melee",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-		   v.drawString(235,176,"\x87\HOLD SPIN \x80\- \x85\FireBall",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		if player.mo.skin == "scarf" then --keeping this here for legacy purposes
+		   v.drawString(235,168-offset,"\x87\SPIN \x80\- \x85\Melee",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		   v.drawString(235,176-offset,"\x87\HOLD SPIN \x80\- \x85\FireBall",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 		end
 		
 		if player.ztype == ZM_ALPHA then
-			v.drawString(242,184,"\x87\C1 \x80\ - \x85\RAGE",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-			v.drawString(242,176,"\x85\RAGE\x80 COOLDOWN: "+tostring(player.boostcount/TICRATE),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+			v.drawString(242,184-offset,"\x87\C1 \x80\ - \x85\RAGE",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+			v.drawString(242,176-offset,"\x85\RAGE\x80 COOLDOWN: "+tostring(player.boostcount/TICRATE),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 		end
 		if hudtype == 1
 			if player.ztype == ZM_ALPHA then
@@ -65,7 +71,7 @@ hud.add(function(v, player, camera)
 	local hudtype = CV.hudtype.value 
 	if (gametype ~= GT_ZESCAPE) then return end
 	if player.mo and player.mo.valid
-		if player.mo.health and player.mo.health > 0
+		if player.mo.health and player.mo.health > 0 and player.mo.maxHealth
 			if hudtype == 1 
 				v.drawString(0,183,"\x85\+", V_PERPLAYER|V_SNAPTOLEFT|V_SNAPTOBOTTOM)
 				v.drawString(8,183, max(0,player.mo.health), V_PERPLAYER|V_SNAPTOLEFT|V_SNAPTOBOTTOM, "left")
@@ -74,13 +80,16 @@ hud.add(function(v, player, camera)
 				local y = 170
 				local ya = y-2 
 				local mipatch2 = v.cachePatch("ZEBGBAR")
-				v.drawStretched(0*FU,ya*FU,(125*FU/50)*TICRATE,FU*6, mipatch2,V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_50TRANS)
-				local mipatch = v.cachePatch("ZEHPBAR")
+				v.drawStretched(0*FU,ya*FU,(125*FU/50)*TICRATE,FU*9, mipatch2,V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_50TRANS)
+				--local mipatch = v.cachePatch("ZEHPBAR")
 				if player.mo.skin ~= "dzombie" then
 					v.drawString(0,y, max(0,player.mo.health)+"/"+max(0,player.mo.maxHealth) + " Health", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_REDMAP, "thin")
+					v.drawString(0,y+20,max(0,player.rings) + " Rings", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_YELLOWMAP, "thin")
 				else
-					v.drawString(0,y+5, max(0,player.mo.health)+"/"+max(0,player.mo.maxHealth) + " Health", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_REDMAP, "thin")
+					v.drawString(0,y+5, max(0,player.mo.health)+"/"+max(0,player.mo.maxHealth) + " Health", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_REDMAP, "thin")	
 				end
+				
+				
 			end
 			
 			
@@ -255,18 +264,23 @@ end, "game")
 hud.add(function(v, player)
 	if (gametype ~= GT_ZESCAPE) return end
 	if (player.mo and player.mo.valid)
-		if player.mo.skin == "amy" and player.propspawn ~= nil then
-		   v.drawString(225,176,"\x87\TOSSFLAG \x80\- \x84\HEAL STATION",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-		   v.drawString(262,160,"\x87\Stations: \x80\- \x84\ "+tostring(player.propspawn),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		local offset = 0
+		
+		if CV_FindVar("showfps").value > 0 then
+			offset = 8
+		end
+		if player.mo.skin == "amy" then
+		   v.drawString(205,176-offset,"\x87\TOSSFLAG \x80\- \x84\HEAL STATION",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		   v.drawString(270,160-offset,"\x87\COST:\x84\ "+tostring(ZE.PropCosts["HealStation"]),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
         end
-		if player.mo.skin == "tails" and player.propspawn ~= nil then
-		   v.drawString(224,176,"\x87\TOSSFLAG \x80\- \x84\WOOD FENCE",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-		   v.drawString(262,168,"\x87\Fences: \x80\- \x84\ "+tostring(player.propspawn),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		if player.mo.skin == "tails" then
+		   v.drawString(224,176-offset,"\x87\TOSSFLAG \x80\- \x84\WOOD FENCE",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		   v.drawString(270,168-offset,"\x87\COST:\x84\ "+tostring(ZE.PropCosts["Wood"]),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 	    end
 		
-		if player.mo.skin == "metalsonic" and player.propspawn ~= nil then
-		   v.drawString(224,176,"\x87\TOSSFLAG \x80\- \x84\LAND MINES",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
-		   v.drawString(240,168,"\x87\Landmines: \x80\- \x84\ "+tostring(player.propspawn),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		if player.mo.skin == "metalsonic" then
+		   v.drawString(224,176-offset,"\x87\TOSSFLAG \x80\- \x84\LAND MINES",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
+		   v.drawString(270,168-offset,"\x87\COST:\x84\ "+tostring(ZE.PropCosts["LandMine"]),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 	    end
 	end
 end)
