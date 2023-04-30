@@ -125,7 +125,7 @@ addHook("ThinkFrame", do
 		if map42_door3 == 1
 		   map42_door3Timer = $-1
 	end
-       if map42_door3Timer == 0 and gamemap == 3 then
+       if map42_door3Timer == 0 and gamemap == 5 then
 	      P_LinedefExecute(36)
 		  Map42_Tele1()
 		  chatprint("\x83\Doors \x80opened")
@@ -136,7 +136,7 @@ addHook("ThinkFrame", do
 		if map42_door4 == 1
 		   map42_door4Timer = $-1
 	end
-       if map42_door4Timer == 0 and gamemap == 3 then
+       if map42_door4Timer == 0 and gamemap == 5 then
 	      P_LinedefExecute(41)
 		  Map42_Tele3()
 		  chatprint("\x83\Gates \x80opened")
