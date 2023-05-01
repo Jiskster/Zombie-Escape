@@ -86,6 +86,7 @@ NextLevel = 40
 SkyNum = 10
 NoZone = True
 SelectHeading = Zombie Escape Maps
+Lua.PlayerCountName = SOULS
 
 Cutscene 1
 NumScenes 4
