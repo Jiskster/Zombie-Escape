@@ -256,12 +256,12 @@ addHook("MobjThinker", function (mobj)
 				local dist = R_PointToDist2(player.mo.x, player.mo.y, mobj.x, mobj.y)/FU
 				local zdiff = abs(player.mo.z - mobj.z)/FU
 				if dist < 20 and zdiff < 10 then
+					P_GivePlayerRings(mobj.target.player, ZE.PropCosts["LandMine"])
 					S_StartSound(player.mo,sfx_s244)
 					P_SetObjectMomZ(player.mo, 8*FU)
 					local angles = {ANGLE_90,ANGLE_180,ANGLE_270,ANGLE_135}
 					local newangle = P_RandomRange(1, #angles)
 					player.mo.angle = angles[newangle]
-					P_GivePlayerRings(mobj.target.player, ZE.PropCosts["LandMine"])
 					P_InstaThrust(player.mo, player.mo.angle, 50*FU)
 					P_RemoveMobj(mobj)
 				end
