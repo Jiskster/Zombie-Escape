@@ -4,7 +4,7 @@ local CV = RV_ZESCAPE.Console
 ZE.PropCosts = {
 	["Wood"] = 50,
 	["HealStation"] = 50,
-	["LandMine"] = 6,
+	["LandMine"] = 10,
 }
 freeslot("MT_AMYSTATION","S_AMYSTATION")
 freeslot("MT_LANDMINE","S_LANDMINE","S_LANDMINE2", "SPR_MMVC")
