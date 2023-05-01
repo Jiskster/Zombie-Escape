@@ -22,7 +22,7 @@ end
 
 ZE.G_AutomaticRingDamage = function(mobj, hurthealth)
 	if mobj.type == MT_RS_THROWNAUTOMATIC
-		return 10
+		return 12
 	else
 		return 0
 	end
