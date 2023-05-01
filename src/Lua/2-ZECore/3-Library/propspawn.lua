@@ -270,3 +270,10 @@ addHook("MobjThinker", function (mobj)
 		end
 	end
 end, MT_LANDMINE)
+
+addHook("MobjFuse", function(mobj)
+	if mobj.target and mobj.target.valid and mobj.target.player  then
+		player.builddelay = 5*TICRATE
+		P_GivePlayerRings(mobj.target.player, ZE.PropCosts["Wood"])
+	end
+end, MT_PROPWOOD)
