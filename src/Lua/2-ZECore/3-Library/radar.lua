@@ -35,7 +35,7 @@ local function hudstuff(v, user, cam)
 	local yscale = v.dupx()
 -- 	local unit = user.mo.scale
 	local unit = FRACUNIT
-	local radius = 152*24
+	local radius = 152*48
 	local fullsight = 260*64 -- 152*64 old
 	local radarsize = 64*xscale
 	if gametype <= GT_COOP then
