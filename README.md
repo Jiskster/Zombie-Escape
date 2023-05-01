@@ -2,9 +2,7 @@
 This is a SRB2 mod with custom gametype created
 mainly for netgames. At first it was created in 2020 (probably)
 and then multiple ZE servers did use it.
-The first creator is TuXe but most of the 
-newer maps were created
-by Hamitto.
+The first creator is TuXe but most of the newer maps were created by Hamitto and the people from MultiWorld.
 
 If anyone wants, contribute to this
 project, we would be happy to accept anything equitable.
