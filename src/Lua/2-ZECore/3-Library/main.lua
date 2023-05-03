@@ -122,7 +122,7 @@ ZE.survKill = function(player)
     for player in players.iterate do
 	 if player.mo and player.mo.valid
 	  if (CV.survtime <= 0) then return end
-	    if ((player.pflags & PF_FINISHED) == 0) or (player.ctfteam == TEAM_ZOMBIE) then
+	    if ((player.pflags & PF_FINISHED) == 0) or (player.ctfteam == 1) then
 		   P_DamageMobj(player.mo, nil, nil, 1, DMG_INSTAKILL)
 		   end
 		end
@@ -133,7 +133,7 @@ ZE.survKill2 = function(player)
     for player in players.iterate do
 	 if player.mo and player.mo.valid
 	  if (CV.survtime <= 0) then return end
-	    if (player.ctfteam == TEAM_SURVIVOR) then
+	    if (player.ctfteam == 2) then
 		   P_DamageMobj(player.mo, nil, nil, 1, DMG_INSTAKILL)
 		   end
 		end
@@ -143,7 +143,7 @@ end
 ZE.SurvInv = function(player)
     for player in players.iterate do
 	 if player.mo and player.mo.valid
-	    if (player.ctfteam == TEAM_SURVIVOR) then
+	    if (player.ctfteam == 2) then
 		   player.powers[pw_invulnerability] = 10000
 		   end
 		end
@@ -240,7 +240,7 @@ end
 
 ZE.TeamSwitch = function(player, fromspectators, team)
     if not (gametype == GT_ZESCAPE) then return end
-	if (player.ctfteam == TEAM_SURVIVOR) and not (player.playerstate == PST_DEAD) and (leveltime > CV.waittime) then
+	if (player.ctfteam == 2) and not (player.playerstate == PST_DEAD) and (leveltime > CV.waittime) then
 		return false
 	end
 	
@@ -248,11 +248,11 @@ ZE.TeamSwitch = function(player, fromspectators, team)
 		return nil
 	end
 	
-	if (player.ctfteam == TEAM_ZOMBIE) and (leveltime > CV.waittime) then
+	if (player.ctfteam == 1) and (leveltime > CV.waittime) then
 	   return false
 	end
 	
-	if (player.ctfteam == TEAM_SURVIVOR) and (leveltime < CV.waittime) then
+	if (player.ctfteam == 2) and (leveltime < CV.waittime) then
 		local textnum = P_RandomRange(1, 3)
 		if textnum == 1 then
 			chatprintf(player, "\x85\<Zombie>\x80\ The game still registers you in RNG. You cannot escape from being enslaved by the zombies.")
@@ -313,7 +313,7 @@ end
 ZE.IgnoreRings = function(poked, poker)
    if gametype == GT_ZESCAPE
    for player in players.iterate do
-	if poker.player.ctfteam == TEAM_ZOMBIE --or poker.player.spectate
+	if poker.player.ctfteam == 1 --or poker.player.spectate
 		return true
 	else
 		-- update ring table
@@ -347,13 +347,13 @@ ZE.PlayerCount = function()
 			
 			-- team counts
 			if not player.spectator
-				if player.ctfteam == TEAM_ZOMBIE
+				if player.ctfteam == 1
 					ZE.zombcount = $1+1
 				elseif player.ctfteam == TEAM_SURVIOR
 					ZE.survcount = $1+1
 				end
 			end
-			if leveltime < CV.waittime and player.ctfteam == TEAM_ZOMBIE
+			if leveltime < CV.waittime and player.ctfteam == 1
 				player.exiting = 1
 			else
 				player.exiting = 0
@@ -367,7 +367,7 @@ ZE.PlayerCount = function()
 				ZE.Win(2)
 			end
 		end
-	      if (player.ctfteam == TEAM_SURVIVOR) and (player.playerstate == PST_DEAD) and not (leveltime < CV.waittime) then
+	      if (player.ctfteam == 2) and (player.playerstate == PST_DEAD) and not (leveltime < CV.waittime) then
 	         ZE.survcount = $1-1
 		     ZE.zombcount = $1+1
 		end
@@ -377,7 +377,7 @@ end
 ZE.InfectPlayer = function(player)
 	if player and player.valid
 	 if player.mo and player.mo.valid
-	   if (player.playerstate ~= PST_LIVE) and not (leveltime < CV.waittime) and not (player.ctfteam == TEAM_ZOMBIE) then
+	   if (player.playerstate ~= PST_LIVE) and not (leveltime < CV.waittime) and not (player.ctfteam == 1) then
 			COM_BufInsertText(player, "changeteam red")
 		  end
        end
@@ -388,9 +388,9 @@ ZE.ZombieSkin = function(player)
   if not (gametype == GT_ZESCAPE) then return end
     if player and player.valid
      and player.mo and player.mo.valid
-	if (player.ctfteam == TEAM_ZOMBIE and player.mo.skin ~= "dzombie") then
+	if (player.ctfteam == 1 and player.mo.skin ~= "dzombie") then
 		R_SetPlayerSkin(player, "dzombie")
-	elseif (player.ctfteam == TEAM_SURVIVOR) and (player.mo.skin == "dzombie") then
+	elseif (player.ctfteam == 2) and (player.mo.skin == "dzombie") then
 	   R_SetPlayerSkin(player,ZE.survskinsplay[P_RandomRange(1,#ZE.survskinsplay)])
 	   end
 	end
@@ -489,17 +489,17 @@ end
 
 ZE.DeathPointSave = function(mo)
 	if (not mo.player) then return end
-	if (mo.player.ctfteam == TEAM_ZOMBIE) then return end
+	if (mo.player.ctfteam == 1) then return end
 	mo.player.deathpoint = {x=mo.x,y=mo.y,z=mo.z}
 end
 
 ZE.DeathPointTp = function(player)
 	if (gametype == GT_ZESCAPE)
 	       player.respawned = $ or 0
-		if (player.ztype == "ZM_ALPHA") and player.ctfteam == TEAM_ZOMBIE then
+		if (player.ztype == "ZM_ALPHA") and player.ctfteam == 1 then
 		   player.respawned = 1
 	end
-        if (leveltime > CV.waittime) and player.ctfteam == TEAM_ZOMBIE and not (player.respawned == 1) and player.deathpoint and player.score != 0 then
+        if (leveltime > CV.waittime) and player.ctfteam == 1 and not (player.respawned == 1) and player.deathpoint and player.score != 0 then
 		   P_TeleportMove(player.mo, player.deathpoint.x, player.deathpoint.y, player.deathpoint.z)
 		   player.respawned = 1
 		end
@@ -510,7 +510,7 @@ ZE.SpawnSounds = function(player)
 	if (gametype == GT_ZESCAPE)
 	  local infsfx = {sfx_inf1, sfx_inf2}
 	  local infswsfx = {sfx_zszm1, sfx_zszm2}
-        if (player.ctfteam == TEAM_ZOMBIE) and not (leveltime < CV.waittime) then
+        if (player.ctfteam == 1) and not (leveltime < CV.waittime) then
 			if mapheaderinfo[gamemap].zombieswarm
 				S_StartSound(player.mo,infswsfx[P_RandomRange(1,#infswsfx)])
 				return
@@ -540,17 +540,17 @@ end
 ZE.InitZtype = function()
 	if not (gametype == GT_ZESCAPE) then return end
 		for player in players.iterate
-			if (player.ctfteam == TEAM_ZOMBIE) and (leveltime-CV.waittime <= 10*TICRATE) and (player.playerstate == PST_DEAD) then
+			if (player.ctfteam == 1) and (leveltime-CV.waittime <= 10*TICRATE) and (player.playerstate == PST_DEAD) then
 				player.ztype = $ or 0
 				
 				if not	(mapheaderinfo[gamemap].zombieswarm) then
 					player.ztype = "ZM_ALPHA"
 				end
 			end
-			if (player.ctfteam == TEAM_ZOMBIE) and (player.playerstate == PST_DEAD) and (leveltime-CV.waittime >= 10*TICRATE) then
+			if (player.ctfteam == 1) and (player.playerstate == PST_DEAD) and (leveltime-CV.waittime >= 10*TICRATE) then
 				player.ztype = 0
 			end
-			if (player.ctfteam == TEAM_SURVIVOR) or (player.spectator == 1) then
+			if (player.ctfteam == 2) or (player.spectator == 1) then
 				player.ztype = 0
 			end
 			if ZE.alpha_attack == 1 and player.mo and player.mo.valid and player.mo.skin == "dzombie" then
