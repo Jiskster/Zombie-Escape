@@ -113,17 +113,6 @@ ZE.ZtypeCfg = function(player)
 				player.normalspeed = ZE.ZombieStats[player.ztype].normalspeed
 				player.jumpfactor = ZE.ZombieStats[player.ztype].jumpfactor
 			end
-			/*
-			if (player.ztype == ZM_FAST)
-				player.normalspeed = ZE.ZombieStats["Fast"].normalspeed
-				player.jumpfactor = ZE.ZombieStats["Fast"].jumpfactor
-			end
-
-			if (player.ztype == ZM_TANK)
-				player.normalspeed = ZE.ZombieStats["Tank"].normalspeed
-				player.jumpfactor = ZE.ZombieStats["Tank"].jumpfactor
-			end
-			*/
 		end
 	end
 end
