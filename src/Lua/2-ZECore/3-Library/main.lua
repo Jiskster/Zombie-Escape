@@ -154,7 +154,7 @@ ZE.survWin = function()
 	for player in players.iterate do
 	  if player.mo and player.mo.valid
 	     if not ZE.winTriggerDelay
-	        if (gametype == GT_ZESCAPE) and not (ZE.teamwin == ZM_ZOMBIE)
+	        if (gametype == GT_ZESCAPE) and not (ZE.teamwin == 1)
 			S_ChangeMusic("ZMLOSE",false,player)
 			ZE.winTriggerDelay = 1
 			if CV.deathonwin.value == 1 then
@@ -173,7 +173,7 @@ ZE.zmWin = function()
 	for player in players.iterate do
 	  if player.mo and player.mo.valid
 	     if not ZE.winTriggerDelay
-	        if (gametype == GT_ZESCAPE) and not (ZE.teamwin == ZM_ZOMBIE)
+	        if (gametype == GT_ZESCAPE) and not (ZE.teamwin == 1)
 			S_ChangeMusic("ZMWIN",false,player)
 			ZE.winTriggerDelay = 1
 			if CV.deathonwin.value == 1 then
@@ -349,7 +349,7 @@ ZE.PlayerCount = function()
 			if not player.spectator
 				if player.ctfteam == 1
 					ZE.zombcount = $1+1
-				elseif player.ctfteam == TEAM_SURVIOR
+				elseif player.ctfteam == 2
 					ZE.survcount = $1+1
 				end
 			end
