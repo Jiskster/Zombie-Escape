@@ -46,21 +46,31 @@ hud.add(function(v, player)
 		   v.drawString(320,176-offset,"\x87\HOLD SPIN \x80\- \x85\FireBall",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
 		end
 		
-		if player.ztype == ZM_ALPHA then
+		if player.ztype == "ZM_ALPHA" then
 			v.drawString(320,184-offset,"\x87\CUSTOM 1 \x80\ - \x85\RAGE",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
 			v.drawString(320,176-offset,"\x85\RAGE\x80 COOLDOWN: "+tostring(player.boostcount/TICRATE),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
 		end
 		if hudtype == 1
-			if player.ztype == ZM_ALPHA then
+		
+			/*
+			if player.ztype == "ZM_ALPHA" then
 			   v.drawString(1,176,"\x85\ALPHA ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-left")
 			end
 			
-			if player.ztype == ZM_FAST then
+			if player.ztype == "ZM_FAST" then
 				v.drawString(1,176,"\x85\FAST ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-left")
 			end
 			
-			if player.ztype == ZM_TANK then
+			if player.ztype == "ZM_TANK" then
 				v.drawString(1,176,"\x85\TANK ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-left")
+			end
+			*/
+			
+			
+			if player.ztype then
+				v.drawString(1,176,"\x85\ "..ZE.Ztypes[player.ztype].name:upper().." ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-left")
+			else
+				v.drawString(1,176,"\x85\COMMON ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-left")
 			end
 		end
 	end
@@ -199,15 +209,15 @@ hud.add(function(g,player,cam)
 				c=V_SNAPTOTOP|V_50TRANS
 			elseif player.ctfteam == 1 then
 				str="ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
-				if player.ztype == ZM_ALPHA then
+				if player.ztype == "ZM_ALPHA" then
 					str="ALPHA ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
 				end
 				
-				if player.ztype == ZM_FAST then
+				if player.ztype == "ZM_FAST" then
 					str="FAST ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
 				end
 				
-				if player.ztype == ZM_TANK then
+				if player.ztype == "ZM_TANK" then
 					str="TANK ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
 				end
 			elseif player.ctfteam == 0 then

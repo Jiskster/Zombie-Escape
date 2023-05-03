@@ -148,14 +148,14 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 						return false
 					end
 					local knockback = ZE.damagetable.knockback[catch]
-					if shooter.player.ztype == ZM_ALPHA and shooter.player.boosttimer > 0 then -- rage = double damage
+					if shooter.player.ztype == "ZM_ALPHA" and shooter.player.boosttimer > 0 then -- rage = double damage
 						truedmg = $1 * 2
 					end
-					if hurtplayer.player.ztype == ZM_TANK then
+					if hurtplayer.player.ztype == "ZM_TANK" then
 						knockback = $1 / 3
 					end
 					
-					if hurtplayer.player.ztype == ZM_ALPHA then
+					if hurtplayer.player.ztype == "ZM_ALPHA" then
 						knockback = $1 * 2
 					end
 					if CV.knockback.value == 1 then  --knockbackk stuff
@@ -254,12 +254,12 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 							shooter.health = $ + (15* ZE.Wave)
 						end
 						
-						if hurtplayer.player.ztype == ZM_ALPHA and shooter.maxHealth and shooter.health then
+						if hurtplayer.player.ztype == "ZM_ALPHA" and shooter.maxHealth and shooter.health then
 							shooter.maxHealth = $ + (30)
 							shooter.health = $ + (30)
 						end
 						
-						if hurtplayer.player.ztype == ZM_TANK and shooter.maxHealth and shooter.health then
+						if hurtplayer.player.ztype == "ZM_TANK" and shooter.maxHealth and shooter.health then
 							shooter.maxHealth = $ + (125)
 							shooter.health = $ + (30)
 						end

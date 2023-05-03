@@ -1,11 +1,32 @@
 rawset(_G,"RV_ZESCAPE",{})
 
+rawset(_G,"TEAM_ZOMBIE",1)
+rawset(_G,"TEAM_SURVIVOR",2)
+local ZE = RV_ZESCAPE
+
+
 //ztypes
+
+/*
 rawset(_G,"ZM_ALPHA",1)
 rawset(_G,"ZM_FAST",2)
 rawset(_G,"ZM_TANK",3)
+*/
 
-local ZE = RV_ZESCAPE
+ZE.Ztypes = {
+	["ZM_ALPHA"] = {
+		name = "Alpha"
+	},
+	["ZM_FAST"] = {
+		name = "Fast"
+	},
+	["ZM_TANK"] = {
+		name = "Tank"
+	},
+	["ZM_TINY"] = {
+		name = "Tiny"
+	},
+}
 
 ZE.Console = {}
 
@@ -54,6 +75,22 @@ ZE.setHP = function(mobj, hp)
 		end
 		
 		mobj.health = hp
+	end
+end
+
+ZE.IsPlayerZombie = function(player)
+	if player and player.ctfteam == TEAM_ZOMBIE then
+		return true
+	else
+		return false
+	end
+end
+
+ZE.IsPlayerSurvivor = function(player)
+	if player and player.ctfteam == TEAM_SURIVOR then
+		return true
+	else
+		return false
 	end
 end
 
