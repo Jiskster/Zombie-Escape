@@ -101,12 +101,8 @@ ZE.ZtypeCfg = function(player)
 	if not (gametype == GT_ZESCAPE) then return end
 	if (player.mo and player.mo.valid)
 		if not (player.ctfteam == TEAM_SURVIVOR) and CV.gamestarted then
-			if (player.ztype == "ZM_ALPHA") then
-				player.mo.scale = ZE.ZombieStats["ZM_ALPHA"].scale
-			end
-
-			if (player.ztype == "ZM_TANK") then
-				player.mo.scale = ZE.ZombieStats["ZM_TANK"].scale
+			if player.ztype and ZE.ZombieStats[player.ztype].scale then
+				player.mo.scale = ZE.ZombieStats[player.ztype].scale
 			end
 		elseif (player.ctfteam == TEAM_SURVIVOR) or (player.spectator == 1) then
 			return
