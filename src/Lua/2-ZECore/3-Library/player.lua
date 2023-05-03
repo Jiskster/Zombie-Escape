@@ -50,12 +50,12 @@ ZE.CharacterConfig = function(player)
 		
 
 		
-		if (player.ctfteam == TEAM_ZOMBIE)
+		if (player.ctfteam == 1)
 			player.charflags = SF_NOJUMPSPIN|SF_NOJUMPDAMAGE|SF_NOSKID
 			player.powers[pw_underwater] = 30*TICRATE
 		end
 		
-		if (player.ctfteam == TEAM_SURVIVOR)
+		if (player.ctfteam == 2)
 			player.charflags = SF_NOJUMPSPIN|SF_NOSKID
 		end
 	end
@@ -100,15 +100,15 @@ end
 ZE.ZtypeCfg = function(player)
 	if not (gametype == GT_ZESCAPE) then return end
 	if (player.mo and player.mo.valid)
-		if not (player.ctfteam == TEAM_SURVIVOR) and CV.gamestarted then
+		if not (player.ctfteam == 2) and CV.gamestarted then
 			if player.ztype and ZE.ZombieStats[player.ztype].scale then
 				player.mo.scale = ZE.ZombieStats[player.ztype].scale
 			end
-		elseif (player.ctfteam == TEAM_SURVIVOR) or (player.spectator == 1) then
+		elseif (player.ctfteam == 2) or (player.spectator == 1) then
 			return
 		end
 
-		if not (leveltime < CV.waittime) and not (player.ctfteam == TEAM_SURVIVOR)  then
+		if not (leveltime < CV.waittime) and not (player.ctfteam == 2)  then
 			if (player.ztype) and not (player.boost == 1) then
 				player.normalspeed = ZE.ZombieStats[player.ztype].normalspeed
 				player.jumpfactor = ZE.ZombieStats[player.ztype].jumpfactor
@@ -302,9 +302,9 @@ end
 ZE.ZombieHealth = function(player)
 	if gametype == GT_ZESCAPE
 		if player.mo and player.mo.valid
-			if player.ctfteam == TEAM_SURVIVOR return end
+			if player.ctfteam == 2 return end
 			if player.powers[pw_flashing] > 0 or not (player.spectator) then
-				if (player.ctfteam == TEAM_ZOMBIE) and not (player.ztype)
+				if (player.ctfteam == 1) and not (player.ztype)
 					player.mo.health = ZE.ZombieStats["ZM_NORMAL"].startHealth + (35*ZE.survcount)
 					player.mo.maxHealth = ZE.ZombieStats["ZM_NORMAL"].maxHealth + (35*ZE.survcount)      --normal zombie health
 				end
@@ -330,7 +330,7 @@ end
 ZE.ZombieSwarmWave = function(player)
 	if gametype ~= GT_ZESCAPE return end
 	if player.mo and player.mo.valid
-		if player.ctfteam == TEAM_SURVIVOR return end
+		if player.ctfteam == 2 return end
 		if mapheaderinfo[gamemap].zombieswarm and not player.ztype then 
 			if ZE.Wave == 1
 				if player.powers[pw_flashing] > 0
@@ -373,7 +373,7 @@ end
 
 ZE.HealthOrb = function(obj, play)
 	local player = play.player
-	if (player.mo) and (player.ctfteam == TEAM_SURVIVOR)
+	if (player.mo) and (player.ctfteam == 2)
 		player.mo.maxHealth = $ + 200
 		player.mo.health = $ + 200
 		P_GivePlayerRings(player, 275)
