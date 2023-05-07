@@ -305,9 +305,10 @@ end
 
 ZE.ZombieHealth = function(player)
 	if gametype == GT_ZESCAPE
-		if player.mo and player.mo.valid
-			if player.ctfteam == 2 return end
-			if player.powers[pw_flashing] > 0 or not (player.spectator) then
+		if player.mo and player.mo.valid then
+			if player.ctfteam == 2 then return end
+			if player.powers[pw_flashing] == 0 then return end
+			if not (player.spectator) then
 				if not (player.ztype) then 
 					player.mo.health = ZE.ZombieStats["ZM_NORMAL"].startHealth + (35*ZE.survcount)
 					player.mo.maxHealth = ZE.ZombieStats["ZM_NORMAL"].maxHealth + (35*ZE.survcount)      --normal zombie health

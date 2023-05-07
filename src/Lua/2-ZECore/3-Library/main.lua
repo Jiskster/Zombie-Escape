@@ -438,49 +438,30 @@ ZE.SpawnPlayer = function(player)
 		if player.mo.skin == "dzombie" and not (ZE.alpha_attack) then
 			local swarm = mapheaderinfo[gamemap].zombieswarm 
 			if not swarm then
+				local randomztypes = {"ZM_TANK", "ZM_ALPHA", "ZM_FAST", "ZM_TINY"}
 				if player.suicided then
 					player.suicided = false
 					return
 				end
-				if P_RandomChance(FU) then
-					player.ztype = "ZM_TINY"
-					return
-				end	
+				
 				if P_RandomChance(FU/4) then
-					player.ztype = "ZM_TANK"
-					return
-				end
-				if P_RandomChance(FU/4) then
-					player.ztype = "ZM_ALPHA"
-					return
-				end	
-				if P_RandomChance(FU/4) then
-					player.ztype = "ZM_FAST"
+					local pickedztype = P_RandomRange(1, #randomztypes)
+					player.ztype = randomztypes[pickedztype]
 					return
 				end	
 			end
 			
 			if swarm then
 				-- if swarm then
+				local randomztypes = {"ZM_TANK", "ZM_ALPHA", "ZM_FAST", "ZM_TINY"}
 				if player.suicided then
 					player.suicided = false
 					return
 				end
-				
-				if P_RandomChance(FU) then
-					player.ztype = "ZM_TINY"
-					return
-				end	
-				if P_RandomChance(FU/4) then
-					player.ztype = "ZM_TANK"
-					return
-				end
-				if P_RandomChance(FU/10) then
-					player.ztype = "ZM_ALPHA"
-					return
-				end	
-				if P_RandomChance(FU/4) then
-					player.ztype = "ZM_FAST"
+			
+				if P_RandomChance(FU/5) then
+					local pickedztype = P_RandomRange(1, #randomztypes)
+					player.ztype = randomztypes[pickedztype]
 					return
 				end	
 			end

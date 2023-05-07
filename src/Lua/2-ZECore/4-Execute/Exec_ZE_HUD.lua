@@ -208,17 +208,9 @@ hud.add(function(g,player,cam)
 				str="WAITING: "..(CV.waittime-leveltime)/TICRATE
 				c=V_SNAPTOTOP|V_50TRANS
 			elseif player.ctfteam == 1 then
-				str="ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
-				if player.ztype == "ZM_ALPHA" then
-					str="ALPHA ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
-				end
-				
-				if player.ztype == "ZM_FAST" then
-					str="FAST ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
-				end
-				
-				if player.ztype == "ZM_TANK" then
-					str="TANK ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
+				str="COMMON ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
+				if ZE.Ztypes[player.ztype].name then
+					str = ZE.Ztypes[player.ztype].name:upper().." ZOMBIE"
 				end
 			elseif player.ctfteam == 0 then
 				str="SPECTATOR" c=V_SNAPTOTOP|V_50TRANS
