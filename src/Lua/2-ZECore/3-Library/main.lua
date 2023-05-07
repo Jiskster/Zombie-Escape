@@ -442,6 +442,10 @@ ZE.SpawnPlayer = function(player)
 					player.suicided = false
 					return
 				end
+				if P_RandomChance(FU) then
+					player.ztype = "ZM_TINY"
+					return
+				end	
 				if P_RandomChance(FU/4) then
 					player.ztype = "ZM_TANK"
 					return
@@ -462,6 +466,11 @@ ZE.SpawnPlayer = function(player)
 					player.suicided = false
 					return
 				end
+				
+				if P_RandomChance(FU) then
+					player.ztype = "ZM_TINY"
+					return
+				end	
 				if P_RandomChance(FU/4) then
 					player.ztype = "ZM_TANK"
 					return

@@ -58,36 +58,38 @@ end
 
 ZE.ShieldToHealth = function()
 	if not (gametype == GT_ZESCAPE)
-	 and not (gametype == GT_ZSWARM) then return end
-		for player in players.iterate
-		  if not (player.mo and player.mo.valid) return end
-			if gametype == GT_MATCH
-				player.ctfteam = 0
-			end
-			player.pity = 0
-			if player.spawnrings == nil
-				player.spawnrings = true
-				player.painsound = 5
-			end
-			if player.powers[pw_shield] ~= SH_NONE
-				player.mo.health = $ + 50
-				player.health = player.mo.health
-				player.powers[pw_shield] = SH_NONE
-			end
-			if player.playerstate == PST_REBORN
-				player.spawnrings = true
-			end
-			if player.mo ~= nil
-				if player.spawnrings == true
-				and player.playerstate == PST_LIVE
-					player.spawnrings = false
-				end
-			end
-			local ringlimit = CV.ringlimit.value + 1
-			if player.mo.health > ringlimit
-				player.mo.health = ringlimit --Limit please.
-				player.health = player.mo.health
+	and not (gametype == GT_ZSWARM) then return end
+	for player in players.iterate
+		if not (player.mo and player.mo.valid) return end
+		if gametype == GT_MATCH
+			player.ctfteam = 0
 		end
+		player.pity = 0
+		if player.spawnrings == nil
+			player.spawnrings = true
+			player.painsound = 5
+		end
+		if player.powers[pw_shield] ~= SH_NONE
+			player.mo.health = $ + 50
+			player.health = player.mo.health
+			player.powers[pw_shield] = SH_NONE
+		end
+		if player.playerstate == PST_REBORN
+			player.spawnrings = true
+		end
+		if player.mo ~= nil
+			if player.spawnrings == true
+			and player.playerstate == PST_LIVE
+				player.spawnrings = false
+			end
+		end
+		/*
+		local ringlimit = CV.ringlimit.value + 1
+		if player.mo.health > ringlimit
+			player.mo.health = ringlimit --Limit please.
+			player.health = player.mo.health
+		end
+		*/
 	end
 end
 

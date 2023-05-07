@@ -100,7 +100,7 @@ end
 ZE.ZtypeCfg = function(player)
 	if not (gametype == GT_ZESCAPE) then return end
 	if (player.mo and player.mo.valid)
-		if not (player.ctfteam == 2) and CV.gamestarted then
+		if (player.ctfteam == 1) and CV.gamestarted then
 			if player.ztype and ZE.ZombieStats[player.ztype].scale then
 				player.mo.scale = ZE.ZombieStats[player.ztype].scale
 			end
@@ -108,7 +108,7 @@ ZE.ZtypeCfg = function(player)
 			return
 		end
 
-		if not (leveltime < CV.waittime) and not (player.ctfteam == 2)  then
+		if (CV.gamestarted) and (player.ctfteam == 1) then
 			if (player.ztype) and not (player.boost == 1) then
 				player.normalspeed = ZE.ZombieStats[player.ztype].normalspeed
 				player.jumpfactor = ZE.ZombieStats[player.ztype].jumpfactor
@@ -166,7 +166,7 @@ ZE.ZtypeAura = function()
 				zombienumber1.blendmode = AST_ADD
 				P_TeleportMove(zombienumber1, player.mo.x, player.mo.y, player.mo.z - 4*FRACUNIT)
 				zombienumber1.frame = $|FF_ADD
-				zombienumber1.scale = 15*FRACUNIT/10
+				zombienumber1.scale = $ + FRACUNIT/3
 				if zombienumber1.tracer
 					zombienumber1.tracer.fuse = zombienumber1.fuse
 				end
@@ -208,6 +208,10 @@ ZE.CharacterColors = function()
 				if player.ztype == "ZM_TANK" then
 					player.mo.color = SKINCOLOR_SEAFOAM
 				end
+				
+				if player.ztype == "ZM_TINY" then
+					player.mo.color = SKINCOLOR_CERULEAN
+				end
 			end
 		end
 	end
@@ -235,7 +239,7 @@ ZE.StartHealth = function(player)
 	local skinname = skins[player.mo.skin].name
 	local default = "defaultconfig"
     if not (gametype == GT_ZESCAPE) return end
-	if not (leveltime > CV.waittime) then 
+	if CV.gamestarted == false then 
 		if (player.mo and player.mo.valid) then
 			if ZE.CharacterStats[skinname] then
 				player.mo.health = ZE.CharacterStats[skinname].startHealth
@@ -304,7 +308,7 @@ ZE.ZombieHealth = function(player)
 		if player.mo and player.mo.valid
 			if player.ctfteam == 2 return end
 			if player.powers[pw_flashing] > 0 or not (player.spectator) then
-				if (player.ctfteam == 1) and not (player.ztype)
+				if not (player.ztype) then 
 					player.mo.health = ZE.ZombieStats["ZM_NORMAL"].startHealth + (35*ZE.survcount)
 					player.mo.maxHealth = ZE.ZombieStats["ZM_NORMAL"].maxHealth + (35*ZE.survcount)      --normal zombie health
 				end
@@ -321,6 +325,11 @@ ZE.ZombieHealth = function(player)
 				if (player.ztype == "ZM_TANK")
 					player.mo.health = ZE.ZombieStats["ZM_TANK"].startHealth + (150*ZE.survcount)
 					player.mo.maxHealth = ZE.ZombieStats["ZM_TANK"].maxHealth + (150*ZE.survcount)
+				end	
+				
+				if (player.ztype == "ZM_TINY")
+					player.mo.health = ZE.ZombieStats["ZM_TINY"].startHealth + (10*ZE.survcount)
+					player.mo.maxHealth = ZE.ZombieStats["ZM_TINY"].maxHealth + (10*ZE.survcount)
 				end	
 			end
 		end
