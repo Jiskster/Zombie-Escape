@@ -58,36 +58,38 @@ end
 
 ZE.ShieldToHealth = function()
 	if not (gametype == GT_ZESCAPE)
-	 and not (gametype == GT_ZSWARM) then return end
-		for player in players.iterate
-		  if not (player.mo and player.mo.valid) return end
-			if gametype == GT_MATCH
-				player.ctfteam = 0
-			end
-			player.pity = 0
-			if player.spawnrings == nil
-				player.spawnrings = true
-				player.painsound = 5
-			end
-			if player.powers[pw_shield] ~= SH_NONE
-				player.mo.health = $ + 50
-				player.health = player.mo.health
-				player.powers[pw_shield] = SH_NONE
-			end
-			if player.playerstate == PST_REBORN
-				player.spawnrings = true
-			end
-			if player.mo ~= nil
-				if player.spawnrings == true
-				and player.playerstate == PST_LIVE
-					player.spawnrings = false
-				end
-			end
-			local ringlimit = CV.ringlimit.value + 1
-			if player.mo.health > ringlimit
-				player.mo.health = ringlimit --Limit please.
-				player.health = player.mo.health
+	and not (gametype == GT_ZSWARM) then return end
+	for player in players.iterate
+		if not (player.mo and player.mo.valid) return end
+		if gametype == GT_MATCH
+			player.ctfteam = 0
 		end
+		player.pity = 0
+		if player.spawnrings == nil
+			player.spawnrings = true
+			player.painsound = 5
+		end
+		if player.powers[pw_shield] ~= SH_NONE
+			player.mo.health = $ + 50
+			player.health = player.mo.health
+			player.powers[pw_shield] = SH_NONE
+		end
+		if player.playerstate == PST_REBORN
+			player.spawnrings = true
+		end
+		if player.mo ~= nil
+			if player.spawnrings == true
+			and player.playerstate == PST_LIVE
+				player.spawnrings = false
+			end
+		end
+		/*
+		local ringlimit = CV.ringlimit.value + 1
+		if player.mo.health > ringlimit
+			player.mo.health = ringlimit --Limit please.
+			player.health = player.mo.health
+		end
+		*/
 	end
 end
 
@@ -148,14 +150,14 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 						return false
 					end
 					local knockback = ZE.damagetable.knockback[catch]
-					if shooter.player.ztype == ZM_ALPHA and shooter.player.boosttimer > 0 then -- rage = double damage
+					if shooter.player.ztype == "ZM_ALPHA" and shooter.player.boosttimer > 0 then -- rage = double damage
 						truedmg = $1 * 2
 					end
-					if hurtplayer.player.ztype == ZM_TANK then
+					if hurtplayer.player.ztype == "ZM_TANK" then
 						knockback = $1 / 3
 					end
 					
-					if hurtplayer.player.ztype == ZM_ALPHA then
+					if hurtplayer.player.ztype == "ZM_ALPHA" then
 						knockback = $1 * 2
 					end
 					if CV.knockback.value == 1 then  --knockbackk stuff
@@ -254,12 +256,12 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 							shooter.health = $ + (15)
 						end
 						
-						if hurtplayer.player.ztype == ZM_ALPHA and shooter.maxHealth and shooter.health then
+						if hurtplayer.player.ztype == "ZM_ALPHA" and shooter.maxHealth and shooter.health then
 							shooter.maxHealth = $ + (30)
 							shooter.health = $ + (30)
 						end
 						
-						if hurtplayer.player.ztype == ZM_TANK and shooter.maxHealth and shooter.health then
+						if hurtplayer.player.ztype == "ZM_TANK" and shooter.maxHealth and shooter.health then
 							shooter.maxHealth = $ + (125)
 							shooter.health = $ + (30)
 						end

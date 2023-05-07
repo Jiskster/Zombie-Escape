@@ -154,7 +154,7 @@ ZE.survWin = function()
 	for player in players.iterate do
 	  if player.mo and player.mo.valid
 	     if not ZE.winTriggerDelay
-	        if (gametype == GT_ZESCAPE) and not (ZE.teamWin == 1)
+	        if (gametype == GT_ZESCAPE) and not (ZE.teamwin == 1)
 			S_ChangeMusic("ZMLOSE",false,player)
 			ZE.winTriggerDelay = 1
 			if CV.deathonwin.value == 1 then
@@ -173,7 +173,7 @@ ZE.zmWin = function()
 	for player in players.iterate do
 	  if player.mo and player.mo.valid
 	     if not ZE.winTriggerDelay
-	        if (gametype == GT_ZESCAPE) and not (ZE.teamWin == 1)
+	        if (gametype == GT_ZESCAPE) and not (ZE.teamwin == 1)
 			S_ChangeMusic("ZMWIN",false,player)
 			ZE.winTriggerDelay = 1
 			if CV.deathonwin.value == 1 then
@@ -438,40 +438,30 @@ ZE.SpawnPlayer = function(player)
 		if player.mo.skin == "dzombie" and not (ZE.alpha_attack) then
 			local swarm = mapheaderinfo[gamemap].zombieswarm 
 			if not swarm then
+				local randomztypes = {"ZM_TANK", "ZM_ALPHA", "ZM_FAST", "ZM_TINY"}
 				if player.suicided then
 					player.suicided = false
 					return
 				end
+				
 				if P_RandomChance(FU/4) then
-					player.ztype = ZM_TANK
-					return
-				end
-				if P_RandomChance(FU/4) then
-					player.ztype = ZM_ALPHA
-					return
-				end	
-				if P_RandomChance(FU/4) then
-					player.ztype = ZM_FAST
+					local pickedztype = P_RandomRange(1, #randomztypes)
+					player.ztype = randomztypes[pickedztype]
 					return
 				end	
 			end
 			
 			if swarm then
 				-- if swarm then
+				local randomztypes = {"ZM_TANK", "ZM_ALPHA", "ZM_FAST", "ZM_TINY"}
 				if player.suicided then
 					player.suicided = false
 					return
 				end
-				if P_RandomChance(FU/4) then
-					player.ztype = ZM_TANK
-					return
-				end
-				if P_RandomChance(FU/10) then
-					player.ztype = ZM_ALPHA
-					return
-				end	
-				if P_RandomChance(FU/4) then
-					player.ztype = ZM_FAST
+			
+				if P_RandomChance(FU/5) then
+					local pickedztype = P_RandomRange(1, #randomztypes)
+					player.ztype = randomztypes[pickedztype]
 					return
 				end	
 			end
@@ -496,7 +486,7 @@ end
 ZE.DeathPointTp = function(player)
 	if (gametype == GT_ZESCAPE)
 	       player.respawned = $ or 0
-		if (player.ztype == ZM_ALPHA) and player.ctfteam == 1 then
+		if (player.ztype == "ZM_ALPHA") and player.ctfteam == 1 then
 		   player.respawned = 1
 	end
         if (leveltime > CV.waittime) and player.ctfteam == 1 and not (player.respawned == 1) and player.deathpoint and player.score != 0 then
@@ -544,7 +534,7 @@ ZE.InitZtype = function()
 				player.ztype = $ or 0
 				
 				if not	(mapheaderinfo[gamemap].zombieswarm) then
-					player.ztype = ZM_ALPHA
+					player.ztype = "ZM_ALPHA"
 				end
 			end
 			if (player.ctfteam == 1) and (player.playerstate == PST_DEAD) and (leveltime-CV.waittime >= 10*TICRATE) then
@@ -554,7 +544,7 @@ ZE.InitZtype = function()
 				player.ztype = 0
 			end
 			if ZE.alpha_attack == 1 and player.mo and player.mo.valid and player.mo.skin == "dzombie" then
-				player.ztype = ZM_ALPHA
+				player.ztype = "ZM_ALPHA"
 			end
 	end
 end

@@ -4,7 +4,7 @@ local CV = ZE.Console
 --zombie stats doesnt really need much info
 --flexible
 ZE.ZombieStats = {
-	["Normal"] = {
+	["ZM_NORMAL"] = {
 		normalspeed = 20*FRACUNIT,
 		jumpfactor = 22 * FRACUNIT / 19,
 		charability = CA_NONE,
@@ -12,7 +12,7 @@ ZE.ZombieStats = {
 		startHealth = 200,
 		maxHealth = 200,
 	},
-	["Alpha"] = {
+	["ZM_ALPHA"] = {
 		normalspeed = 18*FRACUNIT,
 		jumpfactor = 24 * FRACUNIT / 19,
 		charability = CA_NONE,
@@ -21,7 +21,7 @@ ZE.ZombieStats = {
 		maxHealth = 500,
 		scale = 11*FRACUNIT/10,
 	},
-	["Fast"] = {
+	["ZM_FAST"] = {
 		normalspeed = 35*FRACUNIT,
 		jumpfactor = 18 * FRACUNIT / 19,
 		charability = CA_NONE,
@@ -29,7 +29,7 @@ ZE.ZombieStats = {
 		startHealth = 50,
 		maxHealth = 50,
 	},
-	["Tank"] = {
+	["ZM_TANK"] = {
 		normalspeed = 5*FRACUNIT,
 		jumpfactor = 18 * FRACUNIT / 19,
 		charability = CA_NONE,
@@ -37,6 +37,16 @@ ZE.ZombieStats = {
 		startHealth = 2500,
 		maxHealth = 2500,
 		scale = 20*FRACUNIT/10,
+	},
+	
+	["ZM_TINY"] = {
+		normalspeed = 60*FRACUNIT,
+		jumpfactor = 18 * FRACUNIT / 19,
+		charability = CA_NONE,
+		charability2 = CA2_NONE,
+		startHealth = 25,
+		maxHealth = 25,
+		scale = 6*FRACUNIT/10,
 	},
 }
 
@@ -129,13 +139,13 @@ ZE.CharacterStats = {
 		staminanormal = 28*FRACUNIT,
     },
 	["dzombie"] = {
-	    normalspeed = ZE.ZombieStats["Normal"].normalspeed,
+	    normalspeed = ZE.ZombieStats["ZM_NORMAL"].normalspeed,
 		runspeed = 100*FRACUNIT,
-		jumpfactor = ZE.ZombieStats["Normal"].jumpfactor,
-		charability = ZE.ZombieStats["Normal"].charability,
-		charability2 = ZE.ZombieStats["Normal"].charability2,
-		startHealth = ZE.ZombieStats["Normal"].startHealth,
-		maxHealth = ZE.ZombieStats["Normal"].maxHealth,
+		jumpfactor = ZE.ZombieStats["ZM_NORMAL"].jumpfactor,
+		charability = ZE.ZombieStats["ZM_NORMAL"].charability,
+		charability2 = ZE.ZombieStats["ZM_NORMAL"].charability2,
+		startHealth = ZE.ZombieStats["ZM_NORMAL"].startHealth,
+		maxHealth = ZE.ZombieStats["ZM_NORMAL"].maxHealth,
 		staminacost = 0,
 		staminarun = 16*FRACUNIT,
 		staminanormal = 25*FRACUNIT,
