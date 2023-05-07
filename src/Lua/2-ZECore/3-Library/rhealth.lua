@@ -273,11 +273,11 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 							end
 							
 							if not critical then
-								P_GivePlayerRings(shooter.player,50)
+								P_GivePlayerRings(shooter.player,30)
 							end
 							
 							if critical then
-								P_GivePlayerRings(shooter.player,250)
+								P_GivePlayerRings(shooter.player,200)
 							end
 						end
 					else
