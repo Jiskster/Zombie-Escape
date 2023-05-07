@@ -11,7 +11,7 @@ for _, filename in ipairs{
 
 	--cmds and etc
 	"2-ZECore/2-Console/con_timer.lua",
-	"2-ZECore/2-Console/con_rhealth.lua",
+	"2-ZECore/2-Console/con_cvars.lua",
 	"2-ZECore/2-Console/con_cmds.lua",
 	"2-ZECore/2-Console/con_local.lua",
 	

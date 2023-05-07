@@ -222,7 +222,7 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 							P_AddPlayerScore(shooter.player, truedmg)
 						end
 						hurtplayer.player.health = hurtplayer.health
-						hurtplayer.player.powers[pw_invulnerability] = 40
+						hurtplayer.player.powers[pw_invulnerability] = CV.survivorframes.value
 					end
 					if hurtplayer.health < 1 -- on death
 						P_PlayerWeaponPanelBurst(hurtplayer.player)

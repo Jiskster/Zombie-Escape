@@ -77,3 +77,10 @@ CV.defaultrings = CV_RegisterVar{
 	flags = CV_NETVAR,
 	PossibleValue={MIN = 1, MAX = 9999}
 }
+
+CV.survivorframes = CV_RegisterVar{ -- invicibility frames after being hit as survivor
+	name = "rh_survivorframes",
+	defaultvalue = "35",
+	flags = CV_NETVAR,
+	PossibleValue={MIN = 1, MAX = 9999}
+}
