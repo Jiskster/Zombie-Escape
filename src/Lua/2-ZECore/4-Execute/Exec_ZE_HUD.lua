@@ -90,7 +90,11 @@ hud.add(function(v, player, camera)
 				local y = 170
 				local ya = y-2 
 				local mipatch2 = v.cachePatch("ZEBGBAR")
-				v.drawStretched(0*FU,ya*FU,(125*FU/50)*TICRATE,FU*9, mipatch2,V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_50TRANS)
+				local bgbarbottom = FU*9
+				if player.ctfteam == 1 then
+					bgbarbottom = FU*5
+				end
+				v.drawStretched(0*FU,ya*FU,(125*FU/50)*TICRATE,bgbarbottom, mipatch2,V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_50TRANS)
 				--local mipatch = v.cachePatch("ZEHPBAR")
 				if player.mo.skin ~= "dzombie" then
 					v.drawString(0,y, max(0,player.mo.health)+"/"+max(0,player.mo.maxHealth) + " Health", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_REDMAP, "thin")
