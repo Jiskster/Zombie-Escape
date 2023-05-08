@@ -50,7 +50,7 @@ hud.add(function(v, player)
 			v.drawString(320,184-offset,"\x87\CUSTOM 1 \x80\ - \x85\RAGE",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
 			v.drawString(320,176-offset,"\x85\RAGE\x80 COOLDOWN: "+tostring(player.boostcount/TICRATE),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
 		end
-		if hudtype == 1
+		if hudtype == 1 and player.ctfteam == 1 then
 		
 			/*
 			if player.ztype == "ZM_ALPHA" then
@@ -90,7 +90,11 @@ hud.add(function(v, player, camera)
 				local y = 170
 				local ya = y-2 
 				local mipatch2 = v.cachePatch("ZEBGBAR")
-				v.drawStretched(0*FU,ya*FU,(125*FU/50)*TICRATE,FU*9, mipatch2,V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_50TRANS)
+				local bgbarbottom = FU*9
+				if player.ctfteam == 1 then
+					bgbarbottom = FU*5
+				end
+				v.drawStretched(0*FU,ya*FU,(125*FU/50)*TICRATE,bgbarbottom, mipatch2,V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_50TRANS)
 				--local mipatch = v.cachePatch("ZEHPBAR")
 				if player.mo.skin ~= "dzombie" then
 					v.drawString(0,y, max(0,player.mo.health)+"/"+max(0,player.mo.maxHealth) + " Health", V_PERPLAYER|V_SNAPTOBOTTOM|V_SNAPTOLEFT|V_REDMAP, "thin")
@@ -194,7 +198,10 @@ hud.add(function(g,player,cam)
 			elseif player.ctfteam == 0 then
 				str="SPECTATOR" c=V_SNAPTOBOTTOM|V_SNAPTOLEFT
 			end
-			g.drawString(1,127+yo, str, c)		
+			g.drawString(1,127+yo, str, c)
+			if player.ctfteam == 2 then
+				g.drawString(0,159,"\x82\Rings: "+player.rings, V_PERPLAYER|V_SNAPTOLEFT|V_SNAPTOBOTTOM) --cringe
+			end
 		end
 		
 		if hudtype == 2
@@ -209,13 +216,15 @@ hud.add(function(g,player,cam)
 				c=V_SNAPTOTOP|V_50TRANS
 			elseif player.ctfteam == 1 then
 				str="COMMON ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
-				if ZE.Ztypes[player.ztype].name then
+				if ZE.Ztypes[player.ztype] and ZE.Ztypes[player.ztype].name then
 					str = ZE.Ztypes[player.ztype].name:upper().." ZOMBIE"
 				end
 			elseif player.ctfteam == 0 then
 				str="SPECTATOR" c=V_SNAPTOTOP|V_50TRANS
 			end
-		g.drawString(160,0, str, c, "center") --127+yo
+		g.drawString(160,0, str, c, "center")
+		
+			--127+yo
 		end
 	end
 end, "game")
