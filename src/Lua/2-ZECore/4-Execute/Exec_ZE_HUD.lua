@@ -184,13 +184,16 @@ hud.add(function(g,player,cam)
 			
 			local yo=64
 			--[[Status]]
-			local str="SURVIVORS"
+			local str="SURVIVOR"
 			local c=V_BLUEMAP|V_SNAPTOBOTTOM|V_SNAPTOLEFT
 			if leveltime < CV.waittime then
 				str="WAITING: "..(CV.waittime-leveltime)/TICRATE
 				c=V_SNAPTOBOTTOM|V_SNAPTOLEFT
 			elseif player.ctfteam == 1 then
-				str="ZOMBIES" c=V_REDMAP|V_SNAPTOBOTTOM|V_SNAPTOLEFT
+				str="ZOMBIE" c=V_REDMAP|V_SNAPTOBOTTOM|V_SNAPTOLEFT
+				if ZE.Ztypes[player.ztype].name then
+					str = ZE.Ztypes[player.ztype].name:upper().." ZOMBIE"
+				end
 			elseif player.ctfteam == 0 then
 				str="SPECTATOR" c=V_SNAPTOBOTTOM|V_SNAPTOLEFT
 			end
