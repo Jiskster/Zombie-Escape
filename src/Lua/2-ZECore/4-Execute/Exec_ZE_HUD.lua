@@ -195,7 +195,9 @@ hud.add(function(g,player,cam)
 				str="SPECTATOR" c=V_SNAPTOBOTTOM|V_SNAPTOLEFT
 			end
 			g.drawString(1,127+yo, str, c)
-			g.drawString(0,159,"\x82\Rings: "+player.rings, V_PERPLAYER|V_SNAPTOLEFT|V_SNAPTOBOTTOM) --cringe
+			if player.ctfteam == 2 then
+				g.drawString(0,159,"\x82\Rings: "+player.rings, V_PERPLAYER|V_SNAPTOLEFT|V_SNAPTOBOTTOM) --cringe
+			end
 		end
 		
 		if hudtype == 2
