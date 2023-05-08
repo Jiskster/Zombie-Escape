@@ -155,7 +155,12 @@ ZE.survWin = function()
 	  if player.mo and player.mo.valid
 	     if not ZE.winTriggerDelay
 	        if (gametype == GT_ZESCAPE) and not (ZE.teamwin == 1)
-			S_ChangeMusic("ZMLOSE",false,player)
+			--SurvivorWinMusic
+			if mapheaderinfo[gamemap].survivorwinmusic then
+				S_ChangeMusic(mapheaderinfo[gamemap].survivorwinmusic,false,player)
+			end
+				S_ChangeMusic("ZMLOSE",false,player)
+			end
 			ZE.winTriggerDelay = 1
 			if CV.deathonwin.value == 1 then
 				ZE.survKill(player)
