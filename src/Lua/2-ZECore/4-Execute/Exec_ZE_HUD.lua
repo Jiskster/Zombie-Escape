@@ -68,9 +68,9 @@ hud.add(function(v, player)
 			
 			
 			if player.ztype then
-				v.drawString(1,176,"\x85\ "..ZE.Ztypes[player.ztype].name:upper().." ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-left")
+				v.drawString(1,176,"\x85\ "..ZE.Ztypes[player.ztype].name:upper().." ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 			else
-				v.drawString(1,176,"\x85\COMMON ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-left")
+				v.drawString(1,176,"\x85\COMMON ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 			end
 		end
 	end
