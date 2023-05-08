@@ -101,7 +101,7 @@ ZE.ZtypeCfg = function(player)
 	if not (gametype == GT_ZESCAPE) then return end
 	if (player.mo and player.mo.valid)
 		if (player.ctfteam == 1) and CV.gamestarted then
-			if player.ztype and ZE.ZombieStats[player.ztype] and ZE.ZombieStats[player.ztype].scale then
+			if player.ztype and ZE.ZombieStats[player.ztype].scale then
 				player.mo.scale = ZE.ZombieStats[player.ztype].scale
 			end
 		elseif (player.ctfteam == 2) or (player.spectator == 1) then

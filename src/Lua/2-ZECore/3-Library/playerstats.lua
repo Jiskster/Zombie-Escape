@@ -38,6 +38,7 @@ ZE.ZombieStats = {
 		maxHealth = 2500,
 		scale = 20*FRACUNIT/10,
 	},
+	
 	["ZM_TINY"] = {
 		normalspeed = 60*FRACUNIT,
 		jumpfactor = 18 * FRACUNIT / 19,
