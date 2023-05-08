@@ -100,8 +100,9 @@ ZE.Win = function(team)
 			CV.onwinscreen = 1
 
 		else
+			local survwinmus = mapheaderinfo[gamemap].survwinmus or "ZMLOSE"
 			if not(mapheaderinfo[gamemap].zombieswarm) then
-				S_ChangeMusic("ZMLOSE",false,player)
+				S_ChangeMusic(survwinmus,false,player)
 			else
 				S_ChangeMusic("ZSWIN",true,player) --these music names will stay confusing lmao
 			end
@@ -156,11 +157,11 @@ ZE.survWin = function()
 	     if not ZE.winTriggerDelay
 	        if (gametype == GT_ZESCAPE) and not (ZE.teamwin == 1)
 			--SurvivorWinMusic
-			if mapheaderinfo[gamemap].survivorwinmusic then
-				S_ChangeMusic(mapheaderinfo[gamemap].survivorwinmusic,false,player)
-			else
-				S_ChangeMusic("ZMLOSE",false,player)
-			end
+			local survwinmus = mapheaderinfo[gamemap].survwinmus or "ZMLOSE"
+			
+			S_ChangeMusic(survwinmus,false,player)
+			
+
 			ZE.winTriggerDelay = 1
 			if CV.deathonwin.value == 1 then
 				ZE.survKill(player)

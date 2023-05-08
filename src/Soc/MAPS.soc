@@ -9,7 +9,7 @@ SkyNum = 15
 NoZone = True
 SelectHeading = Zombie Escape Maps
 Lua.PlayerCountName = EGYPTIANS
-Lua.SurvivorWinMusic = EGWIN
+Lua.SurvWinMus = EGWIN
 
 Level 2
 Levelname = Stonewood
