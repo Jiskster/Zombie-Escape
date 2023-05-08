@@ -194,7 +194,8 @@ hud.add(function(g,player,cam)
 			elseif player.ctfteam == 0 then
 				str="SPECTATOR" c=V_SNAPTOBOTTOM|V_SNAPTOLEFT
 			end
-			g.drawString(1,127+yo, str, c)		
+			g.drawString(1,127+yo, str, c)
+			g.drawString(0,159,"\x82\Rings: "+player.rings, V_PERPLAYER|V_SNAPTOLEFT|V_SNAPTOBOTTOM) --cringe
 		end
 		
 		if hudtype == 2
@@ -209,13 +210,15 @@ hud.add(function(g,player,cam)
 				c=V_SNAPTOTOP|V_50TRANS
 			elseif player.ctfteam == 1 then
 				str="COMMON ZOMBIE" c=V_REDMAP|V_SNAPTOTOP|V_50TRANS
-				if ZE.Ztypes[player.ztype].name then
+				if ZE.Ztypes[player.ztype] and ZE.Ztypes[player.ztype].name then
 					str = ZE.Ztypes[player.ztype].name:upper().." ZOMBIE"
 				end
 			elseif player.ctfteam == 0 then
 				str="SPECTATOR" c=V_SNAPTOTOP|V_50TRANS
 			end
-		g.drawString(160,0, str, c, "center") --127+yo
+		g.drawString(160,0, str, c, "center")
+		
+			--127+yo
 		end
 	end
 end, "game")
