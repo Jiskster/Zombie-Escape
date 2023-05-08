@@ -396,7 +396,7 @@ ZE.ZombieSkin = function(player)
      and player.mo and player.mo.valid
 	if (player.ctfteam == 1 and player.mo.skin ~= "dzombie") then
 		R_SetPlayerSkin(player, "dzombie")
-		if player.playerstate == PST_LIVE and player.mo.skin ~= "dzombie" then
+		if player.playerstate == PST_LIVE and player.mo.skin ~= "dzombie" and CV.gamestarted == true then
 			P_DamageMobj(player.mo, nil, nil, 1, DMG_INSTAKILL)
 			CONS_Printf(player, "REJOIN LITTLE BOY")
 		end
