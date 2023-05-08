@@ -158,7 +158,7 @@ ZE.survWin = function()
 			--SurvivorWinMusic
 			if mapheaderinfo[gamemap].survivorwinmusic then
 				S_ChangeMusic(mapheaderinfo[gamemap].survivorwinmusic,false,player)
-			end
+			else
 				S_ChangeMusic("ZMLOSE",false,player)
 			end
 			ZE.winTriggerDelay = 1
