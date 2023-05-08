@@ -33,13 +33,13 @@ ZE.ResetTimers = function(mapnum) -- code needed to be changed?
 	COM_BufInsertText(server, "ze_winwait 9999")
 	if mapheaderinfo[mapnum].survivetime then 
 		local convsurvtime = tonumber(mapheaderinfo[mapnum].survivetime)*60
-		CV.survtime = convsurvtime*TICRATE + CV.waittime
+		CV.survtime = convsurvtime*TICRATE
 		COM_BufInsertText(server, "ze_survtime "+ convsurvtime)
 		CV.countup = 0
 		--print(convsurvtime)
 	else
 		local convsurvtime = 10*60
-		CV.survtime = convsurvtime*TICRATE + CV.waittime
+		CV.survtime = convsurvtime*TICRATE
 		COM_BufInsertText(server, "ze_survtime "+ convsurvtime)
 		CV.countup = 0
 		--print("No var found, New var: " +convsurvtime)
@@ -100,8 +100,9 @@ ZE.Win = function(team)
 			CV.onwinscreen = 1
 
 		else
+			local survwinmus = mapheaderinfo[gamemap].survwinmus or "ZMLOSE"
 			if not(mapheaderinfo[gamemap].zombieswarm) then
-				S_ChangeMusic("ZMLOSE",false,player)
+				S_ChangeMusic(survwinmus,false,player)
 			else
 				S_ChangeMusic("ZSWIN",true,player) --these music names will stay confusing lmao
 			end
@@ -155,7 +156,12 @@ ZE.survWin = function()
 	  if player.mo and player.mo.valid
 	     if not ZE.winTriggerDelay
 	        if (gametype == GT_ZESCAPE) and not (ZE.teamwin == 1)
-			S_ChangeMusic("ZMLOSE",false,player)
+			--SurvivorWinMusic
+			local survwinmus = mapheaderinfo[gamemap].survwinmus or "ZMLOSE"
+			
+			S_ChangeMusic(survwinmus,false,player)
+			
+
 			ZE.winTriggerDelay = 1
 			if CV.deathonwin.value == 1 then
 				ZE.survKill(player)
@@ -194,7 +200,7 @@ ZE.WinScript = function()
 				ZE.Win(1)
 			end
 		end
-		 if CV.survtime > 0 and not(CV.onwinscreen) then
+		 if CV.survtime > 0 and not(CV.onwinscreen) and (CV.gamestarted) then
 		    CV.survtime = $1-1
 			if CV.survtime <= 0 then
 				ZE.survWin()
@@ -390,6 +396,10 @@ ZE.ZombieSkin = function(player)
      and player.mo and player.mo.valid
 	if (player.ctfteam == 1 and player.mo.skin ~= "dzombie") then
 		R_SetPlayerSkin(player, "dzombie")
+		if player.playerstate == PST_LIVE and player.mo.skin ~= "dzombie" and CV.gamestarted == true then
+			P_DamageMobj(player.mo, nil, nil, 1, DMG_INSTAKILL)
+			CONS_Printf(player, "REJOIN LITTLE BOY")
+		end
 	elseif (player.ctfteam == 2) and (player.mo.skin == "dzombie") then
 	   R_SetPlayerSkin(player,ZE.survskinsplay[P_RandomRange(1,#ZE.survskinsplay)])
 	   end
@@ -444,7 +454,7 @@ ZE.SpawnPlayer = function(player)
 					return
 				end
 				
-				if P_RandomChance(FU/4) then
+				if P_RandomChance(FU/2) then
 					local pickedztype = P_RandomRange(1, #randomztypes)
 					player.ztype = randomztypes[pickedztype]
 					return
@@ -459,7 +469,7 @@ ZE.SpawnPlayer = function(player)
 					return
 				end
 			
-				if P_RandomChance(FU/5) then
+				if P_RandomChance(FU/2) then
 					local pickedztype = P_RandomRange(1, #randomztypes)
 					player.ztype = randomztypes[pickedztype]
 					return
