@@ -50,7 +50,7 @@ hud.add(function(v, player)
 			v.drawString(320,184-offset,"\x87\CUSTOM 1 \x80\ - \x85\RAGE",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
 			v.drawString(320,176-offset,"\x85\RAGE\x80 COOLDOWN: "+tostring(player.boostcount/TICRATE),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
 		end
-		if hudtype == 1
+		if hudtype == 1 and player.ctfteam == 1 then
 		
 			/*
 			if player.ztype == "ZM_ALPHA" then
