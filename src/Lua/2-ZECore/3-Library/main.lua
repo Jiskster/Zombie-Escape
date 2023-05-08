@@ -33,13 +33,13 @@ ZE.ResetTimers = function(mapnum) -- code needed to be changed?
 	COM_BufInsertText(server, "ze_winwait 9999")
 	if mapheaderinfo[mapnum].survivetime then 
 		local convsurvtime = tonumber(mapheaderinfo[mapnum].survivetime)*60
-		CV.survtime = convsurvtime*TICRATE + CV.waittime
+		CV.survtime = convsurvtime*TICRATE
 		COM_BufInsertText(server, "ze_survtime "+ convsurvtime)
 		CV.countup = 0
 		--print(convsurvtime)
 	else
 		local convsurvtime = 10*60
-		CV.survtime = convsurvtime*TICRATE + CV.waittime
+		CV.survtime = convsurvtime*TICRATE
 		COM_BufInsertText(server, "ze_survtime "+ convsurvtime)
 		CV.countup = 0
 		--print("No var found, New var: " +convsurvtime)
@@ -200,7 +200,7 @@ ZE.WinScript = function()
 				ZE.Win(1)
 			end
 		end
-		 if CV.survtime > 0 and not(CV.onwinscreen) then
+		 if CV.survtime > 0 and not(CV.onwinscreen) and (CV.gamestarted) then
 		    CV.survtime = $1-1
 			if CV.survtime <= 0 then
 				ZE.survWin()
