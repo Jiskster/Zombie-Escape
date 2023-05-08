@@ -68,9 +68,9 @@ hud.add(function(v, player)
 			
 			
 			if player.ztype then
-				v.drawString(1,176,"\x85\ "..ZE.Ztypes[player.ztype].name:upper().." ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-left")
+				v.drawString(1,176,"\x85\ "..ZE.Ztypes[player.ztype].name:upper().." ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 			else
-				v.drawString(1,176,"\x85\COMMON ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-left")
+				v.drawString(1,176,"\x85\COMMON ZOMBIE",V_HUDTRANS|V_SNAPTOLEFT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin")
 			end
 		end
 	end
@@ -184,16 +184,13 @@ hud.add(function(g,player,cam)
 			
 			local yo=64
 			--[[Status]]
-			local str="SURVIVOR"
+			local str="SURVIVORS"
 			local c=V_BLUEMAP|V_SNAPTOBOTTOM|V_SNAPTOLEFT
 			if leveltime < CV.waittime then
 				str="WAITING: "..(CV.waittime-leveltime)/TICRATE
 				c=V_SNAPTOBOTTOM|V_SNAPTOLEFT
 			elseif player.ctfteam == 1 then
-				str="ZOMBIE" c=V_REDMAP|V_SNAPTOBOTTOM|V_SNAPTOLEFT
-				if ZE.Ztypes[player.ztype].name then
-					str = ZE.Ztypes[player.ztype].name:upper().." ZOMBIE"
-				end
+				str="ZOMBIES" c=V_REDMAP|V_SNAPTOBOTTOM|V_SNAPTOLEFT
 			elseif player.ctfteam == 0 then
 				str="SPECTATOR" c=V_SNAPTOBOTTOM|V_SNAPTOLEFT
 			end
