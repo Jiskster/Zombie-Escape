@@ -449,7 +449,7 @@ ZE.SpawnPlayer = function(player)
 					return
 				end
 				
-				if P_RandomChance(FU/4) then
+				if P_RandomChance(FU/2) then
 					local pickedztype = P_RandomRange(1, #randomztypes)
 					player.ztype = randomztypes[pickedztype]
 					return
@@ -464,7 +464,7 @@ ZE.SpawnPlayer = function(player)
 					return
 				end
 			
-				if P_RandomChance(FU/5) then
+				if P_RandomChance(FU/2) then
 					local pickedztype = P_RandomRange(1, #randomztypes)
 					player.ztype = randomztypes[pickedztype]
 					return
