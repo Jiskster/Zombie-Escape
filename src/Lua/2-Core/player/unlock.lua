@@ -27,3 +27,7 @@ ZE.CheckUnlocks = function(player)
 	end
 end
 
+ZE.InsertUnlocked = function(player)
+	player.rvgrpass = $ or 0
+	player.gamesPlayed = $ or 0
+end

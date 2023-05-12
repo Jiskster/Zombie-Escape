@@ -1,5 +1,5 @@
 for _, filename in ipairs{
--- Funny init
+-- Funny init (british people reference)
 
 	--first thing to load
 	"2-Core/init/int_spawnobject.lua",
@@ -21,20 +21,31 @@ for _, filename in ipairs{
 	"2-Core/healthsystem/rhealth.lua",
 	"2-Core/healthsystem/rhealth_dmg.lua",
 	"2-Core/healthsystem/rhealth_extra.lua",
-	"2-Core/maingame/extrafeatures/name_tags.lua",
+	"2-Core/maingame/on_spawn.lua",
+	"2-Core/maingame/name_tags.lua",
+	"2-Core/maingame/radar.lua",
 	"2-Core/maingame/mapload.lua",
+	"2-Core/maingame/skinrestrictions.lua",
 	"2-Core/maingame/netvars.lua",
 	"2-Core/maingame/mobjcollide.lua",
-	"2-Core/maingame/extrafeatures/radar.lua",
+	"2-Core/maingame/handleswarm.lua",
+	"2-Core/maingame/handlewin.lua",
+	"2-Core/maingame/alpha_attack.lua",
+	"2-Core/maingame/secretfound.lua",
 	
-	"2-Core/player/playerstats.lua",
+	"2-Core/player/player_stats.lua",
+	"2-Core/player/player_handlecolors.lua", --force into default colors
+	"2-Core/player/player_visuals.lua", -- includes the zombie aura when alpha or fast.
+	"2-Core/player/player_handlezombies.lua",
+	"2-Core/player/fangcork.lua",
 	"2-Core/player/player.lua",
 	"2-Core/player/propspawn.lua",
-	"2-Core/player/misc/ability_milne.lua",
-	"2-Core/player/misc/revenger.lua",
-	"2-Core/player/misc/unlock.lua",
-	"2-Core/player/misc/colors.lua",
-	"2-Core/player/misc/inputfeatures.lua",
+	"2-Core/player/ability_milne.lua",
+	"2-Core/player/revenger.lua",
+	"2-Core/player/unlock.lua",
+	"2-Core/player/colors.lua",
+	"2-Core/player/inputfeatures.lua",
+	"2-Core/player/healthorb.lua",
 
 	"2-Core/hooks/hook_player.lua",
 	"2-Core/hooks/hook_main.lua",
