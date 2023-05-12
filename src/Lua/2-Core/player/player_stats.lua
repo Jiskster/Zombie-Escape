@@ -185,5 +185,18 @@ ZE.CharacterStats = {
         staminarun = 16*FRACUNIT,
         staminanormal = 26*FRACUNIT,
     },
+	["troplucky"] = {
+        normalspeed = 22 * FRACUNIT,
+        runspeed = 100 * FRACUNIT,
+        jumpfactor = 17 * FRACUNIT / 19,
+        charability = CA_NONE,
+        charability2 = CA2_NONE,
+        startHealth = 105,
+        maxHealth = 120,
+        staminacost = 9,
+        staminarun = 16*FRACUNIT,
+        staminanormal = 26*FRACUNIT,
+		actionspd = 10 * FRACUNIT,
+    },
 }
 
