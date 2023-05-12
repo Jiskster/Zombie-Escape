@@ -27,6 +27,7 @@ for _, filename in ipairs{
 	"2-Core/maingame/mapload.lua",
 	"2-Core/maingame/skinrestrictions.lua",
 	"2-Core/maingame/netvars.lua",
+	"2-Core/maingame/antibounce.lua",
 	"2-Core/maingame/mobjcollide.lua",
 	"2-Core/maingame/handleswarm.lua",
 	"2-Core/maingame/handlewin.lua",
@@ -46,14 +47,7 @@ for _, filename in ipairs{
 	"2-Core/player/colors.lua",
 	"2-Core/player/inputfeatures.lua",
 	"2-Core/player/healthorb.lua",
-
-	"2-Core/hooks/hook_player.lua",
-	"2-Core/hooks/hook_main.lua",
-	"2-Core/hooks/hook_hud.lua",
-	"2-Core/hooks/hook_extrachars.lua",
-	"2-Core/hooks/hook_collidehooks.lua",
 	
-
 	--mapvote stuff
 	"4-CoreServer/1-MapVote/1_Rawset.lua",
 	"4-CoreServer/1-MapVote/2_Console.lua",
@@ -98,6 +92,12 @@ for _, filename in ipairs{
 	"3-Maps/specialstage.lua",
 	"3-Maps/stonewood.lua",
 	"3-Maps/undertalept1.lua",
+	
+	"2-Core/hooks/hook_player.lua",
+	"2-Core/hooks/hook_main.lua",
+	"2-Core/hooks/hook_hud.lua",
+	"2-Core/hooks/hook_extrachars.lua",
+	"2-Core/hooks/hook_collidehooks.lua",
 } do
     dofile(filename)
 end
