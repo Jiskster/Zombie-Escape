@@ -38,7 +38,7 @@ for _, filename in ipairs{
 	"2-Core/player/player_visuals.lua", -- includes the zombie aura when alpha or fast.
 	"2-Core/player/player_handlezombies.lua",
 	"2-Core/player/fangcork.lua",
-	"2-Core/player/player.lua",
+	"2-Core/player/player_core.lua",
 	"2-Core/player/propspawn.lua",
 	"2-Core/player/ability_milne.lua",
 	"2-Core/player/revenger.lua",
