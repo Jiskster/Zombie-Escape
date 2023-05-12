@@ -1,6 +1,7 @@
 local ZE = RV_ZESCAPE
 local CV = RV_ZESCAPE.Console
 
+-- [Prevents player bouncing on certain maps.] --
 ZE.AntiBounce = function(player)
 	if not mapheaderinfo[gamemap].bounceoff then return end
 	
