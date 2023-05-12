@@ -2,45 +2,45 @@ for _, filename in ipairs{
 -- Funny init
 
 	--first thing to load
-	"2-ZECore/init/int_spawnobject.lua",
-	"2-ZECore/init/int_showhitbox.lua",
-	"2-ZECore/init/int_freeslot.lua",
-	"2-ZECore/init/int_global.lua",
-	"2-ZECore/init/int_ZE_RSNEO.lua",
+	"2-Core/init/int_spawnobject.lua",
+	"2-Core/init/int_showhitbox.lua",
+	"2-Core/init/int_freeslot.lua",
+	"2-Core/init/int_global.lua",
+	"2-Core/init/int_ZE_RSNEO.lua",
 
 
 	--cmds and etc
-	"2-ZECore/console/con_timer.lua",
-	"2-ZECore/console/con_cvars.lua",
-	"2-ZECore/console/con_cmds.lua",
-	"2-ZECore/console/con_local.lua",
+	"2-Core/console/con_timer.lua",
+	"2-Core/console/con_cvars.lua",
+	"2-Core/console/con_cmds.lua",
+	"2-Core/console/con_local.lua",
 	
 	--main ze code	
-	"2-ZECore/maingame/main.lua",
+	"2-Core/maingame/main.lua",
 	
-	"2-ZECore/healthsystem/rhealth.lua",
-	"2-ZECore/healthsystem/rhealth_dmg.lua",
-	"2-ZECore/healthsystem/rhealth_extra.lua",
-	"2-ZECore/maingame/extrafeatures/name_tags.lua",
-	"2-ZECore/maingame/mapload.lua",
-	"2-ZECore/maingame/netvars.lua",
-	"2-ZECore/maingame/mobjcollide.lua",
-	"2-ZECore/maingame/extrafeatures/radar.lua",
+	"2-Core/healthsystem/rhealth.lua",
+	"2-Core/healthsystem/rhealth_dmg.lua",
+	"2-Core/healthsystem/rhealth_extra.lua",
+	"2-Core/maingame/extrafeatures/name_tags.lua",
+	"2-Core/maingame/mapload.lua",
+	"2-Core/maingame/netvars.lua",
+	"2-Core/maingame/mobjcollide.lua",
+	"2-Core/maingame/extrafeatures/radar.lua",
 	
-	"2-ZECore/player/playerstats.lua",
-	"2-ZECore/player/player.lua",
-	"2-ZECore/player/propspawn.lua",
-	"2-ZECore/player/misc/ability_milne.lua",
-	"2-ZECore/player/misc/revenger.lua",
-	"2-ZECore/player/misc/unlock.lua",
-	"2-ZECore/player/misc/colors.lua",
-	"2-ZECore/player/misc/inputfeatures.lua",
+	"2-Core/player/playerstats.lua",
+	"2-Core/player/player.lua",
+	"2-Core/player/propspawn.lua",
+	"2-Core/player/misc/ability_milne.lua",
+	"2-Core/player/misc/revenger.lua",
+	"2-Core/player/misc/unlock.lua",
+	"2-Core/player/misc/colors.lua",
+	"2-Core/player/misc/inputfeatures.lua",
 
-	"2-ZECore/hooks/hook_player.lua",
-	"2-ZECore/hooks/hook_main.lua",
-	"2-ZECore/hooks/hook_hud.lua",
-	"2-ZECore/hooks/hook_extrachars.lua",
-	"2-ZECore/hooks/hook_collidehooks.lua",
+	"2-Core/hooks/hook_player.lua",
+	"2-Core/hooks/hook_main.lua",
+	"2-Core/hooks/hook_hud.lua",
+	"2-Core/hooks/hook_extrachars.lua",
+	"2-Core/hooks/hook_collidehooks.lua",
 	
 
 	--mapvote stuff
