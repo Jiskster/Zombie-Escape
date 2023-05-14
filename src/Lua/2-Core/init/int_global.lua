@@ -12,7 +12,7 @@ ZE.AddZombie = function(name, info) -- "info" is optional extra information
 		error("NAME is invalid type or nil.")
 		return
 	end
-	
+
 	local ztype_name = "ZM_"..name:upper()
 	ZE.Ztypes[ztype_name] = {}
 	
@@ -30,6 +30,7 @@ ZE.AddZombie = function(name, info) -- "info" is optional extra information
 		
 		ztypetable.info = info
 	end
+
 end
 
 ZE.Console = {}

@@ -1,6 +1,11 @@
 local ZE = RV_ZESCAPE
 local CV = RV_ZESCAPE.Console
-
+CV.allowcreatezombie = CV_RegisterVar{
+	name = "ze_allowcreatezombie",
+	defaultvalue = "Off",
+	flags = CV_NETVAR,
+	PossibleValue = CV_OnOff
+}
 COM_AddCommand("ze_spectate", function(player)
 	if (gametype ~= GT_ZESCAPE) then
 		CONS_Printf(player, "The game mode must be Zombie Escape to use this command.")
@@ -112,6 +117,48 @@ COM_AddCommand("ze_suicide", function(player)
 	end
 end)
 
-COM_AddCommand("ze_addzombie", function(player)
+COM_AddCommand("ze_generatezombie", function(player, name)
+	if (not (IsPlayerAdmin(player)) and CV.allowcreatezombie.value == false) then
+		CONS_Printf(player, "You are not allowed to run this command.")
+		return
+	end
+	local p_name = "ZombieType" .. tostring(P_RandomRange(1,10000))
+	local p_skincolor = P_RandomRange(1,#skincolors)
+	local p_normalspeed = P_RandomRange(16*FRACUNIT,21*FRACUNIT)
+	local p_jumpfactor = P_RandomRange(24 * FRACUNIT / 19,24 * FRACUNIT / 16)
+	local p_charability = CA_NONE
+	local p_charability2 = CA2_NONE
+	local p_startHealth = P_RandomRange(500, 800)
+	local p_maxHealth = P_RandomRange(500, 800)
+	local p_scale = P_RandomRange(11*FRACUNIT/12,11*FRACUNIT/10)
+	local p_schm = P_RandomRange(40, 60)
+	if name then
+		p_name = name
+	end
+	ZE.AddZombie(p_name, {
+		skincolor = p_skincolor,
+		normalspeed = p_normalspeed,
+		jumpfactor = p_jumpfactor,
+		charability = CA_NONE,
+		charability2 = CA2_NONE,
+		startHealth = p_startHealth,
+		maxHealth = p_maxHealth,
+		scale = p_scale,	
+		schm = p_schm, --servercount health multiplier
+	})
 
+	chatprint("\x82\* The zombie type \x83\".. p_name .. "\x82\ has been added.")
+	/*
+ZE.AddZombie("Alpha", {
+	skincolor = SKINCOLOR_ALPHAZOMBIE,
+	normalspeed = 18*FRACUNIT,
+	jumpfactor = 24 * FRACUNIT / 19,
+	charability = CA_NONE,
+	charability2 = CA2_NONE,
+	startHealth = 500,
+	maxHealth = 500,
+	scale = 11*FRACUNIT/10,	
+	schm = 40, --servercount health multiplier
+})
+	*/
 end)
