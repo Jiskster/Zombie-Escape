@@ -6,7 +6,7 @@ ZE.ZombieSkin = function(player)
     if player and player.valid
      and player.mo and player.mo.valid
 	if (player.ctfteam == 1 and player.mo.skin ~= "dzombie") then
-		if player.playerstate == PST_LIVE and player.mo.skin ~= "dzombie" and CV.gamestarted == true then
+		if player.playerstate == PST_LIVE and player.mo.skin ~= "dzombie" and CV.gamestarted == true and player.powers[pw_flashing] ~= 0 then
 			P_DamageMobj(player.mo, nil, nil, 1, DMG_INSTAKILL)
 			CONS_Printf(player, "REJOIN LITTLE BOY")
 		end
@@ -26,3 +26,5 @@ ZE.RestrictSkin = function()
 		   COM_BufInsertText(server, "restrictskinchange 1")
      end
 end
+
+
