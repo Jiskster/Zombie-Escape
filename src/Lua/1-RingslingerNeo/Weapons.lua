@@ -368,6 +368,75 @@ RS.AddWeapon({
 		return true
 	end
 })
+
+RS.AddWeapon({
+	name = "BobFlash",
+	viewsprite = "BLINKHUD",
+	hudsprite = "BLININD",
+	viewoffset = 24*FRACUNIT,
+	delay = 32,
+	cost = 10,
+	shake = 5,
+	slingfunc = function(mo, weapon)
+		mo.momx = $ / 3
+		mo.momy = $ / 3
+		P_SetObjectMomZ(mo, 8*FRACUNIT, false)
+		mo.state = S_PLAY_SPRING
+		mo.player.pflags = $ & ~(PF_JUMPED | PF_SPINNING)
+		
+		local player = mo.player
+		S_StartSound(mo, sfx_rs_vol)
+		local rail = P_SPMAngle(mo, MT_RS_FLASHSHOT, mo.angle, 1, MF2_DONTDRAW)
+		
+		if rail and rail.valid
+			local range = 16
+			if mo.ringslinger.powers[RSPOWER_POWERTOSS]
+				range = $ * 3/2
+			end
+			if mo.ringslinger.powers[RSPOWER_PIERCE]
+				rail.pierce = true
+			end
+			for i = 0, range
+				local ang = P_RandomRange(0, 359) * ANG1
+				local spark = P_SpawnMobj(rail.x + sin(ang)*5, rail.y + cos(ang)*5, rail.z, MT_BOXSPARKLE)
+				if spark and spark.valid
+					if i % 2
+						spark.color = player.skincolor
+					elseif mo.ringslinger.powers[RSPOWER_PIERCE]
+						spark.color = SKINCOLOR_RED
+					end
+					spark.colorized = true
+				end
+				
+				local prevx = rail.x
+				local prevy = rail.y
+				local prevz = rail.z
+				
+				if rail.momx or rail.momy
+					P_XYMovement(rail)
+					if not rail.valid
+						break
+					end
+				end
+				if rail.momz
+					P_ZMovement(rail)
+					if not rail.valid
+						break
+					end
+				end
+				
+				if (not rail.valid) or (xx == rail.x and y == rail.y and z == rail.z)
+					break
+				end
+			end
+			if rail and rail.valid
+				P_KillMobj(rail)
+			end
+		end
+		
+		return true
+	end
+})
 RS.AddWeapon({
 	name = "Burst",
 	viewsprite = "RNGTC0",

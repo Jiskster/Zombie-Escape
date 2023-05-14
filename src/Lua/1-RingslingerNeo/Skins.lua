@@ -62,7 +62,7 @@ s["dzombie"] = {
 }
 s["bob"] = {
 	ammo = 55,
-	weapons = {RSWPN_FLASH, RSWPN_NORMAL}
+	weapons = {RSWPN_BOBFLASH, RSWPN_NORMAL}
 }
 
 s["revenger"] = {

@@ -100,7 +100,7 @@ addHook("ThinkFrame", do
 		}
 		RingSlinger.Skins["bob"] = {
 			ammo = 80,
-			weapons = {RSWPN_FLASH, RSWPN_BURST}
+			weapons = {RSWPN_BOBFLASH, RSWPN_BURST}
 		}
 RingSlinger.AddWeapon({
 	name = "Claws",
