@@ -255,7 +255,7 @@ addHook("MobjThinker", function (mobj)
 
 				local dist = R_PointToDist2(player.mo.x, player.mo.y, mobj.x, mobj.y)/FU
 				local zdiff = abs(player.mo.z - mobj.z)/FU
-				if dist < 20 and zdiff < 10 then
+				if dist < 40 and zdiff < 10 then
 					P_GivePlayerRings(mobj.target.player, ZE.PropCosts["LandMine"])
 					S_StartSound(player.mo,sfx_s244)
 					P_SetObjectMomZ(player.mo, 8*FU)
