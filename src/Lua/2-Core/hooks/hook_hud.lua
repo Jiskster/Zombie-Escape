@@ -294,8 +294,8 @@ hud.add(function(v, player)
 			offset = 8
 		end
 		if player.mo.skin == "amy" then
-		   v.drawString(320,176-offset,"\x87\TOSSFLAG \x80\- \x84\HEAL STATION",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
-		   v.drawString(320,160-offset,"\x87\COST:\x84\ "+tostring(ZE.PropCosts["HealStation"]),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
+		   v.drawString(320,176-offset,"\x87\TOSSFLAG \x80\- \x84\HEAL BURST",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
+		   v.drawString(320,160-offset,"\x87\COST:\x84\ "+tostring(ZE.PropCosts["HealBurst"]),V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")
         end
 		if player.mo.skin == "tails" then
 		   v.drawString(320,176-offset,"\x87\TOSSFLAG \x80\- \x84\WOOD FENCE",V_HUDTRANS|V_SNAPTOTOP|V_SNAPTORIGHT|V_PERPLAYER|V_SNAPTOBOTTOM, "thin-right")

@@ -5,6 +5,7 @@ ZE.PropCosts = {
 	["Wood"] = 50,
 	["HealStation"] = 50,
 	["LandMine"] = 10,
+	["HealBurst"] = 60,
 }
 freeslot("MT_AMYSTATION","S_AMYSTATION")
 freeslot("MT_LANDMINE","S_LANDMINE","S_LANDMINE2", "SPR_MMVC")
@@ -60,7 +61,7 @@ states[S_LANDMINE2] = {
 }
 
 ZE.BuildPropWood = function(player)
-	if player.mo and player.mo.valid
+	if player.mo and player.mo.valid then
         local wood = P_SpawnMobj(player.mo.x+FixedMul(128*FRACUNIT, cos(player.mo.angle)),
 					player.mo.y+FixedMul(128*FRACUNIT, sin(player.mo.angle)), player.mo.z, MT_PROPWOOD)
 		wood.angle = player.mo.angle+ANGLE_90
@@ -73,7 +74,7 @@ ZE.BuildPropWood = function(player)
 end
 
 ZE.BuildHealStation = function(player)
-	if player.mo and player.mo.valid
+	if player.mo and player.mo.valid then
         local healstation = P_SpawnMobj(player.mo.x+FixedMul(0*FRACUNIT, cos(player.mo.angle)),
 					player.mo.y+FixedMul(0*FRACUNIT, sin(player.mo.angle)), player.mo.z, MT_AMYSTATION)
 		S_StartSound(player.mo, sfx_jshard)
@@ -82,6 +83,36 @@ ZE.BuildHealStation = function(player)
 	end
 end
 
+ZE.DoHealBurst = function(plr)
+	if plr.mo and plr.mo.valid then
+		
+		for player in players.iterate do
+            if player.mo and player.mo.valid 
+            and player.playerstate ~= PST_DEAD then
+				if player.mo.skin == "dzombie" then
+					
+					return
+				end
+				local dist = R_PointToDist2(plr.mo.x, plr.mo.y, player.mo.x, player.mo.y)/FU
+				local zdiff = abs(plr.mo.z - player.mo.z)/FU
+				if dist < 255*2 and zdiff < 150 and P_CheckSight(plr.mo, player.mo) then
+					local amyglow = P_SpawnGhostMobj(player.mo)
+					amyglow.color = SKINCOLOR_ROSY
+					amyglow.colorized = true
+					amyglow.fuse = 10
+					amyglow.scale = $1*2
+					if amyglow.tracer
+						amyglow.tracer.fuse = amyglow.fuse
+					end
+					ZE.addHP(player.mo, 65)
+					P_FlashPal(player, 3, 1)
+					S_StartSound(player.mo, sfx_nbmper)
+				end
+			end
+        end
+		P_GivePlayerRings(plr,-ZE.PropCosts["HealBurst"])
+	end
+end
 /*
 ZE.SpawnZombieNPC = function(player) -- debug thing
 	if player.mo and player.mo.valid
@@ -124,11 +155,11 @@ ZE.SpawnProps = function(player)
 	end
 	if player.mo and player.mo.skin == "amy"
 		if player.rings == 0 then return end
-		if player.rings < ZE.PropCosts["HealStation"] then return end
+		if player.rings < ZE.PropCosts["HealBurst"] then return end
 		player.builddelay = $ or 0
 		if (player.cmd.buttons & BT_TOSSFLAG) and not (player.builddelay ~= 0)
-			player.builddelay = 10
-			ZE.BuildHealStation(player)
+			player.builddelay = 5*TICRATE
+			ZE.DoHealBurst(player)
 		end
 		if player.builddelay ~= 0 then
 			player.builddelay = $-1
