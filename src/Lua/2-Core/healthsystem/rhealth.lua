@@ -125,9 +125,10 @@ ZE.rhDamage = function(hurtplayer, hazard, shooter, damage) -- damage system
 					else
 						hazard.hits[node] = true
 					end
-					
-					local critical = P_RandomChance(FRACUNIT/50)
-					
+					local critical 
+					if CV.allowcriticals.value == 1 then
+						critical = P_RandomChance(FRACUNIT/50)
+					end
 					
 					local deathmsg = "%s killed %s."
 					local truedmg = 0
