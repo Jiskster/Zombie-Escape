@@ -111,3 +111,7 @@ COM_AddCommand("ze_suicide", function(player)
 		P_DamageMobj(player.mo, nil, nil, 1, DMG_INSTAKILL)
 	end
 end)
+
+COM_AddCommand("ze_addzombie", function(player)
+
+end)

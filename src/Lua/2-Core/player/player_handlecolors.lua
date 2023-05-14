@@ -5,23 +5,18 @@ ZE.CharacterColors = function()
 	for player in players.iterate
 		if player.mo and player.mo.valid then
 			player.mo.color = player.skincolor
-			if CV.lockcolors.value == 1 then
+			if CV.lockcolors.value == 1 then -- i dont know why this feature is here lol.
 				player.mo.color = skins[player.mo.skin].prefcolor
 			end
 			
 			if player.mo.skin == "dzombie" then
-				player.mo.color = SKINCOLOR_ZOMBIE
-				if player.ztype == "ZM_ALPHA" then
-					player.mo.color = SKINCOLOR_ALPHAZOMBIE
+				if player.ztype and ZE.Ztypes[player.ztype] and ZE.Ztypes[player.ztype].info and ZE.Ztypes[player.ztype].info.skincolor then
+					player.mo.color = ZE.Ztypes[player.ztype].info.skincolor
+				else
+					player.mo.color = SKINCOLOR_ZOMBIE
 				end
 				
-				if player.ztype == "ZM_TANK" then
-					player.mo.color = SKINCOLOR_SEAFOAM
-				end
 				
-				if player.ztype == "ZM_TINY" then
-					player.mo.color = SKINCOLOR_CERULEAN
-				end
 			end
 		end
 	end

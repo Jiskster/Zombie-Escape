@@ -2,13 +2,13 @@ for _, filename in ipairs{
 -- Funny init (british people reference)
 
 	--first thing to load
+	"2-Core/init/int_colors.lua",
 	"2-Core/init/int_spawnobject.lua",
 	"2-Core/init/int_showhitbox.lua",
 	"2-Core/init/int_freeslot.lua",
 	"2-Core/init/int_global.lua",
 	"2-Core/init/int_ZE_RSNEO.lua",
-
-
+	
 	--cmds and etc
 	"2-Core/console/con_timer.lua",
 	"2-Core/console/con_cvars.lua",
@@ -34,17 +34,17 @@ for _, filename in ipairs{
 	"2-Core/maingame/alpha_attack.lua",
 	"2-Core/maingame/secretfound.lua",
 	
+	"2-Core/player/player_core.lua",
 	"2-Core/player/player_stats.lua",
 	"2-Core/player/player_handlecolors.lua", --force into default colors
 	"2-Core/player/player_visuals.lua", -- includes the zombie aura when alpha or fast.
 	"2-Core/player/player_handlezombies.lua",
 	"2-Core/player/fangcork.lua",
-	"2-Core/player/player_core.lua",
+	
 	"2-Core/player/propspawn.lua",
 	"2-Core/player/ability_milne.lua",
 	"2-Core/player/revenger.lua",
 	"2-Core/player/unlock.lua",
-	"2-Core/player/colors.lua",
 	"2-Core/player/inputfeatures.lua",
 	"2-Core/player/healthorb.lua",
 	

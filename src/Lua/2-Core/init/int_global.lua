@@ -4,29 +4,32 @@ rawset(_G,"TEAM_ZOMBIE",1)
 rawset(_G,"TEAM_SURVIVOR",2)
 local ZE = RV_ZESCAPE
 
+ZE.Ztype_names = {}
+ZE.Ztypes = {}
 
-//ztypes
-
-/*
-rawset(_G,"ZM_ALPHA",1)
-rawset(_G,"ZM_FAST",2)
-rawset(_G,"ZM_TANK",3)
-*/
-
-ZE.Ztypes = {
-	["ZM_ALPHA"] = {
-		name = "Alpha"
-	},
-	["ZM_FAST"] = {
-		name = "Fast"
-	},
-	["ZM_TANK"] = {
-		name = "Tank"
-	},
-	["ZM_TINY"] = {
-		name = "Tiny"
-	},
-}
+ZE.AddZombie = function(name, info) -- "info" is optional extra information
+	if name == nil or type(name) ~= "string" then
+		error("NAME is invalid type or nil.")
+		return
+	end
+	local ztype_name = "ZM_"..name:upper()
+	ZE.Ztypes[ztype_name] = {}
+	
+	local ztypetable = ZE.Ztypes[ztype_name] 
+	
+	ztypetable.name = name
+	
+	table.insert(ZE.Ztype_names,ztype_name) -- insert ZM_.....
+	
+	if info then
+		if type(info) ~= "table" then
+			error("INFO is invalid type or nil.")
+			return
+		end
+		
+		ztypetable.info = info
+	end
+end
 
 ZE.Console = {}
 

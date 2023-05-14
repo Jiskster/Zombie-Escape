@@ -12,43 +12,53 @@ ZE.ZombieStats = {
 		startHealth = 200,
 		maxHealth = 200,
 	},
-	["ZM_ALPHA"] = {
-		normalspeed = 18*FRACUNIT,
-		jumpfactor = 24 * FRACUNIT / 19,
-		charability = CA_NONE,
-		charability2 = CA2_NONE,
-		startHealth = 500,
-		maxHealth = 500,
-		scale = 11*FRACUNIT/10,
-	},
-	["ZM_FAST"] = {
-		normalspeed = 35*FRACUNIT,
-		jumpfactor = 18 * FRACUNIT / 19,
-		charability = CA_NONE,
-		charability2 = CA2_NONE,
-		startHealth = 50,
-		maxHealth = 50,
-	},
-	["ZM_TANK"] = {
-		normalspeed = 5*FRACUNIT,
-		jumpfactor = 18 * FRACUNIT / 19,
-		charability = CA_NONE,
-		charability2 = CA2_NONE,
-		startHealth = 2500,
-		maxHealth = 2500,
-		scale = 20*FRACUNIT/10,
-	},
-	["ZM_TINY"] = {
-		normalspeed = 60*FRACUNIT,
-		jumpfactor = 18 * FRACUNIT / 19,
-		charability = CA_NONE,
-		charability2 = CA2_NONE,
-		startHealth = 25,
-		maxHealth = 25,
-		scale = 6*FRACUNIT/10,
-	},
-}
+} -- [Theres a difference between this and ZE.AddZombie, never EVER add anything to ZombieStats.] --
 
+
+
+ZE.AddZombie("Alpha", {
+	skincolor = SKINCOLOR_ALPHAZOMBIE,
+	normalspeed = 18*FRACUNIT,
+	jumpfactor = 24 * FRACUNIT / 19,
+	charability = CA_NONE,
+	charability2 = CA2_NONE,
+	startHealth = 500,
+	maxHealth = 500,
+	scale = 11*FRACUNIT/10,	
+	schm = 40, --servercount health multiplier
+})
+ZE.AddZombie("Fast", {
+	skincolor = SKINCOLOR_MOSS,
+	normalspeed = 35*FRACUNIT,
+	jumpfactor = 18 * FRACUNIT / 19,
+	charability = CA_NONE,
+	charability2 = CA2_NONE,
+	startHealth = 50,
+	maxHealth = 50,
+	schm = 25,
+})
+ZE.AddZombie("Tank", {
+	skincolor = SKINCOLOR_SEAFOAM,
+	normalspeed = 5*FRACUNIT,
+	jumpfactor = 18 * FRACUNIT / 19,
+	charability = CA_NONE,
+	charability2 = CA2_NONE,
+	startHealth = 2500,
+	maxHealth = 2500,
+	scale = 20*FRACUNIT/10,
+	schm = 150,
+})
+ZE.AddZombie("Tiny", {
+	skincolor = SKINCOLOR_CERULEAN,
+	normalspeed = 60*FRACUNIT,
+	jumpfactor = 18 * FRACUNIT / 19,
+	charability = CA_NONE,
+	charability2 = CA2_NONE,
+	startHealth = 25,
+	maxHealth = 25,
+	scale = 6*FRACUNIT/10,
+	schm = 10,
+})
 
 ZE.CharacterStats = {
 	["defaultconfig"] = {

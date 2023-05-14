@@ -36,7 +36,6 @@ ZE.ZtypeAura = function()
 					zombienumber1.tracer.fuse = zombienumber1.fuse
 				end
 				player.mo.colorized = true
-				player.mo.color = SKINCOLOR_MOSS
 			end	
         end
     end
