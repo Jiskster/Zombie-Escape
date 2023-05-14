@@ -166,7 +166,6 @@ end)
 
 
 COM_AddCommand("ze_removezombie", function(player, ztype)
-	local protectedlist = {"ZM_ALPHA", "ZM_FAST", "ZM_TANK", "ZM_TINY"}
 	if not ztype or type(ztype) ~= "string" or not ZE.Ztypes[ztype] then
 		CONS_Printf(player,"\x85\ ERROR: INVALID ZTYPE")
 		return
