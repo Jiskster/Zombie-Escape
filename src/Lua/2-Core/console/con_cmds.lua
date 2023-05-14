@@ -117,7 +117,7 @@ COM_AddCommand("ze_suicide", function(player)
 	end
 end)
 
-COM_AddCommand("ze_generatezombie", function(player, name)
+COM_AddCommand("ze_generatezombie", function(player, name, ... )
 	if (not (IsPlayerAdmin(player)) and CV.allowcreatezombie.value == false) then
 		CONS_Printf(player, "You are not allowed to run this command.")
 		return
@@ -131,9 +131,51 @@ COM_AddCommand("ze_generatezombie", function(player, name)
 	local p_startHealth = P_RandomRange(500, 800)
 	local p_maxHealth = P_RandomRange(500, 800)
 	local p_scale = P_RandomRange(10,20)*FRACUNIT/10
-	local p_schm = P_RandomRange(40, 60)
+	local p_schm = 0
 	if name then
 		p_name = name
+	end
+
+	--zombscript interpeter
+	for _,v in ipairs({...}) do
+		local commands = {
+			[1] = "ns:",
+			[2] = "sh:",
+			[3] = "mh:",
+			[4] = "schm:",
+			[5] = "scale:",
+		}
+
+		-- [normalspeed] --
+		if v:sub(1,#commands[1]) == commands[1] then
+			local lastarg = v:sub(#commands[1] + 1)
+			if lastarg and tonumber(lastarg) then --does it exist? and can it be a number without being nil?
+				p_normalspeed = tonumber(lastarg)*FRACUNIT
+			end
+		end
+
+		-- [startHealth] --
+		if v:sub(1,#commands[2]) == commands[2] then
+			local lastarg = v:sub(#commands[2] + 1)
+			if lastarg and tonumber(lastarg) then
+				p_startHealth = tonumber(lastarg)
+			end
+		end
+		-- [maxHealth] --
+		if v:sub(1,#commands[3]) == commands[3] then
+			local lastarg = v:sub(#commands[3] + 1)
+			if lastarg and tonumber(lastarg) then
+				p_maxHealth = tonumber(lastarg)
+			end
+		end
+
+		-- [schm / survivorcounthealthmultiplier] --
+		if v:sub(1,#commands[4]) == commands[4] then
+			local lastarg = v:sub(#commands[4] + 1)
+			if lastarg and tonumber(lastarg) then
+				p_schm = tonumber(lastarg)
+			end
+		end
 	end
 
 
