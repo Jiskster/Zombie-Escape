@@ -124,17 +124,19 @@ COM_AddCommand("ze_generatezombie", function(player, name)
 	end
 	local p_name = "ZombieType" .. tostring(P_RandomRange(1,10000))
 	local p_skincolor = P_RandomRange(1,#skincolors)
-	local p_normalspeed = P_RandomRange(16*FRACUNIT,21*FRACUNIT)
-	local p_jumpfactor = P_RandomRange(24 * FRACUNIT / 19,24 * FRACUNIT / 16)
+	local p_normalspeed = P_RandomRange(16,21)*FRACUNIT
+	local p_jumpfactor = 24 * FRACUNIT / P_RandomRange(10,25)
 	local p_charability = CA_NONE
 	local p_charability2 = CA2_NONE
 	local p_startHealth = P_RandomRange(500, 800)
 	local p_maxHealth = P_RandomRange(500, 800)
-	local p_scale = P_RandomRange(11*FRACUNIT/12,11*FRACUNIT/10)
+	local p_scale = P_RandomRange(10,20)*FRACUNIT/10
 	local p_schm = P_RandomRange(40, 60)
 	if name then
 		p_name = name
 	end
+
+
 	ZE.AddZombie(p_name, {
 		skincolor = p_skincolor,
 		normalspeed = p_normalspeed,
@@ -147,18 +149,38 @@ COM_AddCommand("ze_generatezombie", function(player, name)
 		schm = p_schm, --servercount health multiplier
 	})
 
-	chatprint("\x82\* The zombie type \x83\".. p_name .. "\x82\ has been added.")
-	/*
-ZE.AddZombie("Alpha", {
-	skincolor = SKINCOLOR_ALPHAZOMBIE,
-	normalspeed = 18*FRACUNIT,
-	jumpfactor = 24 * FRACUNIT / 19,
-	charability = CA_NONE,
-	charability2 = CA2_NONE,
-	startHealth = 500,
-	maxHealth = 500,
-	scale = 11*FRACUNIT/10,	
-	schm = 40, --servercount health multiplier
-})
-	*/
+	chatprint("\x82\* The zombie type \x83\ " .. p_name:upper() .. "\x82\ has been added.")
+end)
+
+COM_AddCommand("ze_listzombies", function(player)
+	if (not (IsPlayerAdmin(player)) and CV.allowcreatezombie.value == false) then
+		CONS_Printf(player, "You are not allowed to run this command.")
+		return
+	end
+	for i,v in ipairs(ZE.Ztypes.names)
+		if ZE.Ztypes[v] then
+			CONS_Printf(player,"\x85\ ".. ZE.Ztypes[v].name)
+		end
+	end
+end)
+
+
+COM_AddCommand("ze_removezombie", function(player, ztype)
+	local protectedlist = {"ZM_ALPHA", "ZM_FAST", "ZM_TANK", "ZM_TINY"}
+	if not ztype or type(ztype) ~= "string" or not ZE.Ztypes[ztype] then
+		CONS_Printf(player,"\x85\ ERROR: INVALID ZTYPE")
+		return
+	end
+	if ZE.Ztypes[ztype].protected then
+		CONS_Printf(player,"\x85\ ERROR: CANNOT DELETE PROTECTED ZTYPE")
+		return
+	end
+	for i,v in ipairs(ZE.Ztypes.names) do -- FIND ZTYPE
+		if v == ztype then
+			table.remove(ZE.Ztypes.names, i)
+			ZE.Ztypes[ztype] = nil
+			CONS_Printf(player,"\x82\ SUCCESSFULLY REMOVED ZTYPE")
+			break
+		end
+	end
 end)

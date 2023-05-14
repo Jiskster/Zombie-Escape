@@ -2,6 +2,7 @@ local ZE = RV_ZESCAPE
 local CV = ZE.Console
 
 ZE.NetVars = function(net)
+	ZE.Ztypes = net($)
 	ZE.ringlist = net($)
 	ZE.zombcount = net($)
 	ZE.survcount = net($)

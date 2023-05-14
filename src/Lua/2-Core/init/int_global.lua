@@ -4,10 +4,9 @@ rawset(_G,"TEAM_ZOMBIE",1)
 rawset(_G,"TEAM_SURVIVOR",2)
 local ZE = RV_ZESCAPE
 
-ZE.Ztype_names = {}
 ZE.Ztypes = {}
-
-ZE.AddZombie = function(name, info) -- "info" is optional extra information
+ZE.Ztypes.names = {}
+ZE.AddZombie = function(name, info, protected) -- "info" is optional extra information
 	if name == nil or type(name) ~= "string" then
 		error("NAME is invalid type or nil.")
 		return
@@ -19,8 +18,11 @@ ZE.AddZombie = function(name, info) -- "info" is optional extra information
 	local ztypetable = ZE.Ztypes[ztype_name] 
 	
 	ztypetable.name = name
-	
-	table.insert(ZE.Ztype_names,ztype_name) -- insert ZM_.....
+	if protected then
+		ztypetable.protected = true -- prevents the removing of vanilla zombies.
+	end
+
+	table.insert(ZE.Ztypes.names,ztype_name) -- insert ZM_.....
 	
 	if info then
 		if type(info) ~= "table" then
