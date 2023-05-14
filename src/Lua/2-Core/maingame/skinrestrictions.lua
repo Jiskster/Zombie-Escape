@@ -6,9 +6,8 @@ ZE.ZombieSkin = function(player)
     if player and player.valid
      and player.mo and player.mo.valid
 	if (player.ctfteam == 1 and player.mo.skin ~= "dzombie") then
-		if player.playerstate == PST_LIVE and player.mo.skin ~= "dzombie" and CV.gamestarted == true and player.powers[pw_flashing] ~= 0 then
+		if player.playerstate == PST_LIVE and CV.gamestarted == true and player.powers[pw_flashing] < 35 then
 			P_DamageMobj(player.mo, nil, nil, 1, DMG_INSTAKILL)
-			CONS_Printf(player, "ERROR! NOT ON THE RIGHT TEAM!")
 		end
 		R_SetPlayerSkin(player, "dzombie")
 
