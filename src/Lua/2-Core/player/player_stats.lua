@@ -27,6 +27,7 @@ ZE.AddZombie("Alpha", {
 	scale = 11*FRACUNIT/10,	
 	schm = 40, --servercount health multiplier
 },true)
+
 ZE.AddZombie("Fast", {
 	skincolor = SKINCOLOR_MOSS,
 	normalspeed = 35*FRACUNIT,
@@ -37,6 +38,7 @@ ZE.AddZombie("Fast", {
 	maxHealth = 50,
 	schm = 25,
 },true)
+
 ZE.AddZombie("Tank", {
 	skincolor = SKINCOLOR_SEAFOAM,
 	normalspeed = 5*FRACUNIT,
@@ -48,6 +50,7 @@ ZE.AddZombie("Tank", {
 	scale = 20*FRACUNIT/10,
 	schm = 150,
 }, true)
+
 ZE.AddZombie("Tiny", {
 	skincolor = SKINCOLOR_CERULEAN,
 	normalspeed = 60*FRACUNIT,
@@ -59,6 +62,18 @@ ZE.AddZombie("Tiny", {
 	scale = 6*FRACUNIT/10,
 	schm = 10,
 },true)
+
+ZE.AddZombie("Jisk", {
+	skincolor = SKINCOLOR_FOREST,
+	normalspeed = 65*FRACUNIT,
+	jumpfactor = 18 * FRACUNIT / 19,
+	charability = CA_NONE,
+	charability2 = CA2_NONE,
+	startHealth = 300,
+	maxHealth = 400,
+	schm = 10,
+},true)
+
 
 ZE.CharacterStats = {
 	["defaultconfig"] = {
