@@ -257,7 +257,7 @@ ZE.RandomInfect = function()
 			second = getTimeMicros()
 			
 			local result = (second-first)
-			if CV.debug.value then
+			if CV.debugmode.value then
 				print(result.." microseconds took to run zombie picking code.")
 			end
 		end

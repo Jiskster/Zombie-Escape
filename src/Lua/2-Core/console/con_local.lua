@@ -29,12 +29,12 @@ CV.showendscore = CV_RegisterVar{
 	end
 }
 
-CV.debug = CV_RegisterVar{
+CV.debugmode = CV_RegisterVar{
 	name = "ze_debug",
 	defaultvalue = "Off",
-	flags = CV_CALL|CV_NOINIT,
 	PossibleValue = CV_OnOff,
 }
+
 local hudtypefile = io.openlocal(hudtypefilename)
 local hudtypevalue_fromfile
 local showendscorefile = io.openlocal(showendscorefilename)
