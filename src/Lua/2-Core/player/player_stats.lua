@@ -63,6 +63,7 @@ ZE.AddZombie("Tiny", {
 	schm = 10,
 },true)
 
+// Was gonna be luigi zombie.
 ZE.AddZombie("Jisk", {
 	skincolor = SKINCOLOR_FOREST,
 	normalspeed = 65*FRACUNIT,
