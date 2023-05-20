@@ -246,11 +246,25 @@ ZE.InfectPlayer = function(player)
 end
 
 ZE.RandomInfect = function()
+	local first
+	local second
 	if gametype == GT_ZESCAPE	
 		if leveltime-CV.waittime == 0
+			first = getTimeMicros()
+			
 			ZE.InfectRandomPlayer()
+			
+			second = getTimeMicros()
+			
+			local result = (second-first)
+			if CV.debug.value then
+				print(result.." microseconds took to run zombie picking code.")
+			end
 		end
 	end
+	
+	
+
 end
 
 ZE.CountDown = function()
