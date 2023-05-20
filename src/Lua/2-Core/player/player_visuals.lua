@@ -15,7 +15,7 @@ ZE.ZtypeAura = function()
 				zombienumber1.colorized = true
 				zombienumber1.fuse = 1
 				zombienumber1.blendmode = AST_ADD
-				P_TeleportMove(zombienumber1, player.mo.x, player.mo.y, player.mo.z - 4*FRACUNIT)
+				P_MoveOrigin(zombienumber1, player.mo.x, player.mo.y, player.mo.z - 4*FRACUNIT)
 				zombienumber1.frame = $|FF_ADD
 				zombienumber1.scale = $ + FRACUNIT/3
 				if zombienumber1.tracer
@@ -30,7 +30,7 @@ ZE.ZtypeAura = function()
 				zombienumber1.colorized = true
 				zombienumber1.fuse = 1
 				zombienumber1.blendmode = AST_ADD
-				P_TeleportMove(zombienumber1, player.mo.x, player.mo.y, player.mo.z - 4*FRACUNIT)
+				P_MoveOrigin(zombienumber1, player.mo.x, player.mo.y, player.mo.z - 4*FRACUNIT)
 				zombienumber1.frame = $|FF_ADD
 				if zombienumber1.tracer
 					zombienumber1.tracer.fuse = zombienumber1.fuse

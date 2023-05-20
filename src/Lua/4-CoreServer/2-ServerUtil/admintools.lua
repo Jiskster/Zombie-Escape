@@ -221,9 +221,9 @@ COM_AddCommand("goto", function(player, pname)
 				CONS_Printf(player, "You have teleported to yourself. Good for you.")
 			else
 				if player.ve then -- compatibility with Vehicles
-					P_TeleportMove(player.ve, player2.mo.x, player2.mo.y, player2.mo.z)
+					P_SetOrigin(player.ve, player2.mo.x, player2.mo.y, player2.mo.z)
 				end
-				P_TeleportMove(player.mo, player2.mo.x, player2.mo.y, player2.mo.z)
+				P_SetOrigin(player.mo, player2.mo.x, player2.mo.y, player2.mo.z)
 				player.mo.angle = player2.mo.angle
 			end
 			P_ResetPlayer(player)
@@ -349,7 +349,7 @@ COM_AddCommand('here', function(player, target)
     target = players[target]
 
     if target.mo and player.mo
-        P_TeleportMove(target.mo, player.mo.x, player.mo.y, player.mo.z)
+        P_SetOrigin(target.mo, player.mo.x, player.mo.y, player.mo.z)
         P_FlashPal(target, PAL_MIXUP, 1*TICRATE)
         S_StartSound(target.mo, sfx_mixup, target)
         S_StartSound(player.mo, sfx_mixup, player)

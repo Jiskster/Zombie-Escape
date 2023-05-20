@@ -97,7 +97,7 @@ local function Map43_Teleport1()
        map43_tele1 = 1
       for player in players.iterate
 	    if map43_tele1 == 1 and player.ctfteam == 2 then
-		   P_TeleportMove(player.mo, -27392*FRACUNIT, 14368*FRACUNIT, 0*FRACUNIT)
+		   P_SetOrigin(player.mo, -27392*FRACUNIT, 14368*FRACUNIT, 0*FRACUNIT)
        end
 	end
 end
@@ -106,7 +106,7 @@ local function Map43_Teleport2()
        map43_tele2 = 1
       for player in players.iterate
 	    if map43_tele2 == 1 and player.ctfteam == 2 then
-		   P_TeleportMove(player.mo, -10752*FRACUNIT, 20416*FRACUNIT, 0*FRACUNIT) 
+		   P_SetOrigin(player.mo, -10752*FRACUNIT, 20416*FRACUNIT, 0*FRACUNIT) 
        end
 	end
 end

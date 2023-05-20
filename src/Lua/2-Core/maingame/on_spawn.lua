@@ -78,7 +78,7 @@ ZE.DeathPointTp = function(player)
 		   player.respawned = 1
 	end
         if (leveltime > CV.waittime) and player.ctfteam == 1 and not (player.respawned == 1) and player.deathpoint and player.score != 0 then
-		   P_TeleportMove(player.mo, player.deathpoint.x, player.deathpoint.y, player.deathpoint.z)
+		   P_SetOrigin(player.mo, player.deathpoint.x, player.deathpoint.y, player.deathpoint.z)
 		   player.respawned = 1
 		end
     end

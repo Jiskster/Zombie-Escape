@@ -125,7 +125,7 @@ end
 local function Map45_Part2Tele1()
       for player in players.iterate
 	   if (player.ctfteam == 1) then
-	      P_TeleportMove(player.mo, 1280*FRACUNIT, 6272*FRACUNIT, 0*FRACUNIT)
+	      P_SetOrigin(player.mo, 1280*FRACUNIT, 6272*FRACUNIT, 0*FRACUNIT)
        end
 	end
 end
@@ -133,7 +133,7 @@ end
 local function Map45_Part3Tele1()
       for player in players.iterate
 	   if (player.ctfteam == 1) then
-	      P_TeleportMove(player.mo, -19744*FRACUNIT, 7872*FRACUNIT, 0*FRACUNIT)
+	      P_SetOrigin(player.mo, -19744*FRACUNIT, 7872*FRACUNIT, 0*FRACUNIT)
        end
 	end
 end
@@ -143,7 +143,7 @@ end
 local function Map45_Part4Tele1()
       for player in players.iterate
 	   if (player.ctfteam == 1) then
-	      P_TeleportMove(player.mo, 3968*FRACUNIT, -9856*FRACUNIT, 0*FRACUNIT)
+	      P_SetOrigin(player.mo, 3968*FRACUNIT, -9856*FRACUNIT, 0*FRACUNIT)
        end
 	end
 end
@@ -234,7 +234,7 @@ end)
 addHook("PlayerSpawn", function(player)
   if not (map47_act2 == 1) then return end
 	if map47_act2 == 1 and player.ctfteam == 1
-       P_TeleportMove(player.mo, 1280*FRACUNIT, 6272*FRACUNIT, 0*FRACUNIT)
+       P_SetOrigin(player.mo, 1280*FRACUNIT, 6272*FRACUNIT, 0*FRACUNIT)
 	else
 	    return
     end
@@ -243,7 +243,7 @@ end)
 addHook("PlayerSpawn", function(player)
   if not (map47_act3 == 1) then return end
 	if map47_act3 == 1 and player.ctfteam == 1
-       P_TeleportMove(player.mo, -19744*FRACUNIT, 7872*FRACUNIT, 0*FRACUNIT)
+       P_SetOrigin(player.mo, -19744*FRACUNIT, 7872*FRACUNIT, 0*FRACUNIT)
 	else
 	    return
     end
@@ -252,7 +252,7 @@ end)
 addHook("PlayerSpawn", function(player)
   if not (map47_act4 == 1) then return end
 	if map47_act4 == 1 and player.ctfteam == 1
-       P_TeleportMove(player.mo, 3968*FRACUNIT, -9856*FRACUNIT, 0*FRACUNIT)
+       P_SetOrigin(player.mo, 3968*FRACUNIT, -9856*FRACUNIT, 0*FRACUNIT)
 	else
 	    return
     end

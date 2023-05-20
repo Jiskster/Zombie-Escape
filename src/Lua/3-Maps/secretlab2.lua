@@ -72,7 +72,7 @@ end
 local function Map42_Tele1()
       for player in players.iterate
 	   if (player.ctfteam == 1) then
-	      P_TeleportMove(player.mo, -23104*FRACUNIT, 10500*FRACUNIT, 0*FRACUNIT) 
+	      P_SetOrigin(player.mo, -23104*FRACUNIT, 10500*FRACUNIT, 0*FRACUNIT) 
        end
 	end
 end
@@ -80,7 +80,7 @@ end
 local function Map42_Tele2()
       for player in players.iterate
 	   if (player.ctfteam == 1) then
-	      P_TeleportMove(player.mo, -22530*FRACUNIT, 11040*FRACUNIT, 0*FRACUNIT) 
+	      P_SetOrigin(player.mo, -22530*FRACUNIT, 11040*FRACUNIT, 0*FRACUNIT) 
        end
 	end
 end
@@ -88,7 +88,7 @@ end
 local function Map42_Tele3()
       for player in players.iterate
 	   if (player.ctfteam == 1) then
-	      P_TeleportMove(player.mo, -20034*FRACUNIT, 10114*FRACUNIT, 0*FRACUNIT) 
+	      P_SetOrigin(player.mo, -20034*FRACUNIT, 10114*FRACUNIT, 0*FRACUNIT) 
        end
 	end
 end
@@ -96,7 +96,7 @@ end
 local function Map42_Tele4()
       for player in players.iterate
 	   if (player.ctfteam == 1) then
-	      P_TeleportMove(player.mo, -20032*FRACUNIT, 11009*FRACUNIT, 0*FRACUNIT) 
+	      P_SetOrigin(player.mo, -20032*FRACUNIT, 11009*FRACUNIT, 0*FRACUNIT) 
        end
 	end
 end

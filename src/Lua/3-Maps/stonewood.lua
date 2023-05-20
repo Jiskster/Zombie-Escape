@@ -19,7 +19,7 @@ end
 addHook("PlayerSpawn", function(player)
   if not (map41_true == 1) then return end
 	if map41_true == 1 and player.ctfteam == 1
-       P_TeleportMove(player.mo, -10304*FRACUNIT, -23360*FRACUNIT, 0*FRACUNIT)
+       P_SetOrigin(player.mo, -10304*FRACUNIT, -23360*FRACUNIT, 0*FRACUNIT)
 	else
 	    return
     end

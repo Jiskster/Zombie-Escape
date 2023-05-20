@@ -157,7 +157,7 @@ end
 local function Map48_BattleTele1Surv()
       for player in players.iterate
 	   if (player.ctfteam == 2) then
-	      P_TeleportMove(player.mo, -7168*FRACUNIT, -6272*FRACUNIT, 0*FRACUNIT)
+	      P_SetOrigin(player.mo, -7168*FRACUNIT, -6272*FRACUNIT, 0*FRACUNIT)
        end
 	end
 end
@@ -165,7 +165,7 @@ end
 local function Map48_BattleTele1Zm()
       for player in players.iterate
 	   if (player.ctfteam == 1) then
-	      P_TeleportMove(player.mo, -7168*FRACUNIT, -6272*FRACUNIT, 0*FRACUNIT)
+	      P_SetOrigin(player.mo, -7168*FRACUNIT, -6272*FRACUNIT, 0*FRACUNIT)
        end
 	end
 end
@@ -173,7 +173,7 @@ end
 local function Map48_BattleTele2Surv()
       for player in players.iterate
 	   if (player.ctfteam == 2) then
-	      P_TeleportMove(player.mo, 6976*FRACUNIT, 3008*FRACUNIT, 0*FRACUNIT)
+	      P_SetOrigin(player.mo, 6976*FRACUNIT, 3008*FRACUNIT, 0*FRACUNIT)
        end
 	end
 end
@@ -181,7 +181,7 @@ end
 local function Map48_BattleTele2Zm()
       for player in players.iterate
 	   if (player.ctfteam == 1) then
-	      P_TeleportMove(player.mo, 5056*FRACUNIT, -2880*FRACUNIT, 0*FRACUNIT)
+	      P_SetOrigin(player.mo, 5056*FRACUNIT, -2880*FRACUNIT, 0*FRACUNIT)
        end
 	end
 end
@@ -189,7 +189,7 @@ end
 local function Map48_BattleTele3Surv()
       for player in players.iterate
 	   if (player.ctfteam == 2) then
-	      P_TeleportMove(player.mo, -2368*FRACUNIT, -5504*FRACUNIT, 0*FRACUNIT)
+	      P_SetOrigin(player.mo, -2368*FRACUNIT, -5504*FRACUNIT, 0*FRACUNIT)
        end
 	end
 end
@@ -197,7 +197,7 @@ end
 local function Map48_BattleTele3Zm()
       for player in players.iterate
 	   if (player.ctfteam == 1) then
-	      P_TeleportMove(player.mo, -1088*FRACUNIT, -4736*FRACUNIT, 0*FRACUNIT)
+	      P_SetOrigin(player.mo, -1088*FRACUNIT, -4736*FRACUNIT, 0*FRACUNIT)
        end
 	end
 end
@@ -205,7 +205,7 @@ end
 local function Map48_BattleTele4Surv()
       for player in players.iterate
 	   if (player.ctfteam == 2) then
-	      P_TeleportMove(player.mo, 17280*FRACUNIT, 7104*FRACUNIT, 0*FRACUNIT)
+	      P_SetOrigin(player.mo, 17280*FRACUNIT, 7104*FRACUNIT, 0*FRACUNIT)
        end
 	end
 end
@@ -213,7 +213,7 @@ end
 local function Map48_BattleTele4Zm()
       for player in players.iterate
 	   if (player.ctfteam == 1) then
-	      P_TeleportMove(player.mo, 5056*FRACUNIT, -2880*FRACUNIT, 0*FRACUNIT)
+	      P_SetOrigin(player.mo, 5056*FRACUNIT, -2880*FRACUNIT, 0*FRACUNIT)
        end
 	end
 end
@@ -334,7 +334,7 @@ end)
 addHook("PlayerSpawn", function(player)
   if not (map48_battle2 == 1) then return end
 	if map48_battle2 == 1 and player.ctfteam == 1
-       P_TeleportMove(player.mo, -1088*FRACUNIT, -4736*FRACUNIT, 0*FRACUNIT)
+       P_SetOrigin(player.mo, -1088*FRACUNIT, -4736*FRACUNIT, 0*FRACUNIT)
 	else
 	    return
     end

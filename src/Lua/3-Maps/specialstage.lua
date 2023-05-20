@@ -57,10 +57,10 @@ end
 local function Map45_Tele1()
       for player in players.iterate
 	   if (player.ctfteam == 2) then
-	      P_TeleportMove(player.mo, -29024*FRACUNIT, 31648*FRACUNIT, 0*FRACUNIT) 
+	      P_SetOrigin(player.mo, -29024*FRACUNIT, 31648*FRACUNIT, 0*FRACUNIT) 
        end
 	   if (player.ctfteam == 1) then
-	      P_TeleportMove(player.mo, -30304*FRACUNIT, 27040*FRACUNIT, 0*FRACUNIT) 
+	      P_SetOrigin(player.mo, -30304*FRACUNIT, 27040*FRACUNIT, 0*FRACUNIT) 
 	   end
 	end
 end
@@ -68,10 +68,10 @@ end
 local function Map45_Tele2()
       for player in players.iterate
 	   if (player.ctfteam == 2) then
-	      P_TeleportMove(player.mo, -28576*FRACUNIT, 31648*FRACUNIT, 0*FRACUNIT) 
+	      P_SetOrigin(player.mo, -28576*FRACUNIT, 31648*FRACUNIT, 0*FRACUNIT) 
        end
 	   if (player.ctfteam == 1) then
-	      P_TeleportMove(player.mo, -30304*FRACUNIT, 27040*FRACUNIT, 0*FRACUNIT) 
+	      P_SetOrigin(player.mo, -30304*FRACUNIT, 27040*FRACUNIT, 0*FRACUNIT) 
 	   end
 	end
 end
@@ -79,10 +79,10 @@ end
 local function Map45_Tele3()
       for player in players.iterate
 	   if (player.ctfteam == 2) then
-	      P_TeleportMove(player.mo, -28128*FRACUNIT, 31648*FRACUNIT, 0*FRACUNIT) 
+	      P_SetOrigin(player.mo, -28128*FRACUNIT, 31648*FRACUNIT, 0*FRACUNIT) 
        end
 	   if (player.ctfteam == 1) then
-	      P_TeleportMove(player.mo, -30304*FRACUNIT, 27040*FRACUNIT, 0*FRACUNIT) 
+	      P_SetOrigin(player.mo, -30304*FRACUNIT, 27040*FRACUNIT, 0*FRACUNIT) 
 	   end
 	end
 end
