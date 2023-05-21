@@ -59,7 +59,9 @@ ZE.executewin = function(line, mobj, sector)
 	if mobj and mobj.valid and mobj.player then
 		local execplayer = mobj.player
 		if execplayer.ctfteam then -- Are you teamed?
-			print(execplayer.ctfteam)
+			if CV.debugmode.value then
+				print(execplayer.ctfteam)
+			end
 			if execplayer.ctfteam == 2 then
 				ZE.Win() -- Survivor win.
 			else
