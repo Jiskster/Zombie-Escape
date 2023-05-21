@@ -12,7 +12,7 @@ end
 ZE.Win = function(team)
 	ZE.teamWin = team
 	for player in players.iterate do
-		if team == player.ctfteam
+		if team == 1
 			if not(mapheaderinfo[gamemap].zombieswarm) then
 				S_ChangeMusic("ZMWIN",false,player)
 			else -- else if zombie swarm
@@ -22,7 +22,7 @@ ZE.Win = function(team)
 			COM_BufInsertText(player, "savestuff")
 			CV.onwinscreen = 1
 
-		else
+		else -- if team is also 2
 			local survwinmus = mapheaderinfo[gamemap].survwinmus or "ZMLOSE"
 			if not(mapheaderinfo[gamemap].zombieswarm) then
 				S_ChangeMusic(survwinmus,false,player)
@@ -43,57 +43,44 @@ ZE.Win = function(team)
 end
 
 ZE.SurvInv = function(player)
-    for player in players.iterate do
-	 if player.mo and player.mo.valid
-	    if (player.ctfteam == 2) then
-		   player.powers[pw_invulnerability] = 10000
-		   end
+	for player in players.iterate do
+		if player.mo and player.mo.valid
+			if (player.ctfteam == 2) then
+				player.powers[pw_invulnerability] = 10000
+			end
 		end
 	end
 end
 
-
-ZE.survWin = function()
-	for player in players.iterate do
-	  if player.mo and player.mo.valid
-	     if not ZE.winTriggerDelay
-	        if (gametype == GT_ZESCAPE) and not (ZE.teamwin == 1)
-			--SurvivorWinMusic
-			local survwinmus = mapheaderinfo[gamemap].survwinmus or "ZMLOSE"
-			
-			S_ChangeMusic(survwinmus,false,player)
-			
-
-			ZE.winTriggerDelay = 1
-			if CV.deathonwin.value == 1 then
-				ZE.survKill(player)
+ZE.executewin = function(line, mobj, sector)
+	if CV.onwinscreen then -- dont execute a million times
+		return
+	end
+	if mobj and mobj.valid and mobj.player then
+		local execplayer = mobj.player
+		if execplayer.ctfteam then -- Are you teamed?
+			print(execplayer.ctfteam)
+			if execplayer.ctfteam == 2 then
+				ZE.Win() -- Survivor win.
+			else
+				ZE.Win(1) -- Zombie win.
+			end
+			for player in players.iterate do
+				ZE.SurvInv(player)
+				if CV.deathonwin.value == 1 then
+					ZE.survKill(player) -- kills only if they haven't finished.
+				end
 			end
 			P_StartQuake(24*FRACUNIT, 3*TICRATE)
-			ZE.SurvInv(player)
-			ZE.Win(team)
-			   end
-			end
 		end
 	end
 end
 
-ZE.zmWin = function()
-	for player in players.iterate do
-	  if player.mo and player.mo.valid
-	     if not ZE.winTriggerDelay
-	        if (gametype == GT_ZESCAPE) and not (ZE.teamwin == 1)
-			S_ChangeMusic("ZMWIN",false,player)
-			ZE.winTriggerDelay = 1
-			if CV.deathonwin.value == 1 then
-				ZE.survKill2(player)
-			end
-			P_StartQuake(24*FRACUNIT, 3*TICRATE)
-			ZE.Win(1)
-			   end
-			end
-		end
-	end
-end
+//Deprecated
+ZE.survWin = ZE.executewin
+
+//Deprecated
+ZE.zmWin = ZE.executewin
 
 ZE.WinScript = function()
 	if gametype == GT_ZESCAPE

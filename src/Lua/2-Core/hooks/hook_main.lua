@@ -62,6 +62,7 @@ addHook("TouchSpecial", function(poked, poker) return ZE.IgnoreRings(poked, poke
 addHook("TouchSpecial", function(obj, play) return ZE.HealthOrb(obj, play) end,MT_MEGAHP)
 addHook("MobjDeath", function(mo) return  ZE.DeathPointSave(mo) end,MT_PLAYER)
 addHook("ShouldDamage", function(hurtplayer, hazard, shooter, damage) return ZE.rhDamage(hurtplayer, hazard, shooter, damage) end,MT_PLAYER)
-addHook("LinedefExecute", ZE.survWin, "SURVWIN")
-addHook("LinedefExecute", ZE.zmWin, "ZMWIN")
+addHook("LinedefExecute", ZE.survWin, "SURVWIN") //Deprecated
+addHook("LinedefExecute", ZE.zmWin, "ZMWIN") //Deprecated
+addHook("LinedefExecute", ZE.executewin, "ZEWIN")
 addHook("LinedefExecute", ZE.secretsound, "SECRET")
