@@ -1,6 +1,6 @@
 RIP Multiworld...
 
-Original author of the mod - "Hamitto"
+Original author of the mod - "Hamitto"/"Sabl3" *Sabl3#3645*
 Original Creator of this pk3 - TuXe
 Maintained devs of this pk3 - Mini the BunnyBoy and Jisk
 (we're accepting anyone. so if you wanna dev go ahead and contribute a bit and you'll be listed as a dev)
@@ -24,3 +24,8 @@ Soouguy#6585
 Graphics: 
 
 Neonius|Next#6509
+
+Characters:
+
+Troplucky and Bob - Troplucky#1704
+W - The W#1010

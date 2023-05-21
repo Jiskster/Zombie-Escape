@@ -1,0 +1,17 @@
+name = troplucky
+flags = SF_MACHINE
+realname = Trop
+hudname = TROP
+startcolor = 96
+prefcolor = Gold
+supercolor = Purple
+ability = CA_NONE
+actionspd = 60
+normalspeed = 36
+thrustfactor = 5
+accelstart = 96
+acceleration = 40
+runspeed = 30
+contspeed = 4
+contangle = 1
+followitem = MT_METALJETFUME
