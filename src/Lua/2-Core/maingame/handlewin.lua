@@ -94,7 +94,7 @@ ZE.WinScript = function()
 		 if CV.survtime > 0 and not(CV.onwinscreen) and (CV.gamestarted) then
 		    CV.survtime = $1-1
 			if CV.survtime <= 0 then
-				ZE.survWin()
+				ZE.Win()
 			end
 		end
 		if (leveltime > CV.waittime+CV.gametime) and (ZE.teamWin == 0)
@@ -102,11 +102,11 @@ ZE.WinScript = function()
 				ZE.Win(1)
 			end
 			if ZE.zombcount == 0
-				ZE.Win(2)
+				ZE.Win()
 			end
 		end
 		 if CV.gametime <= 0
-		    ZE.zmWin()
+		    ZE.Win(1)
 		end
 			if CV.winWait > 0
 				CV.winWait = $1-1
