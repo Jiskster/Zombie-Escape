@@ -39,19 +39,12 @@ ZE.SpawnPlayer = function(player)
 					player.suicided = false
 					return
 				end
-				if CV.specialztypechance.value == 100 then
-					local pickedztype = P_RandomRange(1, #randomztypes)
-					player.ztype = randomztypes[pickedztype]
-					return
-				end
-				if P_RandomChance(FU/(101-CV.specialztypechance.value)) then
+				if P_RandomChance(FU/1) then
 					local pickedztype = P_RandomRange(1, #randomztypes)
 					player.ztype = randomztypes[pickedztype]
 					return
 				end	
-			end
-			
-			if swarm then
+			else
 				-- if swarm then
 				local randomztypes = ZE.Ztypes.names -- {"ZM_TANK", "ZM_ALPHA", "ZM_FAST", "ZM_TINY"} and more in int_global.lua
 				if player.suicided then
@@ -59,7 +52,7 @@ ZE.SpawnPlayer = function(player)
 					return
 				end
 			
-				if P_RandomChance(FU/2) then
+				if P_RandomChance(FU/1) then
 					local pickedztype = P_RandomRange(1, #randomztypes)
 					player.ztype = randomztypes[pickedztype]
 					return
