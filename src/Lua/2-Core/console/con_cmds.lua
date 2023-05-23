@@ -122,7 +122,7 @@ COM_AddCommand("ze_generatezombie", function(player, name, ... )
 		CONS_Printf(player, "You are not allowed to run this command.")
 		return
 	end
-	local p_name = "ZombieType" .. tostring(P_RandomRange(1,10000))
+	local p_name = "ZTYPE" .. tostring(P_RandomRange(1,10000))
 	local p_skincolor = P_RandomRange(1,#skincolors)
 	local p_normalspeed = P_RandomRange(16,21)*FRACUNIT
 	local p_jumpfactor = 24 * FRACUNIT / P_RandomRange(10,25)
@@ -144,6 +144,7 @@ COM_AddCommand("ze_generatezombie", function(player, name, ... )
 			[3] = "mh:",
 			[4] = "schm:",
 			[5] = "scale:",
+			[6] = "color:",
 		}
 
 		-- [normalspeed] --
@@ -174,6 +175,22 @@ COM_AddCommand("ze_generatezombie", function(player, name, ... )
 			local lastarg = v:sub(#commands[4] + 1)
 			if lastarg and tonumber(lastarg) then
 				p_schm = tonumber(lastarg)
+			end
+		end
+		
+		-- [scale] --
+		if v:sub(1,#commands[5]) == commands[5] then
+			local lastarg = v:sub(#commands[5] + 1)
+			if lastarg and tonumber(lastarg) then
+				p_scale = tonumber(lastarg)*FRACUNIT
+			end
+		end
+		
+		-- [skincolor] --
+		if v:sub(1,#commands[6]) == commands[6] then
+			local lastarg = v:sub(#commands[6] + 1)
+			if lastarg and tonumber(lastarg) then
+				p_skincolor = ZE.GetSkincolor(lastarg)
 			end
 		end
 	end

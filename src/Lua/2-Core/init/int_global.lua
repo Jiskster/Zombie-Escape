@@ -58,7 +58,7 @@ ZE.GetObjectTypeOrNull = function(t)
 	return status and value or MT_NULL 
 end
 
-ZE.GetSkincsolorOrBlue = function(t)
+ZE.GetSkincolor = function(t)
 	local status, value = pcall(ZE.GOTONHelper, t)
 	return status and value or SKINCOLOR_BLUE
 end
