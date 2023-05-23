@@ -39,8 +39,12 @@ ZE.SpawnPlayer = function(player)
 					player.suicided = false
 					return
 				end
-				
-				if P_RandomChance(FU/2) then
+				if CV.specialztypechance.value == 100 then
+					local pickedztype = P_RandomRange(1, #randomztypes)
+					player.ztype = randomztypes[pickedztype]
+					return
+				end
+				if P_RandomChance(FU/(101-CV.specialztypechance.value)) then
 					local pickedztype = P_RandomRange(1, #randomztypes)
 					player.ztype = randomztypes[pickedztype]
 					return
