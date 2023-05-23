@@ -18,12 +18,12 @@ ZE.ZombieSkin = function(player)
 end
 
 ZE.RestrictSkin = function()
-  if not (gametype == GT_ZESCAPE) then return end
-		if (leveltime < CV.waittime) or (CV.waittime < 20*TICRATE) then
-		   COM_BufInsertText(server, "restrictskinchange 0")
-	    else
-		   COM_BufInsertText(server, "restrictskinchange 1")
-     end
+	if not (gametype == GT_ZESCAPE) then return end
+	if (leveltime < CV.waittime) then
+	   COM_BufInsertText(server, "restrictskinchange 0")
+	else
+	   COM_BufInsertText(server, "restrictskinchange 1")
+	end
 end
 
 
