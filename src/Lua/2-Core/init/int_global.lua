@@ -58,6 +58,11 @@ ZE.GetObjectTypeOrNull = function(t)
 	return status and value or MT_NULL 
 end
 
+ZE.GetSkincsolorOrBlue = function(t)
+	local status, value = pcall(ZE.GOTONHelper, t)
+	return status and value or SKINCOLOR_BLUE
+end
+
 ZE.addHP = function(mobj, hp)
 	if mobj and mobj.valid then
 		if mobj.health + hp > mobj.maxHealth then
