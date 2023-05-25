@@ -9,7 +9,7 @@ addHook("ThinkFrame", function()
 	for player in players.iterate
 		ZE.SetRings(player)
 		ZE.InfectPlayer(player)
-		ZE.AntiBounce(player)--level header
+		ZE.AntiAbility(player) --level header + cvar (EX: Anti Bounce and Anti Swim)
 	end
 	ZE.WinScript()
 	ZE.PlayerCount()
@@ -40,6 +40,7 @@ addHook("PlayerSpawn", function(player)
 		ZE.SpawnPlayer(player)
 		ZE.InsertUnlocked(player)
 		player.rvgrcount = 0
+		player.submittedztypes = $ or {}
 		--player.rvgrpass
 		--player.gamesPlayed
 		end

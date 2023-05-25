@@ -27,7 +27,7 @@ for _, filename in ipairs{
 	"2-Core/maingame/mapload.lua",
 	"2-Core/maingame/skinrestrictions.lua",
 	"2-Core/maingame/netvars.lua",
-	"2-Core/maingame/antibounce.lua",
+	"2-Core/maingame/antiability.lua",
 	"2-Core/maingame/mobjcollide.lua",
 	"2-Core/maingame/handleswarm.lua",
 	"2-Core/maingame/handlewin.lua",
@@ -39,6 +39,7 @@ for _, filename in ipairs{
 	"2-Core/player/player_handlecolors.lua", --force into default colors
 	"2-Core/player/player_visuals.lua", -- includes the zombie aura when alpha or fast.
 	"2-Core/player/player_handlezombies.lua",
+	"2-Core/player/player_leave.lua",
 	"2-Core/player/fangcork.lua",
 	
 	"2-Core/player/propspawn.lua",
@@ -47,7 +48,7 @@ for _, filename in ipairs{
 	"2-Core/player/unlock.lua",
 	"2-Core/player/inputfeatures.lua",
 	"2-Core/player/healthorb.lua",
-	
+
 	--mapvote stuff
 	"4-CoreServer/1-MapVote/1_Rawset.lua",
 	"4-CoreServer/1-MapVote/2_Console.lua",

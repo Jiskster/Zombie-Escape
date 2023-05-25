@@ -159,5 +159,3 @@ ZE.ZombieRegen = function(player)
 		    return end
 	end
 end
-
-
