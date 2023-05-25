@@ -250,3 +250,15 @@ Lua.SurviveTime = 5
 Lua.BounceOff = true
 SelectHeading = Zombie Swarm Maps
 Lua.ZombieSwarm = true
+
+Level M1
+LevelName = The Super Zombio Bros
+SubTitle = Mario!
+NoZone = true
+Music = MARIO1
+TypeOfLevel = ZESCAPE
+SelectHeading = Zombie Escape Maps
+NextLevel = TZ
+Skynum = 31
+Lua.SurviveTime = 10
+Lua.ZombieEscape = true

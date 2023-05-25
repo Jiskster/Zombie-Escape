@@ -9,9 +9,14 @@ ZE.ZtypeAura = function()
         and not player.powers[pw_carry]
         and not P_PlayerInPain(player)
         and not player.exiting
-			if (player.ztype == "ZM_ALPHA")
+		and player.ztype then
+			if not ZE.Ztypes[player.ztype] then
+				return
+			end
+			local fromztype = ZE.Ztypes[player.ztype].info
+			if (fromztype.effect == "alpha")
 				local zombienumber1 = P_SpawnGhostMobj(player.mo)
-				zombienumber1.color = P_RandomRange(SKINCOLOR_RED, SKINCOLOR_RUBY)
+				zombienumber1.color = player.mo.color
 				zombienumber1.colorized = true
 				zombienumber1.fuse = 1
 				zombienumber1.blendmode = AST_ADD
@@ -24,9 +29,9 @@ ZE.ZtypeAura = function()
 			end
 			
 			
-			if (player.ztype == "ZM_FAST")
+			if (fromztype.effect == "zoom")
 				local zombienumber1 = P_SpawnGhostMobj(player.mo)
-				zombienumber1.color = SKINCOLOR_MOSS
+				zombienumber1.color = player.mo.color
 				zombienumber1.colorized = true
 				zombienumber1.fuse = 1
 				zombienumber1.blendmode = AST_ADD

@@ -91,3 +91,24 @@ CV.survivorframes = CV_RegisterVar{ -- invicibility frames after being hit as su
 	flags = CV_NETVAR,
 	PossibleValue={MIN = 1, MAX = 9999}
 }
+
+CV.specialztypechance = CV_RegisterVar{
+	name = "ze_specialztypechance",
+	defaultvalue = "50",
+	flags = CV_NETVAR,
+	PossibleValue={MIN = 1, MAX = 50}
+}
+
+CV.maxztypeperplayer = CV_RegisterVar{
+	name = "ze_maxztypeperplayer",
+	defaultvalue = "3",
+	flags = CV_NETVAR,
+	PossibleValue={MIN = 1, MAX = 9999}
+}
+
+CV.allowswim = CV_RegisterVar{
+	name = "ze_allowswim",
+	defaultvalue = "Off",
+	flags = CV_NETVAR,
+	PossibleValue = CV_OnOff
+}

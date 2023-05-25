@@ -6,9 +6,33 @@ ZE.HandleZombie = function(player) --zombie health and ztype config combined
 		if player.mo and player.mo.valid then
 			if player.ctfteam == 2 then return end
 			if not (player.spectator) then
+			
+				local function setHealthStat()
+					local normal_schm = 35 -- server count health multiplier for common zombies
+					if not (player.ztype) then -- if ur not special
+						player.mo.health = ZE.ZombieStats["ZM_NORMAL"].startHealth + (normal_schm*ZE.survcount)
+						player.mo.maxHealth = ZE.ZombieStats["ZM_NORMAL"].maxHealth + (normal_schm*ZE.survcount) 
+						return 
+					end
+					
+					local myschm = ZE.Ztypes[player.ztype].info.schm --schm = servercount health multiplier
+					if myschm then
+						player.mo.health = ZE.Ztypes[player.ztype].info.startHealth + (myschm*ZE.survcount) 
+						player.mo.maxHealth = ZE.Ztypes[player.ztype].info.maxHealth + (myschm*ZE.survcount)
+					else
+						player.mo.health = ZE.Ztypes[player.ztype].info.startHealth
+						player.mo.maxHealth = ZE.Ztypes[player.ztype].info.maxHealth
+					end					
+				end
+				
 				if CV.gamestarted == true then
 					if player.ztype then
-						if ZE.Ztypes[player.ztype] and ZE.Ztypes[player.ztype].info.scale then
+						if not ZE.Ztypes[player.ztype] then -- refresh ztype if ztype doesnt exist.
+							player.ztype = nil
+							setHealthStat()
+							return
+						end
+						if ZE.Ztypes[player.ztype].info.scale then
 							player.mo.scale = ZE.Ztypes[player.ztype].info.scale
 						end
 						if not (player.boost == 1) then -- if not alpha boosting
@@ -17,26 +41,8 @@ ZE.HandleZombie = function(player) --zombie health and ztype config combined
 						end
 					end
 				end
-				
-				if player.powers[pw_flashing] == 0 then return end -- stop if not invincible frames on spawn
-				
-				--survcounthealthmulti
-				
-				local normal_schm = 35 -- server count health multiplier for common zombies
-				if not (player.ztype) then -- if ur not special
-					player.mo.health = ZE.ZombieStats["ZM_NORMAL"].startHealth + (normal_schm*ZE.survcount)
-					player.mo.maxHealth = ZE.ZombieStats["ZM_NORMAL"].maxHealth + (normal_schm*ZE.survcount) 
-					return 
-				end
-				
-				local myschm = ZE.Ztypes[player.ztype].info.schm --schm = servercount health multiplier
-				if myschm then
-					player.mo.health = ZE.Ztypes[player.ztype].info.startHealth + (myschm*ZE.survcount) 
-					player.mo.maxHealth = ZE.Ztypes[player.ztype].info.maxHealth + (myschm*ZE.survcount)
-				else
-					player.mo.health = ZE.Ztypes[player.ztype].info.startHealth
-					player.mo.maxHealth = ZE.Ztypes[player.ztype].info.maxHealth
-				end
+				if player.powers[pw_flashing] == 0 then return end
+				setHealthStat()
 				
 			end
 		end

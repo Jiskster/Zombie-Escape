@@ -26,6 +26,7 @@ ZE.AddZombie("Alpha", {
 	maxHealth = 500,
 	scale = 11*FRACUNIT/10,	
 	schm = 40, --servercount health multiplier
+	effect = "alpha",
 },true)
 
 ZE.AddZombie("Fast", {
@@ -37,6 +38,7 @@ ZE.AddZombie("Fast", {
 	startHealth = 50,
 	maxHealth = 50,
 	schm = 25,
+	effect = "zoom",
 },true)
 
 ZE.AddZombie("Tank", {

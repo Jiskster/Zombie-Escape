@@ -21,3 +21,7 @@ addHook("PlayerThink", function(player)
 			ZE.SpawnProps(player)
 	end
 end)
+
+addHook("PlayerQuit", function(player)
+	ZE.RemoveZtypesOnLeave(player)
+end)

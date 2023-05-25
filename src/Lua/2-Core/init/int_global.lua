@@ -6,7 +6,8 @@ local ZE = RV_ZESCAPE
 
 ZE.Ztypes = {}
 ZE.Ztypes.names = {}
-ZE.AddZombie = function(name, info, protected) -- "info" is optional extra information
+
+ZE.AddZombie = function(name, info, protected) -- "info" is extra information
 	if name == nil or type(name) ~= "string" then
 		error("NAME is invalid type or nil.")
 		return
@@ -34,7 +35,15 @@ ZE.AddZombie = function(name, info, protected) -- "info" is optional extra infor
 	end
 
 end
-
+ZE.ClearZombies = function()
+	local lastztype
+	for i,v in ipairs(ZE.Ztypes.names)
+		if ZE.Ztypes[v] and not ZE.Ztypes[v].protected then
+			ZE.Ztypes[v] = nil
+			table.remove(ZE.Ztypes.names, i)
+		end
+	end
+end
 ZE.Console = {}
 
 G_AddGametype({
@@ -56,6 +65,11 @@ end
 ZE.GetObjectTypeOrNull = function(t)
 	local status, value = pcall(ZE.GOTONHelper, t)
 	return status and value or MT_NULL 
+end
+
+ZE.GetSkincolor = function(t)
+	local status, value = pcall(ZE.GOTONHelper, t)
+	return status and value or SKINCOLOR_BLUE
 end
 
 ZE.addHP = function(mobj, hp)
