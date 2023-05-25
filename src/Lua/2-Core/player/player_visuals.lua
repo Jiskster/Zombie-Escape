@@ -9,6 +9,7 @@ ZE.ZtypeAura = function()
         and not player.powers[pw_carry]
         and not P_PlayerInPain(player)
         and not player.exiting
+		and player.ztype then
 			if (player.ztype == "ZM_ALPHA")
 				local zombienumber1 = P_SpawnGhostMobj(player.mo)
 				zombienumber1.color = P_RandomRange(SKINCOLOR_RED, SKINCOLOR_RUBY)

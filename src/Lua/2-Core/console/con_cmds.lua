@@ -103,7 +103,11 @@ COM_AddCommand("ze_changeztype", function(player, arg1)
 		CONS_Printf(player, "The game mode must be Zombie Escape to use this command.")
 		return
 	end
-	arg1 = tonumber(arg1)
+	
+	if ZE.Ztypes[arg1] == nil then
+		CONS_Printf(player, "Invalid Ztype.")
+		return
+	end
 	if player.mo and player.mo.valid and arg1 ~= nil then
 		player.ztype = arg1
 	end
