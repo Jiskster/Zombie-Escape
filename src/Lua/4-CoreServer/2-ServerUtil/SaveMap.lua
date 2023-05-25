@@ -4,13 +4,6 @@ addHook("NetVars", function(n)
 	 server_init = n($)
 end)
 
-addHook("PlayerThink", function(player)
-	if player.cpu != true
-		COM_BufInsertText(player, "cpusleep 0")
-		player.cpu = true
-	end
-end)
-
 addHook("ThinkFrame", function()
 	local resetlevelneeded = false
 	local gotfile = false
