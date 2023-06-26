@@ -233,17 +233,19 @@ hud.add(function(v, player, camera)
 	if gametype == GT_ZESCAPE
 		if ZE.teamWin != 0 and player.ctfteam != 0 and CV.savedendtic != 0
 		    local time = TICRATE*2
+			
 			local ese = ease.inoutquad(( (FU) / (time) )*(CV.timeafterwin), 0, 16)
-			local ese2 = ease.inoutquad(( (FU) / (time) )*(CV.timeafterwin), -50, 50)
+			local ese2 = ease.inoutquad(( (FU) / (time) )*(CV.timeafterwin), -50*FRACUNIT, 50*FRACUNIT)
+			
 			
 			local function DoAnim(teamwin)
 				local patches = {"ZOMBWIN", "SURVWIN"}
 				if CV.timeafterwin < time then
 					v.fadeScreen(0xFF00, ese)
-					v.draw(160,ese2,v.cachePatch(patches[teamwin]), V_PERPLAYER|V_SNAPTOBOTTOM)
+					v.drawScaled(160*FRACUNIT, ese2, FRACUNIT, v.cachePatch(patches[teamwin]), V_PERPLAYER|V_SNAPTOBOTTOM)
 				else
 					v.fadeScreen(0xFF00, 16)
-					v.draw(160,50,v.cachePatch(patches[teamwin]), V_PERPLAYER|V_SNAPTOBOTTOM)
+					v.drawScaled(160*FRACUNIT, 50*FRACUNIT, FRACUNIT, v.cachePatch(patches[teamwin]), V_PERPLAYER|V_SNAPTOBOTTOM)
 				end
 				if CV.showendscore.value == 1
 					if CV.timeafterwin == TICRATE*2 then
